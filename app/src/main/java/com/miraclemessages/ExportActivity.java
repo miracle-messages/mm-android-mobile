@@ -17,7 +17,7 @@ import android.widget.Toast;
 import java.io.File;
 
 public class ExportActivity extends Activity{
-    Button b;
+    Button submit, back;
     SharedPreferences sharedpreferences;
     public static final String myPreferences = "MyPreferences";
     public static final String Name = "name";
@@ -30,9 +30,10 @@ public class ExportActivity extends Activity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_export);
         sharedpreferences = getSharedPreferences(myPreferences, Context.MODE_PRIVATE);
-        b = (Button) findViewById(R.id.submit);
+        submit = (Button) findViewById(R.id.submit);
+        back = (Button) findViewById(R.id.homepage);
 
-        b.setOnClickListener(new View.OnClickListener() {
+        submit.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v)
             {
                 Intent i = new Intent(Intent.ACTION_SEND);
@@ -61,5 +62,12 @@ public class ExportActivity extends Activity{
             }
 
         });
+
+        back.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v) {
+                startActivity(new Intent(ExportActivity.this, PreCameraActivity.class));
+            }
+        });
+
     }
 }
