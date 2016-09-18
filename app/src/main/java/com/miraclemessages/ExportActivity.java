@@ -4,12 +4,17 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
+import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import java.io.File;
 
 public class ExportActivity extends Activity{
     Button b;
@@ -19,6 +24,7 @@ public class ExportActivity extends Activity{
     public static final String Email = "email";
     public static final String Phone = "phone";
     public static final String Location = "location";
+    public static final String FileLoc = "file";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,7 +36,13 @@ public class ExportActivity extends Activity{
             public void onClick(View v)
             {
                 Intent i = new Intent(Intent.ACTION_SEND);
+                File f = new File("",
+                        sharedpreferences.getString(FileLoc, null).toString());
+                Log.v("Hank: ", sharedpreferences.getString(FileLoc, null).toString());
+                Log.v("Razputin: ", f.getAbsolutePath().toString() );
+                Uri path = Uri.fromFile(f);
                 i.setType("message/rfc822");
+                i.putExtra(Intent.EXTRA_STREAM, path);
                 i.putExtra(Intent.EXTRA_EMAIL  , new String[]{"jw3qz@virginia.edu"});
                 i.putExtra(Intent.EXTRA_SUBJECT, "Miracle Messages Recording");
                 i.putExtra(Intent.EXTRA_TEXT   ,

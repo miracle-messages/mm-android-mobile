@@ -61,7 +61,7 @@ package com.miraclemessages;
     import android.widget.Button;
     import android.widget.Toast;
     import android.widget.ViewFlipper;
-
+    import android.content.SharedPreferences;
     import java.io.File;
     import java.io.IOException;
     import java.text.SimpleDateFormat;
@@ -76,6 +76,9 @@ package com.miraclemessages;
 
     public class Camera2VideoFragment extends Fragment
             implements View.OnClickListener, FragmentCompat.OnRequestPermissionsResultCallback {
+        SharedPreferences sharedpreferences;
+        public static final String myPreferences = "MyPreferences";
+        public static final String FileLoc = "file";
 
         private static final int SENSOR_ORIENTATION_DEFAULT_DEGREES = 90;
         private static final int SENSOR_ORIENTATION_INVERSE_DEGREES = 270;
@@ -681,12 +684,23 @@ package com.miraclemessages;
         }
 
         private String getVideoFilePath(Context context) {
-            return context.getExternalFilesDir(null).getAbsolutePath() + "/"
+            String str =  context.getExternalFilesDir(null).getAbsolutePath() + "/"
                     + System.currentTimeMillis() + ".mp4";
+            sharedpreferences = context.getSharedPreferences(myPreferences, Context.MODE_PRIVATE);
+            Log.v("Boo: ", str);
+            SharedPreferences.Editor editor = sharedpreferences.edit();
+            editor.putString(FileLoc, str);
+            editor.commit();
+            Log.v("BOBBY JENKINS: ", sharedpreferences.getString(FileLoc, null));
+            return str;
         }
 
         private void startRecordingVideo() {
+            cameraVF.setInAnimation(getActivity(), R.anim.slide_in_from_right);
+            cameraVF.setOutAnimation(getActivity(), R.anim.slide_out_to_left);
             cameraVF.showNext();
+            cameraButtonsVF.setInAnimation(getActivity(), R.anim.slide_in_from_right);
+            cameraButtonsVF.setOutAnimation(getActivity(), R.anim.slide_out_to_left);
             cameraButtonsVF.showNext();
             if (null == mCameraDevice || !mTextureView.isAvailable() || null == mPreviewSize) {
                 return;
@@ -784,6 +798,7 @@ package com.miraclemessages;
             }
             mNextVideoAbsolutePath = null;
             startPreview();
+            activity.startActivity(new Intent(Camera2VideoFragment.this.getActivity(), ExportActivity.class));
         }
 
         /**

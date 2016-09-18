@@ -1,6 +1,7 @@
 package com.miraclemessages;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 
 public class Camera2Activity extends Activity {
