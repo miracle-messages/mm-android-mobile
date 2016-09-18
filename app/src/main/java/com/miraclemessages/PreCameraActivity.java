@@ -57,8 +57,8 @@ public class PreCameraActivity extends Activity {
 
         animFadeOut = AnimationUtils.loadAnimation(getApplicationContext(), android.R.anim.fade_out);
         animFadeIn = AnimationUtils.loadAnimation(getApplicationContext(), android.R.anim.fade_in);
-        animFadeOut.setDuration(500);
-        animFadeIn.setDuration(5000);
+        animFadeOut.setDuration(100);
+        animFadeIn.setDuration(600);
 
         begin.setOnClickListener(new View.OnClickListener() {
             @Override
