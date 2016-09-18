@@ -283,7 +283,7 @@ package com.miraclemessages;
             mTextureView = (AutoFitTextureView) view.findViewById(R.id.texture);
             mButtonVideo = (Button) view.findViewById(R.id.video);
             mButtonVideo.setOnClickListener(this);
-            view.findViewById(R.id.info).setOnClickListener(this);
+            //view.findViewById(R.id.info).setOnClickListener(this);
         }
 
         @Override
@@ -315,16 +315,16 @@ package com.miraclemessages;
                     }
                     break;
                 }
-                case R.id.info: {
-                    Activity activity = getActivity();
-                    if (null != activity) {
-                        new AlertDialog.Builder(activity)
-                                .setMessage(R.string.intro_message)
-                                .setPositiveButton(android.R.string.ok, null)
-                                .show();
-                    }
-                    break;
-                }
+//                case R.id.info: {
+//                    Activity activity = getActivity();
+//                    if (null != activity) {
+//                        new AlertDialog.Builder(activity)
+//                                .setMessage(R.string.intro_message)
+//                                .setPositiveButton(android.R.string.ok, null)
+//                                .show();
+//                    }
+//                    break;
+//                }
             }
         }
 
