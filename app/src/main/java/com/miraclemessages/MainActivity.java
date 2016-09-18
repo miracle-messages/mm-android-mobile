@@ -37,8 +37,6 @@ public class MainActivity extends AppCompatActivity {
         sharedpreferences = getSharedPreferences(myPreferences,
                             Context.MODE_PRIVATE);
 
-        Log.v("Poop: ", (sharedpreferences.getString(Email, null) == "") + "");
-
         submit.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
@@ -57,8 +55,7 @@ public class MainActivity extends AppCompatActivity {
 
                 Toast.makeText(MainActivity.this,"Thank you!", Toast.LENGTH_LONG).show();
                 Log.v("Bonjourno: ", "Hoe");
-                Intent i = new Intent(MainActivity.this, PreCameraActivity.class);
-                startActivity(i);
+                startActivity(new Intent(MainActivity.this, PreCameraActivity.class));
             }
         });
     }
