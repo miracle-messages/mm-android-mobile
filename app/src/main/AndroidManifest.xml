@@ -12,7 +12,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/MaterialTheme">
-        <activity android:name=".Camera2Activity">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -20,7 +20,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".PreCameraActivity" />
-        <activity android:name=".MainActivity" />
+        <activity android:name=".Camera2Activity" />
+        <activity android:name=".ExportActivity" />
     </application>
 
 </manifest>
