@@ -38,11 +38,11 @@ public class MainActivity extends Activity {
         sharedpreferences = getSharedPreferences(myPreferences,
                             Context.MODE_PRIVATE);
 
-//        if(sharedpreferences.getString(Name, null) != null
-//                && sharedpreferences.getString(Email, null) != null
-//                && sharedpreferences.getString(Phone, null) != null
-//                && sharedpreferences.getString(Location, null) != null)
-//                startActivity(new Intent(MainActivity.this, ExportActivity.class));
+        if(sharedpreferences.getString(Name, null) != null
+                && sharedpreferences.getString(Email, null) != null
+                && sharedpreferences.getString(Phone, null) != null
+                && sharedpreferences.getString(Location, null) != null)
+                startActivity(new Intent(MainActivity.this, PreCameraActivity.class));
 
         submit.setOnClickListener(new View.OnClickListener() {
 
