@@ -41,9 +41,33 @@ public class MainActivity extends AppCompatActivity {
 
             public void onClick(View v) {
                 String n = textName.getText().toString();
+                if(n.equals("")) {
+                    Toast.makeText(MainActivity.this,
+                            "Please fill out all fields.",
+                            Toast.LENGTH_LONG).show();
+                    return;
+                }
                 String e = textEmail.getText().toString();
+                if(e.equals("")) {
+                    Toast.makeText(MainActivity.this,
+                            "Please fill out all fields.",
+                            Toast.LENGTH_LONG).show();
+                    return;
+                }
                 String p = textPhone.getText().toString();
+                if(p.equals("")) {
+                    Toast.makeText(MainActivity.this,
+                            "Please fill out all fields.",
+                            Toast.LENGTH_LONG).show();
+                    return;
+                }
                 String l = textLocation.getText().toString();
+                if(l.equals("")) {
+                    Toast.makeText(MainActivity.this,
+                            "Please fill out all fields.",
+                            Toast.LENGTH_LONG).show();
+                    return;
+                }
 
                 SharedPreferences.Editor editor = sharedpreferences.edit();
                 editor.putString(Name, n);
