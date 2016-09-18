@@ -1,5 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?><!--
- Copyright 2014 The Android Open Source Project
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright 2013 The Android Open Source Project
 
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -13,8 +14,16 @@
  See the License for the specific language governing permissions and
  limitations under the License.
 -->
+
 <resources>
-
-    <style name="MaterialTheme" parent="android:Theme.Material.Light.NoActionBar.Fullscreen" />
-
+    <string name="app_name">Camera2Video</string>
+    <string name="intro_message">
+        <![CDATA[
+        
+            
+            This sample demonstrates how to record video using Camera2 API.
+            
+        
+        ]]>
+    </string>
 </resources>
