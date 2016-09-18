@@ -24,6 +24,18 @@
         android:visibility="invisible"
         />
 
+    <ImageView
+        android:id="@+id/small_icon"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
+        android:adjustViewBounds="true"
+        android:src="@drawable/mmicon"
+        android:layout_alignParentBottom="true"
+        android:visibility="gone"
+        />
+
     <ViewFlipper
         android:id="@+id/viewflipper"
         android:layout_width="fill_parent"
@@ -32,11 +44,12 @@
 
         <LinearLayout
             android:id="@+id/precamera_home"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:orientation="vertical"
-            android:layout_gravity="center_vertical"
             android:weightSum="1"
+            android:gravity="center"
+            android:layout_marginBottom="20dp"
             >
 
             <TextView
@@ -46,31 +59,62 @@
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
                 android:textSize="25dp"
-                android:layout_weight="0.4"
                 />
 
             <ImageView
                 android:id="@+id/icon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/home_label"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
                 android:adjustViewBounds="true"
                 android:src="@drawable/mmicon"
-                android:layout_weight="0.3"
                 />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_centerHorizontal="true"
-                android:layout_weight="0.2">
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_weight="0.55"
+                android:layout_alignParentTop="true">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Current Volunteer"
+                    android:id="@+id/not_user"
+                    android:text="Not current user?"
+                    android:textSize="20dp"
+                    android:layout_weight="0.5"
+                    android:gravity="center_horizontal"
+                    />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/logout"
+                    android:text="Switch User"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:textSize="15dp"
+                    android:background="@drawable/button_selector"
+                    android:layout_weight="0.5"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_weight="0.45">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Volunteer Information"
                     android:id="@+id/volunteer_info"
-                    android:layout_above="@+id/volunteer_name"
                     android:textSize="20dp"
                     />
 
@@ -78,7 +122,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/volunteer_name"
-                    android:layout_above="@+id/volunteer_email"
                     android:textSize="15dp"
                     />
 
@@ -86,7 +129,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/volunteer_email"
-                    android:layout_above="@+id/volunteer_phone"
                     android:textSize="15dp"
                     />
 
@@ -94,7 +136,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/volunteer_phone"
-                    android:layout_centerVertical="true"
                     android:textSize="15dp"
                     />
 
@@ -107,32 +148,6 @@
 
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="0.1">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/not_volunteer_label"
-                    android:layout_centerHorizontal="true"
-                    android:layout_above="@+id/logout"
-                    android:textSize="20dp"
-                    />
-
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/logout"
-                    android:text="Logout"
-                    android:layout_alignParentBottom="true"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginBottom="20dp"
-                    />
-
-            </LinearLayout>
-
         </LinearLayout>
 
         <RelativeLayout
@@ -140,7 +155,8 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:orientation="vertical"
-            android:layout_gravity="center_vertical">
+            android:layout_gravity="center_vertical"
+            android:padding="10dp">
 
             <RelativeLayout
                 android:layout_width="wrap_content"
@@ -182,6 +198,7 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:orientation="vertical"
+            android:padding="10dp"
             android:layout_gravity="center_vertical">
 
             <RelativeLayout
@@ -216,6 +233,7 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:orientation="vertical"
+            android:padding="10dp"
             android:layout_gravity="center_vertical">
 
             <RelativeLayout
@@ -240,6 +258,7 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:orientation="vertical"
+            android:padding="10dp"
             android:layout_gravity="center_vertical">
 
             <RelativeLayout
@@ -264,6 +283,7 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:orientation="vertical"
+            android:padding="10dp"
             android:layout_gravity="center_vertical">
 
             <RelativeLayout
@@ -313,6 +333,7 @@
                 android:text="Begin Miracle Message"
                 android:layout_centerVertical="true"
                 android:layout_centerHorizontal="true"
+                android:background="@drawable/button_selector"
                 />
 
         </RelativeLayout>
@@ -333,6 +354,7 @@
                     android:layout_centerVertical="true"
                     android:layout_alignParentLeft="true"
                     android:layout_marginLeft="20dp"
+                    android:background="@drawable/button_selector"
                     />
 
                 <Button
@@ -343,6 +365,7 @@
                     android:layout_centerVertical="true"
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="20dp"
+                    android:background="@drawable/button_selector"
                     />
 
         </RelativeLayout>
