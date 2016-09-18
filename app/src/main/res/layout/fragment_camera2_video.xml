@@ -29,23 +29,51 @@
         android:layout_below="@id/texture"
         android:background="#4285f4">
 
-        <Button
-            android:id="@+id/video"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="@string/record" />
+        <!--<ImageButton-->
+            <!--android:id="@+id/info"-->
+            <!--android:contentDescription="@string/description_info"-->
+            <!--style="@android:style/Widget.Material.Light.Button.Borderless"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="center_vertical|right"-->
+            <!--android:padding="20dp"-->
+            <!--android:src="@drawable/ic_action_info" />-->
+        <ViewFlipper
+            android:id="@+id/buttonviewflipper"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight=".75">
 
-        <ImageButton
-            android:id="@+id/info"
-            android:contentDescription="@string/description_info"
-            style="@android:style/Widget.Material.Light.Button.Borderless"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical|right"
-            android:padding="20dp"
-            android:src="@drawable/ic_action_info" />
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center_vertical"
+                android:orientation="vertical"
+                >
+                
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/next"
+                    android:text="Next"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/button_selector"
+                    />
+
+            </RelativeLayout>
+
+        </ViewFlipper>
 
     </FrameLayout>
+    <Button
+        android:id="@+id/video"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/record" />
 
 </RelativeLayout>
