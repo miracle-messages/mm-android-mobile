@@ -53,12 +53,14 @@ package com.miraclemessages;
     import android.util.Size;
     import android.util.SparseIntArray;
     import android.view.LayoutInflater;
+    import android.view.MotionEvent;
     import android.view.Surface;
     import android.view.TextureView;
     import android.view.View;
     import android.view.ViewGroup;
     import android.widget.Button;
     import android.widget.Toast;
+    import android.widget.ViewFlipper;
 
     import java.io.File;
     import java.io.IOException;
@@ -91,6 +93,9 @@ package com.miraclemessages;
                 Manifest.permission.RECORD_AUDIO,
         };
 
+        private ViewFlipper cameraVF, cameraButtonsVF;
+        private float lastX;
+
         static {
             DEFAULT_ORIENTATIONS.append(Surface.ROTATION_0, 90);
             DEFAULT_ORIENTATIONS.append(Surface.ROTATION_90, 0);
@@ -113,7 +118,7 @@ package com.miraclemessages;
         /**
          * Button to record video
          */
-        private Button mButtonVideo;
+        private Button mButtonVideo, back, next;
 
         /**
          * A refernce to the opened {@link android.hardware.camera2.CameraDevice}.
@@ -294,8 +299,74 @@ package com.miraclemessages;
             mTextureView = (AutoFitTextureView) view.findViewById(R.id.texture);
             mButtonVideo = (Button) view.findViewById(R.id.video);
             mButtonVideo.setOnClickListener(this);
+            cameraVF = (ViewFlipper) view.findViewById(R.id.cameraviewflipper);
+            cameraButtonsVF = (ViewFlipper) view.findViewById(R.id.camerabuttonviewflipper);
+            back = (Button) view.findViewById(R.id.backCamera);
+            back.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(cameraVF.getDisplayedChild() > 0) {
+                        if (cameraVF.getDisplayedChild() != 1) {
+
+                            cameraVF.setInAnimation(v.getContext(), R.anim.slide_in_from_left);
+                            cameraVF.setOutAnimation(v.getContext(), R.anim.slide_out_to_right);
+                            cameraVF.showPrevious();
+                        }
+                    }
+                }
+            });
+            next = (Button) view.findViewById(R.id.nextCamera);
+            next.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Log.v("Child:", cameraVF.getDisplayedChild() + " " + (cameraVF.getChildCount() - 1));
+                    if (cameraVF.getDisplayedChild() < cameraVF.getChildCount() - 1) {
+                        if(cameraVF.getDisplayedChild() == cameraVF.getChildCount() - 2) {
+                            cameraButtonsVF.setInAnimation(v.getContext(), R.anim.slide_in_from_right);
+                            cameraButtonsVF.setOutAnimation(v.getContext(), R.anim.slide_out_to_left);
+                            cameraButtonsVF.showPrevious();
+                        }
+                        cameraVF.setInAnimation(v.getContext(), R.anim.slide_in_from_right);
+                        cameraVF.setOutAnimation(v.getContext(), R.anim.slide_out_to_left);
+                        cameraVF.showNext();
+                    }
+                }
+            });
+
             //view.findViewById(R.id.info).setOnClickListener(this);
         }
+
+//        public boolean onTouchEvent(MotionEvent touchevent) {
+//            Log.v("Touched", touchevent.getAction() + "");
+//            switch(touchevent.getAction()) {
+//                case MotionEvent.ACTION_DOWN:
+//                    lastX = touchevent.getX();
+//                    break;
+//                case MotionEvent.ACTION_UP:
+//                    float currentX = touchevent.getX();
+//                    //swipe right
+//                    if (lastX < currentX) {
+//                        Log.v("Swipe:", "Swiped right");
+//                        if (cameraVF.getDisplayedChild() == 0)
+//                            break;
+//                        cameraVF.setInAnimation(getActivity(), R.anim.slide_in_from_left);
+//                        cameraVF.setOutAnimation(getActivity(), R.anim.slide_out_to_right);
+//                        cameraVF.showNext();
+//                    }
+//                    //swipe left
+//                    if (lastX > currentX) {
+//                        Log.v("Swipe:", "Swiped left");
+//                        if (cameraVF.getDisplayedChild() == 1)
+//                            break;
+//                        cameraVF.setInAnimation(getActivity(), R.anim.slide_in_from_right);
+//                        cameraVF.setOutAnimation(getActivity(), R.anim.slide_out_to_left);
+//                        cameraVF.showPrevious();
+//                    }
+//                    break;
+//            }
+//            return false;
+//        }
+
 
         @Override
         public void onResume() {
@@ -615,6 +686,8 @@ package com.miraclemessages;
         }
 
         private void startRecordingVideo() {
+            cameraVF.showNext();
+            cameraButtonsVF.showNext();
             if (null == mCameraDevice || !mTextureView.isAvailable() || null == mPreviewSize) {
                 return;
             }
