@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         sharedpreferences = getSharedPreferences(myPreferences,
                             Context.MODE_PRIVATE);
 
-        Log.v("Poop: ", sharedpreferences.getAll().toString());
+        Log.v("Poop: ", sharedpreferences.getString(Name, null).toString());
 
         submit.setOnClickListener(new View.OnClickListener() {
 
