@@ -54,8 +54,27 @@
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
                         android:layout_centerVertical="true"
+                        android:gravity="center"
                         android:id="@+id/record_text"
-                        android:text="Once you press record, keep pressing next for questions!"/>
+                        android:text="Once you press record, \nkeep pressing next for questions!"/>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:gravity="center"
+                        android:textSize="20sp"
+                        android:id="@+id/text1_1"
+                        android:text="I just need to gather a bit of \nbackground info to help \nMiracle Messages' volunteers \ntry to locate your loved one(s)."/>
 
                 </RelativeLayout>
 
@@ -70,8 +89,9 @@
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
                         android:layout_centerVertical="true"
-                        android:id="@+id/text1_1"
-                        android:text="Great. Now, I just need to gather a bit of background info to help Miracle Messages' volunteers try to locate your loved one(s). First, about you."/>
+                        android:textSize="20sp"
+                        android:id="@+id/text1_2"
+                        android:text="First, about you."/>
 
                 </LinearLayout>
 
@@ -86,8 +106,10 @@
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:layout_centerVertical="true"
+                        android:gravity="center"
+                        android:textSize="20sp"
                     android:id="@+id/text2_1"
-                    android:text="1. Please clearly say and spell your full name."/>
+                    android:text="1. Please clearly say and \nspell your full name."/>
 
                 </LinearLayout>
 
@@ -102,6 +124,7 @@
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
                         android:layout_centerVertical="true"
+                        android:textSize="20sp"
                         android:id="@+id/text2_2"
                         android:text="2. What is your date of birth?"/>
 
@@ -118,8 +141,10 @@
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
                         android:layout_centerVertical="true"
+                        android:gravity="center"
+                        android:textSize="20sp"
                         android:id="@+id/text2_3"
-                        android:text="3. Where do you currently live? (city, state, country)?"/>
+                        android:text="3. Where do you currently live? \n(city, state, country)"/>
 
                 </LinearLayout>
 
@@ -134,6 +159,7 @@
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
                         android:layout_centerVertical="true"
+                        android:textSize="20sp"
                         android:id="@+id/text2_4"
                         android:text="4. Where is your hometown?"/>
 
@@ -150,12 +176,14 @@
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
                         android:layout_centerVertical="true"
+                        android:gravity="center"
+                        android:textSize="20sp"
                         android:id="@+id/text2_5"
-                        android:text="5. How many years have you been homeless?"/>
+                        android:text="5. How many years have \nyou been homeless?"/>
 
                 </LinearLayout>
 
-                <LinearLayout
+                <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
@@ -166,10 +194,12 @@
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
                         android:layout_centerVertical="true"
+                        android:gravity="center"
+                        android:textSize="20sp"
                         android:id="@+id/text2_6"
-                        android:text="6. What is the best way for us to reach you again (phone number, email address, friend's number, your address / cross streets where you sleep / shelter / org)? And just so you know, it is not our intention to share this information publicly, only among our volunteers."/>
+                        android:text="6. What is the best way for \nus to reach you again \n(phone number, email address, friend's number, your address, cross streets where you sleep, shelter, etc.) \nAnd just so you know, it is not our intention to share this information publicly, only among our volunteers."/>
 
-                </LinearLayout>
+                </ScrollView>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -182,6 +212,8 @@
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
                         android:layout_centerVertical="true"
+                        android:gravity="center"
+                        android:textSize="20sp"
                         android:id="@+id/text3_1"
                         android:text="Now, about your loved one(s)."/>
 
@@ -198,8 +230,10 @@
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
                         android:layout_centerVertical="true"
+                        android:gravity="center"
+                        android:textSize="20sp"
                         android:id="@+id/text4_1"
-                        android:text="1. Please clearly say and spell their full name."/>
+                        android:text="1. Please clearly say and \nspell their full name."/>
 
                 </LinearLayout>
 
@@ -214,8 +248,10 @@
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
                         android:layout_centerVertical="true"
+                        android:gravity="center"
+                        android:textSize="20sp"
                         android:id="@+id/text4_2"
-                        android:text="2. What is their relationship to you?"/>
+                        android:text="2. What is their \nrelationship to you?"/>
 
                 </LinearLayout>
 
@@ -230,8 +266,10 @@
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
                         android:layout_centerVertical="true"
+                        android:gravity="center"
+                        android:textSize="20sp"
                         android:id="@+id/text4_3"
-                        android:text="3. What is their date of birth or approximate age?"/>
+                        android:text="3. What is their date of \n birth or approximate age?"/>
 
                 </LinearLayout>
 
@@ -246,8 +284,10 @@
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
                         android:layout_centerVertical="true"
+                        android:gravity="center"
+                        android:textSize="20sp"
                         android:id="@+id/text4_4"
-                        android:text="4. What is their current or last known location?"/>
+                        android:text="4. What is their current or \nlast known location?"/>
 
                 </LinearLayout>
 
@@ -262,12 +302,14 @@
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
                         android:layout_centerVertical="true"
+                        android:gravity="center"
+                        android:textSize="20sp"
                         android:id="@+id/text4_5"
-                        android:text="5. How many years has it been since you last saw them?"/>
+                        android:text="5. How many years has it been \n since you last saw them?"/>
 
                 </LinearLayout>
 
-                <LinearLayout
+                <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
@@ -278,12 +320,14 @@
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
                         android:layout_centerVertical="true"
+                        android:gravity="center"
+                        android:textSize="20sp"
                         android:id="@+id/text4_6"
-                        android:text="6. Any other information you think might be helpful? (names of other relatives, previous addresses, reason for being disconnected...)"/>
+                        android:text="6. Any other information you \n think might be helpful? \n(names of other relatives, previous addresses, reason for being disconnected...)"/>
 
-                </LinearLayout>
+                </ScrollView>
 
-                <LinearLayout
+                <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
@@ -294,27 +338,12 @@
                         android:layout_height="wrap_content"
                         android:layout_centerHorizontal="true"
                         android:layout_centerVertical="true"
+                        android:gravity="center"
+                        android:textSize="20sp"
                         android:id="@+id/text5_1"
-                        android:text="Okay! That's all the information we need from you before recording your Miracle Message. When you're ready, you can look directly into the camera on my smartphone and speak to your loved one as if they were here, saying whatever you would like to say to them. "/>
+                        android:text="Okay! That's all the information we \nneed from you before recording \nyour Miracle Message. \nWhen you're ready, you can look directly into the camera on my smartphone and speak to your loved one as if they were here, saying whatever you would like to say to them. "/>
 
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    >
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"
-                        android:layout_centerVertical="true"
-                        android:id="@+id/text5_2"
-                        android:text="Perfect, thank you. How do you feel? We will be in touch with updates. If you have any questions, you can call or text Miracle Messages at 415.545.8406 or email hello@miraclemessages.org."/>
-
-                </LinearLayout>
-
+                </ScrollView>
 
             </ViewFlipper>
 

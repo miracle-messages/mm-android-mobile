@@ -161,6 +161,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
+                android:gravity="center"
                 >
 
                 <TextView
@@ -209,8 +210,9 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Step 2: Offer to Record Video"
                     android:layout_centerHorizontal="true"
+                    android:text="Step 2: Offer to \nRecord Video"
+                    android:gravity="center"
                     android:id="@+id/bf_2_step1"
                     android:textSize="25dp"
                     android:paddingBottom="10dp"/>
@@ -220,6 +222,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/bf_2_step1"
                     android:id="@+id/bf_2_q1"
+                    android:gravity="center"
                     android:text="As a volunteer with Miracle Messages, I would be happy to help you record a short video message to your loved ones if you'd like. Before I do, I just want to make sure you are okay with the potential risks and that we are on the same page with expectations."
                     android:textSize="20dp"/>
 
@@ -244,8 +247,9 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:gravity="center"
                     android:id="@+id/bf_3_q1"
-                    android:text="1. First, your Miracle Message video will be made public and may be shared widely to help volunteers try to locate your loved one(s)."
+                    android:text="First, your Miracle Message video will be made public and may be shared widely to help volunteers try to locate your loved one(s)."
                     android:textSize="20dp"/>
 
             </RelativeLayout>
@@ -269,8 +273,9 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:gravity="center"
                     android:id="@+id/bf_4_q1"
-                    android:text="2. Second, while 90% of loved ones have responded positively to their Miracle Messages, we cannot know for sure how your loved one(s) will respond, or if they will respond, or how long it may take them to respond."
+                    android:text="Second, while 90% of loved ones have responded positively to their Miracle Messages, we cannot know for sure how your loved one(s) will respond, or if they will respond, or how long it may take them to respond."
                     android:textSize="20dp"/>
 
             </RelativeLayout>
@@ -294,16 +299,9 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:gravity="center"
                     android:id="@+id/bf_5_q1"
-                    android:text="3. And third, while we have many volunteers trying to locate loved ones, we may not be able to find or reach your loved one(s). The only guarantee here is that this is an opportunity for you to record a short video message to someone you love, to say whatever is on your heart that you'd like to say, and that we will try our best to deliver it and help facilitate any response or reunion that results."
-                    android:textSize="20dp"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/bf_5_q1"
-                    android:id="@+id/bf_5_q2"
-                    android:text="Sound good?"
+                    android:text="And third, while we have many volunteers trying to locate loved ones, we may not be able to find or reach your loved one(s). The only guarantee here is that this is an opportunity for you to record a short video message to someone you love, to say whatever is on your heart that you'd like to say, and that we will try our best to deliver it and help facilitate any response or reunion that results. Sound good?"
                     android:textSize="20dp"/>
 
             </RelativeLayout>

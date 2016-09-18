@@ -8,14 +8,32 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
+    android:background="#93E2FF">
     tools:context="com.miraclemessages.ExportActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="50sp"
+            android:textSize="20sp"
+            android:id="@+id/ThankYou"
+            android:text="Perfect, thank you. \nHow do you feel? \nWe will be in touch with updates. \nIf you have any questions, \nyou can call or text \nMiracle Messages at 415.545.8406 or email hello@miraclemessages.org."/>
+
+    </LinearLayout>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/submit"
-        android:text="Submit"
-        android:layout_marginTop="50dp"
+        android:text="Submit Video"
+        android:layout_marginBottom="50sp"
         android:layout_centerHorizontal="true"
 
         />
