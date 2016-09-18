@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
                 && sharedpreferences.getString(Email, null) != null
                 && sharedpreferences.getString(Phone, null) != null
                 && sharedpreferences.getString(Location, null) != null)
-                startActivity(new Intent(MainActivity.this, PreCameraActivity.class));
+                startActivity(new Intent(MainActivity.this, ExportActivity.class));
 
         submit.setOnClickListener(new View.OnClickListener() {
 
