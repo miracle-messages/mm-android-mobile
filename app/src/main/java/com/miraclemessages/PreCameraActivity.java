@@ -20,7 +20,7 @@ import org.w3c.dom.Text;
 public class PreCameraActivity extends Activity {
 
     private ViewFlipper viewFlipper, buttonViewFlipper;
-    Button next, back, begin;
+    Button next, back, begin, changeUser;
     TextView vName, vEmail, vPhone, vLocation, homeLabel, bfLabel;
     SharedPreferences sharedpreferences;
     ImageView smallIcon;
@@ -40,6 +40,7 @@ public class PreCameraActivity extends Activity {
         buttonViewFlipper = (ViewFlipper) findViewById(R.id.buttonviewflipper);
         next = (Button)findViewById(R.id.next);
         back = (Button)findViewById(R.id.back);
+        changeUser = (Button) findViewById(R.id.logout);
         vName = (TextView)findViewById(R.id.volunteer_name);
         vEmail = (TextView)findViewById(R.id.volunteer_email);
         vPhone = (TextView) findViewById(R.id.volunteer_phone);
@@ -120,6 +121,16 @@ public class PreCameraActivity extends Activity {
                         buttonViewFlipper.showPrevious();
                     }
                 }
+            }
+        });
+
+        changeUser.setOnClickListener(new View.OnClickListener(){
+
+            public void onClick(View v){
+                SharedPreferences.Editor editor = sharedpreferences.edit();
+                editor.clear();
+                editor.commit();
+                startActivity(new Intent(PreCameraActivity.this, MainActivity.class));
             }
         });
     }
