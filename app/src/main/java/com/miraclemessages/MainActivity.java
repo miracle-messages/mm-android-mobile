@@ -1,5 +1,6 @@
 package com.miraclemessages;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -11,7 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends Activity {
 
     SharedPreferences sharedpreferences;
     EditText textName, textEmail, textPhone, textLocation;
@@ -37,11 +38,11 @@ public class MainActivity extends AppCompatActivity {
         sharedpreferences = getSharedPreferences(myPreferences,
                             Context.MODE_PRIVATE);
 
-        if(sharedpreferences.getString(Name, null) != null
-                && sharedpreferences.getString(Email, null) != null
-                && sharedpreferences.getString(Phone, null) != null
-                && sharedpreferences.getString(Location, null) != null)
-                startActivity(new Intent(MainActivity.this, ExportActivity.class));
+//        if(sharedpreferences.getString(Name, null) != null
+//                && sharedpreferences.getString(Email, null) != null
+//                && sharedpreferences.getString(Phone, null) != null
+//                && sharedpreferences.getString(Location, null) != null)
+//                startActivity(new Intent(MainActivity.this, ExportActivity.class));
 
         submit.setOnClickListener(new View.OnClickListener() {
 
@@ -84,7 +85,6 @@ public class MainActivity extends AppCompatActivity {
                 editor.commit();
 
                 Toast.makeText(MainActivity.this,"Thank you!", Toast.LENGTH_LONG).show();
-                Log.v("Bonjourno: ", "Hoe");
                 startActivity(new Intent(MainActivity.this, PreCameraActivity.class));
             }
         });

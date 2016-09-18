@@ -1,6 +1,8 @@
 package com.miraclemessages;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -14,7 +16,7 @@ import android.widget.ViewFlipper;
 
 import org.w3c.dom.Text;
 
-public class PreCameraActivity extends AppCompatActivity {
+public class PreCameraActivity extends Activity {
 
     private ViewFlipper viewFlipper, buttonViewFlipper;
     Button next, back, begin;
@@ -76,6 +78,8 @@ public class PreCameraActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
+                if(next.getText().equals("Record"))
+                    startActivity(new Intent(PreCameraActivity.this, Camera2Activity.class));
                 Log.v("Next Click: ", viewFlipper.getDisplayedChild() + " " + (viewFlipper.getChildCount() - 1));
                 if (viewFlipper.getDisplayedChild() < viewFlipper.getChildCount() - 1) {
                     viewFlipper.setInAnimation(v.getContext(), R.anim.slide_in_from_right);
@@ -101,7 +105,7 @@ public class PreCameraActivity extends AppCompatActivity {
                     viewFlipper.setInAnimation(v.getContext(), R.anim.slide_in_from_left);
                     viewFlipper.setOutAnimation(v.getContext(), R.anim.slide_out_to_right);
                     viewFlipper.showPrevious();
-                    if(next.getText() == "Record")
+                    if(next.getText().equals("Record"))
                         next.setText("Next");
                     if(viewFlipper.getDisplayedChild() == 0) {
                         buttonViewFlipper.setInAnimation(v.getContext(), R.anim.slide_in_from_left);

@@ -10,7 +10,8 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.miraclemessages.PreCameraActivity"
     android:gravity="center"
-    android:weightSum="1">
+    android:weightSum="1"
+    android:background="#93E2FF">
 
     <TextView
         android:layout_width="wrap_content"
@@ -29,12 +30,13 @@
         android:layout_height="fill_parent"
         android:layout_weight=".25">
 
-        <RelativeLayout
+        <LinearLayout
             android:id="@+id/precamera_home"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:orientation="vertical"
             android:layout_gravity="center_vertical"
+            android:weightSum="1"
             >
 
             <TextView
@@ -44,74 +46,94 @@
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
                 android:textSize="25dp"
+                android:layout_weight="0.4"
                 />
 
-            <TextView
+            <ImageView
+                android:id="@+id/icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Current Volunteer"
-                android:id="@+id/volunteer_info"
-                android:layout_above="@+id/volunteer_name"
-                android:layout_centerHorizontal="true"
-                android:textSize="20dp"
+                android:layout_below="@id/home_label"
+                android:adjustViewBounds="true"
+                android:src="@drawable/mmicon"
+                android:layout_weight="0.3"
                 />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/volunteer_name"
-                android:layout_above="@+id/volunteer_email"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_centerHorizontal="true"
-                android:textSize="15dp"
-                />
+                android:layout_weight="0.2">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/volunteer_email"
-                android:layout_above="@+id/volunteer_phone"
-                android:layout_centerHorizontal="true"
-                android:textSize="15dp"
-                />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Current Volunteer"
+                    android:id="@+id/volunteer_info"
+                    android:layout_above="@+id/volunteer_name"
+                    android:textSize="20dp"
+                    />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/volunteer_phone"
-                android:layout_centerVertical="true"
-                android:layout_centerHorizontal="true"
-                android:textSize="15dp"
-                />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/volunteer_name"
+                    android:layout_above="@+id/volunteer_email"
+                    android:textSize="15dp"
+                    />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/volunteer_location"
-                android:layout_below="@+id/volunteer_phone"
-                android:layout_centerHorizontal="true"
-                android:textSize="15dp"
-                />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/volunteer_email"
+                    android:layout_above="@+id/volunteer_phone"
+                    android:textSize="15dp"
+                    />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/not_volunteer_label"
-                android:layout_centerHorizontal="true"
-                android:layout_above="@+id/logout"
-                android:textSize="20dp"
-                />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/volunteer_phone"
+                    android:layout_centerVertical="true"
+                    android:textSize="15dp"
+                    />
 
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/logout"
-                android:text="Logout"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginBottom="20dp"
-                />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/volunteer_location"
+                    android:textSize="15dp"
+                    />
 
-        </RelativeLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0.1">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/not_volunteer_label"
+                    android:layout_centerHorizontal="true"
+                    android:layout_above="@+id/logout"
+                    android:textSize="20dp"
+                    />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/logout"
+                    android:text="Logout"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="20dp"
+                    />
+
+            </LinearLayout>
+
+        </LinearLayout>
 
         <RelativeLayout
             android:id="@+id/precamera_bf_1"
