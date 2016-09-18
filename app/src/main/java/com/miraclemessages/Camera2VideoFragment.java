@@ -23,6 +23,8 @@ package com.miraclemessages;
     import android.app.Fragment;
     import android.content.Context;
     import android.content.DialogInterface;
+    import android.content.Intent;
+    import android.content.SharedPreferences;
     import android.content.pm.PackageManager;
     import android.content.res.Configuration;
     import android.graphics.Matrix;
@@ -65,6 +67,9 @@ package com.miraclemessages;
 
     public class Camera2VideoFragment extends Fragment
             implements View.OnClickListener, FragmentCompat.OnRequestPermissionsResultCallback {
+        SharedPreferences sharedpreferences;
+        public static final String myPreferences = "MyPreferences";
+        public static final String FileLoc = "file";
 
         private static final int SENSOR_ORIENTATION_DEFAULT_DEGREES = 90;
         private static final int SENSOR_ORIENTATION_INVERSE_DEGREES = 270;
@@ -599,8 +604,15 @@ package com.miraclemessages;
         }
 
         private String getVideoFilePath(Context context) {
-            return context.getExternalFilesDir(null).getAbsolutePath() + "/"
+            String str =  context.getExternalFilesDir(null).getAbsolutePath() + "/"
                     + System.currentTimeMillis() + ".mp4";
+            sharedpreferences = context.getSharedPreferences(myPreferences, Context.MODE_PRIVATE);
+            Log.v("Boo: ", str);
+            SharedPreferences.Editor editor = sharedpreferences.edit();
+            editor.putString(FileLoc, str);
+            editor.commit();
+            Log.v("BOBBY JENKINS: ", sharedpreferences.getString(FileLoc, null));
+            return str;
         }
 
         private void startRecordingVideo() {
@@ -686,6 +698,7 @@ package com.miraclemessages;
             }
             mNextVideoAbsolutePath = null;
             startPreview();
+            activity.startActivity(new Intent(Camera2VideoFragment.this.getActivity(), ExportActivity.class));
         }
 
         /**

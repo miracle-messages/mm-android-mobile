@@ -23,5 +23,6 @@
         <activity android:name=".Camera2Activity" />
         <activity android:name=".ExportActivity" />
     </application>
-
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 </manifest>
