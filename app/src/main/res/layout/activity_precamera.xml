@@ -178,7 +178,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/bf_1_step1"
                     android:id="@+id/bf_1_q1"
-                    android:text="1. Do you have any family or friends that you would like to reunite with, even if you don’t know how to reach them?*"
+                    android:text="1. Do you have any family or friends that you would like to reunite with, even if you don’t know how to reach them?"
                     android:textSize="20dp"/>
 
                 <TextView
