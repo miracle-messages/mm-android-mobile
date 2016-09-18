@@ -21,8 +21,11 @@ package com.miraclemessages;
     import android.app.Dialog;
     import android.app.DialogFragment;
     import android.app.Fragment;
+    import android.content.ContentResolver;
+    import android.content.ContentValues;
     import android.content.Context;
     import android.content.DialogInterface;
+    import android.content.Intent;
     import android.content.pm.PackageManager;
     import android.content.res.Configuration;
     import android.graphics.Matrix;
@@ -37,9 +40,12 @@ package com.miraclemessages;
     import android.hardware.camera2.CaptureRequest;
     import android.hardware.camera2.params.StreamConfigurationMap;
     import android.media.MediaRecorder;
+    import android.net.Uri;
     import android.os.Bundle;
+    import android.os.Environment;
     import android.os.Handler;
     import android.os.HandlerThread;
+    import android.provider.MediaStore;
     import android.support.annotation.NonNull;
     import android.support.v13.app.FragmentCompat;
     import android.support.v4.app.ActivityCompat;
@@ -54,11 +60,14 @@ package com.miraclemessages;
     import android.widget.Button;
     import android.widget.Toast;
 
+    import java.io.File;
     import java.io.IOException;
+    import java.text.SimpleDateFormat;
     import java.util.ArrayList;
     import java.util.Arrays;
     import java.util.Collections;
     import java.util.Comparator;
+    import java.util.Date;
     import java.util.List;
     import java.util.concurrent.Semaphore;
     import java.util.concurrent.TimeUnit;
@@ -74,6 +83,8 @@ package com.miraclemessages;
         private static final String TAG = "Camera2VideoFragment";
         private static final int REQUEST_VIDEO_PERMISSIONS = 1;
         private static final String FRAGMENT_DIALOG = "dialog";
+        public static final int MEDIA_TYPE_IMAGE = 1;
+        public static final int MEDIA_TYPE_VIDEO = 2;
 
         private static final String[] VIDEO_PERMISSIONS = {
                 Manifest.permission.CAMERA,
@@ -424,7 +435,7 @@ package com.miraclemessages;
             CameraManager manager = (CameraManager) activity.getSystemService(Context.CAMERA_SERVICE);
             try {
                 Log.d(TAG, "tryAcquire");
-                if (!mCameraOpenCloseLock.tryAcquire(2500, TimeUnit.MILLISECONDS)) {
+                if (!mCameraOpenCloseLock.tryAcquire(1, TimeUnit.MILLISECONDS)) {
                     throw new RuntimeException("Time out waiting to lock camera opening.");
                 }
                 String cameraId = manager.getCameraIdList()[0];
@@ -683,6 +694,20 @@ package com.miraclemessages;
                 Toast.makeText(activity, "Video saved: " + mNextVideoAbsolutePath,
                         Toast.LENGTH_LONG).show();
                 Log.d(TAG, "Video saved: " + mNextVideoAbsolutePath);
+
+//                ContentValues values = new ContentValues(3);
+//                long current = System.currentTimeMillis();
+//                values.put(MediaStore.Video.Media.TITLE, "video_" + current);
+//                values.put(MediaStore.Video.Media.DATE_ADDED, (int) (current / 1000));
+//                values.put(MediaStore.Video.Media.MIME_TYPE, "mp4");
+//                values.put(MediaStore.Video.Media.DATA, mNextVideoAbsolutePath);
+//                ContentResolver contentResolver = this.getContext().getContentResolver();
+//
+//                Uri base = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
+//                Uri newUri = contentResolver.insert(base, values);
+//
+//                activity.sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, newUri));
+
             }
             mNextVideoAbsolutePath = null;
             startPreview();
