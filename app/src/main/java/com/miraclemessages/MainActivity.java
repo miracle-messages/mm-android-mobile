@@ -1,6 +1,7 @@
 package com.miraclemessages;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -32,11 +33,11 @@ public class MainActivity extends AppCompatActivity {
         textLocation=(EditText)findViewById(R.id.location);
 
         submit=(Button)findViewById(R.id.submit);
-        Log.v("Tits: ", "Niqqa");
+        //Log.v("Tits: ", "Niqqa");
         sharedpreferences = getSharedPreferences(myPreferences,
                             Context.MODE_PRIVATE);
 
-        Log.v("Poop: ", sharedpreferences.getString(Name, null).toString());
+        Log.v("Poop: ", (sharedpreferences.getString(Email, null) == "") + "");
 
         submit.setOnClickListener(new View.OnClickListener() {
 
@@ -53,8 +54,11 @@ public class MainActivity extends AppCompatActivity {
                 editor.putString(Location, l);
 
                 editor.commit();
+
                 Toast.makeText(MainActivity.this,"Thank you!", Toast.LENGTH_LONG).show();
                 Log.v("Bonjourno: ", "Hoe");
+                Intent i = new Intent(MainActivity.this, PreCameraActivity.class);
+                startActivity(i);
             }
         });
     }
