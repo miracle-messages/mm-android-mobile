@@ -86,7 +86,8 @@ public class MainActivity extends Activity {
 
                 Toast.makeText(MainActivity.this,"Thank you!", Toast.LENGTH_LONG).show();
                 startActivity(new Intent(MainActivity.this, PreCameraActivity.class));
-                //Log.v("CHUCK: ", sharedpreferences.getAll().toString());
+                finish();
+
             }
         });
     }

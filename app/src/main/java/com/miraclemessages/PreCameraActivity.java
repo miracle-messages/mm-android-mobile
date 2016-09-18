@@ -131,6 +131,7 @@ public class PreCameraActivity extends Activity {
                 editor.clear();
                 editor.commit();
                 startActivity(new Intent(PreCameraActivity.this, MainActivity.class));
+                finish();
             }
         });
     }
