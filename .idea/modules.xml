@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/MiracleMessagesApp.iml" filepath="$PROJECT_DIR$/MiracleMessagesApp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MiracleMessages.iml" filepath="$PROJECT_DIR$/MiracleMessages.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
