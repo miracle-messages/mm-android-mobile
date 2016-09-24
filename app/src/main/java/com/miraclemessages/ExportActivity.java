@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
@@ -15,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import java.io.File;
+import java.util.List;
 
 public class ExportActivity extends Activity{
     Button submit, back;
@@ -36,28 +38,12 @@ public class ExportActivity extends Activity{
         submit.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v)
             {
-                Intent i = new Intent(Intent.ACTION_SEND);
-                File f = new File("",
-                        sharedpreferences.getString(FileLoc, null).toString());
-                Log.v("Hank: ", sharedpreferences.getString(FileLoc, null).toString());
-                Log.v("Razputin: ", f.getAbsolutePath().toString() );
-                Uri path = Uri.fromFile(f);
-                i.setType("message/rfc822");
-                i.putExtra(Intent.EXTRA_STREAM, path);
-                i.putExtra(Intent.EXTRA_EMAIL  , new String[]{"jw3qz@virginia.edu"});
-                i.putExtra(Intent.EXTRA_SUBJECT, "Miracle Messages Recording");
-                i.putExtra(Intent.EXTRA_TEXT   ,
-                        "Volunteer: " + sharedpreferences.getString(Name, null).toString() + "\n" +
-                        "Email: " + sharedpreferences.getString(Email, null).toString() + "\n" +
-                        "Phone number: " + sharedpreferences.getString(Phone, null).toString()
-                                + "\n" +
-                        "Location: " + sharedpreferences.getString(Location, null).toString() + "\n"
-                );
                 try {
-                    startActivity(Intent.createChooser(i, "Send mail..."));
+                    //startActivity(Intent.createChooser(i, "Send mail..."));
+                    shareViaYoutube("youtube");
                 } catch (android.content.ActivityNotFoundException ex) {
                     Toast.makeText(ExportActivity.this,
-                            "There are no email clients installed.", Toast.LENGTH_SHORT).show();
+                            "Oh noes! Youtube is not installed.", Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -69,5 +55,31 @@ public class ExportActivity extends Activity{
             }
         });
 
+    }
+
+    private void shareViaYoutube(String type) {
+        boolean found = false;
+        Intent share = new Intent(Intent.ACTION_SEND);
+        share.setType("video/*");
+
+        // gets the list of intents that can be loaded.
+        List<ResolveInfo> resInfo = getPackageManager().queryIntentActivities(share, 0);
+        if (!resInfo.isEmpty()){
+            for (ResolveInfo info : resInfo) {
+                if (info.activityInfo.packageName.toLowerCase().contains(type) ||
+                        info.activityInfo.name.toLowerCase().contains(type) ) {
+                    share.putExtra(Intent.EXTRA_SUBJECT,  "subject");
+                    share.putExtra(Intent.EXTRA_TEXT,     "your text");
+                    share.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(new File(sharedpreferences.getString(FileLoc, null).toString()))); // Optional, just if you wanna share an image.
+                    share.setPackage(info.activityInfo.packageName);
+                    found = true;
+                    break;
+                }
+            }
+            if (!found)
+                return;
+
+            startActivity(Intent.createChooser(share, "Upload to Youtube here~"));
+        }
     }
 }
