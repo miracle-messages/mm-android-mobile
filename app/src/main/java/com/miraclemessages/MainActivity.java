@@ -45,6 +45,7 @@ public class MainActivity extends Activity {
                 && sharedpreferences.getString(Phone, null) != null
                 && sharedpreferences.getString(Location, null) != null)
                 startActivity(new Intent(MainActivity.this, PreCameraActivity.class));
+                finish();
 
         submit.setOnClickListener(new View.OnClickListener() {
 
