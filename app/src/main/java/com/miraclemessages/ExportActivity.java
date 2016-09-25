@@ -1,6 +1,8 @@
 package com.miraclemessages;
 
 import android.app.Activity;
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -21,12 +23,15 @@ import java.util.List;
 public class ExportActivity extends Activity{
     Button submit, back;
     SharedPreferences sharedpreferences;
+    private ClipboardManager myClipBoard;
+    private ClipData myClip;
     public static final String myPreferences = "MyPreferences";
     public static final String Name = "name";
     public static final String Email = "email";
     public static final String Phone = "phone";
     public static final String Location = "location";
     public static final String FileLoc = "file";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +56,10 @@ public class ExportActivity extends Activity{
 
         back.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
+//                ClipData c = myClipBoard.getPrimaryClip();
+//                ClipData.Item item = c.getItemAt(0);
+//                String toStr = item.getText().toString();
+//                Log.v("POOP: ", toStr);
                 startActivity(new Intent(ExportActivity.this, PreCameraActivity.class));
             }
         });

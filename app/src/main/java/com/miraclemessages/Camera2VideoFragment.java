@@ -31,6 +31,7 @@ package com.miraclemessages;
     import android.graphics.Matrix;
     import android.graphics.RectF;
     import android.graphics.SurfaceTexture;
+    import android.graphics.drawable.AnimationDrawable;
     import android.hardware.camera2.CameraAccessException;
     import android.hardware.camera2.CameraCaptureSession;
     import android.hardware.camera2.CameraCharacteristics;
@@ -39,6 +40,7 @@ package com.miraclemessages;
     import android.hardware.camera2.CameraMetadata;
     import android.hardware.camera2.CaptureRequest;
     import android.hardware.camera2.params.StreamConfigurationMap;
+    import android.media.Image;
     import android.media.MediaRecorder;
     import android.net.Uri;
     import android.os.Bundle;
@@ -59,6 +61,7 @@ package com.miraclemessages;
     import android.view.View;
     import android.view.ViewGroup;
     import android.widget.Button;
+    import android.widget.ImageView;
     import android.widget.Toast;
     import android.widget.ViewFlipper;
     import android.content.SharedPreferences;
@@ -702,6 +705,11 @@ package com.miraclemessages;
             cameraButtonsVF.setInAnimation(getActivity(), R.anim.slide_in_from_right);
             cameraButtonsVF.setOutAnimation(getActivity(), R.anim.slide_out_to_left);
             cameraButtonsVF.showNext();
+            ImageView mImageViewFilling =
+                    (ImageView) getActivity().
+                            findViewById(R.id.imageview_is_recording_filling);
+            ((AnimationDrawable) mImageViewFilling.getBackground()).start();
+
             if (null == mCameraDevice || !mTextureView.isAvailable() || null == mPreviewSize) {
                 return;
             }

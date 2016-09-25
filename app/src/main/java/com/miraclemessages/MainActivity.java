@@ -12,6 +12,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import junit.framework.Test;
+
 public class MainActivity extends Activity {
 
     SharedPreferences sharedpreferences;
