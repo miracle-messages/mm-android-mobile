@@ -14,22 +14,23 @@ package com.miraclemessages;
  * the License.
  */
 
-        import com.google.api.client.auth.oauth2.Credential;
-        import com.google.api.client.googleapis.json.GoogleJsonResponseException;
-        import com.google.api.client.googleapis.media.MediaHttpUploader;
-        import com.google.api.client.googleapis.media.MediaHttpUploaderProgressListener;
-        import com.google.api.client.http.InputStreamContent;
-//        import com.google.api.services.samples.youtube.cmdline.Auth;
-        import com.google.api.services.youtube.YouTube;
-        import com.google.api.services.youtube.model.Video;
-        import com.google.api.services.youtube.model.VideoSnippet;
-        import com.google.api.services.youtube.model.VideoStatus;
-        import com.google.common.collect.Lists;
+import com.google.api.client.auth.oauth2.Credential;
+import com.google.api.client.googleapis.json.GoogleJsonResponseException;
+import com.google.api.client.googleapis.media.MediaHttpUploader;
+import com.google.api.client.googleapis.media.MediaHttpUploaderProgressListener;
+import com.google.api.client.http.InputStreamContent;
+//import com.miraclemessages.Auth;
+//import com.google.api.services.samples.youtube.cmdline.Auth;
+import com.google.api.services.youtube.YouTube;
+import com.google.api.services.youtube.model.Video;
+import com.google.api.services.youtube.model.VideoSnippet;
+import com.google.api.services.youtube.model.VideoStatus;
+import com.google.common.collect.Lists;
 
-        import java.io.IOException;
-        import java.util.ArrayList;
-        import java.util.Calendar;
-        import java.util.List;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
 
 /**
  * Upload a video to the authenticated user's channel. Use OAuth 2.0 to
@@ -70,11 +71,11 @@ public class UploadVideo {
 
         try {
             // Authorize the request.
-  //          Credential credential = Auth.authorize(scopes, "uploadvideo");
+            Credential credential = Auth.authorize(scopes, "uploadvideo");
 
             // This object is used to make YouTube Data API requests.
-           // youtube = new YouTube.Builder(Auth.HTTP_TRANSPORT, Auth.JSON_FACTORY, credential).setApplicationName(
-            //        "youtube-cmdline-uploadvideo-sample").build();
+            youtube = new YouTube.Builder(Auth.HTTP_TRANSPORT, Auth.JSON_FACTORY, credential).setApplicationName(
+                    "youtube-cmdline-uploadvideo-sample").build();
 
             System.out.println("Uploading: " + SAMPLE_VIDEO_FILENAME);
 
@@ -165,6 +166,7 @@ public class UploadVideo {
             // Print data about the newly inserted video from the API response.
             System.out.println("\n================== Returned Video ==================\n");
             System.out.println("  - Id: " + returnedVideo.getId());
+            System.out.println("http://www.youtube.com/watch?v=" + returnedVideo.getId());
             System.out.println("  - Title: " + returnedVideo.getSnippet().getTitle());
             System.out.println("  - Tags: " + returnedVideo.getSnippet().getTags());
             System.out.println("  - Privacy Status: " + returnedVideo.getStatus().getPrivacyStatus());
