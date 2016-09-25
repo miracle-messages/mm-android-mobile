@@ -15,7 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/MaterialTheme">
         <activity
-            android:name=".ExportActivity"
+            android:name=".SplashActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -33,7 +33,7 @@
             android:name=".Camera2Activity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".SplashActivity"
+            android:name=".ExportActivity"
             android:screenOrientation="portrait" />
         <activity android:name=".UploadActivity" />
         <activity android:name=".TestAnimation"></activity>

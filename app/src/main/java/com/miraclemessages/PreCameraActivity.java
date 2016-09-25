@@ -83,8 +83,10 @@ public class PreCameraActivity extends Activity {
 
             @Override
             public void onClick(View v) {
-                if(next.getText().equals("Record"))
+                if(next.getText().equals("Record")) {
                     startActivity(new Intent(PreCameraActivity.this, Camera2Activity.class));
+                    finish();
+                }
                 Log.v("Next Click: ", viewFlipper.getDisplayedChild() + " " + (viewFlipper.getChildCount() - 1));
                 if (viewFlipper.getDisplayedChild() < viewFlipper.getChildCount() - 1) {
                     viewFlipper.setInAnimation(v.getContext(), R.anim.slide_in_from_right);

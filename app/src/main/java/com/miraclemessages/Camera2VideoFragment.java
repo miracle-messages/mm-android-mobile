@@ -806,6 +806,7 @@ package com.miraclemessages;
             }
             mNextVideoAbsolutePath = null;
             startPreview();
+            getActivity().finish();
             activity.startActivity(new Intent(Camera2VideoFragment.this.getActivity(), ExportActivity.class));
         }
 
