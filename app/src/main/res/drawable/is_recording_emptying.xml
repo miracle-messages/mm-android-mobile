@@ -4,22 +4,10 @@
 
     <item
         android:duration="100"
-        android:drawable="@drawable/ic_heart_100"/>
+        android:drawable="@drawable/record_100"/>
 
     <item
         android:duration="100"
-        android:drawable="@drawable/ic_heart_75"/>
-
-    <item
-        android:duration="100"
-        android:drawable="@drawable/ic_heart_50"/>
-
-    <item
-        android:duration="100"
-        android:drawable="@drawable/ic_heart_25"/>
-
-    <item
-        android:duration="100"
-        android:drawable="@drawable/ic_heart_0"/>
+        android:drawable="@drawable/record_0"/>
 
 </animation-list>

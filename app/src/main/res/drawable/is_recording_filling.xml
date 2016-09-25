@@ -3,23 +3,11 @@
     android:oneshot="false">
 
     <item
-        android:drawable="@drawable/ic_heart_0"
-        android:duration="400"/>
+        android:drawable="@drawable/record_0"
+        android:duration="800"/>
 
     <item
-        android:drawable="@drawable/ic_heart_25"
-        android:duration="400"/>
-
-    <item
-        android:drawable="@drawable/ic_heart_50"
-        android:duration="400"/>
-
-    <item
-        android:drawable="@drawable/ic_heart_75"
-        android:duration="400"/>
-
-    <item
-        android:drawable="@drawable/ic_heart_100"
-        android:duration="400"/>
+        android:drawable="@drawable/record_100"
+        android:duration="800"/>
 
 </animation-list>
