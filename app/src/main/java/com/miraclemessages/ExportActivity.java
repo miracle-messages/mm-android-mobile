@@ -17,7 +17,21 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.google.api.client.auth.oauth2.Credential;
+import com.google.api.client.googleapis.json.GoogleJsonResponseException;
+import com.google.api.client.googleapis.media.MediaHttpUploader;
+import com.google.api.client.googleapis.media.MediaHttpUploaderProgressListener;
+import com.google.api.client.http.InputStreamContent;
+import com.google.api.services.youtube.YouTube;
+import com.google.api.services.youtube.model.Video;
+import com.google.api.services.youtube.model.VideoSnippet;
+import com.google.api.services.youtube.model.VideoStatus;
+import com.google.common.collect.Lists;
+
 import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class ExportActivity extends Activity{
@@ -32,6 +46,11 @@ public class ExportActivity extends Activity{
     public static final String Location = "location";
     public static final String FileLoc = "file";
 
+    private static final String VIDEO_FILE_FORMAT = "video/*";
+
+    private static final String SAMPLE_VIDEO_FILENAME = "sample-video.mp4";
+    private static YouTube youtube;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +62,7 @@ public class ExportActivity extends Activity{
         submit.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v)
             {
+
                 try {
                     //startActivity(Intent.createChooser(i, "Send mail..."));
                     shareViaYoutube("youtube");
@@ -56,10 +76,6 @@ public class ExportActivity extends Activity{
 
         back.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
-//                ClipData c = myClipBoard.getPrimaryClip();
-//                ClipData.Item item = c.getItemAt(0);
-//                String toStr = item.getText().toString();
-//                Log.v("POOP: ", toStr);
                 startActivity(new Intent(ExportActivity.this, PreCameraActivity.class));
             }
         });
