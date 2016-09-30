@@ -36,16 +36,16 @@ public class MainActivity extends Activity {
         textLocation=(EditText)findViewById(R.id.location);
 
         submit=(Button)findViewById(R.id.submit);
-        //Log.v("Tits: ", "Niqqa");
         sharedpreferences = getSharedPreferences(myPreferences,
-                            Context.MODE_PRIVATE);
+                Context.MODE_PRIVATE);
 
         if(sharedpreferences.getString(Name, null) != null
                 && sharedpreferences.getString(Email, null) != null
                 && sharedpreferences.getString(Phone, null) != null
-                && sharedpreferences.getString(Location, null) != null)
-                startActivity(new Intent(MainActivity.this, PreCameraActivity.class));
-                finish();
+                && sharedpreferences.getString(Location, null) != null) {
+            startActivity(new Intent(MainActivity.this, PreCameraActivity.class));
+            finish();
+        }
 
         submit.setOnClickListener(new View.OnClickListener() {
 

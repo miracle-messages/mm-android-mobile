@@ -3,7 +3,6 @@ package com.miraclemessages;
 import android.app.Activity;
 import android.os.Bundle;
 
-import android.app.Activity;
 import android.content.Intent;
 
 public class SplashActivity extends Activity {
