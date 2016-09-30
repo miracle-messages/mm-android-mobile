@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.ViewFlipper;
@@ -20,10 +21,11 @@ import org.w3c.dom.Text;
 public class PreCameraActivity extends Activity {
 
     private ViewFlipper viewFlipper, buttonViewFlipper;
-    Button next, back, begin, changeUser;
+    Button skip, begin, changeUser;
     TextView vName, vEmail, vPhone, vLocation, homeLabel, bfLabel;
     SharedPreferences sharedpreferences;
     ImageView smallIcon;
+    ImageView next, back;
     public static final String myPreferences = "MyPreferences";
     public static final String Name = "name";
     public static final String Email = "email";
@@ -38,8 +40,9 @@ public class PreCameraActivity extends Activity {
         sharedpreferences = getSharedPreferences(myPreferences, Context.MODE_PRIVATE);
         viewFlipper = (ViewFlipper) findViewById(R.id.viewflipper);
         buttonViewFlipper = (ViewFlipper) findViewById(R.id.buttonviewflipper);
-        next = (Button)findViewById(R.id.next);
-        back = (Button)findViewById(R.id.back);
+        next = (ImageView) findViewById(R.id.next);
+        back = (ImageView)findViewById(R.id.back);
+        skip = (Button) findViewById(R.id.skip);
         changeUser = (Button) findViewById(R.id.logout);
         vName = (TextView)findViewById(R.id.volunteer_name);
         vEmail = (TextView)findViewById(R.id.volunteer_email);
@@ -60,6 +63,14 @@ public class PreCameraActivity extends Activity {
         animFadeIn = AnimationUtils.loadAnimation(getApplicationContext(), android.R.anim.fade_in);
         animFadeOut.setDuration(100);
         animFadeIn.setDuration(600);
+
+        skip.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(PreCameraActivity.this, Camera2Activity.class));
+                finish();
+            }
+        });
 
         begin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,7 +94,8 @@ public class PreCameraActivity extends Activity {
 
             @Override
             public void onClick(View v) {
-                if(next.getText().equals("Record")) {
+//                if(next.getText().equals("Record")) {
+                if(viewFlipper.getDisplayedChild() == viewFlipper.getChildCount()-1) {
                     startActivity(new Intent(PreCameraActivity.this, Camera2Activity.class));
                     finish();
                 }
@@ -92,8 +104,8 @@ public class PreCameraActivity extends Activity {
                     viewFlipper.setInAnimation(v.getContext(), R.anim.slide_in_from_right);
                     viewFlipper.setOutAnimation(v.getContext(), R.anim.slide_out_to_left);
                     viewFlipper.showNext();
-                    if(viewFlipper.getDisplayedChild() == viewFlipper.getChildCount() - 1)
-                        next.setText("Record");
+//                    if(viewFlipper.getDisplayedChild() == viewFlipper.getChildCount() - 1)
+//                        next.setText("Record");
                 }
             }
         });
@@ -115,8 +127,8 @@ public class PreCameraActivity extends Activity {
                     viewFlipper.setInAnimation(v.getContext(), R.anim.slide_in_from_left);
                     viewFlipper.setOutAnimation(v.getContext(), R.anim.slide_out_to_right);
                     viewFlipper.showPrevious();
-                    if(next.getText().equals("Record"))
-                        next.setText("Next");
+//                    if(next.getText().equals("Record"))
+//                        next.setText("Next");
                     if(viewFlipper.getDisplayedChild() == 0) {
                         buttonViewFlipper.setInAnimation(v.getContext(), R.anim.slide_in_from_left);
                         buttonViewFlipper.setOutAnimation(v.getContext(), R.anim.slide_out_to_right);
