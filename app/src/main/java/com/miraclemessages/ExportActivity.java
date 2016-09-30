@@ -9,12 +9,21 @@ import android.content.SharedPreferences;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.auth.api.signin.GoogleSignInResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+
 import java.io.File;
 import java.util.List;
+
+import static com.google.android.gms.wearable.DataMap.TAG;
 
 public class ExportActivity extends Activity{
     Button submit, back;
@@ -43,9 +52,9 @@ public class ExportActivity extends Activity{
         submit.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v)
             {
-
                 try {
-                    shareViaYoutube("youtube");
+                    //shareViaYoutube("youtube")l
+
                 } catch (android.content.ActivityNotFoundException ex) {
                     Toast.makeText(ExportActivity.this,
                             "Oh noes! Youtube is not installed.", Toast.LENGTH_SHORT).show();
@@ -62,6 +71,7 @@ public class ExportActivity extends Activity{
         });
 
     }
+
 
     private void shareViaYoutube(String type) {
         boolean found = false;
