@@ -8,13 +8,9 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
-import android.os.Environment;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import java.io.File;
@@ -49,7 +45,6 @@ public class ExportActivity extends Activity{
             {
 
                 try {
-                    //startActivity(Intent.createChooser(i, "Send mail..."));
                     shareViaYoutube("youtube");
                 } catch (android.content.ActivityNotFoundException ex) {
                     Toast.makeText(ExportActivity.this,

@@ -124,7 +124,7 @@ package com.miraclemessages;
         /**
          * Button to record video
          */
-        private Button mButtonVideo, back, next;
+        ImageView back, next, record;
 
         /**
          * A refernce to the opened {@link android.hardware.camera2.CameraDevice}.
@@ -303,41 +303,48 @@ package com.miraclemessages;
         @Override
         public void onViewCreated(final View view, Bundle savedInstanceState) {
             mTextureView = (AutoFitTextureView) view.findViewById(R.id.texture);
-            mButtonVideo = (Button) view.findViewById(R.id.video);
-            mButtonVideo.setOnClickListener(this);
+//            mButtonVideo = (ImageView) view.findViewById(R.id.video);
+//            mButtonVideo.setOnClickListener(this);
             cameraVF = (ViewFlipper) view.findViewById(R.id.cameraviewflipper);
             cameraButtonsVF = (ViewFlipper) view.findViewById(R.id.camerabuttonviewflipper);
-            back = (Button) view.findViewById(R.id.backCamera);
+            back = (ImageView) view.findViewById(R.id.backCamera);
             back.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if(cameraVF.getDisplayedChild() > 0) {
-                        if (cameraVF.getDisplayedChild() != 1) {
-
+                        if (cameraVF.getDisplayedChild() != 0) {
+                            next.setVisibility(View.VISIBLE);
                             cameraVF.setInAnimation(v.getContext(), R.anim.slide_in_from_left);
                             cameraVF.setOutAnimation(v.getContext(), R.anim.slide_out_to_right);
                             cameraVF.showPrevious();
+                            if(cameraVF.getDisplayedChild() == 0)
+                                back.setVisibility(View.INVISIBLE);
                         }
                     }
                 }
             });
-            next = (Button) view.findViewById(R.id.nextCamera);
+            next = (ImageView) view.findViewById(R.id.nextCamera);
             next.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Log.v("Child:", cameraVF.getDisplayedChild() + " " + (cameraVF.getChildCount() - 1));
                     if (cameraVF.getDisplayedChild() < cameraVF.getChildCount() - 1) {
                         if(cameraVF.getDisplayedChild() == cameraVF.getChildCount() - 2) {
-                            cameraButtonsVF.setInAnimation(v.getContext(), R.anim.slide_in_from_right);
-                            cameraButtonsVF.setOutAnimation(v.getContext(), R.anim.slide_out_to_left);
-                            cameraButtonsVF.showPrevious();
+//                            cameraButtonsVF.setInAnimation(v.getContext(), R.anim.slide_in_from_right);
+//                            cameraButtonsVF.setOutAnimation(v.getContext(), R.anim.slide_out_to_left);
+//                            cameraButtonsVF.showPrevious();
+                                next.setVisibility(View.INVISIBLE);
                         }
+                        if(cameraVF.getDisplayedChild() == 0 )
+                            back.setVisibility(View.VISIBLE);
                         cameraVF.setInAnimation(v.getContext(), R.anim.slide_in_from_right);
                         cameraVF.setOutAnimation(v.getContext(), R.anim.slide_out_to_left);
                         cameraVF.showNext();
                     }
                 }
             });
+            record = (ImageView) view.findViewById(R.id.recordCamera);
+            record.setOnClickListener(this);
 
             //view.findViewById(R.id.info).setOnClickListener(this);
         }
@@ -395,11 +402,13 @@ package com.miraclemessages;
         @Override
         public void onClick(View view) {
             switch (view.getId()) {
-                case R.id.video: {
+                case R.id.recordCamera: {
                     if (mIsRecordingVideo) {
                         stopRecordingVideo();
+                        record.setImageResource(R.drawable.record_button);
                     } else {
                         startRecordingVideo();
+                        record.setImageResource(R.drawable.record_stop);
                     }
                     break;
                 }
@@ -702,9 +711,10 @@ package com.miraclemessages;
             cameraVF.setInAnimation(getActivity(), R.anim.slide_in_from_right);
             cameraVF.setOutAnimation(getActivity(), R.anim.slide_out_to_left);
             cameraVF.showNext();
-            cameraButtonsVF.setInAnimation(getActivity(), R.anim.slide_in_from_right);
-            cameraButtonsVF.setOutAnimation(getActivity(), R.anim.slide_out_to_left);
-            cameraButtonsVF.showNext();
+//            cameraButtonsVF.setInAnimation(getActivity(), R.anim.slide_in_from_right);
+//            cameraButtonsVF.setOutAnimation(getActivity(), R.anim.slide_out_to_left);
+//            cameraButtonsVF.showNext();
+            back.setVisibility(View.VISIBLE);
             ImageView mImageViewFilling =
                     (ImageView) getActivity().
                             findViewById(R.id.imageview_is_recording_filling);
@@ -744,7 +754,6 @@ package com.miraclemessages;
                             @Override
                             public void run() {
                                 // UI
-                                mButtonVideo.setText(R.string.stop);
                                 mIsRecordingVideo = true;
 
                                 // Start recording
@@ -779,7 +788,6 @@ package com.miraclemessages;
         private void stopRecordingVideo() {
             // UI
             mIsRecordingVideo = false;
-            mButtonVideo.setText(R.string.record);
             // Stop recording
             mMediaRecorder.stop();
             mMediaRecorder.reset();
