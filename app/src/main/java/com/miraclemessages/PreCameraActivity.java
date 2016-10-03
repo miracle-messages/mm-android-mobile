@@ -174,8 +174,15 @@ public class PreCameraActivity extends Activity {
         super.onStart();
 
         OptionalPendingResult<GoogleSignInResult> opr = Auth.GoogleSignInApi.silentSignIn(mGoogleApiClient);
-        GoogleSignInResult result = opr.get();
-        Log.v("YASSS, CHUCK!: ", result.getSignInAccount().getEmail().toString());
+        if(opr.isDone()){
+            GoogleSignInResult result = opr.get();
+            Log.v("YASSS, CHUCK!: ", result.getSignInAccount().getEmail().toString());
+        }
+        else{
+            Log.w("Warning", "Was not able to get sign in account.");
+        }
+
+
     }
 
 }
