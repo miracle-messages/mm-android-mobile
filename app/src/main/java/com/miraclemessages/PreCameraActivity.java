@@ -15,8 +15,12 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.ViewFlipper;
-
-import org.w3c.dom.Text;
+import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.auth.api.signin.GoogleSignInResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.OptionalPendingResult;
 
 public class PreCameraActivity extends Activity {
 
@@ -33,10 +37,13 @@ public class PreCameraActivity extends Activity {
     public static final String Location = "location";
     Animation animFadeOut, animFadeIn;
 
+    private GoogleApiClient mGoogleApiClient;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_precamera);
+
         sharedpreferences = getSharedPreferences(myPreferences, Context.MODE_PRIVATE);
         viewFlipper = (ViewFlipper) findViewById(R.id.viewflipper);
         buttonViewFlipper = (ViewFlipper) findViewById(R.id.buttonviewflipper);
@@ -57,12 +64,24 @@ public class PreCameraActivity extends Activity {
         vEmail.setText(sharedpreferences.getString(Email, null));
         vPhone.setText(sharedpreferences.getString(Phone, null));
         vLocation.setText(sharedpreferences.getString(Location, null));
-        homeLabel.setText("Welcome " + sharedpreferences.getString(Name, null) + "!");
+        homeLabel.setText("Welcome, " + sharedpreferences.getString(Name, null) + "!");
 
         animFadeOut = AnimationUtils.loadAnimation(getApplicationContext(), android.R.anim.fade_out);
         animFadeIn = AnimationUtils.loadAnimation(getApplicationContext(), android.R.anim.fade_in);
         animFadeOut.setDuration(100);
         animFadeIn.setDuration(600);
+
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN.DEFAULT_SIGN_IN)
+                .requestEmail()
+                .build();
+
+        //Create GoogleApiClient with access to Google Sign-In API
+        //and other options specified by gso.
+        mGoogleApiClient = new GoogleApiClient.Builder(this)
+                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
+                .build();
+
+        mGoogleApiClient.connect();
 
         skip.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -144,9 +163,19 @@ public class PreCameraActivity extends Activity {
                 SharedPreferences.Editor editor = sharedpreferences.edit();
                 editor.clear();
                 editor.commit();
-                startActivity(new Intent(PreCameraActivity.this, MainActivity.class));
+                Auth.GoogleSignInApi.signOut(mGoogleApiClient);
+                startActivity(new Intent(PreCameraActivity.this, LoginActivity.class));
                 finish();
             }
         });
     }
+
+    public void onStart() {
+        super.onStart();
+
+        OptionalPendingResult<GoogleSignInResult> opr = Auth.GoogleSignInApi.silentSignIn(mGoogleApiClient);
+        GoogleSignInResult result = opr.get();
+        Log.v("YASSS, CHUCK!: ", result.getSignInAccount().getEmail().toString());
+    }
+
 }

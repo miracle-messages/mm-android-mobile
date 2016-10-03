@@ -1,0 +1,56 @@
+{
+  "project_info": {
+    "project_number": "61147001483",
+    "project_id": "miraclemessages-144420"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:61147001483:android:bb6c53b59bc3f4e1",
+        "android_client_info": {
+          "package_name": "com.miraclemessages"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "61147001483-mdmf2h9al7pls384judueaji7ri6b9cg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.miraclemessages",
+            "certificate_hash": "0AE30AE98C6226F9ACC6023DA7A89E8F01EB8068"
+          }
+        },
+        {
+          "client_id": "61147001483-072jegngojqfacobapdt0vb5rgk5vgvh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.miraclemessages",
+            "certificate_hash": "1E27B7DCBE8EF95676971F8EC55810E10DB2A813"
+          }
+        },
+        {
+          "client_id": "61147001483-u0c5v377uoi5vthd8ok8d15tke97pvvm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAZXGv5yWijQUgHrBdUssyO9zH2BA-LSr4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

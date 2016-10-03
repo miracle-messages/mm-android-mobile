@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'com.google.gms.google-services'
 
 android {
     compileSdkVersion 24
@@ -34,7 +35,8 @@ dependencies {
 //    compile 'com.google.apis:google-api-services-youtube:v3-rev178-1.22.0'
 //    compile group: 'com.google.oauth-client', name: 'google-oauth-client-jetty', version: '1.13.1-beta'
     compile 'com.android.support:multidex:1.0.0'
-    compile 'com.google.android.gms:play-services:9.6.1'
+  //  compile 'com.google.android.gms:play-services:9.6.1'
+    compile 'com.google.android.gms:play-services-auth:8.3.0'
 
 
 }

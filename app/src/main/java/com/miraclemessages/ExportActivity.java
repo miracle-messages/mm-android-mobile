@@ -23,8 +23,6 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import java.io.File;
 import java.util.List;
 
-import static com.google.android.gms.wearable.DataMap.TAG;
-
 public class ExportActivity extends Activity{
     Button submit, back;
     SharedPreferences sharedpreferences;

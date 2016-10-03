@@ -93,6 +93,7 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/logout"
                     android:text="Switch User"
+                    android:textColor="#000000"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
                     android:textSize="15dp"
@@ -327,6 +328,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
                 android:id="@+id/begin"
+                android:textColor="#000000"
                 android:text="Begin Miracle Message"
                 android:layout_centerVertical="true"
                 android:layout_centerHorizontal="true"
@@ -343,37 +345,38 @@
             android:orientation="vertical"
             >
 
-                <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:id="@+id/back"
-                    android:layout_centerVertical="true"
-                    android:layout_alignParentLeft="true"
-                    android:layout_marginLeft="20dp"
-                    android:background="@drawable/left_arrow"
-                    />
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:id="@+id/back"
+                android:layout_centerVertical="true"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="20dp"
+                android:background="@drawable/left_arrow"
+                />
 
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/skip"
-                    android:text="Skip Instructions"
-                    android:layout_toRightOf="@+id/back"
-                    android:layout_toLeftOf="@+id/next"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginRight="30dp"
-                    android:background="@drawable/button_selector"/>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/skip"
+                android:text="Skip Instructions"
+                android:layout_toRightOf="@+id/back"
+                android:layout_toLeftOf="@+id/next"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:textColor="#000000"
+                android:background="@drawable/button_selector"/>
 
-                <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:id="@+id/next"
-                    android:layout_centerVertical="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="20dp"
-                    android:background="@drawable/right_arrow"
-                    />
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:id="@+id/next"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/right_arrow"
+                />
 
         </RelativeLayout>
 
