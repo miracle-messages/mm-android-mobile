@@ -182,7 +182,6 @@ public class PreCameraActivity extends Activity {
             Log.w("Warning", "Was not able to get sign in account.");
         }
 
-
     }
 
 }

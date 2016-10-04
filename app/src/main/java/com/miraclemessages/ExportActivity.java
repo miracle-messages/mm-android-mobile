@@ -17,6 +17,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.OptionalPendingResult;
 
 import java.io.File;
 import java.util.List;
@@ -32,8 +33,8 @@ public class ExportActivity extends Activity{
     public static final String FileLoc = "file";
 
     private static final String VIDEO_FILE_FORMAT = "video/*";
-
     private static final String SAMPLE_VIDEO_FILENAME = "sample-video.mp4";
+    private GoogleApiClient mGoogleApiClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +43,18 @@ public class ExportActivity extends Activity{
         sharedpreferences = getSharedPreferences(myPreferences, Context.MODE_PRIVATE);
         submit = (Button) findViewById(R.id.submit);
         back = (Button) findViewById(R.id.homepage);
+
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN.DEFAULT_SIGN_IN)
+                .requestEmail()
+                .build();
+
+        //Create GoogleApiClient with access to Google Sign-In API
+        //and other options specified by gso.
+        mGoogleApiClient = new GoogleApiClient.Builder(this)
+                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
+                .build();
+
+        mGoogleApiClient.connect();
 
         submit.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v)
@@ -66,6 +79,19 @@ public class ExportActivity extends Activity{
 
     }
 
+    public void onStart() {
+        super.onStart();
+
+        OptionalPendingResult<GoogleSignInResult> opr = Auth.GoogleSignInApi.silentSignIn(mGoogleApiClient);
+        if(opr.isDone()){
+            GoogleSignInResult result = opr.get();
+            Log.v("NEEEH WATS UP DOC!: ", result.getSignInAccount().getEmail().toString());
+        }
+        else{
+            Log.w("Warning", "Was not able to get sign in account.");
+        }
+
+    }
 
     private void shareViaYoutube(String type) {
         boolean found = false;
