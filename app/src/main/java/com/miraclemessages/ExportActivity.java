@@ -1,8 +1,6 @@
 package com.miraclemessages;
 
 import android.app.Activity;
-import android.content.ClipData;
-import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -26,8 +24,6 @@ import java.util.List;
 public class ExportActivity extends Activity{
     Button submit, back;
     SharedPreferences sharedpreferences;
-    private ClipboardManager myClipBoard;
-    private ClipData myClip;
     public static final String myPreferences = "MyPreferences";
     public static final String Name = "name";
     public static final String Email = "email";
@@ -51,7 +47,7 @@ public class ExportActivity extends Activity{
             public void onClick(View v)
             {
                 try {
-                    //shareViaYoutube("youtube")l
+                    shareViaYoutube("youtube");
 
                 } catch (android.content.ActivityNotFoundException ex) {
                     Toast.makeText(ExportActivity.this,
