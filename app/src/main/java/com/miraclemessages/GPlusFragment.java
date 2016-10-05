@@ -50,7 +50,7 @@ public class GPlusFragment extends Fragment
     public static final String Email = "email";
     public static final String Phone = "phone";
     public static final String Location = "location";
-
+    public static final String ACCOUNT_KEY = "accountName";
 
     @Override
     public void onCreate(Bundle savedInstanceState){
@@ -173,7 +173,9 @@ public class GPlusFragment extends Fragment
             Toast.makeText(GPlusFragment.this.getActivity(),"Thank you!", Toast.LENGTH_LONG).show();
 
             Log.v("BONJOUR, CHUCK: ", result.getSignInAccount().getEmail().toString());
-
+            editor.putString(ACCOUNT_KEY, result.getSignInAccount().getEmail().toString());
+            editor.commit();
+            Log.v("BEWBS ", sharedpreferences.getString(ACCOUNT_KEY, null));
             startActivity(new Intent(GPlusFragment.this.getActivity(), PreCameraActivity.class));
             GPlusFragment.this.getActivity().finish();
         }
