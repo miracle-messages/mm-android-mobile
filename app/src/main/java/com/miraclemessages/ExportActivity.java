@@ -158,8 +158,8 @@ public class ExportActivity extends Activity implements GoogleApiClient.Connecti
                         uploadIntent.setData(mFileUri);
                         uploadIntent.putExtra(UploadActivity.ACCOUNT_KEY, mChosenAccountName);
                         startService(uploadIntent);
-                        Toast.makeText(ExportActivity.this, R.string.youtube_upload_started,
-                                Toast.LENGTH_LONG).show();
+//                        Toast.makeText(ExportActivity.this, R.string.youtube_upload_started,
+//                                Toast.LENGTH_LONG).show();
                         // Go back to MainActivity after upload
 //                        finish();
                     }
@@ -410,31 +410,31 @@ public class ExportActivity extends Activity implements GoogleApiClient.Connecti
                 REQUEST_ACCOUNT_PICKER);
     }
 
-    private void shareViaYoutube(String type) {
-        boolean found = false;
-        Intent share = new Intent(Intent.ACTION_SEND);
-        share.setType("video/*");
-
-        // gets the list of intents that can be loaded.
-        List<ResolveInfo> resInfo = getPackageManager().queryIntentActivities(share, 0);
-        if (!resInfo.isEmpty()){
-            for (ResolveInfo info : resInfo) {
-                if (info.activityInfo.packageName.toLowerCase().contains(type) ||
-                        info.activityInfo.name.toLowerCase().contains(type) ) {
-                    share.putExtra(Intent.EXTRA_SUBJECT,  "subject");
-                    share.putExtra(Intent.EXTRA_TEXT,     "your text");
-                    share.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(new File(sharedpreferences.getString(FileLoc, null).toString()))); // Optional, just if you wanna share an image.
-                    share.setPackage(info.activityInfo.packageName);
-                    found = true;
-                    break;
-                }
-            }
-            if (!found)
-                return;
-
-            startActivity(Intent.createChooser(share, "Upload to Youtube here~"));
-        }
-    }
+//    private void shareViaYoutube(String type) {
+//        boolean found = false;
+//        Intent share = new Intent(Intent.ACTION_SEND);
+//        share.setType("video/*");
+//
+//        // gets the list of intents that can be loaded.
+//        List<ResolveInfo> resInfo = getPackageManager().queryIntentActivities(share, 0);
+//        if (!resInfo.isEmpty()){
+//            for (ResolveInfo info : resInfo) {
+//                if (info.activityInfo.packageName.toLowerCase().contains(type) ||
+//                        info.activityInfo.name.toLowerCase().contains(type) ) {
+//                    share.putExtra(Intent.EXTRA_SUBJECT,  "subject");
+//                    share.putExtra(Intent.EXTRA_TEXT,     "your text");
+//                    share.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(new File(sharedpreferences.getString(FileLoc, null).toString()))); // Optional, just if you wanna share an image.
+//                    share.setPackage(info.activityInfo.packageName);
+//                    found = true;
+//                    break;
+//                }
+//            }
+//            if (!found)
+//                return;
+//
+//            startActivity(Intent.createChooser(share, "Upload to Youtube here~"));
+//        }
+//    }
 
 //    @Override
 //    public ImageLoader onGetImageLoader() {
