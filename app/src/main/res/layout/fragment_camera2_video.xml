@@ -34,7 +34,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
         android:layout_below="@id/texture"
-        android:background="#93E2FF"
+        android:background="#000000"
         >
 
         <LinearLayout
