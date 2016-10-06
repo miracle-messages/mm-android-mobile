@@ -18,6 +18,7 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.ThumbnailUtils;
@@ -55,6 +56,12 @@ import java.util.List;
  *         YouTube Resumable Upload controller class.
  */
 public class ResumableUpload {
+    public static SharedPreferences sharedpreferences;
+    public static final String myPreferences = "MyPreferences";
+    public static final String Name = "name";
+    public static final String Email = "email";
+    public static final String Phone = "phone";
+    public static final String Location = "location";
     /**
      * Assigned to the upload
      */
@@ -115,10 +122,13 @@ public class ResumableUpload {
        * you can see multiple files being uploaded. You will want to remove this from your project
        * and use your own standard names.
        */
+            sharedpreferences = context.getSharedPreferences(myPreferences,
+                    Context.MODE_PRIVATE);
             Calendar cal = Calendar.getInstance();
-            snippet.setTitle("Test Upload via Java on " + cal.getTime());
-            snippet.setDescription("Video uploaded via YouTube Data API V3 using the Java library "
-                    + "on " + cal.getTime());
+            snippet.setTitle("Miracle Messages Recording Uploaded on " + cal.getTime());
+            snippet.setDescription("\n" + "Miracle Message uploaded by "
+                    + sharedpreferences.getString(Name, null) + "\n"
+                    + " in " + sharedpreferences.getString(Location, null));
 
             // Set your keywords.
             snippet.setTags(Arrays.asList(Constants.DEFAULT_KEYWORD, Upload.generateKeywordFromPlaylistId(Constants.UPLOAD_PLAYLIST)));

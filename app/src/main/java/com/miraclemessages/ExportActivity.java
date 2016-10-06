@@ -57,8 +57,6 @@ public class ExportActivity extends Activity implements GoogleApiClient.Connecti
         GoogleApiClient.OnConnectionFailedListener {
     Button submit, back;
     SharedPreferences sharedpreferences;
-    private ClipboardManager myClipBoard;
-    private ClipData myClip;
     public static final String myPreferences = "MyPreferences";
     public static final String Name = "name";
     public static final String Email = "email";
