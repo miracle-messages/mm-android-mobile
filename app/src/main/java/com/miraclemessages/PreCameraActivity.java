@@ -53,8 +53,8 @@ public class PreCameraActivity extends Activity {
         changeUser = (Button) findViewById(R.id.logout);
         vName = (TextView)findViewById(R.id.volunteer_name);
         vEmail = (TextView)findViewById(R.id.volunteer_email);
-        vPhone = (TextView) findViewById(R.id.volunteer_phone);
-        vLocation = (TextView) findViewById(R.id.volunteer_location);
+//        vPhone = (TextView) findViewById(R.id.volunteer_phone);
+//        vLocation = (TextView) findViewById(R.id.volunteer_location);
         homeLabel = (TextView) findViewById(R.id.home_label);
         bfLabel = (TextView) findViewById(R.id.bf_label);
         begin = (Button) findViewById(R.id.begin);
@@ -62,8 +62,8 @@ public class PreCameraActivity extends Activity {
 
         vName.setText(sharedpreferences.getString(Name, null));
         vEmail.setText(sharedpreferences.getString(Email, null));
-        vPhone.setText(sharedpreferences.getString(Phone, null));
-        vLocation.setText(sharedpreferences.getString(Location, null));
+//        vPhone.setText(sharedpreferences.getString(Phone, null));
+//        vLocation.setText(sharedpreferences.getString(Location, null));
         homeLabel.setText("Welcome, " + sharedpreferences.getString(Name, null) + "!");
 
         animFadeOut = AnimationUtils.loadAnimation(getApplicationContext(), android.R.anim.fade_out);
@@ -74,6 +74,7 @@ public class PreCameraActivity extends Activity {
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN.DEFAULT_SIGN_IN)
                 .requestEmail()
                 .build();
+
 
         //Create GoogleApiClient with access to Google Sign-In API
         //and other options specified by gso.

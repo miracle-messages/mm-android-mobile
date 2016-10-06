@@ -81,7 +81,8 @@ public class GPlusFragment extends Fragment
             Log.d(TAG, "Got cached sign-in");
             GoogleSignInResult result = opr.get();
             Log.v("STILL HERE, CHUCK?: ", result.getSignInAccount().getEmail().toString());
-
+            startActivity(new Intent(GPlusFragment.this.getActivity(), PreCameraActivity.class));
+            GPlusFragment.this.getActivity().finish();
         }
         else{
             Log.v("RESTARTING! ", "yeep yeep");
@@ -94,10 +95,10 @@ public class GPlusFragment extends Fragment
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_gplus, parent, false);
 
-        textName=(EditText)v.findViewById(R.id.name);
-        textEmail=(EditText)v.findViewById(R.id.email);
-        textPhone=(EditText)v.findViewById(R.id.phone_number);
-        textLocation=(EditText)v.findViewById(R.id.location);
+//        textName=(EditText)v.findViewById(R.id.name);
+//        textEmail=(EditText)v.findViewById(R.id.email);
+//        textPhone=(EditText)v.findViewById(R.id.phone_number);
+//        textLocation=(EditText)v.findViewById(R.id.location);
 
         signInButton = (SignInButton) v.findViewById(R.id.sign_in_button);
 
@@ -105,14 +106,14 @@ public class GPlusFragment extends Fragment
         sharedpreferences = getActivity().getSharedPreferences(myPreferences,
                 Context.MODE_PRIVATE);
 
-        if(sharedpreferences.getString(Name, null) != null
-                && sharedpreferences.getString(Email, null) != null
-                && sharedpreferences.getString(Phone, null) != null
-                && sharedpreferences.getString(Location, null) != null) {
-
-            startActivity(new Intent(GPlusFragment.this.getActivity(), PreCameraActivity.class));
-            GPlusFragment.this.getActivity().finish();
-        }
+//        if(sharedpreferences.getString(Name, null) != null
+//                && sharedpreferences.getString(Email, null) != null
+//                && sharedpreferences.getString(Phone, null) != null
+//                && sharedpreferences.getString(Location, null) != null) {
+//
+//            startActivity(new Intent(GPlusFragment.this.getActivity(), PreCameraActivity.class));
+//            GPlusFragment.this.getActivity().finish();
+//        }
 
         signInButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -129,42 +130,42 @@ public class GPlusFragment extends Fragment
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        String n = textName.getText().toString();
-        if (n.equals("")) {
-            Toast.makeText(GPlusFragment.this.getActivity(),
-                    "Please fill out all fields.",
-                    Toast.LENGTH_LONG).show();
-            return;
-        }
-        String e = textEmail.getText().toString();
-        if (e.equals("")) {
-            Toast.makeText(GPlusFragment.this.getActivity(),
-                    "Please fill out all fields.",
-                    Toast.LENGTH_LONG).show();
-            return;
-        }
-        String p = textPhone.getText().toString();
-        if (p.equals("")) {
-            Toast.makeText(GPlusFragment.this.getActivity(),
-                    "Please fill out all fields.",
-                    Toast.LENGTH_LONG).show();
-            return;
-        }
-        String l = textLocation.getText().toString();
-        if (l.equals("")) {
-            Toast.makeText(GPlusFragment.this.getActivity(),
-                    "Please fill out all fields.",
-                    Toast.LENGTH_LONG).show();
-            return;
-        }
-
-        SharedPreferences.Editor editor = sharedpreferences.edit();
-        editor.putString(Name, n);
-        editor.putString(Email, e);
-        editor.putString(Phone, p);
-        editor.putString(Location, l);
-
-        editor.commit();
+//        String n = textName.getText().toString();
+//        if (n.equals("")) {
+//            Toast.makeText(GPlusFragment.this.getActivity(),
+//                    "Please fill out all fields.",
+//                    Toast.LENGTH_LONG).show();
+//            return;
+//        }
+//        String e = textEmail.getText().toString();
+//        if (e.equals("")) {
+//            Toast.makeText(GPlusFragment.this.getActivity(),
+//                    "Please fill out all fields.",
+//                    Toast.LENGTH_LONG).show();
+//            return;
+//        }
+//        String p = textPhone.getText().toString();
+//        if (p.equals("")) {
+//            Toast.makeText(GPlusFragment.this.getActivity(),
+//                    "Please fill out all fields.",
+//                    Toast.LENGTH_LONG).show();
+//            return;
+//        }
+//        String l = textLocation.getText().toString();
+//        if (l.equals("")) {
+//            Toast.makeText(GPlusFragment.this.getActivity(),
+//                    "Please fill out all fields.",
+//                    Toast.LENGTH_LONG).show();
+//            return;
+//        }
+//
+          SharedPreferences.Editor editor = sharedpreferences.edit();
+//        editor.putString(Name, n);
+//        editor.putString(Email, e);
+//        editor.putString(Phone, p);
+//        editor.putString(Location, l);
+//
+//        editor.commit();
 
         // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
         if (requestCode == RC_SIGN_IN) {
@@ -174,6 +175,10 @@ public class GPlusFragment extends Fragment
 
             Log.v("BONJOUR, CHUCK: ", result.getSignInAccount().getEmail().toString());
             editor.putString(ACCOUNT_KEY, result.getSignInAccount().getEmail().toString());
+            editor.putString(Name, result.getSignInAccount().getDisplayName().toString());
+            editor.putString(Email, result.getSignInAccount().getEmail().toString());
+//            editor.putString(Phone, result.getSignInAccount().get);
+//            editor.putString(Location, l);
             editor.commit();
             Log.v("BEWBS ", sharedpreferences.getString(ACCOUNT_KEY, null));
             startActivity(new Intent(GPlusFragment.this.getActivity(), PreCameraActivity.class));

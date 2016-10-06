@@ -11,7 +11,7 @@
     tools:context="com.miraclemessages.PreCameraActivity"
     android:gravity="center"
     android:weightSum="1"
-    android:background="#93E2FF">
+    android:background="#000000">
 
     <TextView
         android:layout_width="wrap_content"
@@ -115,36 +115,36 @@
                     android:layout_height="wrap_content"
                     android:text="Volunteer Information"
                     android:id="@+id/volunteer_info"
-                    android:textSize="20dp"
+                    android:textSize="25dp"
                     />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/volunteer_name"
-                    android:textSize="15dp"
+                    android:textSize="20dp"
                     />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/volunteer_email"
-                    android:textSize="15dp"
+                    android:textSize="20dp"
                     />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/volunteer_phone"
-                    android:textSize="15dp"
-                    />
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:id="@+id/volunteer_phone"-->
+                    <!--android:textSize="15dp"-->
+                    <!--/>-->
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/volunteer_location"
-                    android:textSize="15dp"
-                    />
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:id="@+id/volunteer_location"-->
+                    <!--android:textSize="15dp"-->
+                    <!--/>-->
 
             </LinearLayout>
 
