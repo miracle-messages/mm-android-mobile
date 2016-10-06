@@ -19,6 +19,7 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ResolveInfo;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.ThumbnailUtils;
@@ -27,6 +28,7 @@ import android.provider.MediaStore.Video.Thumbnails;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
+import android.content.pm.PackageManager;
 
 import com.google.api.client.googleapis.extensions.android.gms.auth.GooglePlayServicesAvailabilityIOException;
 import com.google.api.client.googleapis.extensions.android.gms.auth.UserRecoverableAuthIOException;
@@ -34,6 +36,7 @@ import com.google.api.client.googleapis.media.MediaHttpUploader;
 import com.google.api.client.googleapis.media.MediaHttpUploaderProgressListener;
 import com.google.api.client.http.InputStreamContent;
 import com.google.api.services.youtube.YouTube;
+import com.google.api.services.youtube.model.Activity;
 import com.google.api.services.youtube.model.Video;
 import com.google.api.services.youtube.model.VideoListResponse;
 import com.google.api.services.youtube.model.VideoSnippet;
@@ -41,6 +44,7 @@ import com.google.api.services.youtube.model.VideoStatus;
 import com.miraclemessages.util.Upload;
 
 import java.io.BufferedInputStream;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
@@ -62,6 +66,9 @@ public class ResumableUpload {
     public static final String Email = "email";
     public static final String Phone = "phone";
     public static final String Location = "location";
+    public static final String FileLoc = "file";
+    public static String youtubeLink = "http://www.youtube.com/watch?v=";
+
     /**
      * Assigned to the upload
      */
@@ -198,6 +205,8 @@ public class ResumableUpload {
             Log.d(TAG, "Video upload completed");
             videoId = returnedVideo.getId();
             Log.d(TAG, String.format("videoId = [%s]", videoId));
+            youtubeLink = youtubeLink + videoId;
+            emailURL("com.google.android.gm", context);
         } catch (final GooglePlayServicesAvailabilityIOException availabilityException) {
             Log.e(TAG, "GooglePlayServicesAvailabilityIOException", availabilityException);
             notifyFailedUpload(context, context.getString(R.string.cant_access_play), notifyManager, builder);
@@ -282,5 +291,42 @@ public class ResumableUpload {
             Log.e(TAG, "Error fetching video metadata", e);
         }
         return false;
+    }
+
+    private static void emailURL(String type, Context context) {
+        //Intent i = new Intent(Intent.ACTION_SEND);
+        boolean found = false;
+        Intent i = new Intent(Intent.ACTION_SEND);
+        i.setType("message/rfc822");
+
+        // gets the list of intents that can be loaded.
+        List<ResolveInfo> resInfo = context.getPackageManager().queryIntentActivities(i, 0);
+        if (!resInfo.isEmpty()){
+            for (ResolveInfo info : resInfo) {
+                if (info.activityInfo.packageName.toLowerCase().contains(type) ||
+                        info.activityInfo.name.toLowerCase().contains(type) ) {
+                    i.putExtra(Intent.EXTRA_EMAIL  , new String[]{"cyt3ea@virginia.edu"});
+                    i.putExtra(Intent.EXTRA_SUBJECT, "Miracle Messages Recording from "
+                            + sharedpreferences.getString(Name, null).toString());
+                    i.putExtra(Intent.EXTRA_TEXT, "Youtube link: " + youtubeLink + "\n"
+                    + "\n"
+                    + "Name: " + sharedpreferences.getString(Name, null).toString() + "\n"
+                    + "Email: " + sharedpreferences.getString(Email, null).toString() + "\n"
+                    + "Phone Number: " + sharedpreferences.getString(Phone, null).toString() + "\n"
+                    + "Location: " + sharedpreferences.getString(Location, null).toString() + "\n"
+                    + "\n"
+                    + "Please put any additional comments below! :-)" + "\n");
+
+                    i.setPackage(info.activityInfo.packageName);
+                    found = true;
+                    break;
+                }
+            }
+            if (!found)
+                return;
+            Intent new_intent = Intent.createChooser(i, "Send email here~");
+            new_intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            context.startActivity(new_intent);
+        }
     }
 }
