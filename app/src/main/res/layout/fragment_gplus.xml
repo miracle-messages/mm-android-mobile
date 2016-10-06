@@ -9,7 +9,7 @@
     android:paddingTop="40dp"
     android:id="@+id/main_layout"
     android:orientation="vertical"
-    android:background="#000000"
+    android:background="#93E2FF"
     android:weightSum="1">
 
     <LinearLayout

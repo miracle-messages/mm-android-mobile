@@ -11,7 +11,7 @@
     tools:context="com.miraclemessages.PreCameraActivity"
     android:gravity="center"
     android:weightSum="1"
-    android:background="#000000">
+    android:background="#93E2FF">
 
     <TextView
         android:layout_width="wrap_content"

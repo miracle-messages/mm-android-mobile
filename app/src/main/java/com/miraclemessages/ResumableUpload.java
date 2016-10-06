@@ -312,7 +312,7 @@ public class ResumableUpload {
                     + "\n"
                     + "Name: " + sharedpreferences.getString(Name, null).toString() + "\n"
                     + "Email: " + sharedpreferences.getString(Email, null).toString() + "\n"
-                    + "Phone Number: " + sharedpreferences.getString(Phone, null).toString() + "\n"
+//                    + "Phone Number: " + sharedpreferences.getString(Phone, null).toString() + "\n"
                     + "Location: " + sharedpreferences.getString(Location, null).toString() + "\n"
                     + "\n"
                     + "Please put any additional comments below! :-)" + "\n");

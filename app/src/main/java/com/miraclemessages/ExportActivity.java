@@ -3,11 +3,13 @@ package com.miraclemessages;
 import android.Manifest;
 import android.accounts.AccountManager;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.BroadcastReceiver;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.IntentSender;
@@ -20,15 +22,20 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.LocalBroadcastManager;
+import android.text.InputType;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.TableLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -146,29 +153,55 @@ public class ExportActivity extends Activity implements GoogleApiClient.Connecti
 
             submit.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
-                    Log.v("DEREK: ", mChosenAccountName);
-                    if (mChosenAccountName == null) {
-                        Log.v(TAG, "CHOSEN ACCOUNT IS NULL");
-                        return;
-                    }
-                    // if a video is picked or recorded.
-                    Uri mFileUri = Uri.fromFile(new File(sharedpreferences.getString(FileLoc, null).toString()));
-                    if (mFileUri != null) {
-                        Intent uploadIntent = new Intent(ExportActivity.this, UploadService.class);
-                        uploadIntent.setData(mFileUri);
-                        uploadIntent.putExtra(UploadActivity.ACCOUNT_KEY, mChosenAccountName);
-                        startService(uploadIntent);
-//                        Toast.makeText(ExportActivity.this, R.string.youtube_upload_started,
-//                                Toast.LENGTH_LONG).show();
-                        // Go back to MainActivity after upload
-//                        finish();
-                    }
-//                    try {
-//                        shareViaYoutube("youtube");
-//                    } catch (android.content.ActivityNotFoundException ex) {
-//                        Toast.makeText(ExportActivity.this,
-//                                "Oh noes! Youtube is not installed.", Toast.LENGTH_SHORT).show();
-//                    }
+
+                    AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
+                    builder.setTitle("Video Location:");
+
+                    // Set up the input
+                    final EditText input = new EditText(v.getContext());
+                    // Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
+                    input.setInputType(InputType.TYPE_CLASS_TEXT);
+
+                    LinearLayout layout = new LinearLayout(v.getContext());
+                    layout.setOrientation(LinearLayout.VERTICAL);
+                    layout.setGravity(Gravity.CENTER_HORIZONTAL);
+                    input.setSingleLine(true);
+                    layout.setPadding(100, 0, 100, 0);
+                    input.setHint("ie. City, State");
+                    layout.addView(input);
+
+                    builder.setView(layout);
+
+                    // Set up the buttons
+                    builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            SharedPreferences.Editor editor = sharedpreferences.edit();
+                            editor.putString(Location, input.getText().toString());
+                            editor.commit();
+                            Log.v("DEREK: ", mChosenAccountName);
+                            if (mChosenAccountName == null) {
+                                Log.v(TAG, "CHOSEN ACCOUNT IS NULL");
+                                return;
+                            }
+                            // if a video is picked or recorded.
+                            Uri mFileUri = Uri.fromFile(new File(sharedpreferences.getString(FileLoc, null).toString()));
+                            if (mFileUri != null) {
+                                Intent uploadIntent = new Intent(ExportActivity.this, UploadService.class);
+                                uploadIntent.setData(mFileUri);
+                                uploadIntent.putExtra(UploadActivity.ACCOUNT_KEY, mChosenAccountName);
+                                startService(uploadIntent);
+                            }
+                        }
+                    });
+                    builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                        }
+                    });
+
+                    builder.show();
                 }
 
             });
