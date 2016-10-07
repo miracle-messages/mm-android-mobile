@@ -27,6 +27,8 @@ import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.OptionalPendingResult;
 
+import org.w3c.dom.Text;
+
 /**
  * Created by James Wu on 10/1/2016.
  */
@@ -37,14 +39,10 @@ public class GPlusFragment extends Fragment
     private int RC_SIGN_IN = 0;
     private GoogleApiClient mGoogleApiClient;
     private SignInButton signInButton;
-    private Button signOutButton;
-    private Button disconnectButton;
-    private LinearLayout signOutView;
     private ProgressDialog mProgressDialog;
+    private TextView motto;
 
     SharedPreferences sharedpreferences;
-    EditText textName, textEmail, textPhone, textLocation;
-    Button submit;
     public static final String myPreferences = "MyPreferences";
     public static final String Name = "name";
     public static final String Email = "email";
@@ -101,7 +99,8 @@ public class GPlusFragment extends Fragment
 //        textLocation=(EditText)v.findViewById(R.id.location);
 
         signInButton = (SignInButton) v.findViewById(R.id.sign_in_button);
-
+        motto = (TextView) v.findViewById(R.id.motto);
+        motto.setText("Short video messages from the homeless to their long lost loved ones, recorded and delivered by you.");
         setGooglePlusButtonText(signInButton, "Sign in with Google");
         sharedpreferences = getActivity().getSharedPreferences(myPreferences,
                 Context.MODE_PRIVATE);
@@ -171,18 +170,18 @@ public class GPlusFragment extends Fragment
         if (requestCode == RC_SIGN_IN) {
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
             //handleSignInResult(result);
-            Toast.makeText(GPlusFragment.this.getActivity(),"Thank you!", Toast.LENGTH_LONG).show();
+            if(result.getSignInAccount() == null)
+                return;
 
             Log.v("BONJOUR, CHUCK: ", result.getSignInAccount().getEmail().toString());
             editor.putString(ACCOUNT_KEY, result.getSignInAccount().getEmail().toString());
             editor.putString(Name, result.getSignInAccount().getDisplayName().toString());
             editor.putString(Email, result.getSignInAccount().getEmail().toString());
-//            editor.putString(Phone, result.getSignInAccount().get);
-//            editor.putString(Location, l);
             editor.commit();
-            Log.v("BEWBS ", sharedpreferences.getString(ACCOUNT_KEY, null));
             startActivity(new Intent(GPlusFragment.this.getActivity(), PreCameraActivity.class));
+            Toast.makeText(GPlusFragment.this.getActivity(),"Thank you!", Toast.LENGTH_LONG).show();
             GPlusFragment.this.getActivity().finish();
+
         }
     }
 
