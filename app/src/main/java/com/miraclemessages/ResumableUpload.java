@@ -29,6 +29,7 @@ import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 import android.content.pm.PackageManager;
+import android.widget.Toast;
 
 import com.google.api.client.googleapis.extensions.android.gms.auth.GooglePlayServicesAvailabilityIOException;
 import com.google.api.client.googleapis.extensions.android.gms.auth.UserRecoverableAuthIOException;
@@ -206,7 +207,26 @@ public class ResumableUpload {
             videoId = returnedVideo.getId();
             Log.d(TAG, String.format("videoId = [%s]", videoId));
             youtubeLink = youtubeLink + videoId;
-            emailURL("com.google.android.gm", context);
+            //emailURL("com.google.android.gm", context);
+            Intent sendIntent = new Intent(Intent.ACTION_VIEW);
+            sendIntent.setType("message/rfc822");
+            sendIntent.setClassName("com.google.android.gm", "com.google.android.gm.ComposeActivityGmail");
+            //Set email recipient
+            sendIntent.putExtra(Intent.EXTRA_EMAIL, new String[] { "mm@miraclemessages.org" });
+
+            sendIntent.putExtra(Intent.EXTRA_SUBJECT, "Miracle Messages Recording from "
+                    + sharedpreferences.getString(Name, null).toString());
+            sendIntent.putExtra(Intent.EXTRA_TEXT, "Youtube link: " + youtubeLink + "\n"
+                    + "\n"
+                    + "Name: " + sharedpreferences.getString(Name, null).toString() + "\n"
+                    + "Email: " + sharedpreferences.getString(Email, null).toString() + "\n"
+//                    + "Phone Number: " + sharedpreferences.getString(Phone, null).toString() + "\n"
+                    + "Location: " + sharedpreferences.getString(Location, null).toString() + "\n"
+                    + "\n"
+                    + "Please put any additional comments below! :-)" + "\n");
+
+            sendIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            context.startActivity(sendIntent);
         } catch (final GooglePlayServicesAvailabilityIOException availabilityException) {
             Log.e(TAG, "GooglePlayServicesAvailabilityIOException", availabilityException);
             notifyFailedUpload(context, context.getString(R.string.cant_access_play), notifyManager, builder);
@@ -295,38 +315,43 @@ public class ResumableUpload {
 
     private static void emailURL(String type, Context context) {
         //Intent i = new Intent(Intent.ACTION_SEND);
-        boolean found = false;
-        Intent i = new Intent(Intent.ACTION_SEND);
-        i.setType("message/rfc822");
-
-        // gets the list of intents that can be loaded.
-        List<ResolveInfo> resInfo = context.getPackageManager().queryIntentActivities(i, 0);
-        if (!resInfo.isEmpty()){
-            for (ResolveInfo info : resInfo) {
-                if (info.activityInfo.packageName.toLowerCase().contains(type) ||
-                        info.activityInfo.name.toLowerCase().contains(type) ) {
-                    i.putExtra(Intent.EXTRA_EMAIL  , new String[]{"cyt3ea@virginia.edu"});
-                    i.putExtra(Intent.EXTRA_SUBJECT, "Miracle Messages Recording from "
-                            + sharedpreferences.getString(Name, null).toString());
-                    i.putExtra(Intent.EXTRA_TEXT, "Youtube link: " + youtubeLink + "\n"
-                    + "\n"
-                    + "Name: " + sharedpreferences.getString(Name, null).toString() + "\n"
-                    + "Email: " + sharedpreferences.getString(Email, null).toString() + "\n"
-//                    + "Phone Number: " + sharedpreferences.getString(Phone, null).toString() + "\n"
-                    + "Location: " + sharedpreferences.getString(Location, null).toString() + "\n"
-                    + "\n"
-                    + "Please put any additional comments below! :-)" + "\n");
-
-                    i.setPackage(info.activityInfo.packageName);
-                    found = true;
-                    break;
-                }
-            }
-            if (!found)
-                return;
-            Intent new_intent = Intent.createChooser(i, "Send email here~");
-            new_intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            context.startActivity(new_intent);
-        }
+//        boolean found = false;
+//        Intent i = new Intent(Intent.ACTION_SEND);
+//        i.setType("message/rfc822");
+//
+//        // gets the list of intents that can be loaded.
+//        List<ResolveInfo> resInfo = context.getPackageManager().queryIntentActivities(i, 0);
+//        if (!resInfo.isEmpty()){
+//            for (ResolveInfo info : resInfo) {
+//                if (info.activityInfo.packageName.toLowerCase().contains(type) ||
+//                        info.activityInfo.name.toLowerCase().contains(type) ) {
+//                    i.putExtra(Intent.EXTRA_EMAIL  , new String[]{"cyt3ea@virginia.edu"});
+//                    i.putExtra(Intent.EXTRA_SUBJECT, "Miracle Messages Recording from "
+//                            + sharedpreferences.getString(Name, null).toString());
+//                    i.putExtra(Intent.EXTRA_TEXT, "Youtube link: " + youtubeLink + "\n"
+//                    + "\n"
+//                    + "Name: " + sharedpreferences.getString(Name, null).toString() + "\n"
+//                    + "Email: " + sharedpreferences.getString(Email, null).toString() + "\n"
+////                    + "Phone Number: " + sharedpreferences.getString(Phone, null).toString() + "\n"
+//                    + "Location: " + sharedpreferences.getString(Location, null).toString() + "\n"
+//                    + "\n"
+//                    + "Please put any additional comments below! :-)" + "\n");
+//
+//                    i.setPackage(info.activityInfo.packageName);
+//                    found = true;
+//                    break;
+//                }
+//            }
+//            if (!found)
+//                return;
+//            try {
+//                Intent new_intent = context.getPackageManager().getLaunchIntentForPackage("com.google.android.gm.send");
+//                new_intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                context.startActivity(new_intent);
+//            }
+//            catch (Exception e){
+//                Toast.makeText(context, "Oh noes! Please enable or install Gmail to upload.", Toast.LENGTH_LONG).show();
+//            }
+//        }
     }
 }

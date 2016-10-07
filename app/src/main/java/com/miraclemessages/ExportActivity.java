@@ -191,7 +191,7 @@ public class ExportActivity extends Activity implements GoogleApiClient.Connecti
                                 uploadIntent.setData(mFileUri);
                                 uploadIntent.putExtra(UploadActivity.ACCOUNT_KEY, mChosenAccountName);
                                 startService(uploadIntent);
-                                Toast.makeText(ExportActivity.this, "YouTube upload started; please wait until it is finished <3!", Toast.LENGTH_LONG).show();
+                                Toast.makeText(ExportActivity.this, "YouTube upload started; please check the notification bar for progress <3", Toast.LENGTH_LONG).show();
                             }
                         }
                     });

@@ -99,8 +99,8 @@ public class GPlusFragment extends Fragment
 //        textLocation=(EditText)v.findViewById(R.id.location);
 
         signInButton = (SignInButton) v.findViewById(R.id.sign_in_button);
-        motto = (TextView) v.findViewById(R.id.motto);
-        motto.setText("Short video messages from the homeless to their long lost loved ones, recorded and delivered by you.");
+//        motto = (TextView) v.findViewById(R.id.motto);
+//        motto.setText("Reconnecting the world, together");
         setGooglePlusButtonText(signInButton, "Sign in with Google");
         sharedpreferences = getActivity().getSharedPreferences(myPreferences,
                 Context.MODE_PRIVATE);
