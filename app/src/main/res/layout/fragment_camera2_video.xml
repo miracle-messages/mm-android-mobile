@@ -24,10 +24,17 @@
 
     <ImageView
         android:id="@+id/imageview_is_recording_filling"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:background="@drawable/is_recording_filling"
         />
+
+    <Chronometer
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:id="@+id/chronometer"
+        android:layout_centerHorizontal="true"
+        android:textSize="25sp" />
 
     <FrameLayout
         android:layout_width="match_parent"

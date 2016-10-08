@@ -47,6 +47,7 @@ package com.miraclemessages;
     import android.os.Environment;
     import android.os.Handler;
     import android.os.HandlerThread;
+    import android.os.SystemClock;
     import android.provider.MediaStore;
     import android.support.annotation.NonNull;
     import android.support.v13.app.FragmentCompat;
@@ -61,6 +62,7 @@ package com.miraclemessages;
     import android.view.View;
     import android.view.ViewGroup;
     import android.widget.Button;
+    import android.widget.Chronometer;
     import android.widget.ImageView;
     import android.widget.Toast;
     import android.widget.ViewFlipper;
@@ -77,9 +79,11 @@ package com.miraclemessages;
     import java.util.concurrent.Semaphore;
     import java.util.concurrent.TimeUnit;
 
+
     public class Camera2VideoFragment extends Fragment
             implements View.OnClickListener, FragmentCompat.OnRequestPermissionsResultCallback {
         SharedPreferences sharedpreferences;
+        Chronometer mChronometer;
         public static final String myPreferences = "MyPreferences";
         public static final String FileLoc = "file";
 
@@ -306,6 +310,8 @@ package com.miraclemessages;
             mTextureView = (AutoFitTextureView) view.findViewById(R.id.texture);
 //            mButtonVideo = (ImageView) view.findViewById(R.id.video);
 //            mButtonVideo.setOnClickListener(this);
+
+            mChronometer = (Chronometer) view.findViewById(R.id.chronometer);
             cameraVF = (ViewFlipper) view.findViewById(R.id.cameraviewflipper);
             cameraButtonsVF = (ViewFlipper) view.findViewById(R.id.camerabuttonviewflipper);
             back = (ImageView) view.findViewById(R.id.backCamera);
@@ -759,6 +765,8 @@ package com.miraclemessages;
 
                                 // Start recording
                                 mMediaRecorder.start();
+                                mChronometer.setBase(SystemClock.elapsedRealtime());
+                                mChronometer.start();
                             }
                         });
                     }
@@ -792,7 +800,7 @@ package com.miraclemessages;
             // Stop recording
             mMediaRecorder.stop();
             mMediaRecorder.reset();
-
+            mChronometer.stop();
             Activity activity = getActivity();
             if (null != activity) {
                 Toast.makeText(activity, "Video saved: " + mNextVideoAbsolutePath,
