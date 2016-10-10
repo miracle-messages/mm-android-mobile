@@ -1,19 +1,26 @@
 package com.miraclemessages;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.InputType;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ViewFlipper;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -26,7 +33,7 @@ public class PreCameraActivity extends Activity {
 
     private ViewFlipper viewFlipper, buttonViewFlipper;
     Button skip, begin, changeUser;
-    TextView vName, vEmail, vPhone, vLocation, homeLabel, bfLabel;
+    TextView vName, vEmail, vPhone, vLocation, homeLabel, bfLabel, switchLoc;
     SharedPreferences sharedpreferences;
     ImageView smallIcon;
     ImageView next, back;
@@ -54,7 +61,8 @@ public class PreCameraActivity extends Activity {
         vName = (TextView)findViewById(R.id.volunteer_name);
         vEmail = (TextView)findViewById(R.id.volunteer_email);
 //        vPhone = (TextView) findViewById(R.id.volunteer_phone);
-//        vLocation = (TextView) findViewById(R.id.volunteer_location);
+        vLocation = (TextView) findViewById(R.id.volunteer_location);
+        switchLoc = (TextView) findViewById(R.id.switch_location);
         homeLabel = (TextView) findViewById(R.id.home_label);
         bfLabel = (TextView) findViewById(R.id.bf_label);
         begin = (Button) findViewById(R.id.begin);
@@ -63,7 +71,7 @@ public class PreCameraActivity extends Activity {
         vName.setText(sharedpreferences.getString(Name, null));
         vEmail.setText(sharedpreferences.getString(Email, null));
 //        vPhone.setText(sharedpreferences.getString(Phone, null));
-//        vLocation.setText(sharedpreferences.getString(Location, null));
+        vLocation.setText(sharedpreferences.getString(Location, null));
         homeLabel.setText("Welcome, " + sharedpreferences.getString(Name, null) + "!");
 
         animFadeOut = AnimationUtils.loadAnimation(getApplicationContext(), android.R.anim.fade_out);
@@ -74,6 +82,54 @@ public class PreCameraActivity extends Activity {
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN.DEFAULT_SIGN_IN)
                 .requestEmail()
                 .build();
+
+        switchLoc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
+                builder.setTitle("Volunteer Chapter Location:");
+
+                // Set up the input
+                final EditText input = new EditText(v.getContext());
+                // Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
+                input.setInputType(InputType.TYPE_CLASS_TEXT);
+
+                LinearLayout layout = new LinearLayout(v.getContext());
+                layout.setOrientation(LinearLayout.VERTICAL);
+                layout.setGravity(Gravity.CENTER_HORIZONTAL);
+                input.setSingleLine(true);
+                layout.setPadding(100, 0, 100, 0);
+                input.setHint("ie. City, State");
+                layout.addView(input);
+
+                builder.setView(layout);
+
+                // Set up the buttons
+                builder.setPositiveButton("Save", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        if(input.getText().toString().equals("")) {
+                            Toast.makeText(PreCameraActivity.this, "Must input chapter location", Toast.LENGTH_LONG).show();
+                        }
+                        else {
+                            SharedPreferences.Editor editor = sharedpreferences.edit();
+                            editor.putString(Location, input.getText().toString());
+                            editor.commit();
+                            Toast.makeText(PreCameraActivity.this, "New Chapter Location Saved!", Toast.LENGTH_LONG).show();
+                            vLocation.setText(sharedpreferences.getString(Location, null));
+                        }
+                    }
+                });
+            builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.cancel();
+                }
+            });
+
+                builder.show();
+            }
+        });
 
 
         //Create GoogleApiClient with access to Google Sign-In API

@@ -1,14 +1,19 @@
 package com.miraclemessages;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.text.InputType;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,6 +33,8 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.OptionalPendingResult;
 
 import org.w3c.dom.Text;
+
+import java.io.File;
 
 /**
  * Created by James Wu on 10/1/2016.
@@ -79,8 +86,15 @@ public class GPlusFragment extends Fragment
             Log.d(TAG, "Got cached sign-in");
             GoogleSignInResult result = opr.get();
             Log.v("STILL HERE, CHUCK?: ", result.getSignInAccount().getEmail().toString());
-            startActivity(new Intent(GPlusFragment.this.getActivity(), PreCameraActivity.class));
-            GPlusFragment.this.getActivity().finish();
+            if(sharedpreferences.getString(Name, null) != null
+                    && sharedpreferences.getString(Email, null) != null
+                    && sharedpreferences.getString(Location, null) != null) {
+
+                startActivity(new Intent(GPlusFragment.this.getActivity(), PreCameraActivity.class));
+                GPlusFragment.this.getActivity().finish();
+            }
+//            startActivity(new Intent(GPlusFragment.this.getActivity(), PreCameraActivity.class));
+//            GPlusFragment.this.getActivity().finish();
         }
         else{
             Log.v("RESTARTING! ", "yeep yeep");
@@ -107,7 +121,6 @@ public class GPlusFragment extends Fragment
 
 //        if(sharedpreferences.getString(Name, null) != null
 //                && sharedpreferences.getString(Email, null) != null
-//                && sharedpreferences.getString(Phone, null) != null
 //                && sharedpreferences.getString(Location, null) != null) {
 //
 //            startActivity(new Intent(GPlusFragment.this.getActivity(), PreCameraActivity.class));
@@ -178,9 +191,49 @@ public class GPlusFragment extends Fragment
             editor.putString(Name, result.getSignInAccount().getDisplayName().toString());
             editor.putString(Email, result.getSignInAccount().getEmail().toString());
             editor.commit();
-            startActivity(new Intent(GPlusFragment.this.getActivity(), PreCameraActivity.class));
-            Toast.makeText(GPlusFragment.this.getActivity(),"Thank you!", Toast.LENGTH_LONG).show();
-            GPlusFragment.this.getActivity().finish();
+            AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+            builder.setTitle("Volunteer Chapter Location:");
+
+            // Set up the input
+            final EditText input = new EditText(getContext());
+            // Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
+            input.setInputType(InputType.TYPE_CLASS_TEXT);
+
+            LinearLayout layout = new LinearLayout(getContext());
+            layout.setOrientation(LinearLayout.VERTICAL);
+            layout.setGravity(Gravity.CENTER_HORIZONTAL);
+            input.setSingleLine(true);
+            layout.setPadding(100, 0, 100, 0);
+            input.setHint("ie. City, State");
+            layout.addView(input);
+
+            builder.setView(layout);
+
+            // Set up the buttons
+            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    if(input.getText().toString().equals("")) {
+                        Toast.makeText(GPlusFragment.this.getActivity(), "Must input new chapter location", Toast.LENGTH_LONG).show();
+                    }
+                    else {
+                        SharedPreferences.Editor editor = sharedpreferences.edit();
+                        editor.putString(Location, input.getText().toString());
+                        editor.commit();
+                        startActivity(new Intent(GPlusFragment.this.getActivity(), PreCameraActivity.class));
+                        Toast.makeText(GPlusFragment.this.getActivity(), "Thank you!", Toast.LENGTH_LONG).show();
+                        GPlusFragment.this.getActivity().finish();
+                    }
+                }
+            });
+//            builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+//                @Override
+//                public void onClick(DialogInterface dialog, int which) {
+//                    dialog.cancel();
+//                }
+//            });
+
+            builder.show();
 
         }
     }

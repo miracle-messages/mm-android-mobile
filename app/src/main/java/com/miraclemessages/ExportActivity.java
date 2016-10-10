@@ -154,55 +154,20 @@ public class ExportActivity extends Activity implements GoogleApiClient.Connecti
             submit.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
 
-                    AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
-                    builder.setTitle("Video Location:");
-
-                    // Set up the input
-                    final EditText input = new EditText(v.getContext());
-                    // Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
-                    input.setInputType(InputType.TYPE_CLASS_TEXT);
-
-                    LinearLayout layout = new LinearLayout(v.getContext());
-                    layout.setOrientation(LinearLayout.VERTICAL);
-                    layout.setGravity(Gravity.CENTER_HORIZONTAL);
-                    input.setSingleLine(true);
-                    layout.setPadding(100, 0, 100, 0);
-                    input.setHint("ie. City, State");
-                    layout.addView(input);
-
-                    builder.setView(layout);
-
-                    // Set up the buttons
-                    builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            SharedPreferences.Editor editor = sharedpreferences.edit();
-                            editor.putString(Location, input.getText().toString());
-                            editor.commit();
-                            Log.v("DEREK: ", mChosenAccountName);
-                            if (mChosenAccountName == null) {
-                                Log.v(TAG, "CHOSEN ACCOUNT IS NULL");
-                                return;
-                            }
-                            // if a video is picked or recorded.
-                            Uri mFileUri = Uri.fromFile(new File(sharedpreferences.getString(FileLoc, null).toString()));
-                            if (mFileUri != null) {
-                                Intent uploadIntent = new Intent(ExportActivity.this, UploadService.class);
-                                uploadIntent.setData(mFileUri);
-                                uploadIntent.putExtra(UploadActivity.ACCOUNT_KEY, mChosenAccountName);
-                                startService(uploadIntent);
-                                Toast.makeText(ExportActivity.this, "YouTube upload started; please check the notification bar for progress <3", Toast.LENGTH_LONG).show();
-                            }
-                        }
-                    });
-                    builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.cancel();
-                        }
-                    });
-
-                    builder.show();
+                Log.v("DEREK: ", mChosenAccountName);
+                if (mChosenAccountName == null) {
+                    Log.v(TAG, "CHOSEN ACCOUNT IS NULL");
+                    return;
+                }
+                // if a video is picked or recorded.
+                Uri mFileUri = Uri.fromFile(new File(sharedpreferences.getString(FileLoc, null).toString()));
+                if (mFileUri != null) {
+                    Intent uploadIntent = new Intent(ExportActivity.this, UploadService.class);
+                    uploadIntent.setData(mFileUri);
+                    uploadIntent.putExtra(UploadActivity.ACCOUNT_KEY, mChosenAccountName);
+                    startService(uploadIntent);
+                    Toast.makeText(ExportActivity.this, "YouTube upload started; please check the notification bar for progress <3", Toast.LENGTH_LONG).show();
+                }
                 }
 
             });
