@@ -26,6 +26,7 @@ package com.miraclemessages;
     import android.content.Context;
     import android.content.DialogInterface;
     import android.content.Intent;
+    import android.content.pm.ActivityInfo;
     import android.content.pm.PackageManager;
     import android.content.res.Configuration;
     import android.graphics.Matrix;
@@ -767,6 +768,8 @@ package com.miraclemessages;
                                 mMediaRecorder.start();
                                 mChronometer.setBase(SystemClock.elapsedRealtime());
                                 mChronometer.start();
+                                getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LOCKED);
+
                             }
                         });
                     }

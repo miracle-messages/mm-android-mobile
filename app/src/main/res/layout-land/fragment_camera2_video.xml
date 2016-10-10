@@ -25,6 +25,20 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true" />
 
+    <ImageView
+        android:id="@+id/imageview_is_recording_filling"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@drawable/is_recording_filling"
+        />
+
+    <Chronometer
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:id="@+id/chronometer"
+        android:layout_centerHorizontal="true"
+        android:textSize="25sp" />
+
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -33,25 +47,8 @@
         android:layout_alignParentTop="true"
         android:layout_below="@id/texture"
         android:layout_toRightOf="@id/texture"
-        android:background="#4285f4"
+        android:background="#93E2FF"
         android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/video"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="@string/record" />
-
-        <ImageButton
-            android:id="@+id/info"
-            style="@android:style/Widget.Material.Light.Button.Borderless"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal|bottom"
-            android:contentDescription="@string/description_info"
-            android:padding="20dp"
-            android:src="@drawable/ic_action_info" />
 
         <LinearLayout
             android:layout_width="match_parent"
