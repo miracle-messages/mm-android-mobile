@@ -47,7 +47,7 @@
         android:layout_alignParentTop="true"
         android:layout_below="@id/texture"
         android:layout_toRightOf="@id/texture"
-        android:background="#93E2FF"
+        android:background="#303030"
         android:orientation="horizontal">
 
         <LinearLayout

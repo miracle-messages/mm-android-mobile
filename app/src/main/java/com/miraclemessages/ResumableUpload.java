@@ -282,8 +282,8 @@ public class ResumableUpload {
             Bitmap thumbnail = BitmapFactory.decodeStream(url.openConnection().getInputStream());
             PendingIntent contentIntent = PendingIntent.getActivity(context,
                     0, notificationIntent, PendingIntent.FLAG_CANCEL_CURRENT);
-            builder.setContentTitle(context.getString(R.string.watch_your_video))
-                    .setContentText(context.getString(R.string.see_the_newly_uploaded_video)).setContentIntent(contentIntent).setSmallIcon(R.drawable.ic_stat_device_access_video).setStyle(new NotificationCompat.BigPictureStyle().bigPicture(thumbnail));
+//            builder.setContentTitle(context.getString(R.string.watch_your_video))
+//                    .setContentText(context.getString(R.string.see_the_newly_uploaded_video)).setContentIntent(contentIntent).setSmallIcon(R.drawable.ic_stat_device_access_video).setStyle(new NotificationCompat.BigPictureStyle().bigPicture(thumbnail));
             notifyManager.notify(PLAYBACK_NOTIFICATION_ID, builder.build());
             Log.d(TAG, String.format("Selectable notification for video ID [%s] posted", videoId));
         } catch (MalformedURLException e) {
