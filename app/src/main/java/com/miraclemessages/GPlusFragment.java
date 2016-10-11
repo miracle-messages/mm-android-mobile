@@ -20,6 +20,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -49,6 +50,7 @@ public class GPlusFragment extends Fragment
     private ProgressDialog mProgressDialog;
     private TextView motto;
 
+    RelativeLayout relativeLayout;
     SharedPreferences sharedpreferences;
     public static final String myPreferences = "MyPreferences";
     public static final String Name = "name";
@@ -107,6 +109,8 @@ public class GPlusFragment extends Fragment
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_gplus, parent, false);
 
+        relativeLayout = (RelativeLayout) v.findViewById(R.id.main_layout);
+        relativeLayout.setBackgroundResource(R.drawable.homeback);
 //        textName=(EditText)v.findViewById(R.id.name);
 //        textEmail=(EditText)v.findViewById(R.id.email);
 //        textPhone=(EditText)v.findViewById(R.id.phone_number);
