@@ -11,7 +11,8 @@
     tools:context="com.miraclemessages.PreCameraActivity"
     android:gravity="center"
     android:weightSum="1"
-    android:background="#93E2FF">
+    android:background="#93E2FF"
+    android:id="@+id/precamera_background">
 
     <TextView
         android:layout_width="wrap_content"
@@ -22,17 +23,6 @@
         android:layout_centerHorizontal="true"
         android:textSize="35dp"
         android:visibility="invisible"
-        />
-
-    <ImageView
-        android:id="@+id/small_icon"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:paddingTop="10dp"
-        android:adjustViewBounds="true"
-        android:src="@drawable/mmicon"
-        android:layout_alignParentBottom="true"
-        android:visibility="gone"
         />
 
     <ViewFlipper
@@ -50,6 +40,17 @@
             android:gravity="center"
             android:layout_marginBottom="20dp"
             >
+
+            <ImageView
+                android:id="@+id/small_icon"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:paddingTop="10dp"
+                android:adjustViewBounds="true"
+                android:src="@drawable/mmicon"
+                android:layout_alignParentBottom="true"
+                android:visibility="gone"
+                />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -152,7 +153,7 @@
                     android:id="@+id/switch_location"
                     android:textSize="17dp"
                     android:text="Switch Chapter Location"
-                    android:textColor="@color/blue_grey_700"
+                    android:textColor="#93E2FF"
                 />
 
             </LinearLayout>
@@ -171,7 +172,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:gravity="center"
                 >
 
                 <TextView

@@ -99,6 +99,7 @@ public class ExportActivity extends Activity implements GoogleApiClient.Connecti
     private ExportActivity.UploadBroadcastReceiver broadcastReceiver;
     private UploadsListFragment mUploadsListFragment;
     GoogleApiClient mGoogleApiClient;
+    LinearLayout exportBackground;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -129,6 +130,8 @@ public class ExportActivity extends Activity implements GoogleApiClient.Connecti
             showMissingConfigurations();
         } else {
             setContentView(R.layout.activity_export);
+            exportBackground = (LinearLayout) findViewById(R.id.exportBackground);
+            exportBackground.getBackground().setAlpha(90);
 
             ensureLoader();
 

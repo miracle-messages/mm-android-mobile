@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.InputType;
@@ -37,6 +38,7 @@ public class PreCameraActivity extends Activity {
     SharedPreferences sharedpreferences;
     ImageView smallIcon;
     ImageView next, back;
+    LinearLayout pcBack;
     public static final String myPreferences = "MyPreferences";
     public static final String Name = "name";
     public static final String Email = "email";
@@ -50,6 +52,9 @@ public class PreCameraActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_precamera);
+
+        pcBack = (LinearLayout) findViewById(R.id.precamera_background);
+        pcBack.getBackground().setAlpha(0);
 
         sharedpreferences = getSharedPreferences(myPreferences, Context.MODE_PRIVATE);
         viewFlipper = (ViewFlipper) findViewById(R.id.viewflipper);
@@ -159,6 +164,8 @@ public class PreCameraActivity extends Activity {
                 smallIcon.setVisibility(View.VISIBLE);
                 viewFlipper.setInAnimation(v.getContext(), R.anim.slide_in_from_right);
                 viewFlipper.setOutAnimation(v.getContext(), R.anim.slide_out_to_left);
+                pcBack.setBackgroundResource(R.drawable.a_xxxhdpi);
+                pcBack.getBackground().setAlpha(90);
                 viewFlipper.showNext();
                 buttonViewFlipper.setInAnimation(v.getContext(), R.anim.slide_in_from_right);
                 buttonViewFlipper.setOutAnimation(v.getContext(), R.anim.slide_out_to_left);
@@ -179,6 +186,15 @@ public class PreCameraActivity extends Activity {
                 if (viewFlipper.getDisplayedChild() < viewFlipper.getChildCount() - 1) {
                     viewFlipper.setInAnimation(v.getContext(), R.anim.slide_in_from_right);
                     viewFlipper.setOutAnimation(v.getContext(), R.anim.slide_out_to_left);
+                    if(viewFlipper.getDisplayedChild() == 1)
+                        pcBack.setBackgroundResource(R.drawable.b_xxxhdpi);
+                    else if(viewFlipper.getDisplayedChild() == 2)
+                        pcBack.setBackgroundResource(R.drawable.c_xxxhdpi);
+                    else if(viewFlipper.getDisplayedChild() == 3)
+                        pcBack.setBackgroundResource(R.drawable.d_xxxhdpi);
+                    else if(viewFlipper.getDisplayedChild() == 4)
+                        pcBack.setBackgroundResource(R.drawable.e_xxxhdpi);
+                    pcBack.getBackground().setAlpha(90);
                     viewFlipper.showNext();
 //                    if(viewFlipper.getDisplayedChild() == viewFlipper.getChildCount() - 1)
 //                        next.setText("Record");
@@ -202,6 +218,19 @@ public class PreCameraActivity extends Activity {
                     }
                     viewFlipper.setInAnimation(v.getContext(), R.anim.slide_in_from_left);
                     viewFlipper.setOutAnimation(v.getContext(), R.anim.slide_out_to_right);
+                    if(viewFlipper.getDisplayedChild() == 2)
+                        pcBack.setBackgroundResource(R.drawable.a_xxxhdpi);
+                    else if(viewFlipper.getDisplayedChild() == 3)
+                        pcBack.setBackgroundResource(R.drawable.b_xxxhdpi);
+                    else if(viewFlipper.getDisplayedChild() == 4)
+                        pcBack.setBackgroundResource(R.drawable.c_xxxhdpi);
+                    else if(viewFlipper.getDisplayedChild() == 5)
+                        pcBack.setBackgroundResource(R.drawable.d_xxxhdpi);
+                    pcBack.getBackground().setAlpha(90);
+                    if(viewFlipper.getDisplayedChild() == 1) {
+                        pcBack.setBackgroundColor(Color.parseColor("#93E2FF"));
+                        pcBack.getBackground().setAlpha(0);
+                    }
                     viewFlipper.showPrevious();
 //                    if(next.getText().equals("Record"))
 //                        next.setText("Next");
