@@ -204,6 +204,14 @@ public class ResumableUpload {
             // Execute upload.
             Video returnedVideo = videoInsert.execute();
             Log.d(TAG, "Video upload completed");
+
+            //After the video has been uploaded, delete the file.
+            File f = new File(sharedpreferences.getString(FileLoc, null).toString());
+            boolean deleted = f.delete();
+            if(deleted)
+                Toast.makeText(context, "Finished uploading, please send the email to Miracle Messages!",
+                        Toast.LENGTH_LONG).show();
+
             videoId = returnedVideo.getId();
             Log.d(TAG, String.format("videoId = [%s]", videoId));
             youtubeLink = youtubeLink + videoId;
