@@ -95,8 +95,6 @@ public class GPlusFragment extends Fragment
                 startActivity(new Intent(GPlusFragment.this.getActivity(), PreCameraActivity.class));
                 GPlusFragment.this.getActivity().finish();
             }
-//            startActivity(new Intent(GPlusFragment.this.getActivity(), PreCameraActivity.class));
-//            GPlusFragment.this.getActivity().finish();
         }
         else{
             Log.v("RESTARTING! ", "yeep yeep");
@@ -111,10 +109,6 @@ public class GPlusFragment extends Fragment
 
         relativeLayout = (RelativeLayout) v.findViewById(R.id.main_layout);
         relativeLayout.setBackgroundResource(R.drawable.homeback);
-//        textName=(EditText)v.findViewById(R.id.name);
-//        textEmail=(EditText)v.findViewById(R.id.email);
-//        textPhone=(EditText)v.findViewById(R.id.phone_number);
-//        textLocation=(EditText)v.findViewById(R.id.location);
 
         signInButton = (SignInButton) v.findViewById(R.id.sign_in_button);
 //        motto = (TextView) v.findViewById(R.id.motto);
@@ -122,14 +116,6 @@ public class GPlusFragment extends Fragment
         setGooglePlusButtonText(signInButton, "Sign in with Google");
         sharedpreferences = getActivity().getSharedPreferences(myPreferences,
                 Context.MODE_PRIVATE);
-
-//        if(sharedpreferences.getString(Name, null) != null
-//                && sharedpreferences.getString(Email, null) != null
-//                && sharedpreferences.getString(Location, null) != null) {
-//
-//            startActivity(new Intent(GPlusFragment.this.getActivity(), PreCameraActivity.class));
-//            GPlusFragment.this.getActivity().finish();
-//        }
 
         signInButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -146,42 +132,7 @@ public class GPlusFragment extends Fragment
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-//        String n = textName.getText().toString();
-//        if (n.equals("")) {
-//            Toast.makeText(GPlusFragment.this.getActivity(),
-//                    "Please fill out all fields.",
-//                    Toast.LENGTH_LONG).show();
-//            return;
-//        }
-//        String e = textEmail.getText().toString();
-//        if (e.equals("")) {
-//            Toast.makeText(GPlusFragment.this.getActivity(),
-//                    "Please fill out all fields.",
-//                    Toast.LENGTH_LONG).show();
-//            return;
-//        }
-//        String p = textPhone.getText().toString();
-//        if (p.equals("")) {
-//            Toast.makeText(GPlusFragment.this.getActivity(),
-//                    "Please fill out all fields.",
-//                    Toast.LENGTH_LONG).show();
-//            return;
-//        }
-//        String l = textLocation.getText().toString();
-//        if (l.equals("")) {
-//            Toast.makeText(GPlusFragment.this.getActivity(),
-//                    "Please fill out all fields.",
-//                    Toast.LENGTH_LONG).show();
-//            return;
-//        }
-//
-          SharedPreferences.Editor editor = sharedpreferences.edit();
-//        editor.putString(Name, n);
-//        editor.putString(Email, e);
-//        editor.putString(Phone, p);
-//        editor.putString(Location, l);
-//
-//        editor.commit();
+        SharedPreferences.Editor editor = sharedpreferences.edit();
 
         // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
         if (requestCode == RC_SIGN_IN) {
@@ -190,55 +141,52 @@ public class GPlusFragment extends Fragment
             if(result.getSignInAccount() == null)
                 return;
 
-            Log.v("BONJOUR, CHUCK: ", result.getSignInAccount().getEmail().toString());
-            editor.putString(ACCOUNT_KEY, result.getSignInAccount().getEmail().toString());
-            editor.putString(Name, result.getSignInAccount().getDisplayName().toString());
-            editor.putString(Email, result.getSignInAccount().getEmail().toString());
-            editor.commit();
-            AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-            builder.setTitle("Volunteer Chapter Location:");
+            else if(result.getSignInAccount().getEmail() != null &&
+                    result.getSignInAccount().getDisplayName() != null) {
+                Log.v("BONJOUR, CHUCK: ", result.getSignInAccount().getEmail().toString());
+                editor.putString(ACCOUNT_KEY, result.getSignInAccount().getEmail().toString());
+                editor.putString(Name, result.getSignInAccount().getDisplayName().toString());
+                editor.putString(Email, result.getSignInAccount().getEmail().toString());
+                editor.commit();
+                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                builder.setTitle("Volunteer Chapter Location:");
 
-            // Set up the input
-            final EditText input = new EditText(getContext());
-            // Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
-            input.setInputType(InputType.TYPE_CLASS_TEXT);
+                // Set up the input
+                final EditText input = new EditText(getContext());
+                // Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
+                input.setInputType(InputType.TYPE_CLASS_TEXT);
 
-            LinearLayout layout = new LinearLayout(getContext());
-            layout.setOrientation(LinearLayout.VERTICAL);
-            layout.setGravity(Gravity.CENTER_HORIZONTAL);
-            input.setSingleLine(true);
-            layout.setPadding(100, 0, 100, 0);
-            input.setHint("ie. City, State");
-            layout.addView(input);
+                LinearLayout layout = new LinearLayout(getContext());
+                layout.setOrientation(LinearLayout.VERTICAL);
+                layout.setGravity(Gravity.CENTER_HORIZONTAL);
+                input.setSingleLine(true);
+                layout.setPadding(100, 0, 100, 0);
+                input.setHint("ie. City, State");
+                layout.addView(input);
 
-            builder.setView(layout);
+                builder.setView(layout);
 
-            // Set up the buttons
-            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    if(input.getText().toString().equals("")) {
-                        Toast.makeText(GPlusFragment.this.getActivity(), "Must input new chapter location", Toast.LENGTH_LONG).show();
+                // Set up the buttons
+                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        if (input.getText().toString().equals("")) {
+                            Toast.makeText(GPlusFragment.this.getActivity(), "Must input new chapter location", Toast.LENGTH_LONG).show();
+                        } else {
+                            SharedPreferences.Editor editor = sharedpreferences.edit();
+                            editor.putString(Location, input.getText().toString());
+                            editor.commit();
+                            startActivity(new Intent(GPlusFragment.this.getActivity(), PreCameraActivity.class));
+                            Toast.makeText(GPlusFragment.this.getActivity(), "Thank you!", Toast.LENGTH_LONG).show();
+                            GPlusFragment.this.getActivity().finish();
+                        }
                     }
-                    else {
-                        SharedPreferences.Editor editor = sharedpreferences.edit();
-                        editor.putString(Location, input.getText().toString());
-                        editor.commit();
-                        startActivity(new Intent(GPlusFragment.this.getActivity(), PreCameraActivity.class));
-                        Toast.makeText(GPlusFragment.this.getActivity(), "Thank you!", Toast.LENGTH_LONG).show();
-                        GPlusFragment.this.getActivity().finish();
-                    }
-                }
-            });
-//            builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-//                @Override
-//                public void onClick(DialogInterface dialog, int which) {
-//                    dialog.cancel();
-//                }
-//            });
+                });
 
-            builder.show();
-
+                builder.show();
+            }
+            else
+                return;
         }
     }
 
