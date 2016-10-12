@@ -71,7 +71,7 @@
     <string name="accounts">Accounts</string>
     <string name="initiation_started">Initiation Started</string>
     <string name="initiation_completed">Initiation Completed</string>
-    <string name="upload_in_progress">Direct Lite upload in progress</string>
+    <string name="upload_in_progress">Youtube upload in progress</string>
     <string name="yt_upload_completed">YouTube Upload Completed</string>
     <string name="upload_completed">Upload completed</string>
     <string name="upload_not_started">Upload Not Started!</string>
