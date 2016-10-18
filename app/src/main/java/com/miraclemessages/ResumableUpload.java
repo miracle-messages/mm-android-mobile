@@ -97,15 +97,15 @@ public class ResumableUpload {
                 (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         final NotificationCompat.Builder builder = new NotificationCompat.Builder(context);
 
-        Intent notificationIntent = new Intent(context, ReviewActivity.class);
-        notificationIntent.setData(mFileUri);
-        notificationIntent.setAction(Intent.ACTION_VIEW);
-        Bitmap thumbnail = ThumbnailUtils.createVideoThumbnail(path, Thumbnails.MICRO_KIND);
-        PendingIntent contentIntent = PendingIntent.getActivity(context,
-                0, notificationIntent, PendingIntent.FLAG_CANCEL_CURRENT);
+//        Intent notificationIntent = new Intent(context, ReviewActivity.class);
+//        notificationIntent.setData(mFileUri);
+//        notificationIntent.setAction(Intent.ACTION_VIEW);
+//        Bitmap thumbnail = ThumbnailUtils.createVideoThumbnail(path, Thumbnails.MICRO_KIND);
+//        PendingIntent contentIntent = PendingIntent.getActivity(context,
+//                0, notificationIntent, PendingIntent.FLAG_CANCEL_CURRENT);
         builder.setContentTitle(context.getString(R.string.youtube_upload))
                 .setContentText(context.getString(R.string.youtube_upload_started))
-                .setSmallIcon(R.drawable.ic_stat_device_access_video).setContentIntent(contentIntent).setStyle(new NotificationCompat.BigPictureStyle().bigPicture(thumbnail));
+                .setSmallIcon(R.drawable.ic_stat_device_access_video);
         notifyManager.notify(UPLOAD_NOTIFICATION_ID, builder.build());
 
         String videoId = null;
@@ -272,16 +272,16 @@ public class ResumableUpload {
         final NotificationManager notifyManager =
                 (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         final NotificationCompat.Builder builder = new NotificationCompat.Builder(context);
-        Intent notificationIntent = new Intent(context, PlayActivity.class);
-        notificationIntent.putExtra(UploadActivity.YOUTUBE_ID, videoId);
-        notificationIntent.setAction(Intent.ACTION_VIEW);
+//        Intent notificationIntent = new Intent(context, PlayActivity.class);
+//        notificationIntent.putExtra(UploadActivity.YOUTUBE_ID, videoId);
+//        notificationIntent.setAction(Intent.ACTION_VIEW);
 
         URL url;
         try {
             url = new URL("https://i1.ytimg.com/vi/" + videoId + "/mqdefault.jpg");
-            Bitmap thumbnail = BitmapFactory.decodeStream(url.openConnection().getInputStream());
-            PendingIntent contentIntent = PendingIntent.getActivity(context,
-                    0, notificationIntent, PendingIntent.FLAG_CANCEL_CURRENT);
+//            Bitmap thumbnail = BitmapFactory.decodeStream(url.openConnection().getInputStream());
+//            PendingIntent contentIntent = PendingIntent.getActivity(context,
+//                    0, notificationIntent, PendingIntent.FLAG_CANCEL_CURRENT);
 //            builder.setContentTitle(context.getString(R.string.watch_your_video))
 //                    .setContentText(context.getString(R.string.see_the_newly_uploaded_video)).setContentIntent(contentIntent).setSmallIcon(R.drawable.ic_stat_device_access_video).setStyle(new NotificationCompat.BigPictureStyle().bigPicture(thumbnail));
             notifyManager.notify(PLAYBACK_NOTIFICATION_ID, builder.build());
