@@ -79,7 +79,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:padding="22dp"
-            android:textColor="@android:color/white"
+            android:textColor="#3498db"
             android:text="Leave feedback on Google Play"
             android:layout_below="@id/submit"
             android:id="@+id/feedback"
