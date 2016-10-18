@@ -64,6 +64,7 @@ public class ExportActivity extends Activity implements GoogleApiClient.Connecti
         GoogleApiClient.OnConnectionFailedListener {
     Button submit, back;
     SharedPreferences sharedpreferences;
+    TextView feedback;
     public static final String myPreferences = "MyPreferences";
     public static final String Name = "name";
     public static final String Email = "email";
@@ -153,6 +154,7 @@ public class ExportActivity extends Activity implements GoogleApiClient.Connecti
 
             submit = (Button) findViewById(R.id.submit);
             back = (Button) findViewById(R.id.homepage);
+            feedback = (TextView) findViewById(R.id.feedback);
 
             submit.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
@@ -181,8 +183,22 @@ public class ExportActivity extends Activity implements GoogleApiClient.Connecti
                     finish();
                 }
             });
-        }
 
+            //Leave feedback button; redirects user to Google Play (hopefully!)
+            final String appPackageName = getPackageName().toString();
+            feedback.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View v) {
+                    try {
+                        Log.v("Peas in a pod", appPackageName);
+                        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
+                    } catch (android.content.ActivityNotFoundException notFoundException) {
+                        Log.v("BEN HUR:", appPackageName);
+                        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + appPackageName)));
+                    }
+                }
+            });
+        }
     }
 
     private boolean isCorrectlyConfigured() {

@@ -38,7 +38,7 @@
             android:textSize="20sp"
             android:id="@+id/ThankYouMore"
             android:layout_centerHorizontal="true"
-            android:text="\nPress Submit Video to upload the video to Youtube. The upload time may take up to 1 hour.\n\n When the upload completes, send the email to Miracle Messages with any additional comments you may have.\n\n You are incredible, and thank you for helping us reunite the world. :-)"
+            android:text="\nPress Submit Video to upload the video to Youtube. The upload time may take up to 1 hour. You may exit this app in the meantime.\n\nWhen the upload completes, send the email to Miracle Messages with any additional comments you may have.\n\nYou are incredible, and thank you for helping us reunite the world. :-)"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:textColor="@android:color/white"
@@ -73,6 +73,17 @@
             android:background="@drawable/button_selector"
             android:padding="15dp"
             android:textColor="#000000"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:padding="22dp"
+            android:textColor="@android:color/white"
+            android:text="Leave feedback on Google Play"
+            android:layout_below="@id/submit"
+            android:id="@+id/feedback"
+            android:clickable="true" />
 
     </RelativeLayout>
 
