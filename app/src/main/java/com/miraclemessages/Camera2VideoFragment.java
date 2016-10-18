@@ -806,8 +806,8 @@ package com.miraclemessages;
             mChronometer.stop();
             Activity activity = getActivity();
             if (null != activity) {
-                Toast.makeText(activity, "Video saved: " + mNextVideoAbsolutePath,
-                        Toast.LENGTH_LONG).show();
+//                Toast.makeText(activity, "Video saved: " + mNextVideoAbsolutePath,
+//                        Toast.LENGTH_LONG).show();
                 Log.d(TAG, "Video saved: " + mNextVideoAbsolutePath);
 
 //                ContentValues values = new ContentValues(3);

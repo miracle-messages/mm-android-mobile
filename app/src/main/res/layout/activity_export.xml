@@ -21,7 +21,7 @@
         android:gravity="center"
         android:layout_gravity="center_horizontal"
         android:padding="20dp"
-        android:layout_weight="0.4">
+        android:layout_weight="0.2">
 
         <TextView
             android:layout_width="match_parent"
@@ -38,7 +38,7 @@
             android:textSize="20sp"
             android:id="@+id/ThankYouMore"
             android:layout_centerHorizontal="true"
-            android:text="How do you feel? We will be in touch with updates. If you have any questions, you can call or text Miracle Messages at 415.545.8406 or email hello@miraclemessages.org."
+            android:text="\nPress Submit Video to upload the video to Youtube. The upload time may take up to 1 hour.\n\n When the upload completes, send the email to Miracle Messages with any additional comments you may have.\n\n You are incredible, and thank you for helping us reunite the world. :-)"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:textColor="@android:color/white"
@@ -49,7 +49,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="0.6">
+        android:layout_weight="0.8">
 
         <Button
             android:layout_width="wrap_content"
