@@ -70,6 +70,7 @@ package com.miraclemessages;
     import android.content.SharedPreferences;
     import java.io.File;
     import java.io.IOException;
+    import java.text.DateFormat;
     import java.text.SimpleDateFormat;
     import java.util.ArrayList;
     import java.util.Arrays;
@@ -705,9 +706,9 @@ package com.miraclemessages;
         }
 
         private String getVideoFilePath(Context context) {
+            Date date = new Date();
             String str = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MOVIES)
-                    + "/"
-                    + System.currentTimeMillis() + ".mp4";
+                    + "/MM_Recording_" + date + ".mp4";
             sharedpreferences = context.getSharedPreferences(myPreferences, Context.MODE_PRIVATE);
             Log.v("Boo: ", str);
             SharedPreferences.Editor editor = sharedpreferences.edit();

@@ -2,6 +2,9 @@ apply plugin: 'com.android.application'
 apply plugin: 'com.google.gms.google-services'
 
 android {
+    dexOptions {
+        javaMaxHeapSize "3g"
+    }
     signingConfigs {
         config {
             keyAlias 'MyAndroidKey'
