@@ -2,6 +2,8 @@ package com.miraclemessages;
 
 import android.app.Activity;
 import android.app.ListActivity;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -15,6 +17,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.LocalBroadcastManager;
 import android.text.InputType;
 import android.util.Log;
@@ -65,7 +68,9 @@ public class ExportActivity extends Activity{
     public static final String FileLoc = "file";
     public static final String ACCOUNT_KEY = "accountName";
     private String mChosenAccountName;
-
+    private static int UPLOAD_NOTIFICATION_ID = 1001;
+    File file;
+    TransferObserver observer;
     // The TransferUtility is the primary class for managing transfer to S3
     private TransferUtility transferUtility;
 
@@ -108,6 +113,7 @@ public class ExportActivity extends Activity{
                     Log.v("OY:", "M8");
                     Toast.makeText(ExportActivity.this, "Upload started", Toast.LENGTH_LONG).show();
                     beginUpload(sharedpreferences.getString(FileLoc, null).toString());
+                    addNotification();
                 }
 
             });
@@ -138,16 +144,29 @@ public class ExportActivity extends Activity{
                     Toast.LENGTH_LONG).show();
             return;
         }
-        File file = new File(filePath);
-        TransferObserver observer = transferUtility.upload(com.miraclemessages.Constants.BUCKET_NAME, file.getName(),
+        file = new File(filePath);
+        observer = transferUtility.upload(com.miraclemessages.Constants.BUCKET_NAME, file.getName(),
                 file);
-        /*
-         * Note that usually we set the transfer listener after initializing the
-         * transfer. However it isn't required in this sample app. The flow is
-         * click upload button -> start an activity for image selection
-         * startActivityForResult -> onActivityResult -> beginUpload -> onResume
-         * -> set listeners to in progress transfers.
-         */
-        // observer.setTransferListener(new UploadListener());
+    }
+
+    private void addNotification() {
+        NotificationCompat.Builder builder =
+                new NotificationCompat.Builder(this)
+                        //CHANGE THE SMALL ICON LATER
+                        .setSmallIcon(R.drawable.mmicon)
+                        .setContentTitle("Uploading Miracle Message...")
+                        .setContentText(observer.getBytesTransferred() + "")
+                        .setOngoing(true)
+                        .setProgress((int)observer.getBytesTransferred(), (int) observer.getBytesTotal(), false);
+        Log.v("Morton: ", observer.getBytesTransferred() + "");
+        Log.v("Timbuktu: ", observer.getBytesTotal() + "");
+//        Intent notificationIntent = new Intent(this, MainActivity.class);
+//        PendingIntent contentIntent = PendingIntent.getActivity(this, 0, notificationIntent,
+//                PendingIntent.FLAG_UPDATE_CURRENT);
+//        builder.setContentIntent(contentIntent);
+
+        // Add as notification
+        NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        manager.notify(UPLOAD_NOTIFICATION_ID, builder.build());
     }
 }
