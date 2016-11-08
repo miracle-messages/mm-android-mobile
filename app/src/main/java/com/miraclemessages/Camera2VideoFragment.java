@@ -102,7 +102,6 @@ package com.miraclemessages;
         private static final String[] VIDEO_PERMISSIONS = {
                 Manifest.permission.CAMERA,
                 Manifest.permission.RECORD_AUDIO,
-                Manifest.permission.GET_ACCOUNTS,
                 Manifest.permission.READ_EXTERNAL_STORAGE,
                 Manifest.permission.WRITE_EXTERNAL_STORAGE
         };
@@ -706,7 +705,7 @@ package com.miraclemessages;
         }
 
         private String getVideoFilePath(Context context) {
-            String str = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)
+            String str = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MOVIES)
                     + "/"
                     + System.currentTimeMillis() + ".mp4";
             sharedpreferences = context.getSharedPreferences(myPreferences, Context.MODE_PRIVATE);
