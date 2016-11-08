@@ -645,12 +645,12 @@ public class UploadActivity extends Activity implements
         }
     }
 
-   /* @Override
+   @Override
     public void onRequestPermissionsResult(int permsRequestCode, String[] permissions, int[] grantResults) { // here for reference , can be commented out if required
         switch (permsRequestCode) {
             case 200:
                 boolean audioAccepted = grantResults[0] == PackageManager.PERMISSION_GRANTED;
                 break;
         }
-    }*/
+    }
 }

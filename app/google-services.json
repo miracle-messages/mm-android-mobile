@@ -13,6 +13,22 @@
       },
       "oauth_client": [
         {
+          "client_id": "61147001483-hce219qvpuvm9g9863oph6fiddigkh2r.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.miraclemessages",
+            "certificate_hash": "72B7608FCCCD24BBB381F14323EF119011346736"
+          }
+        },
+        {
+          "client_id": "61147001483-v8ueimjmco4vua53nl0ect209jqejou7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.miraclemessages",
+            "certificate_hash": "B7E1204094BF1E2D7A1A47F19108A991E9B11FF8"
+          }
+        },
+        {
           "client_id": "61147001483-mdmf2h9al7pls384judueaji7ri6b9cg.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
@@ -27,15 +43,11 @@
             "package_name": "com.miraclemessages",
             "certificate_hash": "1E27B7DCBE8EF95676971F8EC55810E10DB2A813"
           }
-        },
-        {
-          "client_id": "61147001483-u0c5v377uoi5vthd8ok8d15tke97pvvm.apps.googleusercontent.com",
-          "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAZXGv5yWijQUgHrBdUssyO9zH2BA-LSr4"
+          "current_key": "AIzaSyCA41hoBvwzrILvReH0uwpBWfv0OAJtY_Q"
         }
       ],
       "services": {

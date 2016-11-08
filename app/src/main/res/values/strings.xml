@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!--string name="google_app_id">1:61147001483:android:bb6c53b59bc3f4e1</string-->
     <string name="record">Record</string>
     <string name="stop">Stop</string>
     <string name="description_info">Info</string>

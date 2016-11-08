@@ -103,6 +103,8 @@ package com.miraclemessages;
                 Manifest.permission.CAMERA,
                 Manifest.permission.RECORD_AUDIO,
                 Manifest.permission.GET_ACCOUNTS,
+                Manifest.permission.READ_EXTERNAL_STORAGE,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE
         };
 
         private ViewFlipper cameraVF, cameraButtonsVF;
@@ -704,7 +706,8 @@ package com.miraclemessages;
         }
 
         private String getVideoFilePath(Context context) {
-            String str =  context.getExternalFilesDir(null).getAbsolutePath() + "/"
+            String str = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)
+                    + "/"
                     + System.currentTimeMillis() + ".mp4";
             sharedpreferences = context.getSharedPreferences(myPreferences, Context.MODE_PRIVATE);
             Log.v("Boo: ", str);
@@ -712,6 +715,11 @@ package com.miraclemessages;
             editor.putString(FileLoc, str);
             editor.commit();
             Log.v("BOBBY JENKINS: ", sharedpreferences.getString(FileLoc, null));
+            ContentValues values = new ContentValues();
+            values.put(MediaStore.Video.Media.DATE_TAKEN, System.currentTimeMillis());
+            values.put(MediaStore.Video.Media.MIME_TYPE, "video/*");
+            values.put(MediaStore.MediaColumns.DATA, str);
+            context.getContentResolver().insert(MediaStore.Video.Media.EXTERNAL_CONTENT_URI, values);
             return str;
         }
 
