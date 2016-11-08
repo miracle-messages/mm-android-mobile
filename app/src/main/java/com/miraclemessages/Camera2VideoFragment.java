@@ -564,6 +564,10 @@ package com.miraclemessages;
                         .show(getChildFragmentManager(), FRAGMENT_DIALOG);
             } catch (InterruptedException e) {
                 throw new RuntimeException("Interrupted while trying to lock camera opening.");
+            } catch(SecurityException e){
+                Toast.makeText(activity, "Please grant all permissions to record.", Toast.LENGTH_LONG).show();
+                activity.startActivity(new Intent(Camera2VideoFragment.this.getActivity(), PreCameraActivity.class));
+                activity.finish();
             }
         }
 
@@ -814,8 +818,8 @@ package com.miraclemessages;
             mChronometer.stop();
             Activity activity = getActivity();
             if (null != activity) {
-//                Toast.makeText(activity, "Video saved: " + mNextVideoAbsolutePath,
-//                        Toast.LENGTH_LONG).show();
+                Toast.makeText(activity, "Video saved to Movie album in your Gallery",
+                        Toast.LENGTH_LONG).show();
                 Log.d(TAG, "Video saved: " + mNextVideoAbsolutePath);
 
 //                ContentValues values = new ContentValues(3);
@@ -834,8 +838,8 @@ package com.miraclemessages;
             }
             mNextVideoAbsolutePath = null;
             startPreview();
-            getActivity().finish();
             activity.startActivity(new Intent(Camera2VideoFragment.this.getActivity(), ExportActivity.class));
+            getActivity().finish();
         }
 
         /**

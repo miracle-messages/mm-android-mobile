@@ -106,6 +106,7 @@ public class ExportActivity extends Activity{
             submit.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
                     Log.v("OY:", "M8");
+                    Toast.makeText(ExportActivity.this, "Upload started", Toast.LENGTH_LONG).show();
                     beginUpload(sharedpreferences.getString(FileLoc, null).toString());
                 }
 
