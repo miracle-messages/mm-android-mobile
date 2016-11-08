@@ -46,8 +46,6 @@ public class PreCameraActivity extends Activity {
     public static final String Location = "location";
     Animation animFadeOut, animFadeIn;
 
-    private GoogleApiClient mGoogleApiClient;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,10 +81,6 @@ public class PreCameraActivity extends Activity {
         animFadeIn = AnimationUtils.loadAnimation(getApplicationContext(), android.R.anim.fade_in);
         animFadeOut.setDuration(100);
         animFadeIn.setDuration(600);
-
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN.DEFAULT_SIGN_IN)
-                .requestEmail()
-                .build();
 
         switchLoc.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -137,13 +131,6 @@ public class PreCameraActivity extends Activity {
         });
 
 
-        //Create GoogleApiClient with access to Google Sign-In API
-        //and other options specified by gso.
-        mGoogleApiClient = new GoogleApiClient.Builder(this)
-                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
-                .build();
-
-        mGoogleApiClient.connect();
 
         skip.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -249,25 +236,11 @@ public class PreCameraActivity extends Activity {
                 SharedPreferences.Editor editor = sharedpreferences.edit();
                 editor.clear();
                 editor.commit();
-                Auth.GoogleSignInApi.signOut(mGoogleApiClient);
-                startActivity(new Intent(PreCameraActivity.this, LoginActivity.class));
+                startActivity(new Intent(PreCameraActivity.this, MainActivity.class));
                 finish();
             }
         });
     }
 
-    public void onStart() {
-        super.onStart();
-
-        OptionalPendingResult<GoogleSignInResult> opr = Auth.GoogleSignInApi.silentSignIn(mGoogleApiClient);
-        if(opr.isDone()){
-            GoogleSignInResult result = opr.get();
-            Log.v("YASSS, CHUCK!: ", result.getSignInAccount().getEmail().toString());
-        }
-        else{
-            Log.w("Warning", "Was not able to get sign in account.");
-        }
-
-    }
 
 }
