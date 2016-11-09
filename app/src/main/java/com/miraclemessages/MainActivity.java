@@ -116,7 +116,9 @@ public class MainActivity extends AppCompatActivity {
                         LayoutParams.WRAP_CONTENT,
                         LayoutParams.WRAP_CONTENT
                 );
-
+                popupWindow.setTouchable(true);
+                popupWindow.setFocusable(true);
+                popupWindow.setOutsideTouchable(false);
                 // Set an elevation value for popup window
                 // Call requires API level 21
                 if(Build.VERSION.SDK_INT>=21){
