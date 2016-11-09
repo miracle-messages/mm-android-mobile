@@ -20,9 +20,5 @@ public class Camera2Activity extends Activity {
         }
 
     }
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        //No call for super(). Bug on API Level > 11.
-    }
 
 }
