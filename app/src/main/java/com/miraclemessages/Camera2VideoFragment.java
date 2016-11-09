@@ -492,8 +492,11 @@ package com.miraclemessages;
                 if (grantResults.length == VIDEO_PERMISSIONS.length) {
                     for (int result : grantResults) {
                         if (result != PackageManager.PERMISSION_GRANTED) {
-                            ErrorDialog.newInstance(getString(R.string.permission_request))
-                                    .show(getChildFragmentManager(), FRAGMENT_DIALOG);
+//                            ErrorDialog.newInstance(getString(R.string.permission_request))
+//                                    .show(getChildFragmentManager(), FRAGMENT_DIALOG);
+                            Toast.makeText(this.getActivity(), "Please grant all permissions to record.", Toast.LENGTH_LONG).show();
+                            this.startActivity(new Intent(Camera2VideoFragment.this.getActivity(), PreCameraActivity.class));
+                            this.getActivity().finish();
                             break;
                         }
                     }
