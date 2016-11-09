@@ -41,6 +41,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:id="@+id/rl"
         >
 
         <EditText
@@ -109,6 +110,18 @@
             android:layout_centerHorizontal="true"
             android:background="@drawable/button_selector"
             />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:padding="22dp"
+            android:textColor="#3498db"
+            android:text="Privacy Policy"
+            android:layout_below="@id/submit"
+            android:id="@+id/policy"
+            android:clickable="true" />
+
     </RelativeLayout>
 
 </LinearLayout>

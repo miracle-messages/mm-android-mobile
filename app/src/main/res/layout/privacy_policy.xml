@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl_custom_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="2dp"
+    android:background="#19B5FE"
+    >
+    <ImageButton
+        android:id="@+id/ib_close"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/cancel"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:background="@null"
+        />
+    <TextView
+        android:id="@+id/header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Privacy Policy"
+        android:textStyle="bold"
+        />
+    <TextView
+        android:id="@+id/private_policy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Miracle Messages will not distribute or publicize your information for any purposes, ever. Volunteer information is solely collected for video submission point of contacts. We take privacy very seriously."
+        android:layout_centerInParent="true"
+        android:padding="25sp"
+        android:layout_below="@id/header"
+        />
+</RelativeLayout>
