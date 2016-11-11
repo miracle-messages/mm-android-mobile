@@ -126,7 +126,21 @@ public class ExportActivity extends Activity{
                     finish();
                 }
             });
-        }
+
+            final String appPackageName = getPackageName().toString();
+            feedback.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View v) {
+                    try {
+                        Log.v("Peas in a pod", appPackageName);
+                        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
+                    } catch (android.content.ActivityNotFoundException notFoundException) {
+                        Log.v("BEN HUR:", appPackageName);
+                        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + appPackageName)));
+                    }
+                }
+            });
+    }
 
     @Override
     protected void onPause() {
@@ -154,25 +168,45 @@ public class ExportActivity extends Activity{
             @Override
             public void onStateChanged(int id, TransferState state) {
                 Log.v("MUFFIN:", observer.getState().toString());
-                if(observer.getState().toString().equals("COMPLETED")){
-                    builder.setContentText("Miracle Message Uploaded!")
-                    .setProgress(0, 0, false)
-                    .setOngoing(false);
+
+                if(state.toString().equals("COMPLETED")){
+                    Intent i = new Intent(getApplicationContext(), ExportActivity.class);
+                    PendingIntent pendingIntent =
+                            PendingIntent.getActivity(getApplicationContext(), 0, i, 0);
+
+                    builder.setContentTitle("Miracle Message Uploaded!")
+                            .setContentText("Thank you! :-)")
+                            .setProgress(0, 0, false)
+                            .setOngoing(false)
+                            .setContentIntent(pendingIntent);
+
                     manager.notify(UPLOAD_NOTIFICATION_ID, builder.build());
                 }
             }
 
             @Override
             public void onProgressChanged(int id, long bytesCurrent, long bytesTotal) {
-                Log.v("VALUEEE: ", ((bytesCurrent)/bytesTotal)*100 + "");
-                builder.setContentText("Progress: " + ((bytesCurrent)/bytesTotal)*100 + "%")
-                        .setProgress((int) bytesTotal, (int)((bytesCurrent)), false);
+                Log.v("CURRENTO:", bytesCurrent + "");
+                Log.v("TOTALO:", bytesTotal + "");
+                Log.v("VALUEEE: ", ((int)(((float)bytesCurrent/bytesTotal)*100) + ""));
+                builder.setContentText("Progress: " + (int)(((float)bytesCurrent/bytesTotal)*100) + "%")
+                        .setProgress((int) bytesTotal, (int)(bytesCurrent), false);
                 manager.notify(UPLOAD_NOTIFICATION_ID, builder.build());
             }
 
             @Override
             public void onError(int id, Exception ex) {
+                Intent i = new Intent(getApplicationContext(), ExportActivity.class);
+                PendingIntent pendingIntent =
+                        PendingIntent.getActivity(getApplicationContext(), 0, i, 0);
 
+                builder.setContentTitle("Network status changed")
+                        .setContentText("Please tap here and re-upload.")
+                        .setOngoing(true)
+                        .setContentIntent(pendingIntent)
+                        .setProgress(0, 0, false);
+
+                manager.notify(UPLOAD_NOTIFICATION_ID, builder.build());
             }
         });
     }

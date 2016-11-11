@@ -696,7 +696,7 @@ package com.miraclemessages;
                 mNextVideoAbsolutePath = getVideoFilePath(getActivity());
             }
             mMediaRecorder.setOutputFile(mNextVideoAbsolutePath);
-            mMediaRecorder.setVideoEncodingBitRate(1000);
+            mMediaRecorder.setVideoEncodingBitRate(10000000);
             mMediaRecorder.setVideoFrameRate(30);
             mMediaRecorder.setVideoSize(mVideoSize.getWidth(), mVideoSize.getHeight());
             mMediaRecorder.setVideoEncoder(MediaRecorder.VideoEncoder.H264);
