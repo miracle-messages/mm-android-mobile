@@ -501,8 +501,9 @@ package com.miraclemessages;
                         }
                     }
                 } else {
-                    ErrorDialog.newInstance(getString(R.string.permission_request))
-                            .show(getChildFragmentManager(), FRAGMENT_DIALOG);
+                    Toast.makeText(this.getActivity(), "Please grant all permissions to record.", Toast.LENGTH_LONG).show();
+                    this.startActivity(new Intent(Camera2VideoFragment.this.getActivity(), PreCameraActivity.class));
+                    this.getActivity().finish();
                 }
             } else {
                 super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -695,7 +696,7 @@ package com.miraclemessages;
                 mNextVideoAbsolutePath = getVideoFilePath(getActivity());
             }
             mMediaRecorder.setOutputFile(mNextVideoAbsolutePath);
-            mMediaRecorder.setVideoEncodingBitRate(10000000);
+            mMediaRecorder.setVideoEncodingBitRate(1000);
             mMediaRecorder.setVideoFrameRate(30);
             mMediaRecorder.setVideoSize(mVideoSize.getWidth(), mVideoSize.getHeight());
             mMediaRecorder.setVideoEncoder(MediaRecorder.VideoEncoder.H264);

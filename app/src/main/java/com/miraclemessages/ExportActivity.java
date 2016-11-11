@@ -71,6 +71,8 @@ public class ExportActivity extends Activity{
     private static int UPLOAD_NOTIFICATION_ID = 1001;
     File file;
     TransferObserver observer;
+    NotificationCompat.Builder builder;
+    NotificationManager manager;
     // The TransferUtility is the primary class for managing transfer to S3
     private TransferUtility transferUtility;
 
@@ -112,8 +114,8 @@ public class ExportActivity extends Activity{
                 public void onClick(View v) {
                     Log.v("OY:", "M8");
                     Toast.makeText(ExportActivity.this, "Upload started", Toast.LENGTH_LONG).show();
-                    beginUpload(sharedpreferences.getString(FileLoc, null).toString());
                     addNotification();
+                    beginUpload(sharedpreferences.getString(FileLoc, null).toString());
                 }
 
             });
@@ -147,26 +149,45 @@ public class ExportActivity extends Activity{
         file = new File(filePath);
         observer = transferUtility.upload(com.miraclemessages.Constants.BUCKET_NAME, file.getName(),
                 file);
+//        Log.v("STATE: ", observer.getState().toString());
+        observer.setTransferListener(new TransferListener() {
+            @Override
+            public void onStateChanged(int id, TransferState state) {
+                Log.v("MUFFIN:", observer.getState().toString());
+                if(observer.getState().toString().equals("COMPLETED")){
+                    builder.setContentText("Miracle Message Uploaded!")
+                    .setProgress(0, 0, false)
+                    .setOngoing(false);
+                    manager.notify(UPLOAD_NOTIFICATION_ID, builder.build());
+                }
+            }
+
+            @Override
+            public void onProgressChanged(int id, long bytesCurrent, long bytesTotal) {
+                Log.v("VALUEEE: ", ((bytesCurrent)/bytesTotal)*100 + "");
+                builder.setContentText("Progress: " + ((bytesCurrent)/bytesTotal)*100 + "%")
+                        .setProgress((int) bytesTotal, (int)((bytesCurrent)), false);
+                manager.notify(UPLOAD_NOTIFICATION_ID, builder.build());
+            }
+
+            @Override
+            public void onError(int id, Exception ex) {
+
+            }
+        });
     }
 
     private void addNotification() {
-        NotificationCompat.Builder builder =
+            builder =
                 new NotificationCompat.Builder(this)
                         //CHANGE THE SMALL ICON LATER
                         .setSmallIcon(R.drawable.mmicon)
                         .setContentTitle("Uploading Miracle Message...")
-                        .setContentText(observer.getBytesTransferred() + "")
-                        .setOngoing(true)
-                        .setProgress((int)observer.getBytesTransferred(), (int) observer.getBytesTotal(), false);
-        Log.v("Morton: ", observer.getBytesTransferred() + "");
-        Log.v("Timbuktu: ", observer.getBytesTotal() + "");
-//        Intent notificationIntent = new Intent(this, MainActivity.class);
-//        PendingIntent contentIntent = PendingIntent.getActivity(this, 0, notificationIntent,
-//                PendingIntent.FLAG_UPDATE_CURRENT);
-//        builder.setContentIntent(contentIntent);
+                        .setOngoing(true);
 
-        // Add as notification
-        NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+             // Add as notification
+        manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         manager.notify(UPLOAD_NOTIFICATION_ID, builder.build());
     }
+
 }
