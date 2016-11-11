@@ -535,7 +535,7 @@ package com.miraclemessages;
             CameraManager manager = (CameraManager) activity.getSystemService(Context.CAMERA_SERVICE);
             try {
                 Log.d(TAG, "tryAcquire");
-                if (!mCameraOpenCloseLock.tryAcquire(1, TimeUnit.MILLISECONDS)) {
+                if (!mCameraOpenCloseLock.tryAcquire(0, TimeUnit.MILLISECONDS)) {
                     throw new RuntimeException("Time out waiting to lock camera opening.");
                 }
                 String cameraId = manager.getCameraIdList()[0];
