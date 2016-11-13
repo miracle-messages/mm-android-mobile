@@ -6,5 +6,5 @@
 .DS_Store
 /build
 /captures
-/app/google-services
+/app/google-services.json
 /app/app-release.apk
