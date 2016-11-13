@@ -8,6 +8,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -24,6 +25,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
+
+import java.io.File;
+import java.net.URI;
 
 public class PreCameraAboutActivity extends Activity {
 
@@ -42,6 +46,7 @@ public class PreCameraAboutActivity extends Activity {
             Manifest.permission.READ_EXTERNAL_STORAGE,
             Manifest.permission.WRITE_EXTERNAL_STORAGE
     };
+    public static final String FileLoc = "file";
 
 
     Animation animFadeOut, animFadeIn;
@@ -533,6 +538,9 @@ public class PreCameraAboutActivity extends Activity {
                 ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
                 ActivityCompat.requestPermissions(this, VIDEO_PERMISSIONS, REQUEST_VIDEO_CAPTURE);
         }
+        else {
+            dispatchTakeVideoIntent();
+        }
     }
 
     private void dispatchTakeVideoIntent() {
@@ -546,7 +554,29 @@ public class PreCameraAboutActivity extends Activity {
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
         if (requestCode == REQUEST_VIDEO_CAPTURE && resultCode == RESULT_OK) {
             Uri videoUri = intent.getData();
+            String filepath = getRealPathFromURI(getApplicationContext(), videoUri);
+            Log.v("FINISHED RECORDING:", filepath);
+            SharedPreferences.Editor editor = sharedpreferences.edit();
+            editor.putString(FileLoc, filepath);
+            editor.commit();
+            startActivity(new Intent(this, ExportActivity.class));
+//            finish();
 //            mVideoView.setVideoURI(videoUri);
+        }
+    }
+
+    public String getRealPathFromURI(Context context, Uri contentUri) {
+        Cursor cursor = null;
+        try {
+            String[] proj = { MediaStore.Images.Media.DATA };
+            cursor = context.getContentResolver().query(contentUri,  proj, null, null, null);
+            int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+            cursor.moveToFirst();
+            return cursor.getString(column_index);
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
         }
     }
 

@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/navbar"
         android:padding="10dp"
-        android:layout_weight="0.05">
+        android:layout_weight="0.1">
 
         <TextView
             android:layout_width="wrap_content"
@@ -22,7 +22,7 @@
             android:text="Back"
             android:layout_alignParentLeft="true"
             android:textColor="#93E2FF"
-            android:textSize="15dp"
+            android:textSize="17dp"
             />
 
         <TextView
@@ -32,7 +32,7 @@
             android:text="Next"
             android:layout_alignParentRight="true"
             android:textColor="#93E2FF"
-            android:textSize="15dp"
+            android:textSize="17dp"
             />
 
         <TextView
@@ -43,14 +43,14 @@
             android:layout_gravity="center"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:textSize="15dp"/>
+            android:textSize="18dp"/>
 
     </RelativeLayout>
 
     <ViewFlipper
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0.95"
+        android:layout_weight="0.9"
         android:id="@+id/precamera_about_vf">
 
         <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
