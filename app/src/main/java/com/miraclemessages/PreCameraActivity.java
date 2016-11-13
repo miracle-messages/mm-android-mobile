@@ -129,7 +129,7 @@ public class PreCameraActivity extends Activity {
         skip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(PreCameraActivity.this, Camera2Activity.class));
+                startActivity(new Intent(PreCameraActivity.this, PreCameraAboutActivity.class));
                 finish();
             }
         });
@@ -160,7 +160,7 @@ public class PreCameraActivity extends Activity {
             public void onClick(View v) {
 //                if(next.getText().equals("Record")) {
                 if(viewFlipper.getDisplayedChild() == viewFlipper.getChildCount()-1) {
-                    startActivity(new Intent(PreCameraActivity.this, Camera2Activity.class));
+                    startActivity(new Intent(PreCameraActivity.this, PreCameraAboutActivity.class));
                     finish();
                 }
                 Log.v("Next Click: ", viewFlipper.getDisplayedChild() + " " + (viewFlipper.getChildCount() - 1));
