@@ -29,7 +29,7 @@
         android:id="@+id/viewflipper"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_weight=".25">
+        android:layout_weight=".20">
 
         <LinearLayout
             android:id="@+id/precamera_home"
@@ -70,39 +70,6 @@
                 android:adjustViewBounds="true"
                 android:src="@drawable/mmicon"
                 />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:gravity="center"
-                android:layout_weight="0.55"
-                android:layout_alignParentTop="true">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/not_user"
-                    android:text="Not current user?"
-                    android:textSize="20dp"
-                    android:layout_weight="0.5"
-                    android:gravity="center_horizontal"
-                    />
-
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/logout"
-                    android:text="Switch User"
-                    android:textColor="#000000"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="10dp"
-                    android:textSize="15dp"
-                    android:background="@drawable/button_selector"
-                    android:layout_weight="0.5"
-                    />
-
-            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -155,6 +122,28 @@
                     android:text="Switch Chapter Location"
                     android:textColor="#93E2FF"
                 />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_weight="0.55"
+                android:layout_alignParentTop="true">
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/begin"
+                    android:textColor="#000000"
+                    android:text="Begin Miracle Message"
+                    android:layout_centerVertical="true"
+                    android:layout_centerHorizontal="true"
+                    android:padding="20dp"
+                    android:background="@drawable/button_selector"
+                    />
 
             </LinearLayout>
 
@@ -323,28 +312,26 @@
         android:id="@+id/buttonviewflipper"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_weight=".75">
+        android:layout_weight=".8">
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_centerHorizontal="true"
-            android:layout_gravity="center_vertical"
+            android:gravity="center"
             android:orientation="vertical"
             >
 
-            <Button
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:id="@+id/begin"
-                android:textColor="#000000"
-                android:text="Begin Miracle Message"
-                android:layout_centerVertical="true"
-                android:layout_centerHorizontal="true"
-                android:background="@drawable/button_selector"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/logout"
+                android:textSize="17dp"
+                android:text="Switch User"
+                android:textColor="#93E2FF"
                 />
 
-        </RelativeLayout>
+        </LinearLayout>
 
         <RelativeLayout
             android:layout_width="fill_parent"

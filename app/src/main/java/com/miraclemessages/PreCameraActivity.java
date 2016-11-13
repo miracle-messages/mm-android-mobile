@@ -27,8 +27,8 @@ import android.widget.ViewFlipper;
 public class PreCameraActivity extends Activity {
 
     private ViewFlipper viewFlipper, buttonViewFlipper;
-    Button skip, begin, changeUser;
-    TextView vName, vEmail, vPhone, vLocation, homeLabel, bfLabel, switchLoc;
+    Button skip, begin;
+    TextView vName, vEmail, vPhone, vLocation, homeLabel, bfLabel, switchLoc, changeUser;
     SharedPreferences sharedpreferences;
     ImageView smallIcon;
     ImageView next, back;
@@ -54,7 +54,7 @@ public class PreCameraActivity extends Activity {
         next = (ImageView) findViewById(R.id.next);
         back = (ImageView)findViewById(R.id.back);
         skip = (Button) findViewById(R.id.skip);
-        changeUser = (Button) findViewById(R.id.logout);
+        changeUser = (TextView) findViewById(R.id.logout);
         vName = (TextView)findViewById(R.id.volunteer_name);
         vEmail = (TextView)findViewById(R.id.volunteer_email);
 //        vPhone = (TextView) findViewById(R.id.volunteer_phone);

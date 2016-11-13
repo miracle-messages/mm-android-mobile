@@ -4,8 +4,8 @@
     android:id="@+id/rl_custom_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="2dp"
-    android:background="#19B5FE"
+    android:padding="20dp"
+    android:background="#464F6D"
     >
     <ImageButton
         android:id="@+id/ib_close"
