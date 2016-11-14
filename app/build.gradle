@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'com.google.gms.google-services'
 
 android {
     dexOptions {
@@ -47,6 +48,7 @@ dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile 'com.android.support:support-v13:24.0.0'
     compile 'com.amazonaws:aws-android-sdk-s3:2.2.+'
+    compile 'com.google.firebase:firebase-database:9.8.0'
 }
 
 repositories {
