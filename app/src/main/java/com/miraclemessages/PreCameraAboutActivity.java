@@ -1,12 +1,20 @@
 package com.miraclemessages;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -18,6 +26,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
 
+import java.io.File;
+import java.net.URI;
+
 public class PreCameraAboutActivity extends Activity {
 
     TextView back, next, navtitle;
@@ -28,6 +39,15 @@ public class PreCameraAboutActivity extends Activity {
     ViewFlipper about_vf;
     SharedPreferences sharedpreferences;
     public static final String myPreferences = "MyPreferences";
+    static final int REQUEST_VIDEO_CAPTURE = 1;
+    private static final String[] VIDEO_PERMISSIONS = {
+            Manifest.permission.CAMERA,
+            Manifest.permission.RECORD_AUDIO,
+            Manifest.permission.READ_EXTERNAL_STORAGE,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE
+    };
+    public static final String FileLoc = "file";
+
 
     Animation animFadeOut, animFadeIn;
 
@@ -61,7 +81,7 @@ public class PreCameraAboutActivity extends Activity {
                     builder.show();
                 }
                 else {
-                    navtitle.setText("About Participant");
+                    navtitle.setText("About Houseless Person");
                     about_vf.setInAnimation(v.getContext(), R.anim.slide_in_from_left);
                     about_vf.setOutAnimation(v.getContext(), R.anim.slide_out_to_right);
                     about_vf.showPrevious();
@@ -97,8 +117,22 @@ public class PreCameraAboutActivity extends Activity {
 
                         editor.commit();
 
-                        startActivity(new Intent(PreCameraAboutActivity.this, Camera2Activity.class));
-                        finish();
+                        AlertDialog.Builder builder = new AlertDialog.Builder(PreCameraAboutActivity.this);
+                        builder.setMessage("Please leave your loved one a short message.\n\nNote to volunteer: Press continue to go to camera and hold your phone horizontally when recording!")
+                                .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        requestPermissions();
+//                                        finish();
+                                    }
+                                })
+                                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        // User cancelled the dialog
+                                    }
+                                });
+                        // Create the AlertDialog object and return it
+                        builder.create();
+                        builder.show();
                     }
                 }
                 else {
@@ -497,4 +531,81 @@ public class PreCameraAboutActivity extends Activity {
 
     }
 
+    private void requestPermissions() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED ||
+                ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED ||
+                ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED ||
+                ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(this, VIDEO_PERMISSIONS, REQUEST_VIDEO_CAPTURE);
+        }
+        else {
+            dispatchTakeVideoIntent();
+        }
+    }
+
+    private void dispatchTakeVideoIntent() {
+        Intent takeVideoIntent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
+        if (takeVideoIntent.resolveActivity(getPackageManager()) != null) {
+            startActivityForResult(takeVideoIntent, REQUEST_VIDEO_CAPTURE);
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        if (requestCode == REQUEST_VIDEO_CAPTURE && resultCode == RESULT_OK) {
+            Uri videoUri = intent.getData();
+            String filepath = getRealPathFromURI(getApplicationContext(), videoUri);
+            Log.v("FINISHED RECORDING:", filepath);
+            SharedPreferences.Editor editor = sharedpreferences.edit();
+            editor.putString(FileLoc, filepath);
+            editor.commit();
+            startActivity(new Intent(this, ExportActivity.class));
+//            finish();
+//            mVideoView.setVideoURI(videoUri);
+        }
+    }
+
+    public String getRealPathFromURI(Context context, Uri contentUri) {
+        Cursor cursor = null;
+        try {
+            String[] proj = { MediaStore.Images.Media.DATA };
+            cursor = context.getContentResolver().query(contentUri,  proj, null, null, null);
+            int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+            cursor.moveToFirst();
+            return cursor.getString(column_index);
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
+                                           @NonNull int[] grantResults) {
+//        Log.d(TAG, "onRequestPermissionsResult");
+        Boolean permissionsGranted = true;
+        if (requestCode == REQUEST_VIDEO_CAPTURE) {
+            if (grantResults.length == VIDEO_PERMISSIONS.length) {
+                for (int result : grantResults) {
+                    if (result != PackageManager.PERMISSION_GRANTED) {
+//                            ErrorDialog.newInstance(getString(R.string.permission_request))
+//                                    .show(getChildFragmentManager(), FRAGMENT_DIALOG);
+                        Toast.makeText(this, "Please grant all permissions to record.", Toast.LENGTH_LONG).show();
+                        permissionsGranted = false;
+//                        requestPermissions();
+                        break;
+                    }
+                }
+            } else {
+                Toast.makeText(this, "Please grant all permissions to record.", Toast.LENGTH_LONG).show();
+                permissionsGranted = false;
+//                requestPermissions();
+            }
+            if(permissionsGranted)
+                dispatchTakeVideoIntent();
+        } else {
+            super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
+    }
 }
