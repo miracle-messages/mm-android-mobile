@@ -20,12 +20,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.view.ViewGroup.LayoutParams;
 
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-
-import java.util.HashMap;
-import java.util.Map;
-
 public class MainActivity extends AppCompatActivity {
 
     SharedPreferences sharedpreferences;
@@ -40,15 +34,12 @@ public class MainActivity extends AppCompatActivity {
     TextView policy;
     PopupWindow popupWindow;
     RelativeLayout relativeLayout;
-    FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference myRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        myRef = database.getReference("MiracleMessages");
         homeback = (LinearLayout) findViewById(R.id.homeback);
         homeback.setBackgroundResource(R.drawable.homeback);
         homeback.getBackground().setAlpha(120);
@@ -109,16 +100,6 @@ public class MainActivity extends AppCompatActivity {
 
                 editor.commit();
 
-                DatabaseReference usersRef = myRef.child("users");
-                DatabaseReference newUsersRef = usersRef.push();
-
-                Map<String, User> users = new HashMap<String, User>();
-                users.put(sharedpreferences.getString(Name, null),
-                        new User(sharedpreferences.getString(Email, null)
-                        , sharedpreferences.getString(Phone, null)
-                        , sharedpreferences.getString(Location, null)));
-                newUsersRef.setValue(users);
-
                 Toast.makeText(MainActivity.this,"Thank you!", Toast.LENGTH_LONG).show();
                 Log.v("Bonjourno: ", "Hoe");
                 startActivity(new Intent(MainActivity.this, PreCameraActivity.class));
@@ -154,20 +135,6 @@ public class MainActivity extends AppCompatActivity {
                 popupWindow.showAtLocation(relativeLayout, Gravity.CENTER,0,0);
             }
         });
-    }
-
-    public static class User {
-        public String name;
-        public String email;
-        public String phone;
-        public String location;
-
-        public User(String email, String phone, String location) {
-            this.email = email;
-            this.phone = phone;
-            this.location = location;
-        }
-
     }
 
 }

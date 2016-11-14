@@ -37,6 +37,11 @@ import android.widget.TableLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import java.util.HashMap;
+import java.util.Map;
+
 import com.amazonaws.mobileconnectors.s3.transferutility.TransferListener;
 import com.amazonaws.mobileconnectors.s3.transferutility.TransferObserver;
 import com.amazonaws.mobileconnectors.s3.transferutility.TransferState;
@@ -46,7 +51,6 @@ import com.amazonaws.mobileconnectors.s3.transferutility.TransferUtility;
 import java.io.File;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class ExportActivity extends Activity{
@@ -73,25 +77,12 @@ public class ExportActivity extends Activity{
     TransferObserver observer;
     NotificationCompat.Builder builder;
     NotificationManager manager;
+
     // The TransferUtility is the primary class for managing transfer to S3
     private TransferUtility transferUtility;
 
-    // The SimpleAdapter adapts the data about transfers to rows in the UI
-    private SimpleAdapter simpleAdapter;
-
-    // A List of all transfers
-    private List<TransferObserver> observers;
-
-    /**
-     * This map is used to provide data to the SimpleAdapter above. See the
-     * fillMap() function for how it relates observers to rows in the displayed
-     * activity.
-     */
-    private ArrayList<HashMap<String, Object>> transferRecordMaps;
-
-    // Which row in the UI is currently checked (if any)
-    private int checkedIndex;
-
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference myRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,6 +90,8 @@ public class ExportActivity extends Activity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_export);
         transferUtility = Util.getTransferUtility(this);
+        myRef = database.getReference("MiracleMessages");
+
         sharedpreferences = getSharedPreferences(myPreferences, Context.MODE_PRIVATE);
 
 
@@ -145,13 +138,6 @@ public class ExportActivity extends Activity{
     @Override
     protected void onPause() {
         super.onPause();
-        // Clear transfer listeners to prevent memory leak, or
-        // else this activity won't be garbage collected.
-        if (observers != null && !observers.isEmpty()) {
-            for (TransferObserver observer : observers) {
-                observer.cleanTransferListener();
-            }
-        }
     }
 
     private void beginUpload(String filePath) {
@@ -181,6 +167,28 @@ public class ExportActivity extends Activity{
                             .setContentIntent(pendingIntent);
 
                     manager.notify(UPLOAD_NOTIFICATION_ID, builder.build());
+
+                    DatabaseReference usersRef = myRef.child("users");
+                    DatabaseReference newUsersRef = usersRef.push();
+
+                    Map<String, User> users = new HashMap<String, User>();
+                    users.put(sharedpreferences.getString(Name, null),
+                            new User(sharedpreferences.getString(Email, null)
+                                    , sharedpreferences.getString(Phone, null)
+                                    , sharedpreferences.getString(Location, null)
+                                    , sharedpreferences.getString("about_one_name", null)
+                                    , sharedpreferences.getString("about_one_birth", null)
+                                    , sharedpreferences.getString("about_one_live", null)
+                                    , sharedpreferences.getString("about_one_hometown", null)
+                                    , sharedpreferences.getString("about_one_years", null)
+                                    , sharedpreferences.getString("about_one_reach", null)
+                                    , sharedpreferences.getString("about_two_name", null)
+                                    , sharedpreferences.getString("about_two_relationship", null)
+                                    , sharedpreferences.getString("about_two_birth", null)
+                                    , sharedpreferences.getString("about_two_location", null)
+                                    , sharedpreferences.getString("about_two_years", null)
+                                    , sharedpreferences.getString("about_two_other", null)));
+                    newUsersRef.setValue(users);
                 }
             }
 
@@ -224,4 +232,56 @@ public class ExportActivity extends Activity{
         manager.notify(UPLOAD_NOTIFICATION_ID, builder.build());
     }
 
+    public static class User {
+        public String name;
+        public String email;
+        public String phone;
+        public String location;
+
+        public String about_one_name;
+        public String about_one_birth;
+        public String about_one_live;
+        public String about_one_hometown;
+        public String about_one_years;
+        public String about_one_reach;
+
+        public String about_two_name;
+        public String about_two_relationship;
+        public String about_two_birth;
+        public String about_two_location;
+        public String about_two_years;
+        public String about_two_others;
+
+        public User(String email,
+                    String phone,
+                    String location,
+                    String about_one_name,
+                    String about_one_birth,
+                    String about_one_live,
+                    String about_one_hometown,
+                    String about_one_years,
+                    String about_one_reach,
+                    String about_two_name,
+                    String about_two_relationship,
+                    String about_two_birth,
+                    String about_two_location,
+                    String about_two_years,
+                    String about_two_others) {
+            this.email = email;
+            this.phone = phone;
+            this.location = location;
+            this.about_one_name = about_one_name;
+            this.about_one_birth = about_one_birth;
+            this.about_one_live = about_one_live;
+            this.about_one_hometown = about_one_hometown;
+            this.about_one_years = about_one_years;
+            this.about_one_reach = about_one_reach;
+            this.about_two_name = about_two_name;
+            this.about_two_relationship = about_two_relationship;
+            this.about_two_birth = about_two_birth;
+            this.about_two_location = about_two_location;
+            this.about_two_years = about_two_years;
+            this.about_two_others = about_two_others;
+        }
+    }
 }
