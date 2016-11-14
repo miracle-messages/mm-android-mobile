@@ -32,7 +32,6 @@
         <activity
             android:name=".PreCameraActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".Camera2Activity" />
         <activity
             android:name=".PreCameraAboutActivity"
             android:screenOrientation="portrait" />
