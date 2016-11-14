@@ -559,7 +559,7 @@ public class PreCameraAboutActivity extends Activity {
             SharedPreferences.Editor editor = sharedpreferences.edit();
             editor.putString(FileLoc, filepath);
             editor.commit();
-            Toast.makeText(this, "File saved to ", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Video saved to Camera album", Toast.LENGTH_LONG).show();
             startActivity(new Intent(this, ExportActivity.class));
 //            finish();
 //            mVideoView.setVideoURI(videoUri);

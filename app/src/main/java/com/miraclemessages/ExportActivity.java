@@ -52,6 +52,7 @@ import java.io.File;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Queue;
 
 public class ExportActivity extends Activity{
     // Indicates that no upload is currently selected
@@ -171,24 +172,22 @@ public class ExportActivity extends Activity{
                     DatabaseReference usersRef = myRef.child("users");
                     DatabaseReference newUsersRef = usersRef.push();
 
-                    Map<String, User> users = new HashMap<String, User>();
-                    users.put(sharedpreferences.getString(Name, null),
-                            new User(sharedpreferences.getString(Email, null)
-                                    , sharedpreferences.getString(Phone, null)
-                                    , sharedpreferences.getString(Location, null)
-                                    , sharedpreferences.getString("about_one_name", null)
-                                    , sharedpreferences.getString("about_one_birth", null)
-                                    , sharedpreferences.getString("about_one_live", null)
-                                    , sharedpreferences.getString("about_one_hometown", null)
-                                    , sharedpreferences.getString("about_one_years", null)
-                                    , sharedpreferences.getString("about_one_reach", null)
-                                    , sharedpreferences.getString("about_two_name", null)
-                                    , sharedpreferences.getString("about_two_relationship", null)
-                                    , sharedpreferences.getString("about_two_birth", null)
-                                    , sharedpreferences.getString("about_two_location", null)
-                                    , sharedpreferences.getString("about_two_years", null)
-                                    , sharedpreferences.getString("about_two_other", null)));
-                    newUsersRef.setValue(users);
+                    newUsersRef.setValue(new User(sharedpreferences.getString(Name, null)
+                            , sharedpreferences.getString(Email, null)
+                            , sharedpreferences.getString(Phone, null)
+                            , sharedpreferences.getString(Location, null)
+                            , sharedpreferences.getString("about_one_name", null)
+                            , sharedpreferences.getString("about_one_birth", null)
+                            , sharedpreferences.getString("about_one_live", null)
+                            , sharedpreferences.getString("about_one_hometown", null)
+                            , sharedpreferences.getString("about_one_years", null)
+                            , sharedpreferences.getString("about_one_reach", null)
+                            , sharedpreferences.getString("about_two_name", null)
+                            , sharedpreferences.getString("about_two_relationship", null)
+                            , sharedpreferences.getString("about_two_birth", null)
+                            , sharedpreferences.getString("about_two_location", null)
+                            , sharedpreferences.getString("about_two_years", null)
+                            , sharedpreferences.getString("about_two_other", null)));
                 }
             }
 
@@ -252,7 +251,8 @@ public class ExportActivity extends Activity{
         public String about_two_years;
         public String about_two_others;
 
-        public User(String email,
+        public User(String name,
+                    String email,
                     String phone,
                     String location,
                     String about_one_name,
@@ -267,6 +267,7 @@ public class ExportActivity extends Activity{
                     String about_two_location,
                     String about_two_years,
                     String about_two_others) {
+            this.name = name;
             this.email = email;
             this.phone = phone;
             this.location = location;
