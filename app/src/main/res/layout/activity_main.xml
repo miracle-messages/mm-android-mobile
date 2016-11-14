@@ -53,7 +53,7 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:inputType="text"
+            android:inputType="textNoSuggestions|textVisiblePassword"
             android:backgroundTint="@android:color/white"
             />
 
@@ -95,7 +95,7 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:inputType="text"
+            android:inputType="textNoSuggestions|textVisiblePassword"
             android:backgroundTint="@android:color/white"
             />
 
