@@ -209,7 +209,7 @@ public class ExportActivity extends Activity{
                 Log.v("TOTALO:", bytesTotal + "");
                 Log.v("VALUEEE: ", ((int)(((float)bytesCurrent/bytesTotal)*100) + ""));
                 builder.setContentText("Progress: " + (int)(((float)bytesCurrent/bytesTotal)*100) + "%" +
-                        "\n(If the upload freezes, tap here and resubmit the video)")
+                        " (Tap to reupload video if needed)")
                         .setProgress((int) bytesTotal, (int)(bytesCurrent), false)
                         .setContentIntent(pendingIntent);
                 manager.notify(UPLOAD_NOTIFICATION_ID, builder.build());
