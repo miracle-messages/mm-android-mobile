@@ -54,10 +54,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Queue;
 
-public class ExportActivity extends Activity{
-    // Indicates that no upload is currently selected
-    private static final int INDEX_NOT_CHECKED = -1;
+import static android.app.Service.START_STICKY;
 
+public class ExportActivity extends Activity{
+    // S3 URL
+    public static final String URL =
+            "https://s3.amazonaws.com/androidmiraclemessages/";
     // TAG for logging;
     private static final String TAG = "UploadActivity";
 
@@ -148,8 +150,11 @@ public class ExportActivity extends Activity{
             return;
         }
         file = new File(filePath);
-        observer = transferUtility.upload(com.miraclemessages.Constants.BUCKET_NAME, file.getName(),
-                file);
+        observer = transferUtility.upload(com.miraclemessages.Constants.BUCKET_NAME,
+                sharedpreferences.getString(Name, null).toString() + "_" +
+                        sharedpreferences.getString(Email, null).toString() +
+                        "/" + file.getName(), file);
+
 //        Log.v("STATE: ", observer.getState().toString());
         observer.setTransferListener(new TransferListener() {
             @Override
@@ -172,6 +177,7 @@ public class ExportActivity extends Activity{
                     DatabaseReference usersRef = myRef.child("users");
                     DatabaseReference newUsersRef = usersRef.push();
 
+                    // Store to Firebase upon completion
                     newUsersRef.setValue(new User(sharedpreferences.getString(Name, null)
                             , sharedpreferences.getString(Email, null)
                             , sharedpreferences.getString(Phone, null)
@@ -187,17 +193,25 @@ public class ExportActivity extends Activity{
                             , sharedpreferences.getString("about_two_birth", null)
                             , sharedpreferences.getString("about_two_location", null)
                             , sharedpreferences.getString("about_two_years", null)
-                            , sharedpreferences.getString("about_two_other", null)));
+                            , sharedpreferences.getString("about_two_other", null)
+                            , URL + sharedpreferences.getString(Name, null).toString() + "_" +
+                            sharedpreferences.getString(Email, null).toString() +
+                            "/" + file.getName()));
                 }
             }
 
             @Override
             public void onProgressChanged(int id, long bytesCurrent, long bytesTotal) {
+                Intent i = new Intent(getApplicationContext(), ExportActivity.class);
+                PendingIntent pendingIntent =
+                        PendingIntent.getActivity(getApplicationContext(), 0, i, 0);
                 Log.v("CURRENTO:", bytesCurrent + "");
                 Log.v("TOTALO:", bytesTotal + "");
                 Log.v("VALUEEE: ", ((int)(((float)bytesCurrent/bytesTotal)*100) + ""));
-                builder.setContentText("Progress: " + (int)(((float)bytesCurrent/bytesTotal)*100) + "%")
-                        .setProgress((int) bytesTotal, (int)(bytesCurrent), false);
+                builder.setContentText("Progress: " + (int)(((float)bytesCurrent/bytesTotal)*100) + "%" +
+                        "\n(If the upload freezes, tap here and resubmit the video)")
+                        .setProgress((int) bytesTotal, (int)(bytesCurrent), false)
+                        .setContentIntent(pendingIntent);
                 manager.notify(UPLOAD_NOTIFICATION_ID, builder.build());
             }
 
@@ -221,7 +235,6 @@ public class ExportActivity extends Activity{
     private void addNotification() {
             builder =
                 new NotificationCompat.Builder(this)
-                        //CHANGE THE SMALL ICON LATER
                         .setSmallIcon(R.drawable.mmicon)
                         .setContentTitle("Uploading Miracle Message...")
                         .setOngoing(true);
@@ -236,6 +249,7 @@ public class ExportActivity extends Activity{
         public String email;
         public String phone;
         public String location;
+        public String uploadedURL;
 
         public String about_one_name;
         public String about_one_birth;
@@ -266,7 +280,8 @@ public class ExportActivity extends Activity{
                     String about_two_birth,
                     String about_two_location,
                     String about_two_years,
-                    String about_two_others) {
+                    String about_two_others,
+                    String uploadedURL) {
             this.name = name;
             this.email = email;
             this.phone = phone;
@@ -283,6 +298,7 @@ public class ExportActivity extends Activity{
             this.about_two_location = about_two_location;
             this.about_two_years = about_two_years;
             this.about_two_others = about_two_others;
+            this.uploadedURL = uploadedURL;
         }
     }
 }
