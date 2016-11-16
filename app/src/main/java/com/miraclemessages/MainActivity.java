@@ -2,6 +2,7 @@ package com.miraclemessages;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -30,8 +31,8 @@ public class MainActivity extends AppCompatActivity {
     public static final String Email = "email";
     public static final String Phone = "phone";
     public static final String Location = "location";
-    LinearLayout homeback;
-    TextView policy;
+    RelativeLayout homeback;
+    TextView policy, link;
     PopupWindow popupWindow;
     RelativeLayout relativeLayout;
 
@@ -40,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        homeback = (LinearLayout) findViewById(R.id.homeback);
+        homeback = (RelativeLayout) findViewById(R.id.homeback);
         homeback.setBackgroundResource(R.drawable.homeback);
         homeback.getBackground().setAlpha(120);
         textName=(EditText)findViewById(R.id.name);
@@ -49,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
         textLocation=(EditText)findViewById(R.id.location);
         submit=(Button)findViewById(R.id.submit);
         policy = (TextView)findViewById(R.id.policy);
+        link = (TextView)findViewById(R.id.link);
         relativeLayout = (RelativeLayout) findViewById(R.id.rl);
         //Log.v("Tits: ", "Niqqa");
         sharedpreferences = getSharedPreferences(myPreferences,
@@ -133,6 +135,16 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
                 popupWindow.showAtLocation(relativeLayout, Gravity.CENTER,0,0);
+            }
+        });
+
+        link.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v){
+                String url = "https://miraclemessages.org/getinvolved";
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(url));
+                startActivity(i);
             }
         });
     }
