@@ -27,7 +27,7 @@
         android:id="@+id/private_policy"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Miracle Messages will not distribute or publicize your information for any purposes, ever. \n\n Volunteer information is solely collected for video submission point of contacts. We take privacy very seriously."
+        android:text="Miracle Messages will not distribute or publicize your information for any purposes, ever. \n\nVolunteer information is solely collected for video submission point of contacts. We take privacy very seriously."
         android:layout_centerInParent="true"
         android:padding="25sp"
         android:layout_below="@id/header"
