@@ -93,7 +93,7 @@ public class ExportActivity extends Activity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_export);
         transferUtility = Util.getTransferUtility(this);
-        myRef = database.getReference("MiracleMessages");
+        myRef = database.getReference("users");
 
         sharedpreferences = getSharedPreferences(myPreferences, Context.MODE_PRIVATE);
 
@@ -174,11 +174,10 @@ public class ExportActivity extends Activity{
 
                     manager.notify(UPLOAD_NOTIFICATION_ID, builder.build());
 
-                    DatabaseReference usersRef = myRef.child("users");
-                    DatabaseReference newUsersRef = usersRef.push();
+                    DatabaseReference usersRef = myRef.push();
 
                     // Store to Firebase upon completion
-                    newUsersRef.setValue(new User(sharedpreferences.getString(Name, null)
+                    usersRef.setValue(new User(sharedpreferences.getString(Name, null)
                             , sharedpreferences.getString(Email, null)
                             , sharedpreferences.getString(Phone, null)
                             , sharedpreferences.getString(Location, null)

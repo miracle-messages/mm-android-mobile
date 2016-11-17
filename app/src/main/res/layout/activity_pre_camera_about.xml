@@ -39,7 +39,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/navtitle"
-            android:text="About Houseless Person"
+            android:text="About the Houseless Person"
             android:layout_gravity="center"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"

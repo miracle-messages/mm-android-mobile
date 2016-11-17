@@ -81,7 +81,7 @@ public class PreCameraAboutActivity extends Activity {
                     builder.show();
                 }
                 else {
-                    navtitle.setText("About Houseless Person");
+                    navtitle.setText("About the Houseless Person");
                     about_vf.setInAnimation(v.getContext(), R.anim.slide_in_from_left);
                     about_vf.setOutAnimation(v.getContext(), R.anim.slide_out_to_right);
                     about_vf.showPrevious();
@@ -142,7 +142,7 @@ public class PreCameraAboutActivity extends Activity {
                                 Toast.LENGTH_LONG).show();
                     }
                     else {
-                        navtitle.setText("About Your Loved One");
+                        navtitle.setText("About Their Loved One");
                         about_vf.setInAnimation(v.getContext(), R.anim.slide_in_from_right);
                         about_vf.setOutAnimation(v.getContext(), R.anim.slide_out_to_left);
                         about_vf.showNext();
