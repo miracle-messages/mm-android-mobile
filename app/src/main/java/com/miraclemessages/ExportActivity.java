@@ -39,6 +39,8 @@ import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -93,7 +95,7 @@ public class ExportActivity extends Activity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_export);
         transferUtility = Util.getTransferUtility(this);
-        myRef = database.getReference("users");
+        myRef = database.getReference("clients");
 
         sharedpreferences = getSharedPreferences(myPreferences, Context.MODE_PRIVATE);
 
@@ -176,23 +178,26 @@ public class ExportActivity extends Activity{
 
                     DatabaseReference usersRef = myRef.push();
 
+                    long unixTime = System.currentTimeMillis() / 1000L;
+                    String currentTime = unixTime + "";
                     // Store to Firebase upon completion
-                    usersRef.setValue(new User(sharedpreferences.getString(Name, null)
-                            , sharedpreferences.getString(Email, null)
-                            , sharedpreferences.getString(Phone, null)
-                            , sharedpreferences.getString(Location, null)
-                            , sharedpreferences.getString("about_one_name", null)
-                            , sharedpreferences.getString("about_one_birth", null)
+                    usersRef.setValue(new Client( sharedpreferences.getString("about_one_reach", null)
                             , sharedpreferences.getString("about_one_live", null)
+                            , sharedpreferences.getString("about_one_birth", null)
                             , sharedpreferences.getString("about_one_hometown", null)
+                            , sharedpreferences.getString("about_one_name", null)
                             , sharedpreferences.getString("about_one_years", null)
-                            , sharedpreferences.getString("about_one_reach", null)
-                            , sharedpreferences.getString("about_two_name", null)
-                            , sharedpreferences.getString("about_two_relationship", null)
+                            , currentTime
                             , sharedpreferences.getString("about_two_birth", null)
                             , sharedpreferences.getString("about_two_location", null)
                             , sharedpreferences.getString("about_two_years", null)
+                            , sharedpreferences.getString("about_two_name", null)
                             , sharedpreferences.getString("about_two_other", null)
+                            , sharedpreferences.getString("about_two_relationship", null)
+                            , sharedpreferences.getString(Email, null)
+                            , sharedpreferences.getString(Location, null)
+                            , sharedpreferences.getString(Name, null)
+                            , sharedpreferences.getString(Phone, null)
                             , URL + sharedpreferences.getString(Name, null).toString() + "_" +
                             sharedpreferences.getString(Email, null).toString() +
                             "/" + file.getName()));
@@ -243,61 +248,66 @@ public class ExportActivity extends Activity{
         manager.notify(UPLOAD_NOTIFICATION_ID, builder.build());
     }
 
-    public static class User {
-        public String name;
-        public String email;
-        public String phone;
-        public String location;
-        public String uploadedURL;
+    public static class Client {
 
-        public String about_one_name;
-        public String about_one_birth;
-        public String about_one_live;
-        public String about_one_hometown;
-        public String about_one_years;
-        public String about_one_reach;
+        public String client_contact_info;
+        public String client_current_city;
+        public String client_dob;
+        public String client_hometown;
+        public String client_name;
+        public String client_years_homeless;
 
-        public String about_two_name;
-        public String about_two_relationship;
-        public String about_two_birth;
-        public String about_two_location;
-        public String about_two_years;
-        public String about_two_others;
+        public String created_at;
 
-        public User(String name,
-                    String email,
-                    String phone,
-                    String location,
-                    String about_one_name,
-                    String about_one_birth,
-                    String about_one_live,
-                    String about_one_hometown,
-                    String about_one_years,
-                    String about_one_reach,
-                    String about_two_name,
-                    String about_two_relationship,
-                    String about_two_birth,
-                    String about_two_location,
-                    String about_two_years,
-                    String about_two_others,
-                    String uploadedURL) {
-            this.name = name;
-            this.email = email;
-            this.phone = phone;
-            this.location = location;
-            this.about_one_name = about_one_name;
-            this.about_one_birth = about_one_birth;
-            this.about_one_live = about_one_live;
-            this.about_one_hometown = about_one_hometown;
-            this.about_one_years = about_one_years;
-            this.about_one_reach = about_one_reach;
-            this.about_two_name = about_two_name;
-            this.about_two_relationship = about_two_relationship;
-            this.about_two_birth = about_two_birth;
-            this.about_two_location = about_two_location;
-            this.about_two_years = about_two_years;
-            this.about_two_others = about_two_others;
-            this.uploadedURL = uploadedURL;
+        public String recipient_dob;
+        public String recipient_last_location;
+        public String recipient_last_seen;
+        public String recipient_name;
+        public String recipient_other_info;
+        public String recipient_relationship;
+
+        public String volunteer_email;
+        public String volunteer_location;
+        public String volunteer_name;
+        public String volunteer_phone;
+        public String volunteer_uploadedURL;
+
+        public Client(String client_contact_info,
+                    String client_current_city,
+                    String client_dob,
+                    String client_hometown,
+                    String client_name,
+                    String client_years_homeless,
+                    String created_at,
+                    String recipient_dob,
+                    String recipient_last_location,
+                    String recipient_last_seen,
+                    String recipient_name,
+                    String recipient_other_info,
+                    String recipient_relationship,
+                    String volunteer_email,
+                    String volunteer_location,
+                    String volunteer_name,
+                    String volunteer_phone,
+                    String volunteer_uploadedURL) {
+            this.client_contact_info = client_contact_info;
+            this.client_current_city = client_current_city;
+            this.client_dob = client_dob;
+            this.client_hometown = client_hometown;
+            this.client_name = client_name;
+            this.client_years_homeless = client_years_homeless;
+            this.created_at = created_at;
+            this.recipient_dob = recipient_dob;
+            this.recipient_last_location = recipient_last_location;
+            this.recipient_last_seen = recipient_last_seen;
+            this.recipient_name = recipient_name;
+            this.recipient_other_info = recipient_other_info;
+            this.recipient_relationship = recipient_relationship;
+            this.volunteer_email = volunteer_email;
+            this.volunteer_location = volunteer_location;
+            this.volunteer_name = volunteer_name;
+            this.volunteer_phone = volunteer_phone;
+            this.volunteer_uploadedURL = volunteer_uploadedURL;
         }
     }
 }

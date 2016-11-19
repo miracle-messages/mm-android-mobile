@@ -40,7 +40,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         homeback = (RelativeLayout) findViewById(R.id.homeback);
         homeback.setBackgroundResource(R.drawable.homeback);
         homeback.getBackground().setAlpha(120);

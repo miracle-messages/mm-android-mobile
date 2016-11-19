@@ -38,7 +38,7 @@
             android:textSize="20sp"
             android:id="@+id/ThankYouMore"
             android:layout_centerHorizontal="true"
-            android:text="\nPress Submit Video to upload the video to Miracle Messages. You may navigate away from this app while the video uploads.\nThank you for helping us reconnect the world! :-)"
+            android:text="\nPress Submit Video to upload the video to Miracle Messages. You may navigate away from this app while the video uploads.\n\nThank you for helping us reconnect the world! :-)"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:textColor="@android:color/white"

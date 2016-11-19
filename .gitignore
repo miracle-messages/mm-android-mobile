@@ -6,6 +6,7 @@
 .DS_Store
 /build
 /captures
-/app/google-services.json
-/app/app-release.apk
+app/google-services.json
+app/app-release.apk
+/app/build.gradle
 .idea/vcs.xml
