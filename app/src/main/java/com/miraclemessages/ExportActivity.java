@@ -270,7 +270,7 @@ public class ExportActivity extends Activity{
         public String volunteer_location;
         public String volunteer_name;
         public String volunteer_phone;
-        public String volunteer_uploadedURL;
+        public String uploadedURL;
 
         public Client(String client_contact_info,
                     String client_current_city,
@@ -289,7 +289,7 @@ public class ExportActivity extends Activity{
                     String volunteer_location,
                     String volunteer_name,
                     String volunteer_phone,
-                    String volunteer_uploadedURL) {
+                    String uploadedURL) {
             this.client_contact_info = client_contact_info;
             this.client_current_city = client_current_city;
             this.client_dob = client_dob;
@@ -307,7 +307,7 @@ public class ExportActivity extends Activity{
             this.volunteer_location = volunteer_location;
             this.volunteer_name = volunteer_name;
             this.volunteer_phone = volunteer_phone;
-            this.volunteer_uploadedURL = volunteer_uploadedURL;
+            this.uploadedURL = uploadedURL;
         }
     }
 }
