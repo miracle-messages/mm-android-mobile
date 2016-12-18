@@ -110,19 +110,6 @@ public class MainActivity extends AppCompatActivity {
 
                 Toast.makeText(MainActivity.this,"Thank you!", Toast.LENGTH_LONG).show();
                 Log.v("Bonjourno: ", "Hoe");
-                RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
-                String s = "https://hooks.zapier.com/hooks/catch/1838547/tsx0t0/?email=intricatejames777@gmail.com&name=Carlos%20Gonzalez&video=https://s3-us-west-2.amazonaws.com/mm-interview-vids/jessica—11-30-2016-145519.mov";
-                StringRequest stringRequest = new StringRequest(Request.Method.POST, s, new Response.Listener<String>() {
-                    public void onResponse(String response) {
-                        Log.v("YAS", "BISH");
-                    }
-                }, new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Log.v("No", "BISH");
-                    }
-                });
-                queue.add(stringRequest);
                 startActivity(new Intent(MainActivity.this, PreCameraActivity.class));
             }
         });
