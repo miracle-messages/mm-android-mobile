@@ -13,6 +13,7 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -37,9 +38,17 @@ import android.widget.TableLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.amazonaws.http.HttpClient;
+import com.amazonaws.http.HttpRequest;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -49,6 +58,7 @@ import com.amazonaws.mobileconnectors.s3.transferutility.TransferObserver;
 import com.amazonaws.mobileconnectors.s3.transferutility.TransferState;
 import com.amazonaws.mobileconnectors.s3.transferutility.TransferType;
 import com.amazonaws.mobileconnectors.s3.transferutility.TransferUtility;
+import org.json.JSONObject;
 
 import java.io.File;
 import java.net.URISyntaxException;
@@ -56,11 +66,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Queue;
 
+import javax.net.ssl.HttpsURLConnection;
+
 import static android.app.Service.START_STICKY;
 
 public class ExportActivity extends Activity{
     // S3 URL
-    public static final String URL =
+    public static final String vidURL =
             "https://s3.amazonaws.com/androidmiraclemessages/";
     // TAG for logging;
     private static final String TAG = "UploadActivity";
@@ -163,7 +175,7 @@ public class ExportActivity extends Activity{
             public void onStateChanged(int id, TransferState state) {
                 Log.v("MUFFIN:", observer.getState().toString());
 
-                if(state.toString().equals("COMPLETED")){
+                if(state.toString().equals("COMPLETED")) {
                     Intent i = new Intent(getApplicationContext(), ExportActivity.class);
                     PendingIntent pendingIntent =
                             PendingIntent.getActivity(getApplicationContext(), 0, i, 0);
@@ -181,7 +193,7 @@ public class ExportActivity extends Activity{
                     long unixTime = System.currentTimeMillis() / 1000L;
                     String currentTime = unixTime + "";
                     // Store to Firebase upon completion
-                    usersRef.setValue(new Client( sharedpreferences.getString("about_one_reach", null)
+                    usersRef.setValue(new Client(sharedpreferences.getString("about_one_reach", null)
                             , sharedpreferences.getString("about_one_live", null)
                             , sharedpreferences.getString("about_one_birth", null)
                             , sharedpreferences.getString("about_one_hometown", null)
@@ -198,7 +210,7 @@ public class ExportActivity extends Activity{
                             , sharedpreferences.getString(Location, null)
                             , sharedpreferences.getString(Name, null)
                             , sharedpreferences.getString(Phone, null)
-                            , URL + sharedpreferences.getString(Name, null).toString() + "_" +
+                            , vidURL + sharedpreferences.getString(Name, null).toString() + "_" +
                             sharedpreferences.getString(Email, null).toString() +
                             "/" + file.getName()));
                 }
