@@ -221,8 +221,14 @@ public class ExportActivity extends Activity{
                             "/" + file.getName()));
 
                     RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
-                    String s = "https://hooks.zapier.com/hooks/catch/1838547/tsx0t0/?email=intricatejames777@gmail.com&name=Mingggg%20Wu&video=https://s3-us-west-2.amazonaws.com/mm-interview-vids/jessica—11-30-2016-145519.mov";
-                    StringRequest stringRequest = new StringRequest(Request.Method.POST, s, new Response.Listener<String>() {
+                    String hook = "https://hooks.zapier.com/hooks/catch/1838547/tsx0t0/?email="
+                            + sharedpreferences.getString(Email, null) + "&name="
+                            + sharedpreferences.getString(Name, null) + "&video="
+                            + vidURL + sharedpreferences.getString(Name, null).toString() + "_" +
+                            sharedpreferences.getString(Email, null).toString() +
+                            "/" + file.getName();
+
+                    StringRequest stringRequest = new StringRequest(Request.Method.POST, hook, new Response.Listener<String>() {
                         public void onResponse(String response) {
                             Log.v("YAS", "BISH");
                         }
