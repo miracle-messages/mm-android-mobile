@@ -1,7 +1,7 @@
-#Mon Dec 19 03:10:10 EST 2016
-base.0=C\:\\Users\\James Wu\\AndroidStudioProjects\\MiracleMessagesApp\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run_d92d9052d2bced2640796133f35ab29462d8f650
+#Tue Dec 27 02:20:34 EST 2016
+base.0=C\:\\Users\\Christine\\Documents\\MiracleMessagesApp\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run_deaa9323cad8c594524bdf502c1def4faea649cb
 renamed.1=classes.dex
 renamed.0=classes2.dex
-file.1=C\:\\Users\\James Wu\\AndroidStudioProjects\\MiracleMessagesApp\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run-bootstrap_8d6e2bc2b2f62ea1e83fd11edadc226859d3d6b4\\classes.dex
-base.1=C\:\\Users\\James Wu\\AndroidStudioProjects\\MiracleMessagesApp\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run-bootstrap_8d6e2bc2b2f62ea1e83fd11edadc226859d3d6b4
-file.0=C\:\\Users\\James Wu\\AndroidStudioProjects\\MiracleMessagesApp\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run_d92d9052d2bced2640796133f35ab29462d8f650\\classes.dex
+file.1=C\:\\Users\\Christine\\Documents\\MiracleMessagesApp\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run-bootstrap_7b4c93c6be9a3ff02190b92f0efe093fd1517522\\classes.dex
+base.1=C\:\\Users\\Christine\\Documents\\MiracleMessagesApp\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run-bootstrap_7b4c93c6be9a3ff02190b92f0efe093fd1517522
+file.0=C\:\\Users\\Christine\\Documents\\MiracleMessagesApp\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run_deaa9323cad8c594524bdf502c1def4faea649cb\\classes.dex

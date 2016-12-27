@@ -1,10 +1,10 @@
 [
     {
-        "merged": "C:\\Users\\James Wu\\AndroidStudioProjects\\MiracleMessagesApp\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxxhdpi\\ic_launcher.png",
-        "source": "C:\\Users\\James Wu\\AndroidStudioProjects\\MiracleMessagesApp\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher.png"
+        "merged": "C:\\Users\\Christine\\Documents\\MiracleMessagesApp\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxxhdpi\\another.png",
+        "source": "C:\\Users\\Christine\\Documents\\MiracleMessagesApp\\app\\src\\main\\res\\mipmap-xxxhdpi\\another.png"
     },
     {
-        "merged": "C:\\Users\\James Wu\\AndroidStudioProjects\\MiracleMessagesApp\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxxhdpi\\another.png",
-        "source": "C:\\Users\\James Wu\\AndroidStudioProjects\\MiracleMessagesApp\\app\\src\\main\\res\\mipmap-xxxhdpi\\another.png"
+        "merged": "C:\\Users\\Christine\\Documents\\MiracleMessagesApp\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxxhdpi\\ic_launcher.png",
+        "source": "C:\\Users\\Christine\\Documents\\MiracleMessagesApp\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher.png"
     }
 ]

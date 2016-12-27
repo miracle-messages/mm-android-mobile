@@ -5,14 +5,6 @@ android {
     dexOptions {
         javaMaxHeapSize "3g"
     }
-    signingConfigs {
-        config {
-            keyAlias 'MyAndroidKey'
-            keyPassword 'miraclemessages'
-            storeFile file('C:/Users/James Wu/key.jks')
-            storePassword 'miraclemessages'
-        }
-    }
     compileSdkVersion 24
     buildToolsVersion "24.0.1"
     defaultConfig {
@@ -31,7 +23,6 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.config
         }
     }
     lintOptions {
@@ -59,6 +50,6 @@ repositories {
 
 buildscript {
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.2.0'
+        classpath 'com.android.tools.build:gradle:2.2.3'
     }
 }

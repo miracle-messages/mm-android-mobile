@@ -1,35 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <instant-run
+    abi="arm64-v8a,armeabi-v7a,armeabi"
     api-level="23"
     density="xxxhdpi"
     format="8"
-    plugin-version="2.2.0"
-    timestamp="204512348881477"
-    token="-175922386883399307"
+    plugin-version="2.2.3"
+    timestamp="313848750879795"
+    token="-2542499133132705672"
     verifier="FULL_BUILD_REQUESTED" >
 
     <task
         name="javac"
-        duration="6510" />
+        duration="1992" />
     <task
         name="instant-run-dex"
         duration="0" />
     <task
         name="instant-run-transform"
-        duration="735" />
+        duration="1293" />
     <task
         name="verifier"
-        duration="107" />
+        duration="268" />
 
     <artifact
-        location="C:\Users\James Wu\AndroidStudioProjects\MiracleMessagesApp\app\build\outputs\apk\app-debug.apk"
+        location="C:\Users\Christine\Documents\MiracleMessagesApp\app\build\outputs\apk\app-debug.apk"
         type="MAIN" />
 
     <build
-        timestamp="204512348881477"
+        timestamp="313848750879795"
         verifier="FULL_BUILD_REQUESTED" >
         <artifact
-            location="C:\Users\James Wu\AndroidStudioProjects\MiracleMessagesApp\app\build\outputs\apk\app-debug.apk"
+            location="C:\Users\Christine\Documents\MiracleMessagesApp\app\build\outputs\apk\app-debug.apk"
             type="MAIN" />
     </build>
 
