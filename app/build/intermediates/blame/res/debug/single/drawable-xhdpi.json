@@ -1,0 +1,38 @@
+[
+    {
+        "merged": "C:\\Users\\James Wu\\AndroidStudioProjects\\MiracleMessagesApp\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\c_xhdpi.png",
+        "source": "C:\\Users\\James Wu\\AndroidStudioProjects\\MiracleMessagesApp\\app\\src\\main\\res\\drawable-xhdpi\\c_xhdpi.png"
+    },
+    {
+        "merged": "C:\\Users\\James Wu\\AndroidStudioProjects\\MiracleMessagesApp\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\e_xhdpi.png",
+        "source": "C:\\Users\\James Wu\\AndroidStudioProjects\\MiracleMessagesApp\\app\\src\\main\\res\\drawable-xhdpi\\e_xhdpi.png"
+    },
+    {
+        "merged": "C:\\Users\\James Wu\\AndroidStudioProjects\\MiracleMessagesApp\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\export_xhdpi.png",
+        "source": "C:\\Users\\James Wu\\AndroidStudioProjects\\MiracleMessagesApp\\app\\src\\main\\res\\drawable-xhdpi\\export_xhdpi.png"
+    },
+    {
+        "merged": "C:\\Users\\James Wu\\AndroidStudioProjects\\MiracleMessagesApp\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\b_xhdpi.png",
+        "source": "C:\\Users\\James Wu\\AndroidStudioProjects\\MiracleMessagesApp\\app\\src\\main\\res\\drawable-xhdpi\\b_xhdpi.png"
+    },
+    {
+        "merged": "C:\\Users\\James Wu\\AndroidStudioProjects\\MiracleMessagesApp\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\ic_launcher.png",
+        "source": "C:\\Users\\James Wu\\AndroidStudioProjects\\MiracleMessagesApp\\app\\src\\main\\res\\drawable-xhdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\James Wu\\AndroidStudioProjects\\MiracleMessagesApp\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\exportback_xhdpi.png",
+        "source": "C:\\Users\\James Wu\\AndroidStudioProjects\\MiracleMessagesApp\\app\\src\\main\\res\\drawable-xhdpi\\exportback_xhdpi.png"
+    },
+    {
+        "merged": "C:\\Users\\James Wu\\AndroidStudioProjects\\MiracleMessagesApp\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\d_xhdpi.png",
+        "source": "C:\\Users\\James Wu\\AndroidStudioProjects\\MiracleMessagesApp\\app\\src\\main\\res\\drawable-xhdpi\\d_xhdpi.png"
+    },
+    {
+        "merged": "C:\\Users\\James Wu\\AndroidStudioProjects\\MiracleMessagesApp\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\a_xhdpi.png",
+        "source": "C:\\Users\\James Wu\\AndroidStudioProjects\\MiracleMessagesApp\\app\\src\\main\\res\\drawable-xhdpi\\a_xhdpi.png"
+    },
+    {
+        "merged": "C:\\Users\\James Wu\\AndroidStudioProjects\\MiracleMessagesApp\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\ic_action_info.png",
+        "source": "C:\\Users\\James Wu\\AndroidStudioProjects\\MiracleMessagesApp\\app\\src\\main\\res\\drawable-xhdpi\\ic_action_info.png"
+    }
+]
