@@ -35,6 +35,13 @@ public class MainActivity extends AppCompatActivity {
         submit=(Button)findViewById(R.id.submit);
 //        policy = (TextView)findViewById(R.id.policy);
         link = (TextView)findViewById(R.id.link);
+        View someView = findViewById(R.id.homeback);
+
+        // Find the root view
+        View root = someView.getRootView();
+
+        // Set the color
+        root.setBackgroundColor(getResources().getColor(android.R.color.white));
         sharedpreferences = getSharedPreferences(myPreferences,
                 Context.MODE_PRIVATE);
 
@@ -86,6 +93,7 @@ public class MainActivity extends AppCompatActivity {
 
                 Toast.makeText(MainActivity.this,"Thank you!", Toast.LENGTH_LONG).show();
                 startActivity(new Intent(MainActivity.this, PreCameraActivity.class));
+                finish();
             }
         });
 

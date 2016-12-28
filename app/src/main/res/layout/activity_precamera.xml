@@ -4,32 +4,36 @@
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.miraclemessages.PreCameraActivity"
     android:gravity="center"
     android:weightSum="1"
-    android:background="#93E2FF"
+    android:background="#FFFFFF"
     android:id="@+id/precamera_background">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Before Recording"
-        android:id="@+id/bf_label"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:textSize="35dp"
-        android:visibility="invisible"
-        />
+        android:id="@+id/navbar"
+        android:layout_weight="0.1"
+        android:paddingRight="5dp"
+        android:background="#DDDDDD"
+        >
+
+        <ImageView
+            android:layout_width="50dp"
+            android:background="@drawable/mmicon3"
+            android:layout_height="50dp"
+            android:layout_alignParentRight="true"
+            android:visibility="invisible"/>
+
+    </RelativeLayout>
 
     <ViewFlipper
         android:id="@+id/viewflipper"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_weight=".20">
+        android:layout_height="match_parent"
+        android:layout_weight="0.9"
+        >
 
         <LinearLayout
             android:id="@+id/precamera_home"
@@ -37,115 +41,125 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:weightSum="1"
-            android:gravity="center"
-            android:layout_marginBottom="20dp"
+            android:background="#DDDDDD"
+            android:padding="20dp"
             >
 
-            <ImageView
-                android:id="@+id/small_icon"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:paddingTop="10dp"
-                android:adjustViewBounds="true"
-                android:src="@drawable/mmicon"
-                android:layout_alignParentBottom="true"
-                android:visibility="gone"
-                />
-
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/home_label"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true"
-                android:textSize="25dp"
-                />
-
-            <ImageView
-                android:id="@+id/icon"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
+                android:text="My profile"
+                android:id="@+id/my_profile"
+                android:textSize="30dp"
                 android:paddingBottom="10dp"
                 android:paddingTop="10dp"
-                android:adjustViewBounds="true"
-                android:src="@drawable/mmicon"
+                android:textStyle="bold"
                 />
 
-            <LinearLayout
+            <View
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:gravity="center"
-                android:layout_weight="0.45">
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Volunteer Information"
-                    android:id="@+id/volunteer_info"
-                    android:textSize="22dp"
-                    />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/volunteer_name"
-                    android:textSize="17dp"
-                    />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/volunteer_email"
-                    android:textSize="17dp"
-                    />
-
-                <!--<TextView-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:id="@+id/volunteer_phone"-->
-                    <!--android:textSize="15dp"-->
-                    <!--/>-->
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/volunteer_location"
-                    android:textSize="17dp"
-                    />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/switch_location"
-                    android:textSize="17dp"
-                    android:text="Switch Chapter Location"
-                    android:textColor="#93E2FF"
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="About"
+                android:id="@+id/about"
+                android:textSize="30dp"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:textStyle="bold"
                 />
 
-            </LinearLayout>
-
-            <LinearLayout
+            <View
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:gravity="center"
-                android:layout_weight="0.55"
-                android:layout_alignParentTop="true">
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray"/>
 
-                <Button
-                    android:layout_width="wrap_content"
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Resources"
+                android:id="@+id/resources"
+                android:textSize="30dp"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:textStyle="bold"
+                />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="FAQ"
+                android:id="@+id/faq"
+                android:textSize="30dp"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:textStyle="bold"
+                />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Script"
+                android:id="@+id/script"
+                android:textSize="30dp"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:textStyle="bold"
+                />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Contact"
+                android:id="@+id/contact"
+                android:textSize="30dp"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:textStyle="bold"
+                />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray"/>
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_gravity="center_horizontal"
+                >
+
+                <TextView
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/begin"
-                    android:textColor="#000000"
-                    android:text="Begin Miracle Message"
-                    android:layout_centerVertical="true"
-                    android:layout_centerHorizontal="true"
-                    android:padding="20dp"
-                    android:background="@drawable/button_selector"
+                    android:text="Log out"
+                    android:id="@+id/logout"
+                    android:layout_alignParentBottom="true"
+                    android:gravity="center"
+                    android:textSize="20dp"
+                    android:paddingBottom="10dp"
+                    android:paddingTop="10dp"
                     />
 
-            </LinearLayout>
+            </RelativeLayout>
 
         </LinearLayout>
 
@@ -304,75 +318,6 @@
                     android:textSize="20dp"/>
 
             </RelativeLayout>
-
-        </RelativeLayout>
-    </ViewFlipper>
-
-    <ViewFlipper
-        android:id="@+id/buttonviewflipper"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_weight=".8">
-
-        <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_centerHorizontal="true"
-            android:gravity="center"
-            android:orientation="vertical"
-            >
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/logout"
-                android:textSize="17dp"
-                android:text="Switch User"
-                android:textColor="#93E2FF"
-                />
-
-        </LinearLayout>
-
-        <RelativeLayout
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_centerHorizontal="true"
-            android:layout_gravity="center_vertical"
-            android:orientation="vertical"
-            >
-
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:id="@+id/back"
-                android:layout_centerVertical="true"
-                android:layout_alignParentLeft="true"
-                android:layout_marginLeft="20dp"
-                android:background="@drawable/left_arrow"
-                />
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/skip"
-                android:text="Skip Instructions"
-                android:layout_toRightOf="@+id/back"
-                android:layout_toLeftOf="@+id/next"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="30dp"
-                android:textColor="#000000"
-                android:background="@drawable/button_selector"/>
-
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:id="@+id/next"
-                android:layout_centerVertical="true"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="20dp"
-                android:background="@drawable/right_arrow"
-                />
 
         </RelativeLayout>
 
