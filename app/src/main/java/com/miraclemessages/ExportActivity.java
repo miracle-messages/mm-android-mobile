@@ -12,6 +12,7 @@ import android.content.IntentSender;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.media.Image;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -30,6 +31,7 @@ import android.view.Window;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -37,6 +39,7 @@ import android.widget.SimpleAdapter;
 import android.widget.TableLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ViewFlipper;
 
 import com.amazonaws.http.HttpClient;
 import com.amazonaws.http.HttpRequest;
@@ -65,6 +68,7 @@ import com.amazonaws.mobileconnectors.s3.transferutility.TransferState;
 import com.amazonaws.mobileconnectors.s3.transferutility.TransferType;
 import com.amazonaws.mobileconnectors.s3.transferutility.TransferUtility;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.io.File;
 import java.net.URISyntaxException;
@@ -84,7 +88,7 @@ public class ExportActivity extends Activity{
     private static final String TAG = "UploadActivity";
 
     //Buttons and SharedPreferences
-    Button submit, back;
+    Button submit;
     SharedPreferences sharedpreferences;
     TextView feedback;
     public static final String myPreferences = "MyPreferences";
@@ -100,6 +104,9 @@ public class ExportActivity extends Activity{
     TransferObserver observer;
     NotificationCompat.Builder builder;
     NotificationManager manager;
+    ViewFlipper export_vf;
+    ImageView back, next_x, next_xx;
+    TextView title, subtitle;
 
     // The TransferUtility is the primary class for managing transfer to S3
     private TransferUtility transferUtility;
@@ -117,45 +124,89 @@ public class ExportActivity extends Activity{
 
         sharedpreferences = getSharedPreferences(myPreferences, Context.MODE_PRIVATE);
 
+        export_vf = (ViewFlipper) findViewById(R.id.export_vf);
+        title = (TextView) findViewById(R.id.title);
+        subtitle = (TextView) findViewById(R.id.subtitle);
+        next_x = (ImageView) findViewById(R.id.next_x);
+        next_x.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(ExportActivity.this, "Next chapters clicked!", Toast.LENGTH_SHORT).show();
+            }
+        });
+        next_xx = (ImageView) findViewById(R.id.next_xx);
+        next_xx.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(ExportActivity.this, "Track progress clicked!", Toast.LENGTH_SHORT).show();
+            }
+        });
 
-            String s  = sharedpreferences.getString(FileLoc, null).toString();
-            Log.v("DEREK: ", s);
+        String s  = sharedpreferences.getString(FileLoc, null).toString();
 
+        submit = (Button) findViewById(R.id.submit);
+        back = (ImageView) findViewById(R.id.back);
+//        feedback = (TextView) findViewById(R.id.feedback);
 
-            submit = (Button) findViewById(R.id.submit);
-            back = (Button) findViewById(R.id.homepage);
-            feedback = (TextView) findViewById(R.id.feedback);
-
-            submit.setOnClickListener(new View.OnClickListener() {
-                public void onClick(View v) {
-                    Log.v("OY:", "M8");
+        submit.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                export_vf.setInAnimation(v.getContext(), R.anim.slide_in_from_right);
+                export_vf.setOutAnimation(v.getContext(), R.anim.slide_out_to_left);
+                if(export_vf.getDisplayedChild() == 0) {
                     Toast.makeText(ExportActivity.this, "Upload started", Toast.LENGTH_LONG).show();
-                    addNotification();
-                    beginUpload(sharedpreferences.getString(FileLoc, null).toString());
+                addNotification();
+                beginUpload(sharedpreferences.getString(FileLoc, null).toString());
+                    submit.setText("Next steps");
+                    title.setText("Message sent");
+                    subtitle.setText("Thank you!");
+                    back.setVisibility(View.VISIBLE);
+                    export_vf.showNext();
                 }
-
-            });
-
-            back.setOnClickListener(new View.OnClickListener() {
-                public void onClick(View v) {
+                else if(export_vf.getDisplayedChild() == 1) {
+                    submit.setText("Home");
+                    title.setText("What's next");
+                    subtitle.setText("Follow-up");
+                    export_vf.showNext();
+                }
+                else {
                     startActivity(new Intent(ExportActivity.this, PreCameraActivity.class));
                     finish();
                 }
-            });
+            }
 
-            final String appPackageName = getPackageName().toString();
-            feedback.setOnClickListener(new View.OnClickListener(){
-                @Override
-                public void onClick(View v) {
-                    try {
-                        Log.v("Peas in a pod", appPackageName);
-                        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
-                    } catch (android.content.ActivityNotFoundException notFoundException) {
-                        Log.v("BEN HUR:", appPackageName);
-                        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + appPackageName)));
-                    }
+        });
+
+        back.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                export_vf.setInAnimation(v.getContext(), R.anim.slide_in_from_left);
+                export_vf.setOutAnimation(v.getContext(), R.anim.slide_out_to_right);
+                if(export_vf.getDisplayedChild() == 2) {
+                    submit.setText("Next steps");
+                    title.setText("Message sent");
+                    subtitle.setText("Thank you!");
+                    export_vf.showPrevious();
                 }
-            });
+                else if(export_vf.getDisplayedChild() == 1) {
+                    submit.setText("Complete");
+                    title.setText("Confirm");
+                    subtitle.setText("Everything looking good?");
+                    back.setVisibility(View.INVISIBLE);
+                    export_vf.showPrevious();
+                }
+            }
+        });
+
+        final String appPackageName = getPackageName().toString();
+//        feedback.setOnClickListener(new View.OnClickListener(){
+//            @Override
+//            public void onClick(View v) {
+//                try {
+//                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
+//                } catch (android.content.ActivityNotFoundException notFoundException) {
+//                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + appPackageName)));
+//                }
+//            }
+//        });
     }
 
     @Override

@@ -1,90 +1,219 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/precamera_about"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:background="@drawable/export_xxxhdpi"
-    android:id="@+id/exportBackground"
-    android:weightSum="1"
+    tools:context="com.miraclemessages.ExportActivity"
     android:orientation="vertical"
-    tools:context="com.miraclemessages.ExportActivity">
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:gravity="center"
-        android:layout_gravity="center_horizontal"
-        android:padding="20dp"
-        android:layout_weight="0.2">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:text="Thank You."
-            android:id="@+id/ThankYou"
-            android:textSize="30dp"
-            android:textColor="@android:color/white"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:id="@+id/ThankYouMore"
-            android:layout_centerHorizontal="true"
-            android:text="\nPress Submit Video to upload the video to Miracle Messages. You may navigate away from this app while the video uploads.\n\nYou will receive a confirmation email once the upload is complete. :-)"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:textColor="@android:color/white"
-            />
-
-    </LinearLayout>
+    android:background="#FFFFFF"
+    >
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="0.8">
+        android:id="@+id/navbar"
+        android:paddingRight="5dp"
+        android:paddingTop="15dp"
+        android:paddingLeft="10dp"
+        android:layout_height="wrap_content"
+        >
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Back to Home"
-            android:id="@+id/homepage"
-            android:layout_marginLeft="20dp"
+        <ImageView
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             android:layout_alignParentLeft="true"
-            android:layout_alignStart="@+id/submit"
-            android:background="@drawable/button_selector"
-            android:padding="15dp"
-            android:textColor="#000000"/>
+            android:background="@drawable/left_arrow2"
+            android:id="@+id/back"
+            android:visibility="invisible"
+            />
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/submit"
-            android:layout_marginRight="20dp"
-            android:text="Submit Video"
+        <ImageView
+            android:layout_width="50dp"
+            android:background="@drawable/mmicon3"
+            android:layout_height="55dp"
             android:layout_alignParentRight="true"
-            android:background="@drawable/button_selector"
-            android:padding="15dp"
-            android:textColor="#000000"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:padding="22dp"
-            android:textColor="#3498db"
-            android:text="Leave feedback on Google Play"
-            android:layout_below="@id/submit"
-            android:id="@+id/feedback"
-            android:clickable="true" />
+            android:id="@+id/icon"
+            />
 
     </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        android:padding="20dp"
+        android:weightSum="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Confirm"
+                android:id="@+id/title"
+                android:textStyle="bold"
+                android:textSize="30dp"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Everything looking good?"
+                android:id="@+id/subtitle"
+                android:textSize="20dp"
+                android:layout_marginBottom="30dp"/>
+
+        </LinearLayout>
+
+        <ViewFlipper
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.25"
+            android:id="@+id/export_vf">
+
+            <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/confirm"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/confirm_text"
+                        android:text="After reviewing your video click the complete button below to upload to our database."
+                        android:textSize="25dp"
+                        />
+
+                </LinearLayout>
+
+            </ScrollView>
+
+            <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/sent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/sent_text"
+                        android:text="You'll receive a confirmation email with a link to your video in a few minutes."
+                        android:textSize="25dp"
+                        />
+
+                </LinearLayout>
+
+            </ScrollView>
+
+            <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/next"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/next_text_x"
+                        android:text="Get in touch with your local chapter to begin searching for loved ones here."
+                        android:textSize="22dp"
+                        />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10dp">
+
+                        <ImageView
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            android:layout_alignParentRight="true"
+                            android:background="@drawable/right_arrow2"
+                            android:id="@+id/next_x"
+                            />
+
+                    </RelativeLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@android:color/darker_gray"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/next_text_xx"
+                        android:text="Track our progress and begin reconnecting your messages to loved ones here."
+                        android:textSize="22dp"
+                        android:layout_marginTop="10dp"
+                        />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            android:layout_alignParentRight="true"
+                            android:background="@drawable/right_arrow2"
+                            android:id="@+id/next_xx"
+                            />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+            </ScrollView>
+
+        </ViewFlipper>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="0.75"
+            >
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/submit"
+                android:text="Complete"
+                android:textColor="@android:color/black"
+                android:background="@drawable/button_selector"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:gravity="center"
+                />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
 
 </LinearLayout>
