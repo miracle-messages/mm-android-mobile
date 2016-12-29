@@ -96,36 +96,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-//        policy.setOnClickListener(new View.OnClickListener(){
-//            @Override
-//            public void onClick(View v) {
-//                LayoutInflater inflater = (LayoutInflater) getApplicationContext().getSystemService(LAYOUT_INFLATER_SERVICE);
-//                View customView = inflater.inflate(R.layout.privacy_policy,null);
-//                popupWindow = new PopupWindow(
-//                        customView,
-//                        LayoutParams.WRAP_CONTENT,
-//                        LayoutParams.WRAP_CONTENT
-//                );
-//                popupWindow.setTouchable(true);
-//                popupWindow.setFocusable(true);
-//                popupWindow.setOutsideTouchable(false);
-//                // Set an elevation value for popup window
-//                // Call requires API level 21
-//                if(Build.VERSION.SDK_INT>=21){
-//                    popupWindow.setElevation(5.0f);
-//                }
-//                ImageButton closeButton = (ImageButton) customView.findViewById(R.id.ib_close);
-//                closeButton.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View view) {
-//                        // Dismiss the popup window
-//                        popupWindow.dismiss();
-//                    }
-//                });
-//                popupWindow.showAtLocation(relativeLayout, Gravity.CENTER,0,0);
-//            }
-//        });
-
         link.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
