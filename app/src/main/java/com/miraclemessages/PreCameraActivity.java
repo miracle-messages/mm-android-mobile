@@ -31,8 +31,10 @@ import org.w3c.dom.Text;
 public class PreCameraActivity extends Activity {
 
     private ViewFlipper viewFlipper, buttonViewFlipper;
-    TextView about, link, faq, resources, contact, changeUser;
+    TextView about, link, faq, resources, contact, my_profile, changeUser;
     TextView internalfb1, internalfb2, internalslack, ext_fb, ext_donation, ext_yt, ext_twitter, ext_ig, docs_hb, docs_int, docs_ext, docs_roles;
+    EditText prof_name, prof_phone, prof_email, prof_loc;
+    Button save_prof;
     SharedPreferences sharedpreferences;
     ImageView smallIcon;
     LinearLayout pcBack;
@@ -49,7 +51,63 @@ public class PreCameraActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_precamera);
 
+        sharedpreferences = getSharedPreferences(myPreferences, Context.MODE_PRIVATE);
+
         pcBack = (LinearLayout) findViewById(R.id.precamera_background);
+
+        prof_name = (EditText) findViewById(R.id.profile_name);
+        prof_phone = (EditText) findViewById(R.id.profile_number);
+        prof_email = (EditText) findViewById(R.id.profile_email);
+        prof_loc = (EditText) findViewById(R.id.profile_location);
+        save_prof = (Button) findViewById(R.id.profile_save);
+        save_prof.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String n = prof_name.getText().toString();
+                if(n.equals("")) {
+                    Toast.makeText(PreCameraActivity.this,
+                            "Please fill out all fields.",
+                            Toast.LENGTH_LONG).show();
+                    return;
+                }
+                String e = prof_email.getText().toString();
+                if(e.equals("")) {
+                    Toast.makeText(PreCameraActivity.this,
+                            "Please fill out all fields.",
+                            Toast.LENGTH_LONG).show();
+                    return;
+                }
+                String p = prof_phone.getText().toString();
+                if(p.equals("")) {
+                    Toast.makeText(PreCameraActivity.this,
+                            "Please fill out all fields.",
+                            Toast.LENGTH_LONG).show();
+                    return;
+                }
+                String l = prof_loc.getText().toString();
+                if(l.equals("")) {
+                    Toast.makeText(PreCameraActivity.this,
+                            "Please fill out all fields.",
+                            Toast.LENGTH_LONG).show();
+                    return;
+                }
+                SharedPreferences.Editor editor = sharedpreferences.edit();
+                editor.putString(Name, n);
+                editor.putString(Email, e);
+                editor.putString(Phone, p);
+                editor.putString(Location, l);
+
+                editor.commit();
+
+                viewFlipper.setInAnimation(v.getContext(), R.anim.slide_in_from_left);
+                viewFlipper.setOutAnimation(v.getContext(), R.anim.slide_out_to_right);
+                viewFlipper.setDisplayedChild(0);
+                back.setVisibility(View.INVISIBLE);
+                icon.setVisibility(View.INVISIBLE);
+
+                Toast.makeText(PreCameraActivity.this,"New profile saved!", Toast.LENGTH_LONG).show();
+            }
+        });
 
         docs_hb = (TextView) findViewById(R.id.docs_handbook);
         docs_hb.setOnClickListener(new View.OnClickListener() {
@@ -172,6 +230,21 @@ public class PreCameraActivity extends Activity {
             }
         });
 
+        my_profile = (TextView) findViewById(R.id.my_profile);
+        my_profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                viewFlipper.setInAnimation(v.getContext(), R.anim.slide_in_from_right);
+                viewFlipper.setOutAnimation(v.getContext(), R.anim.slide_out_to_left);
+                prof_name.setText(sharedpreferences.getString(Name, null));
+                prof_email.setText(sharedpreferences.getString(Email, null));
+                prof_phone.setText(sharedpreferences.getString(Phone, null));
+                prof_loc.setText(sharedpreferences.getString(Location, null));
+                viewFlipper.setDisplayedChild(3); //3 is my profile
+                back.setVisibility(View.VISIBLE);
+                icon.setVisibility(View.VISIBLE);
+            }
+        });
         about = (TextView) findViewById(R.id.about);
         about.setOnClickListener(new View.OnClickListener() {
 
@@ -198,8 +271,9 @@ public class PreCameraActivity extends Activity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(viewFlipper.getDisplayedChild() == 1 || //if about or resources, go to menu
-                        viewFlipper.getDisplayedChild() == 2) {
+                if(viewFlipper.getDisplayedChild() == 1 || //if about, resources, or my profile go to menu
+                        viewFlipper.getDisplayedChild() == 2 ||
+                        viewFlipper.getDisplayedChild() == 3) {
                     viewFlipper.setInAnimation(v.getContext(), R.anim.slide_in_from_left);
                     viewFlipper.setOutAnimation(v.getContext(), R.anim.slide_out_to_right);
                     viewFlipper.setDisplayedChild(0);
@@ -241,8 +315,6 @@ public class PreCameraActivity extends Activity {
             }
         });
 
-
-        sharedpreferences = getSharedPreferences(myPreferences, Context.MODE_PRIVATE);
         viewFlipper = (ViewFlipper) findViewById(R.id.viewflipper);
         changeUser = (TextView) findViewById(R.id.logout);
 
@@ -296,97 +368,6 @@ public class PreCameraActivity extends Activity {
 //            });
 //
 //                builder.show();
-//            }
-//        });
-
-
-//        begin.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                bfLabel.setAnimation(animFadeIn);
-//                bfLabel.getAnimation().start();
-//                bfLabel.setVisibility(View.VISIBLE);
-//                smallIcon.setAnimation(animFadeIn);
-//                smallIcon.getAnimation().start();
-//                smallIcon.setVisibility(View.VISIBLE);
-//                viewFlipper.setInAnimation(v.getContext(), R.anim.slide_in_from_right);
-//                viewFlipper.setOutAnimation(v.getContext(), R.anim.slide_out_to_left);
-//                pcBack.setBackgroundResource(R.drawable.a_xxxhdpi);
-//                pcBack.getBackground().setAlpha(90);
-//                viewFlipper.showNext();
-//                buttonViewFlipper.setInAnimation(v.getContext(), R.anim.slide_in_from_right);
-//                buttonViewFlipper.setOutAnimation(v.getContext(), R.anim.slide_out_to_left);
-//                buttonViewFlipper.showNext();
-//            }
-//        });
-
-//        next.setOnClickListener(new View.OnClickListener() {
-//
-//            @Override
-//            public void onClick(View v) {
-////                if(next.getText().equals("Record")) {
-//                if(viewFlipper.getDisplayedChild() == viewFlipper.getChildCount()-1) {
-//                    startActivity(new Intent(PreCameraActivity.this, PreCameraAboutActivity.class));
-//                    finish();
-//                }
-//                Log.v("Next Click: ", viewFlipper.getDisplayedChild() + " " + (viewFlipper.getChildCount() - 1));
-//                if (viewFlipper.getDisplayedChild() < viewFlipper.getChildCount() - 1) {
-//                    viewFlipper.setInAnimation(v.getContext(), R.anim.slide_in_from_right);
-//                    viewFlipper.setOutAnimation(v.getContext(), R.anim.slide_out_to_left);
-//                    if(viewFlipper.getDisplayedChild() == 1)
-//                        pcBack.setBackgroundResource(R.drawable.b_xxxhdpi);
-//                    else if(viewFlipper.getDisplayedChild() == 2)
-//                        pcBack.setBackgroundResource(R.drawable.c_xxxhdpi);
-//                    else if(viewFlipper.getDisplayedChild() == 3)
-//                        pcBack.setBackgroundResource(R.drawable.d_xxxhdpi);
-//                    else if(viewFlipper.getDisplayedChild() == 4)
-//                        pcBack.setBackgroundResource(R.drawable.e_xxxhdpi);
-//                    pcBack.getBackground().setAlpha(90);
-//                    viewFlipper.showNext();
-////                    if(viewFlipper.getDisplayedChild() == viewFlipper.getChildCount() - 1)
-////                        next.setText("Record");
-//                }
-//            }
-//        });
-//
-//        back.setOnClickListener(new View.OnClickListener() {
-//
-//            @Override
-//            public void onClick(View v) {
-//                Log.v("Back Click: ", viewFlipper.getDisplayedChild() + " " + 0);
-//                if (viewFlipper.getDisplayedChild() > 0) {
-//                    if(viewFlipper.getDisplayedChild() == 1) {
-//                        bfLabel.setAnimation(animFadeOut);
-//                        bfLabel.getAnimation().start();
-//                        bfLabel.setVisibility(View.INVISIBLE);
-//                        smallIcon.setAnimation(animFadeOut);
-//                        smallIcon.getAnimation().start();
-//                        smallIcon.setVisibility(View.GONE);
-//                    }
-//                    viewFlipper.setInAnimation(v.getContext(), R.anim.slide_in_from_left);
-//                    viewFlipper.setOutAnimation(v.getContext(), R.anim.slide_out_to_right);
-//                    if(viewFlipper.getDisplayedChild() == 2)
-//                        pcBack.setBackgroundResource(R.drawable.a_xxxhdpi);
-//                    else if(viewFlipper.getDisplayedChild() == 3)
-//                        pcBack.setBackgroundResource(R.drawable.b_xxxhdpi);
-//                    else if(viewFlipper.getDisplayedChild() == 4)
-//                        pcBack.setBackgroundResource(R.drawable.c_xxxhdpi);
-//                    else if(viewFlipper.getDisplayedChild() == 5)
-//                        pcBack.setBackgroundResource(R.drawable.d_xxxhdpi);
-//                    pcBack.getBackground().setAlpha(90);
-//                    if(viewFlipper.getDisplayedChild() == 1) {
-//                        pcBack.setBackgroundColor(Color.parseColor("#93E2FF"));
-//                        pcBack.getBackground().setAlpha(0);
-//                    }
-//                    viewFlipper.showPrevious();
-////                    if(next.getText().equals("Record"))
-////                        next.setText("Next");
-//                    if(viewFlipper.getDisplayedChild() == 0) {
-//                        buttonViewFlipper.setInAnimation(v.getContext(), R.anim.slide_in_from_left);
-//                        buttonViewFlipper.setOutAnimation(v.getContext(), R.anim.slide_out_to_right);
-//                        buttonViewFlipper.showPrevious();
-//                    }
-//                }
 //            }
 //        });
 

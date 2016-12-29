@@ -403,163 +403,120 @@
 
         </LinearLayout>
 
-        <RelativeLayout
-            android:id="@+id/precamera_bf_1"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:orientation="vertical"
-            android:layout_gravity="center_vertical"
-            android:padding="10dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/precamera_profile"
+            android:padding="20dp"
+            android:orientation="vertical">
 
-            <RelativeLayout
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
+                android:text="My profile"
+                android:textStyle="bold"
+                android:textSize="30dp"
+                android:layout_marginBottom="30dp"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/profile_name"
+                android:hint="Full Name"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:background="@drawable/edittext_bg"
+                android:textColorHint="#C3C3C3"
+                android:textColor="@android:color/black"
+                android:inputType="textNoSuggestions|textVisiblePassword"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/profile_number"
+                android:layout_below="@+id/profile_email"
+                android:hint="Phone"
+                android:inputType="number"
+                android:background="@drawable/edittext_bg"
+                android:textColorHint="#C3C3C3"
+                android:textColor="@android:color/black"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/profile_email"
+                android:hint="Email"
+                android:background="@drawable/edittext_bg"
+                android:inputType="textEmailAddress"
+                android:textColorHint="#C3C3C3"
+                android:textColor="@android:color/black"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:layout_below="@+id/profile_name"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/profile_location"
+                android:hint="Location"
+                android:inputType="textNoSuggestions|textVisiblePassword"
+                android:layout_below="@+id/profile_number"
+                android:background="@drawable/edittext_bg"
+                android:textColorHint="#C3C3C3"
+                android:textColor="@android:color/black"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                />
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_gravity="center_horizontal"
                 >
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Step 1: Ask the Question"
-                    android:layout_centerHorizontal="true"
-                    android:id="@+id/bf_1_step1"
-                    android:textSize="25dp"
-                    android:paddingBottom="10dp"/>
+                    android:text="Log out"
+                    android:id="@+id/logout"
+                    android:layout_alignParentBottom="true"
+                    android:gravity="center"
+                    android:textSize="20dp"
+                    android:paddingBottom="10dp"
+                    android:paddingTop="10dp"
+                    />
 
-                <TextView
+                <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/bf_1_step1"
-                    android:id="@+id/bf_1_q1"
-                    android:text="1. Do you have any family or friends that you would like to reunite with, even if you don’t know how to reach them?"
-                    android:textSize="20dp"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/bf_1_q1"
-                    android:id="@+id/bf_1_q2"
-                    android:text="2. (if applicable) Would you like to see an example video of Miracle Messages?"
-                    android:textSize="20dp"/>
+                    android:id="@+id/profile_save"
+                    android:text="Save"
+                    android:textColor="@android:color/black"
+                    android:background="@drawable/button_selector"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:gravity="center"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerHorizontal="true" />
 
             </RelativeLayout>
 
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/precamera_bf_2"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:orientation="vertical"
-            android:padding="10dp"
-            android:layout_gravity="center_vertical">
-
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:text="Step 2: Offer to \nRecord Video"
-                    android:gravity="center"
-                    android:id="@+id/bf_2_step1"
-                    android:textSize="25dp"
-                    android:paddingBottom="10dp"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/bf_2_step1"
-                    android:id="@+id/bf_2_q1"
-                    android:gravity="center"
-                    android:text="As a volunteer with Miracle Messages, I would be happy to help you record a short video message to your loved ones if you'd like. Before I do, I just want to make sure you are okay with the potential risks and that we are on the same page with expectations."
-                    android:textSize="20dp"/>
-
-            </RelativeLayout>
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/precamera_bf_3"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:orientation="vertical"
-            android:padding="10dp"
-            android:layout_gravity="center_vertical">
-
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:id="@+id/bf_3_q1"
-                    android:text="First, your Miracle Message video will be made public and may be shared widely to help volunteers try to locate your loved one(s)."
-                    android:textSize="20dp"/>
-
-            </RelativeLayout>
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/precamera_bf_4"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:orientation="vertical"
-            android:padding="10dp"
-            android:layout_gravity="center_vertical">
-
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:id="@+id/bf_4_q1"
-                    android:text="Second, while 90% of loved ones have responded positively to their Miracle Messages, we cannot know for sure how your loved one(s) will respond, or if they will respond, or how long it may take them to respond."
-                    android:textSize="20dp"/>
-
-            </RelativeLayout>
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/precamera_bf_5"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:orientation="vertical"
-            android:padding="10dp"
-            android:layout_gravity="center_vertical">
-
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:id="@+id/bf_5_q1"
-                    android:text="And third, while we have many volunteers trying to locate loved ones, we may not be able to find or reach your loved one(s). The only guarantee here is that this is an opportunity for you to record a short video message to someone you love, to say whatever is on your heart that you'd like to say, and that we will try our best to deliver it and help facilitate any response or reunion that results. Sound good?"
-                    android:textSize="20dp"/>
-
-            </RelativeLayout>
-
-        </RelativeLayout>
+        </LinearLayout>
 
     </ViewFlipper>
 

@@ -40,14 +40,15 @@ public class MainActivity extends AppCompatActivity {
         View root = someView.getRootView();
         root.setBackgroundColor(getResources().getColor(android.R.color.white));
 
-        sharedpreferences = getSharedPreferences(myPreferences,
-                Context.MODE_PRIVATE);
+        sharedpreferences = getSharedPreferences(myPreferences, Context.MODE_PRIVATE);
 
         if(sharedpreferences.getString(Name, null) != null
                 && sharedpreferences.getString(Email, null) != null
                 && sharedpreferences.getString(Phone, null) != null
-                && sharedpreferences.getString(Location, null) != null)
+                && sharedpreferences.getString(Location, null) != null) {
             startActivity(new Intent(MainActivity.this, PreCameraActivity.class));
+            finish();
+        }
 
         submit.setOnClickListener(new View.OnClickListener() {
 
