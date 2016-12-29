@@ -21,21 +21,30 @@ import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
+
+import org.w3c.dom.Text;
 
 import java.io.File;
 import java.net.URI;
 
 public class PreCameraAboutActivity extends Activity {
 
-    TextView back, next, navtitle;
+    ImageView back;
+    Button next;
     TextView one_name_label, one_birth_label, one_live_label, one_hometown_label, one_years_label, one_reach_label;
     TextView two_name_label, two_relationship_label, two_birth_label, two_location_label, two_years_label, two_other_label;
+    TextView review_one_name, review_one_birth, review_one_location, review_one_hometown, review_one_years, review_one_contact;
+    TextView review_two_name, review_two_relationship, review_two_birth, review_two_location, review_two_years, review_two_other;
+    TextView direction, who;
     EditText one_name, one_birth, one_live, one_hometown, one_years, one_reach;
     EditText two_name, two_relationship, two_birth, two_location, two_years, two_other;
+    ImageView edit_from, edit_to;
     ViewFlipper about_vf;
     SharedPreferences sharedpreferences;
     public static final String myPreferences = "MyPreferences";
@@ -58,7 +67,48 @@ public class PreCameraAboutActivity extends Activity {
 
         sharedpreferences = getSharedPreferences(myPreferences, Context.MODE_PRIVATE);
 
-        back = (TextView) findViewById(R.id.back);
+        direction = (TextView) findViewById(R.id.direction);
+        who = (TextView) findViewById(R.id.who);
+
+        edit_from = (ImageView) findViewById(R.id.edit_from);
+        edit_from.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                about_vf.setInAnimation(v.getContext(), R.anim.slide_in_from_left);
+                about_vf.setOutAnimation(v.getContext(), R.anim.slide_out_to_right);
+                direction.setText("From");
+                who.setText("Homeless individual");
+                next.setText("Next");
+                about_vf.setDisplayedChild(0);
+            }
+        });
+        edit_to = (ImageView) findViewById(R.id.edit_to);
+        edit_to.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                about_vf.setInAnimation(v.getContext(), R.anim.slide_in_from_left);
+                about_vf.setOutAnimation(v.getContext(), R.anim.slide_out_to_right);
+                direction.setText("To");
+                who.setText("Loved one");
+                next.setText("Next");
+                about_vf.setDisplayedChild(1);
+            }
+        });
+
+        review_one_name = (TextView) findViewById(R.id.review_one_name);
+        review_one_birth = (TextView) findViewById(R.id.review_one_birth);
+        review_one_location = (TextView) findViewById(R.id.review_one_location);
+        review_one_hometown = (TextView) findViewById(R.id.review_one_hometown);
+        review_one_years = (TextView) findViewById(R.id.review_one_years);
+        review_one_contact = (TextView) findViewById(R.id.review_one_contact);
+        review_two_name = (TextView) findViewById(R.id.review_two_name);
+        review_two_relationship = (TextView) findViewById(R.id.review_two_relationship);
+        review_two_birth = (TextView) findViewById(R.id.review_two_birth);
+        review_two_location = (TextView) findViewById(R.id.review_two_location);
+        review_two_years = (TextView) findViewById(R.id.review_two_years);
+        review_two_other = (TextView) findViewById(R.id.review_two_other);
+
+        back = (ImageView) findViewById(R.id.back);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -81,76 +131,104 @@ public class PreCameraAboutActivity extends Activity {
                     builder.show();
                 }
                 else {
-                    navtitle.setText("About the Houseless Person");
                     about_vf.setInAnimation(v.getContext(), R.anim.slide_in_from_left);
                     about_vf.setOutAnimation(v.getContext(), R.anim.slide_out_to_right);
+                    if(about_vf.getDisplayedChild() == 1) {
+                        direction.setText("From");
+                        who.setText("Homeless individual");
+                    }
+                    else {
+                        direction.setText("To");
+                        who.setText("Loved one");
+                        next.setText("Next");
+                    }
                     about_vf.showPrevious();
                 }
             }
         });
-        next = (TextView) findViewById(R.id.next);
+        next = (Button) findViewById(R.id.next);
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(about_vf.getDisplayedChild() == 1) {
-                    if(two_name.getText().toString().equals("") || two_relationship.getText().toString().equals("") || two_birth.getText().toString().equals("") || two_location.getText().toString().equals("") || two_years.getText().toString().equals("") || two_other.getText().toString().equals("")) {
-                        Toast.makeText(PreCameraAboutActivity.this,
-                                "Please fill out all fields.",
-                                Toast.LENGTH_LONG).show();
-                    }
-                    else {
-                        SharedPreferences.Editor editor = sharedpreferences.edit();
+                if(about_vf.getDisplayedChild() == 2) {
+                    SharedPreferences.Editor editor = sharedpreferences.edit();
 
-                        editor.putString("about_one_name", one_name.getText().toString());
-                        editor.putString("about_one_birth", one_birth.getText().toString());
-                        editor.putString("about_one_live", one_live.getText().toString());
-                        editor.putString("about_one_hometown", one_hometown.getText().toString());
-                        editor.putString("about_one_years", one_years.getText().toString());
-                        editor.putString("about_one_reach", one_reach.getText().toString());
+                    editor.putString("about_one_name", one_name.getText().toString());
+                    editor.putString("about_one_birth", one_birth.getText().toString());
+                    editor.putString("about_one_live", one_live.getText().toString());
+                    editor.putString("about_one_hometown", one_hometown.getText().toString());
+                    editor.putString("about_one_years", one_years.getText().toString());
+                    editor.putString("about_one_reach", one_reach.getText().toString());
 
-                        editor.putString("about_two_name", two_name.getText().toString());
-                        editor.putString("about_two_relationship", two_relationship.getText().toString());
-                        editor.putString("about_two_birth", two_birth.getText().toString());
-                        editor.putString("about_two_location", two_location.getText().toString());
-                        editor.putString("about_two_years", two_years.getText().toString());
-                        editor.putString("about_two_other", two_other.getText().toString());
+                    editor.putString("about_two_name", two_name.getText().toString());
+                    editor.putString("about_two_relationship", two_relationship.getText().toString());
+                    editor.putString("about_two_birth", two_birth.getText().toString());
+                    editor.putString("about_two_location", two_location.getText().toString());
+                    editor.putString("about_two_years", two_years.getText().toString());
+                    editor.putString("about_two_other", two_other.getText().toString());
 
-                        editor.commit();
+                    editor.commit();
 
-                        AlertDialog.Builder builder = new AlertDialog.Builder(PreCameraAboutActivity.this);
-                        builder.setMessage("Please leave your loved one a short message.\n\nNote to volunteer: Press continue to go to camera and hold your phone horizontally when recording!")
-                                .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog, int id) {
-                                        requestPermissions();
+                    AlertDialog.Builder builder = new AlertDialog.Builder(PreCameraAboutActivity.this);
+                    builder.setMessage("Please leave your loved one a short message.\n\nNote to volunteer: Press continue to go to camera then hold your phone horizontally, hit record, and reconfirm permission on camera. 'Do we have your permission to record and share this video?' Once they say 'yes,' invite them to look at the camera, and speak to their loved one as if they were there.")
+                            .setPositiveButton("Continue", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    requestPermissions();
 //                                        finish();
-                                    }
-                                })
-                                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog, int id) {
-                                        // User cancelled the dialog
-                                    }
-                                });
-                        // Create the AlertDialog object and return it
-                        builder.create();
-                        builder.show();
-                    }
+                                }
+                            })
+                            .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    // User cancelled the dialog
+                                }
+                            });
+                    // Create the AlertDialog object and return it
+                    builder.create();
+                    builder.show();
                 }
                 else {
-                    if(one_name.getText().toString().equals("") || one_birth.getText().toString().equals("") || one_live.getText().toString().equals("") || one_hometown.getText().toString().equals("") || one_reach.getText().toString().equals("") || one_years.getText().toString().equals("")) {
-                        Toast.makeText(PreCameraAboutActivity.this,
-                                "Please fill out all fields.",
-                                Toast.LENGTH_LONG).show();
+                    if(about_vf.getDisplayedChild() == 0) {
+                        if (one_name.getText().toString().equals("") || one_birth.getText().toString().equals("") || one_live.getText().toString().equals("") || one_hometown.getText().toString().equals("") || one_reach.getText().toString().equals("") || one_years.getText().toString().equals("")) {
+                            Toast.makeText(PreCameraAboutActivity.this,
+                                    "Please fill out all fields.",
+                                    Toast.LENGTH_LONG).show();
+                        } else {
+                            about_vf.setInAnimation(v.getContext(), R.anim.slide_in_from_right);
+                            about_vf.setOutAnimation(v.getContext(), R.anim.slide_out_to_left);
+                            direction.setText("To");
+                            who.setText("Loved one");
+                            about_vf.showNext();
+                        }
                     }
                     else {
-                        navtitle.setText("About Their Loved One");
-                        about_vf.setInAnimation(v.getContext(), R.anim.slide_in_from_right);
-                        about_vf.setOutAnimation(v.getContext(), R.anim.slide_out_to_left);
-                        about_vf.showNext();
+                        if(two_name.getText().toString().equals("") || two_relationship.getText().toString().equals("") || two_birth.getText().toString().equals("") || two_location.getText().toString().equals("") || two_years.getText().toString().equals("") || two_other.getText().toString().equals("")) {
+                            Toast.makeText(PreCameraAboutActivity.this,
+                                    "Please fill out all fields.",
+                                    Toast.LENGTH_LONG).show();
+                        } else {
+                            about_vf.setInAnimation(v.getContext(), R.anim.slide_in_from_right);
+                            about_vf.setOutAnimation(v.getContext(), R.anim.slide_out_to_left);
+                            direction.setText("Review");
+                            who.setText("Contact info");
+                            next.setText("Record");
+                            review_one_name.setText("From: " + one_name.getText().toString());
+                            review_one_birth.setText("Date of birth: " + one_birth.getText().toString());
+                            review_one_location.setText("Location: " + one_live.getText().toString());
+                            review_one_hometown.setText("Hometown: " + one_hometown.getText().toString());
+                            review_one_years.setText("Years away from home: " + one_years.getText().toString());
+                            review_one_contact.setText("Best way to reach you: " + one_reach.getText().toString());
+                            review_two_name.setText("To: " + two_name.getText().toString());
+                            review_two_relationship.setText("Relationship: " + two_relationship.getText().toString());
+                            review_two_birth.setText("Age: " + two_birth.getText().toString());
+                            review_two_location.setText("Location: " + two_location.getText().toString());
+                            review_two_years.setText("Years apart: " + two_years.getText().toString());
+                            review_two_other.setText("Other info: " + two_other.getText().toString());
+                            about_vf.showNext();
+                        }
                     }
                 }
             }
         });
-        navtitle = (TextView) findViewById(R.id.navtitle);
 
         animFadeOut = AnimationUtils.loadAnimation(getApplicationContext(), android.R.anim.fade_out);
         animFadeIn = AnimationUtils.loadAnimation(getApplicationContext(), android.R.anim.fade_in);
@@ -173,13 +251,6 @@ public class PreCameraAboutActivity extends Activity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-//                Log.v("PRECAMERA", "Charsequence: " + s);
-//                Log.v("PRECAMERA", "Start: " + start);
-//                Log.v("PRECAMERA", "BEFORE: " + before);
-//                Log.v("PRECAMERA", "Count: " + count);
-//                Toast.makeText(PreCameraAboutActivity.this,
-//                        "Charsequence: " + s + "\nStart: " + start + "\n Before: " + before + "\nCount" + count,
-//                        Toast.LENGTH_LONG).show();
                 if(one_name.getText().toString().equals("")) {
                     one_name_label.setAnimation(animFadeOut);
                     one_name_label.getAnimation().start();
@@ -561,8 +632,6 @@ public class PreCameraAboutActivity extends Activity {
             editor.commit();
             Toast.makeText(this, "Video saved to Camera album", Toast.LENGTH_LONG).show();
             startActivity(new Intent(this, ExportActivity.class));
-//            finish();
-//            mVideoView.setVideoURI(videoUri);
         }
     }
 
@@ -584,24 +653,19 @@ public class PreCameraAboutActivity extends Activity {
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
                                            @NonNull int[] grantResults) {
-//        Log.d(TAG, "onRequestPermissionsResult");
         Boolean permissionsGranted = true;
         if (requestCode == REQUEST_VIDEO_CAPTURE) {
             if (grantResults.length == VIDEO_PERMISSIONS.length) {
                 for (int result : grantResults) {
                     if (result != PackageManager.PERMISSION_GRANTED) {
-//                            ErrorDialog.newInstance(getString(R.string.permission_request))
-//                                    .show(getChildFragmentManager(), FRAGMENT_DIALOG);
                         Toast.makeText(this, "Please grant all permissions to record.", Toast.LENGTH_LONG).show();
                         permissionsGranted = false;
-//                        requestPermissions();
                         break;
                     }
                 }
             } else {
                 Toast.makeText(this, "Please grant all permissions to record.", Toast.LENGTH_LONG).show();
                 permissionsGranted = false;
-//                requestPermissions();
             }
             if(permissionsGranted)
                 dispatchTakeVideoIntent();

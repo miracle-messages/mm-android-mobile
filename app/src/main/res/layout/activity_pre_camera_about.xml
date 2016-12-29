@@ -6,356 +6,542 @@
     android:layout_height="match_parent"
     tools:context="com.miraclemessages.PreCameraAboutActivity"
     android:orientation="vertical"
-    android:weightSum="1">
+    android:background="#FFFFFF"
+    >
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:id="@+id/navbar"
-        android:padding="10dp"
-        android:layout_weight="0.1">
+        android:paddingRight="5dp"
+        android:paddingTop="15dp"
+        android:paddingLeft="10dp"
+        android:layout_height="wrap_content"
+        >
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/back"
-            android:text="Back"
+        <ImageView
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             android:layout_alignParentLeft="true"
-            android:textColor="#93E2FF"
-            android:textSize="17dp"
+            android:background="@drawable/left_arrow2"
+            android:id="@+id/back"
             />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/next"
-            android:text="Next"
+        <ImageView
+            android:layout_width="50dp"
+            android:background="@drawable/mmicon3"
+            android:layout_height="55dp"
             android:layout_alignParentRight="true"
-            android:textColor="#93E2FF"
-            android:textSize="17dp"
+            android:id="@+id/icon"
             />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/navtitle"
-            android:text="About the Houseless Person"
-            android:layout_gravity="center"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:textSize="18dp"/>
 
     </RelativeLayout>
 
-    <ViewFlipper
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.9"
-        android:id="@+id/precamera_about_vf">
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        android:padding="20dp"
+        android:weightSum="1">
 
-        <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            >
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-            <LinearLayout
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="From"
+                android:id="@+id/direction"
+                android:textStyle="bold"
+                android:textSize="30dp"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Homeless individual"
+                android:id="@+id/who"
+                android:textSize="20dp"
+                android:layout_marginBottom="20dp"/>
+
+        </LinearLayout>
+
+        <ViewFlipper
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.25"
+            android:id="@+id/precamera_about_vf">
+
+            <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/about_one"
-                android:orientation="vertical">
+                android:gravity="center"
+                >
 
-                <TextView
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/about_one_name_label"
-                    android:text="What is your full name?"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginTop="20dp"
-                    android:visibility="invisible"
-                    android:textColor="#FE3D80"
-                    />
+                    android:id="@+id/about_one"
+                    android:orientation="vertical">
 
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/about_one_name"
-                    android:backgroundTint="@android:color/white"
-                    android:inputType="textNoSuggestions|textVisiblePassword"
-                    android:hint="What is your full name?"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/about_one_name_label"
+                        android:text="Full name"
+                        android:visibility="invisible"
+                        android:textColor="#C3C3C3"
+                        />
 
-                    />
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/about_one_name"
+                        android:inputType="textNoSuggestions|textVisiblePassword"
+                        android:hint="Full name"
+                        android:background="@drawable/edittext_bg"
+                        android:textColorHint="#C3C3C3"
+                        android:textColor="@android:color/black"
+                        android:paddingBottom="5dp"
+                        />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/about_one_birth_label"
-                    android:text="What is your date of birth? (YYYY.MM.DD)"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginTop="20dp"
-                    android:visibility="invisible"
-                    android:textColor="#FE3D80"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/about_one_birth_label"
+                        android:text="Date of birth (YYYY.MM.DD)"
+                        android:visibility="invisible"
+                        android:textColor="#C3C3C3"
+                        android:paddingTop="5dp"
+                        />
 
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/about_one_birth"
-                    android:backgroundTint="@android:color/white"
-                    android:inputType="date"
-                    android:hint="What is your date of birth?"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    />
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/about_one_birth"
+                        android:inputType="date"
+                        android:hint="Date of birth (YYYY.MM.DD)"
+                        android:background="@drawable/edittext_bg"
+                        android:textColorHint="#C3C3C3"
+                        android:textColor="@android:color/black"
+                        android:paddingBottom="5dp"
+                        />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/about_one_live_label"
-                    android:text="Where do you currently live? (City, State)"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginTop="20dp"
-                    android:visibility="invisible"
-                    android:textColor="#FE3D80"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/about_one_live_label"
+                        android:text="Location (City, State)"
+                        android:visibility="invisible"
+                        android:textColor="#C3C3C3"
+                        android:paddingTop="5dp"
+                        />
 
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/about_one_live"
-                    android:backgroundTint="@android:color/white"
-                    android:inputType="textNoSuggestions|textVisiblePassword" 
-                    android:hint="Where do you currently live?"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    />
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/about_one_live"
+                        android:inputType="textNoSuggestions|textVisiblePassword"
+                        android:hint="Location (City, State)"
+                        android:background="@drawable/edittext_bg"
+                        android:textColorHint="#C3C3C3"
+                        android:textColor="@android:color/black"
+                        android:paddingBottom="5dp"
+                        />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/about_one_hometown_label"
-                    android:text="Where is your hometown?"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginTop="20dp"
-                    android:visibility="invisible"
-                    android:textColor="#FE3D80"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/about_one_hometown_label"
+                        android:text="Hometown"
+                        android:visibility="invisible"
+                        android:textColor="#C3C3C3"
+                        android:paddingTop="5dp"
+                        />
 
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/about_one_hometown"
-                    android:backgroundTint="@android:color/white"
-                    android:inputType="textNoSuggestions|textVisiblePassword" 
-                    android:hint="Where is your hometown?"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    />
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/about_one_hometown"
+                        android:inputType="textNoSuggestions|textVisiblePassword"
+                        android:hint="Hometown"
+                        android:background="@drawable/edittext_bg"
+                        android:textColorHint="#C3C3C3"
+                        android:textColor="@android:color/black"
+                        android:paddingBottom="5dp"
+                        />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/about_one_years_label"
-                    android:text="How many years have you been homeless?"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginTop="20dp"
-                    android:visibility="invisible"
-                    android:textColor="#FE3D80"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/about_one_years_label"
+                        android:text="Years on-and-off the street"
+                        android:visibility="invisible"
+                        android:textColor="#C3C3C3"
+                        android:paddingTop="5dp"
+                        />
 
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/about_one_years"
-                    android:backgroundTint="@android:color/white"
-                    android:inputType="number"
-                    android:hint="How many years have you been homeless?"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    />
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/about_one_years"
+                        android:inputType="number"
+                        android:hint="Years on-and-off the street"
+                        android:background="@drawable/edittext_bg"
+                        android:textColorHint="#C3C3C3"
+                        android:textColor="@android:color/black"
+                        android:paddingBottom="5dp"
+                        />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/about_one_reach_label"
-                    android:text="What is the best way for us to reach you again?"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginTop="20dp"
-                    android:visibility="invisible"
-                    android:textColor="#FE3D80"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/about_one_reach_label"
+                        android:text="Contact (phone, email, partner org.)"
+                        android:visibility="invisible"
+                        android:textColor="#C3C3C3"
+                        android:paddingTop="5dp"
+                        />
 
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/about_one_reach"
-                    android:backgroundTint="@android:color/white"
-                    android:inputType="textMultiLine"
-                    android:hint="What is the best way for us to reach you again (phone number, email address, friend's number, your address, cross streets where you sleep, shelter, etc.) And just so you know, it is not our intention to share this information publicly, only among our volunteers."
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:scrollHorizontally="false"
-                    android:gravity="top"
-                    />
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/about_one_reach"
+                        android:inputType="textNoSuggestions|textVisiblePassword"
+                        android:hint="Contact (phone, email, partner org.)"
+                        android:background="@drawable/edittext_bg"
+                        android:textColorHint="#C3C3C3"
+                        android:textColor="@android:color/black"
+                        android:paddingBottom="5dp"
+                        />
 
-            </LinearLayout>
+                </LinearLayout>
 
-        </ScrollView>
+            </ScrollView>
 
-        <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            >
-
-            <LinearLayout
+            <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/about_two"
-                android:orientation="vertical">
+                android:gravity="center"
+                >
 
-                <TextView
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/about_two_name_label"
-                    android:text="What is their full name?"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginTop="20dp"
-                    android:visibility="invisible"
-                    android:textColor="#FE3D80"/>
+                    android:id="@+id/about_two"
+                    android:orientation="vertical">
 
-                <EditText
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/about_two_name_label"
+                        android:text="Full name"
+                        android:visibility="invisible"
+                        android:textColor="#C3C3C3"
+                        />
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/about_two_name"
+                        android:inputType="textNoSuggestions|textVisiblePassword"
+                        android:hint="Full name"
+                        android:background="@drawable/edittext_bg"
+                        android:textColorHint="#C3C3C3"
+                        android:textColor="@android:color/black"
+                        android:paddingBottom="5dp"
+                        />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/about_two_relationship_label"
+                        android:text="Relationship"
+                        android:visibility="invisible"
+                        android:textColor="#C3C3C3"
+                        android:paddingTop="5dp"
+                        />
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/about_two_relationship"
+                        android:inputType="textNoSuggestions|textVisiblePassword"
+                        android:hint="Relationship"
+                        android:background="@drawable/edittext_bg"
+                        android:textColorHint="#C3C3C3"
+                        android:textColor="@android:color/black"
+                        android:paddingBottom="5dp"
+                        />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/about_two_birth_label"
+                        android:text="Age"
+                        android:visibility="invisible"
+                        android:textColor="#C3C3C3"
+                        android:paddingTop="5dp"
+                        />
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/about_two_birth"
+                        android:inputType="textNoSuggestions|number"
+                        android:hint="Age"
+                        android:background="@drawable/edittext_bg"
+                        android:textColorHint="#C3C3C3"
+                        android:textColor="@android:color/black"
+                        android:paddingBottom="5dp"
+                        />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/about_two_location_label"
+                        android:text="Location (City, State)"
+                        android:visibility="invisible"
+                        android:textColor="#C3C3C3"
+                        android:paddingTop="5dp"
+                        />
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/about_two_location"
+                        android:inputType="textNoSuggestions|textVisiblePassword"
+                        android:hint="Location (City, State)"
+                        android:background="@drawable/edittext_bg"
+                        android:textColorHint="#C3C3C3"
+                        android:textColor="@android:color/black"
+                        android:paddingBottom="5dp"
+                        />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/about_two_years_label"
+                        android:text="Years disconnected"
+                        android:visibility="invisible"
+                        android:textColor="#C3C3C3"
+                        android:paddingTop="5dp"
+                        />
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/about_two_years"
+                        android:inputType="textNoSuggestions|number"
+                        android:hint="Years disconnected"
+                        android:background="@drawable/edittext_bg"
+                        android:textColorHint="#C3C3C3"
+                        android:textColor="@android:color/black"
+                        android:paddingBottom="5dp"
+                        />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/about_two_other_label"
+                        android:text="Other info"
+                        android:visibility="invisible"
+                        android:textColor="#C3C3C3"
+                        android:paddingTop="5dp"
+                        />
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/about_two_other"
+                        android:inputType="textNoSuggestions|textVisiblePassword"
+                        android:hint="Other info"
+                        android:background="@drawable/edittext_bg"
+                        android:textColorHint="#C3C3C3"
+                        android:textColor="@android:color/black"
+                        android:paddingBottom="5dp"
+                        />
+
+                </LinearLayout>
+
+            </ScrollView>
+
+            <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                >
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/about_two_name"
-                    android:backgroundTint="@android:color/white"
-                    android:inputType="textNoSuggestions|textVisiblePassword" 
-                    android:hint="What is their full name?"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    />
+                    android:id="@+id/about_review"
+                    android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/about_two_relationship_label"
-                    android:text="What is their relationship to you?"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginTop="20dp"
-                    android:visibility="invisible"
-                    android:textColor="#FE3D80"/>
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        >
 
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/about_two_relationship"
-                    android:backgroundTint="@android:color/white"
-                    android:inputType="textNoSuggestions|textVisiblePassword"
-                    android:hint="What is their relationship to you?"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    />
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/review_one_name"
+                            android:text="From"
+                            android:layout_alignParentLeft="true"
+                            android:textSize="22dp"
+                            />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/about_two_birth_label"
-                    android:text="What is their date of birth or approximate age?"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginTop="20dp"
-                    android:visibility="invisible"
-                    android:textColor="#FE3D80"/>
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:id="@+id/edit_from"
+                            android:background="@drawable/ic_edit"
+                            android:layout_alignParentRight="true"/>
 
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/about_two_birth"
-                    android:backgroundTint="@android:color/white"
-                    android:inputType="textNoSuggestions|textVisiblePassword"
-                    android:hint="What is their date of birth or \napproximate age?"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    />
+                    </RelativeLayout>
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/about_two_location_label"
-                    android:text="Where is their current or last known location?"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginTop="20dp"
-                    android:visibility="invisible"
-                    android:textColor="#FE3D80"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/review_one_birth"
+                        android:text="Relationship"
+                        android:paddingTop="2dp"
+                        android:textSize="18dp"
+                        />
 
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/about_two_location"
-                    android:backgroundTint="@android:color/white"
-                    android:inputType="textNoSuggestions|textVisiblePassword"
-                    android:hint="Where is their current or last known \nlocation?"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/review_one_location"
+                        android:text="Age"
+                        android:textSize="18dp"
+                        />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/about_two_years_label"
-                    android:text="How many years has it been since you last saw them?"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginTop="20dp"
-                    android:visibility="invisible"
-                    android:textColor="#FE3D80"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/review_one_hometown"
+                        android:text="Location (City, State)"
+                        android:textSize="18dp"
+                        />
 
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/about_two_years"
-                    android:backgroundTint="@android:color/white"
-                    android:inputType="textNoSuggestions|number"
-                    android:hint="How many years has it been since you \nlast saw them?"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/review_one_years"
+                        android:text="Years disconnected"
+                        android:textSize="18dp"
+                        />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/about_two_other_label"
-                    android:text="Any other information you think might be helpful?"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginTop="20dp"
-                    android:visibility="invisible"
-                    android:textColor="#FE3D80"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/review_one_contact"
+                        android:text="Other info"
+                        android:textSize="18dp"
+                        android:layout_marginBottom="10dp"
+                        />
 
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/about_two_other"
-                    android:backgroundTint="@android:color/white"
-                    android:inputType="textMultiLine"
-                    android:hint="Any other information you think might be helpful? (names of other relatives, previous addresses, reason for being disconnected...)"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:scrollHorizontally="false"
-                    android:gravity="top"
-                    />
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@android:color/darker_gray"
+                        />
 
-            </LinearLayout>
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp">
 
-        </ScrollView>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/review_two_name"
+                            android:text="To"
+                            android:textSize="22dp"
+                            />
 
-    </ViewFlipper>
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:id="@+id/edit_to"
+                            android:background="@drawable/ic_edit"
+                            android:layout_alignParentRight="true"/>
+
+                    </RelativeLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/review_two_relationship"
+                        android:text="Relationship"
+                        android:paddingTop="2dp"
+                        android:textSize="18dp"
+                        />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/review_two_birth"
+                        android:text="Age"
+                        android:textSize="18dp"
+                        />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/review_two_location"
+                        android:text="Location (City, State)"
+                        android:textSize="18dp"
+                        />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/review_two_years"
+                        android:text="Years disconnected"
+                        android:textSize="18dp"
+                        />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/review_two_other"
+                        android:text="Other info"
+                        android:textSize="18dp"
+                        />
+
+                </LinearLayout>
+
+            </ScrollView>
+
+        </ViewFlipper>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="0.75"
+            >
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/next"
+                android:text="Next"
+                android:textColor="@android:color/black"
+                android:background="@drawable/button_selector"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:gravity="center"
+                />
+
+        </RelativeLayout>
+
+    </LinearLayout>
 
 
 </LinearLayout>
