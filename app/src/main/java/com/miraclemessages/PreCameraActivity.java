@@ -20,10 +20,11 @@ import android.widget.ViewFlipper;
 public class PreCameraActivity extends Activity {
 
     private ViewFlipper viewFlipper, buttonViewFlipper;
-    TextView about, link, faq, resources, contact, my_profile, changeUser;
+    TextView about, link, faq, resources, contact, my_profile, script, changeUser;
     TextView internalfb1, internalfb2, internalslack, ext_fb, ext_donation, ext_yt, ext_twitter, ext_ig, docs_hb, docs_int, docs_ext, docs_roles;
+    TextView script_hello;
     EditText prof_name, prof_phone, prof_email, prof_loc;
-    Button save_prof;
+    Button save_prof, script_start, script_next_xx, script_next_xxx;
     SharedPreferences sharedpreferences;
     ImageView smallIcon;
     LinearLayout pcBack;
@@ -43,6 +44,34 @@ public class PreCameraActivity extends Activity {
         sharedpreferences = getSharedPreferences(myPreferences, Context.MODE_PRIVATE);
 
         pcBack = (LinearLayout) findViewById(R.id.precamera_background);
+
+        script_hello = (TextView) findViewById(R.id.script_hello);
+        script_start = (Button) findViewById(R.id.script_start);
+        script_start.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                viewFlipper.setInAnimation(v.getContext(), R.anim.slide_in_from_right);
+                viewFlipper.setOutAnimation(v.getContext(), R.anim.slide_out_to_left);
+                viewFlipper.showNext();
+            }
+        });
+        script_next_xx = (Button) findViewById(R.id.script_next_xx);
+        script_next_xx.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                viewFlipper.setInAnimation(v.getContext(), R.anim.slide_in_from_right);
+                viewFlipper.setOutAnimation(v.getContext(), R.anim.slide_out_to_left);
+                viewFlipper.showNext();
+            }
+        });
+        script_next_xxx = (Button) findViewById(R.id.script_next_xxx);
+        script_next_xxx.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(PreCameraActivity.this, PreCameraAboutActivity.class));
+                finish();
+            }
+        });
 
         prof_name = (EditText) findViewById(R.id.profile_name);
         prof_phone = (EditText) findViewById(R.id.profile_number);
@@ -224,14 +253,21 @@ public class PreCameraActivity extends Activity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(viewFlipper.getDisplayedChild() == 1 || //if about, resources, or my profile go to menu
+                if(viewFlipper.getDisplayedChild() == 1 || //if about, resources, script, or my profile go to menu
                         viewFlipper.getDisplayedChild() == 2 ||
-                        viewFlipper.getDisplayedChild() == 3) {
+                        viewFlipper.getDisplayedChild() == 3 ||
+                        viewFlipper.getDisplayedChild() == 4) {
                     viewFlipper.setInAnimation(v.getContext(), R.anim.slide_in_from_left);
                     viewFlipper.setOutAnimation(v.getContext(), R.anim.slide_out_to_right);
                     viewFlipper.setDisplayedChild(0);
                     back.setVisibility(View.INVISIBLE);
                     icon.setVisibility(View.INVISIBLE);
+                }
+                else if(viewFlipper.getDisplayedChild() == 5 ||
+                        viewFlipper.getDisplayedChild() == 6) {
+                    viewFlipper.setInAnimation(v.getContext(), R.anim.slide_in_from_left);
+                    viewFlipper.setOutAnimation(v.getContext(), R.anim.slide_out_to_right);
+                    viewFlipper.showPrevious();
                 }
             }
         });
@@ -248,6 +284,20 @@ public class PreCameraActivity extends Activity {
             @Override
             public void onClick(View v) {
                 openLink("https://miraclemessages.org/faq");
+            }
+        });
+        script = (TextView) findViewById(R.id.script);
+        script.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                viewFlipper.setInAnimation(v.getContext(), R.anim.slide_in_from_right);
+                viewFlipper.setOutAnimation(v.getContext(), R.anim.slide_out_to_left);
+                String name = sharedpreferences.getString(Name, null);
+                String[] name_array = name.split(" ");
+                script_hello.setText("Hi " + name_array[0] + ",\nReady to record a message?");
+                viewFlipper.setDisplayedChild(4); //4 is script
+                back.setVisibility(View.VISIBLE);
+                icon.setVisibility(View.VISIBLE);
             }
         });
         resources = (TextView) findViewById(R.id.resources);

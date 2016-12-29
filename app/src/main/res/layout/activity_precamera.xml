@@ -487,18 +487,6 @@
                 android:layout_gravity="center_horizontal"
                 >
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Log out"
-                    android:id="@+id/logout"
-                    android:layout_alignParentBottom="true"
-                    android:gravity="center"
-                    android:textSize="20dp"
-                    android:paddingBottom="10dp"
-                    android:paddingTop="10dp"
-                    />
-
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -513,6 +501,189 @@
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="true"
                     android:layout_centerHorizontal="true" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/precamera_script_x"
+            android:padding="20dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hi"
+                android:id="@+id/script_hello"
+                android:textStyle="bold"
+                android:textSize="30dp"
+                android:layout_marginBottom="30dp"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:layout_gravity="center_horizontal"
+                >
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/script_start"
+                    android:text="Let's get started"
+                    android:textColor="@android:color/black"
+                    android:background="@drawable/button_selector"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:gravity="center"
+                    />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/precamera_script_xx"
+            android:padding="20dp"
+            android:orientation="vertical"
+            android:weightSum="1">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:orientation="vertical"
+                android:layout_weight="0.2">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="How to begin"
+                    android:id="@+id/script_begin_xx"
+                    android:textStyle="bold"
+                    android:textSize="30dp"
+                    android:layout_marginBottom="3dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="A script to guide you"
+                    android:id="@+id/script_begin_subtext_xx"
+                    android:textSize="20dp"
+                    android:layout_marginBottom="25dp"/>
+
+                <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:layout_width="match_parent"
+                    android:layout_height="fill_parent"
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="1. Ask\n&quot;Do you have any family or friends that you would like to reunite with, even if you don't know how to reach them?&quot;"
+                        android:id="@+id/script_begin_ask"
+                        android:textSize="25dp"
+                        />
+
+                </ScrollView>
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="0.8"
+                >
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/script_next_xx"
+                    android:text="Next"
+                    android:textColor="@android:color/black"
+                    android:background="@drawable/button_selector"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:gravity="center"
+                    />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/precamera_script_xxx"
+            android:padding="20dp"
+            android:orientation="vertical"
+            android:weightSum="1">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:orientation="vertical"
+                android:layout_weight="0.2">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="How to begin"
+                    android:id="@+id/script_begin_xxx"
+                    android:textStyle="bold"
+                    android:textSize="30dp"
+                    android:layout_marginBottom="3dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="A script to guide you"
+                    android:id="@+id/script_begin_subtext_xxx"
+                    android:textSize="20dp"
+                    android:layout_marginBottom="25dp"/>
+
+                <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:layout_width="match_parent"
+                    android:layout_height="fill_parent"
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="2. Inform\n&quot;As a volunteer with Miracle Messages, I would be happy to help you record a short video message to your loved one if you'd like. Before I do, I just want to make sure we are on the same page with expectations.\n\nFirst, your Miracle Message video will be made public and may be shared widely to help volunteers try to locate your loved one(s).\n\nSecond, while 90% of loved ones have responded positively to their Miracle Messages, we cannot know for sure how your loved one(s) will respond, or if they will respond, or how long it may take them to respond. \n\nAnd third, while we have many volunteers trying to locate loved ones, we may not be able to find or reach your loved one(s). The only guarantee here is that this is an opportunity for you to record a short video message to someone you love, to say whatever is on your heart that you'd like to say, and that we will try our best to deliver it and help facilitate any response or reunion that results.\n\nSound good?&quot;"
+                        android:id="@+id/script_begin_inform"
+                        android:textSize="25dp"
+                        />
+
+                </ScrollView>
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="0.8"
+                >
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/script_next_xxx"
+                    android:text="Next"
+                    android:textColor="@android:color/black"
+                    android:background="@drawable/button_selector"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:gravity="center"
+                    />
 
             </RelativeLayout>
 
