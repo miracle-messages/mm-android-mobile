@@ -20,6 +20,10 @@
         "source": "C:\\Users\\James Wu\\AndroidStudioProjects\\MiracleMessagesApp\\app\\src\\main\\res\\drawable-hdpi\\cancel.png"
     },
     {
+        "merged": "C:\\Users\\James Wu\\AndroidStudioProjects\\MiracleMessagesApp\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi\\mmicon3.png",
+        "source": "C:\\Users\\James Wu\\AndroidStudioProjects\\MiracleMessagesApp\\app\\src\\main\\res\\drawable-hdpi\\mmicon3.png"
+    },
+    {
         "merged": "C:\\Users\\James Wu\\AndroidStudioProjects\\MiracleMessagesApp\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi\\mmicon2.png",
         "source": "C:\\Users\\James Wu\\AndroidStudioProjects\\MiracleMessagesApp\\app\\src\\main\\res\\drawable-hdpi\\mmicon2.png"
     },

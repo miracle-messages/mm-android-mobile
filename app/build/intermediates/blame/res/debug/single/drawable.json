@@ -4,6 +4,10 @@
         "source": "C:\\Users\\James Wu\\AndroidStudioProjects\\MiracleMessagesApp\\app\\src\\main\\res\\drawable\\precamera_icon.png"
     },
     {
+        "merged": "C:\\Users\\James Wu\\AndroidStudioProjects\\MiracleMessagesApp\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\right_arrow2.png",
+        "source": "C:\\Users\\James Wu\\AndroidStudioProjects\\MiracleMessagesApp\\app\\src\\main\\res\\drawable\\right_arrow2.png"
+    },
+    {
         "merged": "C:\\Users\\James Wu\\AndroidStudioProjects\\MiracleMessagesApp\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\user_default.jpg",
         "source": "C:\\Users\\James Wu\\AndroidStudioProjects\\MiracleMessagesApp\\app\\src\\main\\res\\drawable\\user_default.jpg"
     },
@@ -54,6 +58,10 @@
     {
         "merged": "C:\\Users\\James Wu\\AndroidStudioProjects\\MiracleMessagesApp\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_btn_default_mtrl_shape.xml",
         "source": "C:\\Users\\James Wu\\AndroidStudioProjects\\MiracleMessagesApp\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.1.1\\res\\drawable\\abc_btn_default_mtrl_shape.xml"
+    },
+    {
+        "merged": "C:\\Users\\James Wu\\AndroidStudioProjects\\MiracleMessagesApp\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\left_arrow2.png",
+        "source": "C:\\Users\\James Wu\\AndroidStudioProjects\\MiracleMessagesApp\\app\\src\\main\\res\\drawable\\left_arrow2.png"
     },
     {
         "merged": "C:\\Users\\James Wu\\AndroidStudioProjects\\MiracleMessagesApp\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_textfield_search_material.xml",
@@ -168,6 +176,10 @@
         "source": "C:\\Users\\James Wu\\AndroidStudioProjects\\MiracleMessagesApp\\app\\src\\main\\res\\drawable\\border.xml"
     },
     {
+        "merged": "C:\\Users\\James Wu\\AndroidStudioProjects\\MiracleMessagesApp\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\edittext_bg.xml",
+        "source": "C:\\Users\\James Wu\\AndroidStudioProjects\\MiracleMessagesApp\\app\\src\\main\\res\\drawable\\edittext_bg.xml"
+    },
+    {
         "merged": "C:\\Users\\James Wu\\AndroidStudioProjects\\MiracleMessagesApp\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\common_plus_signin_btn_text_dark.xml",
         "source": "C:\\Users\\James Wu\\AndroidStudioProjects\\MiracleMessagesApp\\app\\build\\intermediates\\exploded-aar\\com.google.android.gms\\play-services-base\\9.0.0\\res\\drawable\\common_plus_signin_btn_text_dark.xml"
     },
@@ -178,6 +190,10 @@
     {
         "merged": "C:\\Users\\James Wu\\AndroidStudioProjects\\MiracleMessagesApp\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_seekbar_track_material.xml",
         "source": "C:\\Users\\James Wu\\AndroidStudioProjects\\MiracleMessagesApp\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.1.1\\res\\drawable\\abc_seekbar_track_material.xml"
+    },
+    {
+        "merged": "C:\\Users\\James Wu\\AndroidStudioProjects\\MiracleMessagesApp\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\ic_edit.png",
+        "source": "C:\\Users\\James Wu\\AndroidStudioProjects\\MiracleMessagesApp\\app\\src\\main\\res\\drawable\\ic_edit.png"
     },
     {
         "merged": "C:\\Users\\James Wu\\AndroidStudioProjects\\MiracleMessagesApp\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\is_recording_filling.xml",
