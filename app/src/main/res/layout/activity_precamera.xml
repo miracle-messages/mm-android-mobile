@@ -4,32 +4,47 @@
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.miraclemessages.PreCameraActivity"
     android:gravity="center"
     android:weightSum="1"
-    android:background="#93E2FF"
+    android:background="#FFFFFF"
     android:id="@+id/precamera_background">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Before Recording"
-        android:id="@+id/bf_label"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:textSize="35dp"
-        android:visibility="invisible"
-        />
+        android:id="@+id/navbar"
+        android:layout_weight="0.1"
+        android:paddingRight="5dp"
+        android:paddingTop="15dp"
+        android:paddingLeft="10dp"
+        >
+        
+        <ImageView
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_alignParentLeft="true"
+            android:background="@drawable/left_arrow2"
+            android:id="@+id/back"
+            android:visibility="invisible"
+            />
+
+        <ImageView
+            android:layout_width="50dp"
+            android:background="@drawable/mmicon3"
+            android:layout_height="55dp"
+            android:layout_alignParentRight="true"
+            android:id="@+id/icon"
+            android:visibility="invisible"/>
+
+    </RelativeLayout>
 
     <ViewFlipper
         android:id="@+id/viewflipper"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_weight=".20">
+        android:layout_height="match_parent"
+        android:layout_weight="0.9"
+        >
 
         <LinearLayout
             android:id="@+id/precamera_home"
@@ -37,344 +52,642 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:weightSum="1"
-            android:gravity="center"
-            android:layout_marginBottom="20dp"
+            android:padding="20dp"
             >
 
-            <ImageView
-                android:id="@+id/small_icon"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="My profile"
+                android:id="@+id/my_profile"
+                android:textSize="30dp"
+                android:paddingBottom="10dp"
                 android:paddingTop="10dp"
-                android:adjustViewBounds="true"
-                android:src="@drawable/mmicon"
-                android:layout_alignParentBottom="true"
-                android:visibility="gone"
+                android:textStyle="bold"
                 />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="About"
+                android:id="@+id/about"
+                android:textSize="30dp"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:textStyle="bold"
+                />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Resources"
+                android:id="@+id/resources"
+                android:textSize="30dp"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:textStyle="bold"
+                />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="FAQ"
+                android:id="@+id/faq"
+                android:textSize="30dp"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:textStyle="bold"
+                />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Script"
+                android:id="@+id/script"
+                android:textSize="30dp"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:textStyle="bold"
+                />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Contact"
+                android:id="@+id/contact"
+                android:textSize="30dp"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:textStyle="bold"
+                />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray"/>
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_gravity="center_horizontal"
+                >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Log out"
+                    android:id="@+id/logout"
+                    android:layout_alignParentBottom="true"
+                    android:gravity="center"
+                    android:textSize="20dp"
+                    android:paddingBottom="10dp"
+                    android:paddingTop="10dp"
+                    />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/precamera_about"
+            android:padding="20dp"
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/home_label"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true"
-                android:textSize="25dp"
-                />
+                android:text="About"
+                android:textStyle="bold"
+                android:textSize="30dp"
+                android:layout_marginBottom="30dp"/>
 
-            <ImageView
-                android:id="@+id/icon"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:paddingBottom="10dp"
-                android:paddingTop="10dp"
-                android:adjustViewBounds="true"
-                android:src="@drawable/mmicon"
-                />
-
-            <LinearLayout
+            <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
+                android:layout_height="wrap_content"
                 android:gravity="center"
-                android:layout_weight="0.45">
+                android:background="#FFFFFF"
+                >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Volunteer Information"
-                    android:id="@+id/volunteer_info"
-                    android:textSize="22dp"
+                    android:text="Miracle Messages are short video messages from homeless people to their long-lost loved ones, recorded and delivered by volunteers. To date, 40% of reunions have lead to stable housing. Miracle Messages has been featured in the New York Times, NPR, and NowThis, whose video reached 22M views and 350K shares. Founder Kevin F. Adler started Miracle Messages in honor of his Uncle Mark, who lived on-and-off the streets for 30 years. Our goal is to reunite 1 million people by 2021. Join the movement:"
+                    android:textSize="20dp"
                     />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/volunteer_name"
-                    android:textSize="17dp"
+                    android:id="@+id/link"
+                    android:text="@string/link"
+                    android:textSize="20dp"
+                    android:textColor="@android:color/holo_blue_light"
                     />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/volunteer_email"
-                    android:textSize="17dp"
-                    />
+                </LinearLayout>
 
-                <!--<TextView-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:id="@+id/volunteer_phone"-->
-                    <!--android:textSize="15dp"-->
-                    <!--/>-->
+            </ScrollView>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/volunteer_location"
-                    android:textSize="17dp"
-                    />
+        </LinearLayout>
 
-                <TextView
-                    android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/precamera_resources"
+            android:padding="20dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Resources"
+                android:textStyle="bold"
+                android:textSize="30dp"
+                android:layout_marginBottom="30dp"/>
+
+            <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:background="#FFFFFF"
+                >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/switch_location"
-                    android:textSize="17dp"
-                    android:text="Switch Chapter Location"
-                    android:textColor="#93E2FF"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Internal"
+                        android:textSize="25dp"
+                        />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@android:color/darker_gray"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Facebook group (chapters + volunteers)"
+                        android:textSize="18dp"
+                        android:id="@+id/internal_fb_1"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Facebook group (volunteer detectives)"
+                        android:textSize="18dp"
+                        android:id="@+id/internal_fb_2"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Slack community (chapter leads + MM team)"
+                        android:textSize="18dp"
+                        android:id="@+id/internal_slack"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="External"
+                        android:textSize="25dp"
+                        android:layout_marginTop="20dp"
+                        />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@android:color/darker_gray"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Facebook page"
+                        android:textSize="18dp"
+                        android:id="@+id/external_fb"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Donation page"
+                        android:textSize="18dp"
+                        android:id="@+id/external_donation"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="YouTube channel"
+                        android:textSize="18dp"
+                        android:id="@+id/external_youtube"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Twitter page"
+                        android:textSize="18dp"
+                        android:id="@+id/external_twitter"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Instagram page"
+                        android:textSize="18dp"
+                        android:id="@+id/external_ig"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Key Docs"
+                        android:textSize="25dp"
+                        android:layout_marginTop="20dp"
+                        />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@android:color/darker_gray"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Chapter handbook"
+                        android:textSize="18dp"
+                        android:id="@+id/docs_handbook"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Current chapters list (internal)"
+                        android:textSize="18dp"
+                        android:id="@+id/docs_internal_list"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Current chapters list (external)"
+                        android:textSize="18dp"
+                        android:id="@+id/docs_external_list"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Current roles"
+                        android:textSize="18dp"
+                        android:id="@+id/docs_roles"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Master MMs spreadsheet – (for access, email us at hello@miraclemessages.org) "
+                        android:textSize="18dp"
+                        android:id="@+id/docs_spreadsheet"
+                        />
+
+                </LinearLayout>
+
+            </ScrollView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/precamera_profile"
+            android:padding="20dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="My profile"
+                android:textStyle="bold"
+                android:textSize="30dp"
+                android:layout_marginBottom="30dp"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/profile_name"
+                android:hint="Full Name"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:background="@drawable/edittext_bg"
+                android:textColorHint="#C3C3C3"
+                android:textColor="@android:color/black"
+                android:inputType="textNoSuggestions|textVisiblePassword"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
                 />
 
-            </LinearLayout>
-
-            <LinearLayout
+            <EditText
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:gravity="center"
-                android:layout_weight="0.55"
-                android:layout_alignParentTop="true">
+                android:layout_height="wrap_content"
+                android:id="@+id/profile_number"
+                android:layout_below="@+id/profile_email"
+                android:hint="Phone"
+                android:inputType="number"
+                android:background="@drawable/edittext_bg"
+                android:textColorHint="#C3C3C3"
+                android:textColor="@android:color/black"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/profile_email"
+                android:hint="Email"
+                android:background="@drawable/edittext_bg"
+                android:inputType="textEmailAddress"
+                android:textColorHint="#C3C3C3"
+                android:textColor="@android:color/black"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:layout_below="@+id/profile_name"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/profile_location"
+                android:hint="Location"
+                android:inputType="textNoSuggestions|textVisiblePassword"
+                android:layout_below="@+id/profile_number"
+                android:background="@drawable/edittext_bg"
+                android:textColorHint="#C3C3C3"
+                android:textColor="@android:color/black"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                />
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_gravity="center_horizontal"
+                >
 
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/begin"
-                    android:textColor="#000000"
-                    android:text="Begin Miracle Message"
-                    android:layout_centerVertical="true"
-                    android:layout_centerHorizontal="true"
-                    android:padding="20dp"
+                    android:id="@+id/profile_save"
+                    android:text="Save"
+                    android:textColor="@android:color/black"
                     android:background="@drawable/button_selector"
-                    />
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:gravity="center"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerHorizontal="true" />
 
-            </LinearLayout>
+            </RelativeLayout>
 
         </LinearLayout>
 
-        <RelativeLayout
-            android:id="@+id/precamera_bf_1"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:orientation="vertical"
-            android:layout_gravity="center_vertical"
-            android:padding="10dp">
-
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Step 1: Ask the Question"
-                    android:layout_centerHorizontal="true"
-                    android:id="@+id/bf_1_step1"
-                    android:textSize="25dp"
-                    android:paddingBottom="10dp"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/bf_1_step1"
-                    android:id="@+id/bf_1_q1"
-                    android:text="1. Do you have any family or friends that you would like to reunite with, even if you don’t know how to reach them?"
-                    android:textSize="20dp"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/bf_1_q1"
-                    android:id="@+id/bf_1_q2"
-                    android:text="2. (if applicable) Would you like to see an example video of Miracle Messages?"
-                    android:textSize="20dp"/>
-
-            </RelativeLayout>
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/precamera_bf_2"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:orientation="vertical"
-            android:padding="10dp"
-            android:layout_gravity="center_vertical">
-
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:text="Step 2: Offer to \nRecord Video"
-                    android:gravity="center"
-                    android:id="@+id/bf_2_step1"
-                    android:textSize="25dp"
-                    android:paddingBottom="10dp"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/bf_2_step1"
-                    android:id="@+id/bf_2_q1"
-                    android:gravity="center"
-                    android:text="As a volunteer with Miracle Messages, I would be happy to help you record a short video message to your loved ones if you'd like. Before I do, I just want to make sure you are okay with the potential risks and that we are on the same page with expectations."
-                    android:textSize="20dp"/>
-
-            </RelativeLayout>
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/precamera_bf_3"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:orientation="vertical"
-            android:padding="10dp"
-            android:layout_gravity="center_vertical">
-
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:id="@+id/bf_3_q1"
-                    android:text="First, your Miracle Message video will be made public and may be shared widely to help volunteers try to locate your loved one(s)."
-                    android:textSize="20dp"/>
-
-            </RelativeLayout>
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/precamera_bf_4"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:orientation="vertical"
-            android:padding="10dp"
-            android:layout_gravity="center_vertical">
-
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:id="@+id/bf_4_q1"
-                    android:text="Second, while 90% of loved ones have responded positively to their Miracle Messages, we cannot know for sure how your loved one(s) will respond, or if they will respond, or how long it may take them to respond."
-                    android:textSize="20dp"/>
-
-            </RelativeLayout>
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/precamera_bf_5"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:orientation="vertical"
-            android:padding="10dp"
-            android:layout_gravity="center_vertical">
-
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:id="@+id/bf_5_q1"
-                    android:text="And third, while we have many volunteers trying to locate loved ones, we may not be able to find or reach your loved one(s). The only guarantee here is that this is an opportunity for you to record a short video message to someone you love, to say whatever is on your heart that you'd like to say, and that we will try our best to deliver it and help facilitate any response or reunion that results. Sound good?"
-                    android:textSize="20dp"/>
-
-            </RelativeLayout>
-
-        </RelativeLayout>
-    </ViewFlipper>
-
-    <ViewFlipper
-        android:id="@+id/buttonviewflipper"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_weight=".8">
-
         <LinearLayout
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_centerHorizontal="true"
-            android:gravity="center"
-            android:orientation="vertical"
-            >
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/precamera_script_x"
+            android:padding="20dp"
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/logout"
-                android:textSize="17dp"
-                android:text="Switch User"
-                android:textColor="#93E2FF"
-                />
+                android:text="Hi"
+                android:id="@+id/script_hello"
+                android:textStyle="bold"
+                android:textSize="30dp"
+                android:layout_marginBottom="30dp"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:layout_gravity="center_horizontal"
+                >
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/script_start"
+                    android:text="Let's get started"
+                    android:textColor="@android:color/black"
+                    android:background="@drawable/button_selector"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:gravity="center"
+                    />
+
+            </RelativeLayout>
 
         </LinearLayout>
 
-        <RelativeLayout
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_centerHorizontal="true"
-            android:layout_gravity="center_vertical"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/precamera_script_xx"
+            android:padding="20dp"
             android:orientation="vertical"
-            >
+            android:weightSum="1">
 
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:id="@+id/back"
-                android:layout_centerVertical="true"
-                android:layout_alignParentLeft="true"
-                android:layout_marginLeft="20dp"
-                android:background="@drawable/left_arrow"
-                />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:orientation="vertical"
+                android:layout_weight="0.2">
 
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/skip"
-                android:text="Skip Instructions"
-                android:layout_toRightOf="@+id/back"
-                android:layout_toLeftOf="@+id/next"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="30dp"
-                android:textColor="#000000"
-                android:background="@drawable/button_selector"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="How to begin"
+                    android:id="@+id/script_begin_xx"
+                    android:textStyle="bold"
+                    android:textSize="30dp"
+                    android:layout_marginBottom="3dp"/>
 
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:id="@+id/next"
-                android:layout_centerVertical="true"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="20dp"
-                android:background="@drawable/right_arrow"
-                />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="A script to guide you"
+                    android:id="@+id/script_begin_subtext_xx"
+                    android:textSize="20dp"
+                    android:layout_marginBottom="25dp"/>
 
-        </RelativeLayout>
+                <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:layout_width="match_parent"
+                    android:layout_height="fill_parent"
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="1. Ask\n&quot;Do you have any family or friends that you would like to reunite with, even if you don't know how to reach them?&quot;"
+                        android:id="@+id/script_begin_ask"
+                        android:textSize="25dp"
+                        />
+
+                </ScrollView>
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="0.8"
+                >
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/script_next_xx"
+                    android:text="Next"
+                    android:textColor="@android:color/black"
+                    android:background="@drawable/button_selector"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:gravity="center"
+                    />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/precamera_script_xxx"
+            android:padding="20dp"
+            android:orientation="vertical"
+            android:weightSum="1">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:orientation="vertical"
+                android:layout_weight="0.2">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="How to begin"
+                    android:id="@+id/script_begin_xxx"
+                    android:textStyle="bold"
+                    android:textSize="30dp"
+                    android:layout_marginBottom="3dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="A script to guide you"
+                    android:id="@+id/script_begin_subtext_xxx"
+                    android:textSize="20dp"
+                    android:layout_marginBottom="25dp"/>
+
+                <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:layout_width="match_parent"
+                    android:layout_height="fill_parent"
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="2. Inform\n&quot;As a volunteer with Miracle Messages, I would be happy to help you record a short video message to your loved one if you'd like. Before I do, I just want to make sure we are on the same page with expectations.\n\nFirst, your Miracle Message video will be made public and may be shared widely to help volunteers try to locate your loved one(s).\n\nSecond, while 90% of loved ones have responded positively to their Miracle Messages, we cannot know for sure how your loved one(s) will respond, or if they will respond, or how long it may take them to respond. \n\nAnd third, while we have many volunteers trying to locate loved ones, we may not be able to find or reach your loved one(s). The only guarantee here is that this is an opportunity for you to record a short video message to someone you love, to say whatever is on your heart that you'd like to say, and that we will try our best to deliver it and help facilitate any response or reunion that results.\n\nSound good?&quot;"
+                        android:id="@+id/script_begin_inform"
+                        android:textSize="25dp"
+                        />
+
+                </ScrollView>
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="0.8"
+                >
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/script_next_xxx"
+                    android:text="Next"
+                    android:textColor="@android:color/black"
+                    android:background="@drawable/button_selector"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:gravity="center"
+                    />
+
+            </RelativeLayout>
+
+        </LinearLayout>
 
     </ViewFlipper>
 
