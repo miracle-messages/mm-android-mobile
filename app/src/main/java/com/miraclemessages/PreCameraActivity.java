@@ -35,6 +35,7 @@ public class PreCameraActivity extends Activity {
     public static final String Location = "location";
     Animation animFadeOut, animFadeIn;
     ImageView back, icon;
+    boolean exitApp = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +54,7 @@ public class PreCameraActivity extends Activity {
                 viewFlipper.setInAnimation(v.getContext(), R.anim.slide_in_from_right);
                 viewFlipper.setOutAnimation(v.getContext(), R.anim.slide_out_to_left);
                 viewFlipper.showNext();
+                exitApp = false;
             }
         });
         script_next_xx = (Button) findViewById(R.id.script_next_xx);
@@ -62,6 +64,7 @@ public class PreCameraActivity extends Activity {
                 viewFlipper.setInAnimation(v.getContext(), R.anim.slide_in_from_right);
                 viewFlipper.setOutAnimation(v.getContext(), R.anim.slide_out_to_left);
                 viewFlipper.showNext();
+                exitApp = false;
             }
         });
         script_next_xxx = (Button) findViewById(R.id.script_next_xxx);
@@ -225,6 +228,7 @@ public class PreCameraActivity extends Activity {
                 viewFlipper.setDisplayedChild(3); //3 is my profile
                 back.setVisibility(View.VISIBLE);
                 icon.setVisibility(View.VISIBLE);
+                exitApp = false;
             }
         });
         about = (TextView) findViewById(R.id.about);
@@ -237,6 +241,7 @@ public class PreCameraActivity extends Activity {
                 viewFlipper.setDisplayedChild(1); //1 is about
                 back.setVisibility(View.VISIBLE);
                 icon.setVisibility(View.VISIBLE);
+                exitApp = false;
             }
         });
         contact = (TextView) findViewById(R.id.contact);
@@ -245,8 +250,12 @@ public class PreCameraActivity extends Activity {
             public void onClick(View v) {
                 Intent emailIntent = new Intent(Intent.ACTION_SEND);
                 emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{"hello@miraclemessages.org"});
-                emailIntent.setType("text/plain");
-                startActivity(emailIntent);
+                emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Message from " + sharedpreferences.getString(Name, null));
+                emailIntent.setType("message/rfc822");
+
+                startActivity(Intent.createChooser(emailIntent, "Choose an email client:"));
+                exitApp = false;
+                System.out.println("CONTAX");
             }
         });
         back = (ImageView) findViewById(R.id.back);
@@ -298,6 +307,7 @@ public class PreCameraActivity extends Activity {
                 viewFlipper.setDisplayedChild(4); //4 is script
                 back.setVisibility(View.VISIBLE);
                 icon.setVisibility(View.VISIBLE);
+                exitApp = false;
             }
         });
         resources = (TextView) findViewById(R.id.resources);
@@ -309,6 +319,7 @@ public class PreCameraActivity extends Activity {
                 viewFlipper.setDisplayedChild(2); //2 is resources
                 back.setVisibility(View.VISIBLE);
                 icon.setVisibility(View.VISIBLE);
+                exitApp = false;
             }
         });
 
@@ -330,12 +341,23 @@ public class PreCameraActivity extends Activity {
                 finish();
             }
         });
+
     }
 
     public void openLink(String url) {
         Intent i = new Intent(Intent.ACTION_VIEW);
         i.setData(Uri.parse(url));
         startActivity(i);
+    }
+
+    public void onBackPressed() {
+        if (exitApp) {
+            super.onBackPressed();
+        } else {
+            Intent i = getIntent();
+            finish();
+            startActivity(i);
+        }
     }
 
 }
