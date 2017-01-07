@@ -3,174 +3,147 @@
 
     <item
         is-multidex="true"
-        jar="C:\Users\Christine\Documents\MiracleMessagesApp\app\build\intermediates\exploded-aar\com.android.support\support-v13\24.1.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.1"
-        sha1="327f68d58bb39fb8b585150596b313541f8fdb87">
-        <dex dex="C:\Users\Christine\Documents\MiracleMessagesApp\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v13-24.1.1_6f25b50091a7e6b1ee263dd1f5d13491b116310b\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Christine\Documents\MiracleMessagesApp\app\build\intermediates\exploded-aar\com.android.support\multidex\1.0.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.1"
-        sha1="6666dd525c3da197e7d07f4f23ef5fc7881a697b">
-        <dex dex="C:\Users\Christine\Documents\MiracleMessagesApp\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-multidex-1.0.0_fb7688cd82a4e7d4e0dc0b13e66dc1c2acbbb1ab\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Christine\Documents\MiracleMessagesApp\app\build\intermediates\exploded-aar\com.google.firebase\firebase-analytics-impl\9.0.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.1"
-        sha1="0dc8ab07eeceda5e99b305c8069765056b6e5c9d">
-        <dex dex="C:\Users\Christine\Documents\MiracleMessagesApp\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.firebase-firebase-analytics-impl-9.0.0_85bea0f9bc93bcf156acfcba224d7aa142ee9dc8\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Christine\Documents\MiracleMessagesApp\app\build\intermediates\exploded-aar\com.google.firebase\firebase-common\9.8.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.1"
-        sha1="c61641e333fa88da21758bab8cc28ee16604b05f">
-        <dex dex="C:\Users\Christine\Documents\MiracleMessagesApp\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.firebase-firebase-common-9.8.0_089e127460e7a9e607742f9b64f8bab410127427\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Christine\Documents\MiracleMessagesApp\app\libs\aws-android-sdk-core-2.3.3.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.1"
-        sha1="f8214e759455107411c2899622f365548611b5bb">
-        <dex dex="C:\Users\Christine\Documents\MiracleMessagesApp\app\build\intermediates\transforms\dex\debug\folders\1000\2\aws-android-sdk-core-2.3.3_eea5f38fed66bb67c49850560f41b63603f7492a\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Christine\Documents\MiracleMessagesApp\app\build\intermediates\exploded-aar\com.google.firebase\firebase-analytics\9.0.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.1"
-        sha1="4ef8ab5fee042023018249474bc93bd4b2b9c17e">
-        <dex dex="C:\Users\Christine\Documents\MiracleMessagesApp\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.firebase-firebase-analytics-9.0.0_31708a0609368a378f619342e6f2b4aa773d80e4\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Christine\Documents\MiracleMessagesApp\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.1"
-        sha1="a9343934886034256e502e6f8ae90f1d3c00d469">
-        <dex dex="C:\Users\Christine\Documents\MiracleMessagesApp\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_deaa9323cad8c594524bdf502c1def4faea649cb\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Christine\.gradle\caches\modules-2\files-2.1\com.amazonaws\aws-android-sdk-s3\2.2.22\40fe82092e0ae3ca549b132a1e7e876807525176\aws-android-sdk-s3-2.2.22.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.1"
-        sha1="40fe82092e0ae3ca549b132a1e7e876807525176">
-        <dex dex="C:\Users\Christine\Documents\MiracleMessagesApp\app\build\intermediates\transforms\dex\debug\folders\1000\10\aws-android-sdk-s3-2.2.22_2c8859f32481b1a34c93340f55f2e2a35d4a0549\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Christine\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\24.1.1\support-annotations-24.1.1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.1"
-        sha1="3af19f153122737b372622fa6c81dd11a1c6b999">
-        <dex dex="C:\Users\Christine\Documents\MiracleMessagesApp\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-24.1.1_0cb08e831d51b1b3a6f3f92fba842de3ead5a667\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Christine\Documents\MiracleMessagesApp\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\24.1.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.1"
-        sha1="f62e763609f65e47dc6c498760a4accf02776788">
-        <dex dex="C:\Users\Christine\Documents\MiracleMessagesApp\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-vector-drawable-24.1.1_78abc8ca574d7ebda498b1e00f60fa7a8aa44f00\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Christine\Documents\MiracleMessagesApp\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.1"
-        sha1="6e654675512294a81f375f4846ce0dee379aa2a8">
-        <dex dex="C:\Users\Christine\Documents\MiracleMessagesApp\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_7b4c93c6be9a3ff02190b92f0efe093fd1517522\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Christine\Documents\MiracleMessagesApp\app\build\intermediates\exploded-aar\com.google.firebase\firebase-database-connection\9.8.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.1"
-        sha1="5f47ede9561595584dca71104baa0fecb36dda87">
-        <dex dex="C:\Users\Christine\Documents\MiracleMessagesApp\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.firebase-firebase-database-connection-9.8.0_34c368dac72346185baa50db4828740f9e975496\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Christine\Documents\MiracleMessagesApp\app\build\intermediates\exploded-aar\com.android.support\cardview-v7\24.1.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.1"
-        sha1="4add8aa95c9f4e9a2ad64b7e2bf08e97e28955c1">
-        <dex dex="C:\Users\Christine\Documents\MiracleMessagesApp\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-cardview-v7-24.1.1_1c563d27fe4d95a13ec5a2afc7f4ee64c93548cd\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Christine\Documents\MiracleMessagesApp\app\build\intermediates\exploded-aar\com.android.support\support-v4\24.1.1\jars\libs\internal_impl-24.1.1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.1"
-        sha1="f78c2f395cb096f9dc1dc07e729922b8fcd3c4f5">
-        <dex dex="C:\Users\Christine\Documents\MiracleMessagesApp\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-24.1.1_c669f1775a6ed3aed5df165285ed25eb4b83f854\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Christine\Documents\MiracleMessagesApp\app\build\intermediates\exploded-aar\com.google.firebase\firebase-iid\9.0.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.1"
-        sha1="ea4b54dcbfe5ac05efb0a314105f07258118d3a7">
-        <dex dex="C:\Users\Christine\Documents\MiracleMessagesApp\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.firebase-firebase-iid-9.0.0_a5e5e40594ec6deb1cb5b759a9fe4f5d801f3212\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Christine\Documents\MiracleMessagesApp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\9.8.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.1"
-        sha1="9f6d236bac26d02b410e4ee186ba517ace5ee661">
-        <dex dex="C:\Users\Christine\Documents\MiracleMessagesApp\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-basement-9.8.0_59c2ce02486ec76922f1cfbd34488c52f143a9c1\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Christine\Documents\MiracleMessagesApp\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\24.1.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.1"
-        sha1="c936c1bd42f0c018c18920c7bec619ef056b24f8">
-        <dex dex="C:\Users\Christine\Documents\MiracleMessagesApp\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-animated-vector-drawable-24.1.1_55f07e120beb7ed37d9b0c561b53fcd67d9222ee\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Christine\Documents\MiracleMessagesApp\app\libs\aws-android-sdk-s3-2.3.3.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.1"
-        sha1="b6b02130c945bdad38bda0ed60a50d212738faa5">
-        <dex dex="C:\Users\Christine\Documents\MiracleMessagesApp\app\build\intermediates\transforms\dex\debug\folders\1000\2\aws-android-sdk-s3-2.3.3_4c96bfbf03bb41be4136c2c5f5d8e2f8fe476382\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Christine\.gradle\caches\modules-2\files-2.1\com.amazonaws\aws-android-sdk-core\2.2.22\c6789de00db9d1f93faec881fa0c1f5960fb8a15\aws-android-sdk-core-2.2.22.jar"
+        jar="C:\Users\James Wu\.gradle\caches\modules-2\files-2.1\com.amazonaws\aws-android-sdk-core\2.2.22\c6789de00db9d1f93faec881fa0c1f5960fb8a15\aws-android-sdk-core-2.2.22.jar"
         jumboMode="true"
         optimize="true"
         revision="24.0.1"
         sha1="c6789de00db9d1f93faec881fa0c1f5960fb8a15">
-        <dex dex="C:\Users\Christine\Documents\MiracleMessagesApp\app\build\intermediates\transforms\dex\debug\folders\1000\10\aws-android-sdk-core-2.2.22_db024e4cf57a7bff063ba6514c9cac6fe22007e3\classes.dex" />
+        <dex dex="C:\Users\James Wu\AndroidStudioProjects\MiracleMessagesApp\app\build\intermediates\transforms\dex\debug\folders\1000\10\aws-android-sdk-core-2.2.22_b7f604a86b9c8e82776bb63bf6973122f3083c13\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\James Wu\AndroidStudioProjects\MiracleMessagesApp\app\libs\aws-android-sdk-core-2.3.3.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.1"
+        sha1="f8214e759455107411c2899622f365548611b5bb">
+        <dex dex="C:\Users\James Wu\AndroidStudioProjects\MiracleMessagesApp\app\build\intermediates\transforms\dex\debug\folders\1000\2\aws-android-sdk-core-2.3.3_503c1524f38125b430e39b901aa38920d24da684\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\James Wu\AndroidStudioProjects\MiracleMessagesApp\app\build\intermediates\exploded-aar\com.google.firebase\firebase-database\9.8.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.1"
+        sha1="03df48d3713661d66ad024b1e406259a4c26fcac">
+        <dex dex="C:\Users\James Wu\AndroidStudioProjects\MiracleMessagesApp\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.firebase-firebase-database-9.8.0_80218b243fc17b40740145d336a6814e6117814a\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\24.1.1\support-annotations-24.1.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.1"
+        sha1="3af19f153122737b372622fa6c81dd11a1c6b999">
+        <dex dex="C:\Users\James Wu\AndroidStudioProjects\MiracleMessagesApp\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-24.1.1_094d634603cfbcbfa7291b5e459ff765ff06345b\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\James Wu\AndroidStudioProjects\MiracleMessagesApp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\9.0.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.1"
+        sha1="6f65c144283b31b4b9a70e6e7aa4c4a1c897d4b8">
+        <dex dex="C:\Users\James Wu\AndroidStudioProjects\MiracleMessagesApp\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-base-9.0.0_59d56c00ba847581a8b015ce30457894215046dc\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\James Wu\AndroidStudioProjects\MiracleMessagesApp\app\libs\aws-android-sdk-cognito-2.3.3.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.1"
+        sha1="9ad72b624c6e1330b1405de27d51684e1731742f">
+        <dex dex="C:\Users\James Wu\AndroidStudioProjects\MiracleMessagesApp\app\build\intermediates\transforms\dex\debug\folders\1000\2\aws-android-sdk-cognito-2.3.3_6f8570e31c4feb6a624be4de45e3f3bd0a16cd6d\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\James Wu\AndroidStudioProjects\MiracleMessagesApp\app\build\intermediates\exploded-aar\com.google.firebase\firebase-database-connection\9.8.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.1"
+        sha1="5f47ede9561595584dca71104baa0fecb36dda87">
+        <dex dex="C:\Users\James Wu\AndroidStudioProjects\MiracleMessagesApp\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.firebase-firebase-database-connection-9.8.0_d6fed49c1e17da7374bfe65b937946e50f21f27b\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\James Wu\AndroidStudioProjects\MiracleMessagesApp\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\24.1.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.1"
+        sha1="1256c10604bb098490eab070d76754ac5ceab35c">
+        <dex dex="C:\Users\James Wu\AndroidStudioProjects\MiracleMessagesApp\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-appcompat-v7-24.1.1_f3d813a52049749c1c9a2cdceeea5c3093624673\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\James Wu\AndroidStudioProjects\MiracleMessagesApp\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\24.1.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.1"
+        sha1="f62e763609f65e47dc6c498760a4accf02776788">
+        <dex dex="C:\Users\James Wu\AndroidStudioProjects\MiracleMessagesApp\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-vector-drawable-24.1.1_bb92dacc08f18224f2b27de67896aac76269e14b\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\James Wu\AndroidStudioProjects\MiracleMessagesApp\app\build\intermediates\exploded-aar\com.google.firebase\firebase-iid\9.0.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.1"
+        sha1="ea4b54dcbfe5ac05efb0a314105f07258118d3a7">
+        <dex dex="C:\Users\James Wu\AndroidStudioProjects\MiracleMessagesApp\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.firebase-firebase-iid-9.0.0_4680a090eee83de4d3843796c4972811f8fbb28a\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\James Wu\AndroidStudioProjects\MiracleMessagesApp\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.1"
+        sha1="299e9fcd13fdab3ce0f67a0efd40817d9596691a">
+        <dex dex="C:\Users\James Wu\AndroidStudioProjects\MiracleMessagesApp\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_d92d9052d2bced2640796133f35ab29462d8f650\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\James Wu\AndroidStudioProjects\MiracleMessagesApp\app\build\intermediates\exploded-aar\com.android.support\support-v13\24.1.1\jars\libs\internal_impl-24.1.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.1"
+        sha1="ca74722504f90166103d01edcdfdb93192eb1cba">
+        <dex dex="C:\Users\James Wu\AndroidStudioProjects\MiracleMessagesApp\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-24.1.1_4b5ae149ff571803b44140c71eb64a9bd48c4266\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\James Wu\AndroidStudioProjects\MiracleMessagesApp\app\build\intermediates\exploded-aar\com.android.volley\volley\1.0.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.1"
+        sha1="2cd4b982617e544728de0782d718a58ce1b06e3f">
+        <dex dex="C:\Users\James Wu\AndroidStudioProjects\MiracleMessagesApp\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.volley-volley-1.0.0_17b3f2720d324b8bff106b32479769d655134330\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\James Wu\AndroidStudioProjects\MiracleMessagesApp\app\build\intermediates\exploded-aar\com.android.support\multidex\1.0.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.1"
+        sha1="6666dd525c3da197e7d07f4f23ef5fc7881a697b">
+        <dex dex="C:\Users\James Wu\AndroidStudioProjects\MiracleMessagesApp\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-multidex-1.0.0_064177b5b145f7af9ac8fc4e0ae1e6f3261310b3\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\James Wu\AndroidStudioProjects\MiracleMessagesApp\app\build\intermediates\exploded-aar\com.android.support\cardview-v7\24.1.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.1"
+        sha1="4add8aa95c9f4e9a2ad64b7e2bf08e97e28955c1">
+        <dex dex="C:\Users\James Wu\AndroidStudioProjects\MiracleMessagesApp\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-cardview-v7-24.1.1_df3ee679f929b217847fd4d7842db6182c48179f\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\James Wu\AndroidStudioProjects\MiracleMessagesApp\app\libs\aws-android-sdk-s3-2.3.3.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.1"
+        sha1="b6b02130c945bdad38bda0ed60a50d212738faa5">
+        <dex dex="C:\Users\James Wu\AndroidStudioProjects\MiracleMessagesApp\app\build\intermediates\transforms\dex\debug\folders\1000\2\aws-android-sdk-s3-2.3.3_e0105af059f5a0fa1f592b87264482cc74f200a6\classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -179,79 +152,106 @@
         optimize="true"
         revision="24.0.1"
         sha1="a60a5e993c98c864010053cb901b7eab25306568">
-        <dex dex="C:\Users\Christine\Documents\MiracleMessagesApp\app\build\intermediates\transforms\dex\debug\folders\1000\10\gson-2.2.4_313aff129984a0a45e086871ec03bfcc02e7284e\classes.dex" />
+        <dex dex="C:\Users\James Wu\AndroidStudioProjects\MiracleMessagesApp\app\build\intermediates\transforms\dex\debug\folders\1000\10\gson-2.2.4_313aff129984a0a45e086871ec03bfcc02e7284e\classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\Christine\Documents\MiracleMessagesApp\app\build\intermediates\exploded-aar\com.android.support\support-v13\24.1.1\jars\libs\internal_impl-24.1.1.jar"
+        jar="C:\Users\James Wu\AndroidStudioProjects\MiracleMessagesApp\app\build\intermediates\exploded-aar\com.google.firebase\firebase-common\9.8.0\jars\classes.jar"
         jumboMode="true"
         optimize="true"
         revision="24.0.1"
-        sha1="ca74722504f90166103d01edcdfdb93192eb1cba">
-        <dex dex="C:\Users\Christine\Documents\MiracleMessagesApp\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-24.1.1_19098b2a8e0f01438dd2add18607c36be9a83212\classes.dex" />
+        sha1="c61641e333fa88da21758bab8cc28ee16604b05f">
+        <dex dex="C:\Users\James Wu\AndroidStudioProjects\MiracleMessagesApp\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.firebase-firebase-common-9.8.0_640fddcf155f5c2c20762d0da67bdbbdef40066a\classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\Christine\Documents\MiracleMessagesApp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\9.0.0\jars\classes.jar"
+        jar="C:\Users\James Wu\AndroidStudioProjects\MiracleMessagesApp\app\build\intermediates\exploded-aar\com.android.support\support-v4\24.1.1\jars\libs\internal_impl-24.1.1.jar"
         jumboMode="true"
         optimize="true"
         revision="24.0.1"
-        sha1="6f65c144283b31b4b9a70e6e7aa4c4a1c897d4b8">
-        <dex dex="C:\Users\Christine\Documents\MiracleMessagesApp\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-base-9.0.0_fd41b50daf0da25e4a9faf7444c50dbd83fae18c\classes.dex" />
+        sha1="f78c2f395cb096f9dc1dc07e729922b8fcd3c4f5">
+        <dex dex="C:\Users\James Wu\AndroidStudioProjects\MiracleMessagesApp\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-24.1.1_06d4e42dcc1da747ee3c78f01d12390b5e9e7364\classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\Christine\Documents\MiracleMessagesApp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-tasks\9.8.0\jars\classes.jar"
+        jar="C:\Users\James Wu\AndroidStudioProjects\MiracleMessagesApp\app\build\intermediates\exploded-aar\com.android.support\support-v13\24.1.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.1"
+        sha1="327f68d58bb39fb8b585150596b313541f8fdb87">
+        <dex dex="C:\Users\James Wu\AndroidStudioProjects\MiracleMessagesApp\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v13-24.1.1_b7d2572ef5940d16b6e637d02edd396a568ba481\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\James Wu\AndroidStudioProjects\MiracleMessagesApp\app\build\intermediates\exploded-aar\com.google.firebase\firebase-analytics-impl\9.0.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.1"
+        sha1="0dc8ab07eeceda5e99b305c8069765056b6e5c9d">
+        <dex dex="C:\Users\James Wu\AndroidStudioProjects\MiracleMessagesApp\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.firebase-firebase-analytics-impl-9.0.0_ead8f36943e2159186741f0554bfdb75e3601dd8\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\James Wu\AndroidStudioProjects\MiracleMessagesApp\app\build\intermediates\exploded-aar\com.google.firebase\firebase-analytics\9.0.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.1"
+        sha1="4ef8ab5fee042023018249474bc93bd4b2b9c17e">
+        <dex dex="C:\Users\James Wu\AndroidStudioProjects\MiracleMessagesApp\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.firebase-firebase-analytics-9.0.0_83efa64ebd50d37dabab5f1120f2f5e77e1274e6\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\James Wu\AndroidStudioProjects\MiracleMessagesApp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-tasks\9.8.0\jars\classes.jar"
         jumboMode="true"
         optimize="true"
         revision="24.0.1"
         sha1="bf2e1838e4428616c1aa26edf43de72b5b99bf84">
-        <dex dex="C:\Users\Christine\Documents\MiracleMessagesApp\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-tasks-9.8.0_69d7345417a148acf8de2ed278fca33930d2ce5c\classes.dex" />
+        <dex dex="C:\Users\James Wu\AndroidStudioProjects\MiracleMessagesApp\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-tasks-9.8.0_1c04ca2a9a21644062fde7e3b149f57063467a15\classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\Christine\Documents\MiracleMessagesApp\app\build\intermediates\exploded-aar\com.google.firebase\firebase-database\9.8.0\jars\classes.jar"
+        jar="C:\Users\James Wu\AndroidStudioProjects\MiracleMessagesApp\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\24.1.1\jars\classes.jar"
         jumboMode="true"
         optimize="true"
         revision="24.0.1"
-        sha1="03df48d3713661d66ad024b1e406259a4c26fcac">
-        <dex dex="C:\Users\Christine\Documents\MiracleMessagesApp\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.firebase-firebase-database-9.8.0_f372f7da1924649f14fc39786483d79e59809ba8\classes.dex" />
+        sha1="c936c1bd42f0c018c18920c7bec619ef056b24f8">
+        <dex dex="C:\Users\James Wu\AndroidStudioProjects\MiracleMessagesApp\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-animated-vector-drawable-24.1.1_32bb8709284e22fcf6d0f0d76311ea7c50042f0e\classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\Christine\Documents\MiracleMessagesApp\app\build\intermediates\exploded-aar\com.android.support\support-v4\24.1.1\jars\classes.jar"
+        jar="C:\Users\James Wu\AndroidStudioProjects\MiracleMessagesApp\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\9.8.0\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.1"
+        sha1="9f6d236bac26d02b410e4ee186ba517ace5ee661">
+        <dex dex="C:\Users\James Wu\AndroidStudioProjects\MiracleMessagesApp\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-basement-9.8.0_7f5e5c5022133886fcf62d1cf50f70022a9392ff\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\James Wu\AndroidStudioProjects\MiracleMessagesApp\app\build\intermediates\exploded-aar\com.android.support\support-v4\24.1.1\jars\classes.jar"
         jumboMode="true"
         optimize="true"
         revision="24.0.1"
         sha1="6d7d803871e3203465f71a163e7af104f807b446">
-        <dex dex="C:\Users\Christine\Documents\MiracleMessagesApp\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-24.1.1_a90c2d3b5d94e7a7e33c479fd926d55d0f01623c\classes.dex" />
+        <dex dex="C:\Users\James Wu\AndroidStudioProjects\MiracleMessagesApp\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-24.1.1_459df6db88a080619dbf686a5ffebb6686a4fc8a\classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\Christine\Documents\MiracleMessagesApp\app\build\intermediates\exploded-aar\com.android.volley\volley\1.0.0\jars\classes.jar"
+        jar="C:\Users\James Wu\.gradle\caches\modules-2\files-2.1\com.amazonaws\aws-android-sdk-s3\2.2.22\40fe82092e0ae3ca549b132a1e7e876807525176\aws-android-sdk-s3-2.2.22.jar"
         jumboMode="true"
         optimize="true"
         revision="24.0.1"
-        sha1="2cd4b982617e544728de0782d718a58ce1b06e3f">
-        <dex dex="C:\Users\Christine\Documents\MiracleMessagesApp\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.volley-volley-1.0.0_349e85c0220f43c55df504a9ba44d30d0cd24e40\classes.dex" />
+        sha1="40fe82092e0ae3ca549b132a1e7e876807525176">
+        <dex dex="C:\Users\James Wu\AndroidStudioProjects\MiracleMessagesApp\app\build\intermediates\transforms\dex\debug\folders\1000\10\aws-android-sdk-s3-2.2.22_a4341c067062d55e51209395133a63e7bfdd5cb9\classes.dex" />
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\Christine\Documents\MiracleMessagesApp\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\24.1.1\jars\classes.jar"
+        jar="C:\Users\James Wu\AndroidStudioProjects\MiracleMessagesApp\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
         jumboMode="true"
         optimize="true"
         revision="24.0.1"
-        sha1="1256c10604bb098490eab070d76754ac5ceab35c">
-        <dex dex="C:\Users\Christine\Documents\MiracleMessagesApp\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-appcompat-v7-24.1.1_d90717533116541fcd602b26ecc361a84bd8078e\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\Christine\Documents\MiracleMessagesApp\app\libs\aws-android-sdk-cognito-2.3.3.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.1"
-        sha1="9ad72b624c6e1330b1405de27d51684e1731742f">
-        <dex dex="C:\Users\Christine\Documents\MiracleMessagesApp\app\build\intermediates\transforms\dex\debug\folders\1000\2\aws-android-sdk-cognito-2.3.3_c0b084f54c4baeb479df026529ed4788da0ffcf9\classes.dex" />
+        sha1="4bd19158f42be0bb4b7b8aa137d1bd5226bf1423">
+        <dex dex="C:\Users\James Wu\AndroidStudioProjects\MiracleMessagesApp\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_8d6e2bc2b2f62ea1e83fd11edadc226859d3d6b4\classes.dex" />
     </item>
 
 </items>
