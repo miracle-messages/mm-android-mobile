@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
         textEmail=(EditText)findViewById(R.id.email);
         textPhone=(EditText)findViewById(R.id.phone_number);
         textLocation=(EditText)findViewById(R.id.location);
+
         submit=(Button)findViewById(R.id.submit);
 //        policy = (TextView)findViewById(R.id.policy);
         link = (TextView)findViewById(R.id.link);

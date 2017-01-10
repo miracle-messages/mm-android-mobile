@@ -154,8 +154,8 @@ public class ExportActivity extends Activity{
                 export_vf.setOutAnimation(v.getContext(), R.anim.slide_out_to_left);
                 if(export_vf.getDisplayedChild() == 0) {
                     Toast.makeText(ExportActivity.this, "Upload started", Toast.LENGTH_LONG).show();
-                addNotification();
-                beginUpload(sharedpreferences.getString(FileLoc, null).toString());
+                    addNotification();
+                    beginUpload(sharedpreferences.getString(FileLoc, null).toString());
                     submit.setText("Next steps");
                     title.setText("Message sent");
                     subtitle.setText("Thank you!");
@@ -180,17 +180,17 @@ public class ExportActivity extends Activity{
             public void onClick(View v) {
                 export_vf.setInAnimation(v.getContext(), R.anim.slide_in_from_left);
                 export_vf.setOutAnimation(v.getContext(), R.anim.slide_out_to_right);
-                if(export_vf.getDisplayedChild() == 2) {
+                if(export_vf.getDisplayedChild() == 1) {
+                    submit.setText("Submit");
+                    title.setText("Upload");
+                    subtitle.setText("Ready to send the message?");
+                    back.setVisibility(View.INVISIBLE);
+                    export_vf.showPrevious();
+                }
+                else if(export_vf.getDisplayedChild() == 2) {
                     submit.setText("Next steps");
                     title.setText("Message sent");
                     subtitle.setText("Thank you!");
-                    export_vf.showPrevious();
-                }
-                else if(export_vf.getDisplayedChild() == 1) {
-                    submit.setText("Complete");
-                    title.setText("Confirm");
-                    subtitle.setText("Everything looking good?");
-                    back.setVisibility(View.INVISIBLE);
                     export_vf.showPrevious();
                 }
             }
@@ -209,10 +209,10 @@ public class ExportActivity extends Activity{
 //        });
     }
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-    }
+//    @Override
+//    protected void onPause() {
+//        super.onPause();
+//    }
 
     private void beginUpload(String filePath) {
         if (filePath == null) {
@@ -272,10 +272,11 @@ public class ExportActivity extends Activity{
                             "/" + file.getName()));
 
                     RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
+                    String nameURL = sharedpreferences.getString(Name, null).replaceAll("\\s+", "%20");
                     String hook = "https://hooks.zapier.com/hooks/catch/1838547/tsx0t0/?email="
                             + sharedpreferences.getString(Email, null) + "&name="
-                            + sharedpreferences.getString(Name, null) + "&video="
-                            + vidURL + sharedpreferences.getString(Name, null).toString() + "_" +
+                            + nameURL + "&video="
+                            + vidURL + nameURL + "_" +
                             sharedpreferences.getString(Email, null).toString() +
                             "/" + file.getName();
 
@@ -323,18 +324,6 @@ public class ExportActivity extends Activity{
                 manager.notify(UPLOAD_NOTIFICATION_ID, builder.build());
             }
         });
-    }
-
-    private void addNotification() {
-            builder =
-                new NotificationCompat.Builder(this)
-                        .setSmallIcon(R.drawable.mmicon)
-                        .setContentTitle("Uploading Miracle Message...")
-                        .setOngoing(true);
-
-             // Add as notification
-        manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        manager.notify(UPLOAD_NOTIFICATION_ID, builder.build());
     }
 
     public static class Client {
@@ -398,5 +387,36 @@ public class ExportActivity extends Activity{
             this.volunteer_phone = volunteer_phone;
             this.uploadedURL = uploadedURL;
         }
+    }
+
+    public void onBackPressed(){
+        export_vf.setInAnimation(getApplicationContext(), R.anim.slide_in_from_left);
+        export_vf.setOutAnimation(getApplicationContext(), R.anim.slide_out_to_right);
+        if(export_vf.getDisplayedChild() == 1) {
+            submit.setText("Submit");
+            title.setText("Upload");
+            subtitle.setText("Ready to send the message?");
+            back.setVisibility(View.INVISIBLE);
+            export_vf.showPrevious();
+        }
+        else if(export_vf.getDisplayedChild() == 2) {
+            submit.setText("Next steps");
+            title.setText("Message sent");
+            subtitle.setText("Thank you!");
+            export_vf.showPrevious();
+        }
+
+    }
+
+    private void addNotification() {
+        builder =
+                new NotificationCompat.Builder(this)
+                        .setSmallIcon(R.drawable.mmicon)
+                        .setContentTitle("Uploading Miracle Message...")
+                        .setOngoing(true);
+
+        // Add as notification
+        manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        manager.notify(UPLOAD_NOTIFICATION_ID, builder.build());
     }
 }

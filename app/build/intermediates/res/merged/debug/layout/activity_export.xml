@@ -90,7 +90,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/confirm_text"
-                        android:text="After reviewing your video click the complete button below to upload to our database."
+                        android:text="Please click the submit button below to upload your miracle message."
                         android:textSize="25dp"
                         />
 

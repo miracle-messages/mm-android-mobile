@@ -53,17 +53,17 @@ public final class R {
 	}
 	public static final class id {
 		public static final int auto = 0x7f0b0025;
-		public static final int contact = 0x7f0b00a8;
+		public static final int contact = 0x7f0b00a7;
 		public static final int dark = 0x7f0b0026;
-		public static final int email = 0x7f0b0070;
+		public static final int email = 0x7f0b006f;
 		public static final int icon_only = 0x7f0b0022;
 		public static final int light = 0x7f0b0027;
 		public static final int none = 0x7f0b000e;
 		public static final int normal = 0x7f0b000a;
 		public static final int radio = 0x7f0b0044;
 		public static final int standard = 0x7f0b0023;
-		public static final int text = 0x7f0b00d5;
-		public static final int text2 = 0x7f0b00d3;
+		public static final int text = 0x7f0b00d4;
+		public static final int text2 = 0x7f0b00d2;
 		public static final int wide = 0x7f0b0024;
 		public static final int wrap_content = 0x7f0b0019;
 	}

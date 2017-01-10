@@ -128,10 +128,6 @@
         "source": "C:\\Users\\James Wu\\AndroidStudioProjects\\MiracleMessagesApp\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.1.1\\res\\layout\\notification_template_media.xml"
     },
     {
-        "merged": "C:\\Users\\James Wu\\AndroidStudioProjects\\MiracleMessagesApp\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_camera2.xml",
-        "source": "C:\\Users\\James Wu\\AndroidStudioProjects\\MiracleMessagesApp\\app\\src\\main\\res\\layout\\activity_camera2.xml"
-    },
-    {
         "merged": "C:\\Users\\James Wu\\AndroidStudioProjects\\MiracleMessagesApp\\app\\build\\intermediates\\res\\merged\\debug\\layout\\activity_main.xml",
         "source": "C:\\Users\\James Wu\\AndroidStudioProjects\\MiracleMessagesApp\\app\\src\\main\\res\\layout\\activity_main.xml"
     },
