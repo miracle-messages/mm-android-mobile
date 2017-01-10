@@ -19,14 +19,13 @@ import android.widget.ViewFlipper;
 
 public class PreCameraActivity extends Activity {
 
-    private ViewFlipper viewFlipper, buttonViewFlipper;
-    TextView about, link, faq, resources, contact, my_profile, script, changeUser;
+    private ViewFlipper viewFlipper;
+    TextView about, link, faq, resources, contact, my_profile, record, changeUser;
     TextView internalfb1, internalfb2, internalslack, ext_fb, ext_donation, ext_yt, ext_twitter, ext_ig, docs_hb, docs_int, docs_ext, docs_roles;
     TextView script_hello;
     EditText prof_name, prof_phone, prof_email, prof_loc;
     Button save_prof, script_start, script_next_xx, script_next_xxx;
     SharedPreferences sharedpreferences;
-    ImageView smallIcon;
     LinearLayout pcBack;
     public static final String myPreferences = "MyPreferences";
     public static final String Name = "name";
@@ -46,6 +45,9 @@ public class PreCameraActivity extends Activity {
 
         pcBack = (LinearLayout) findViewById(R.id.precamera_background);
 
+        icon = (ImageView) findViewById(R.id.icon);
+
+        /*If user selects "Record a message" from the home screen...*/
         script_hello = (TextView) findViewById(R.id.script_hello);
         script_start = (Button) findViewById(R.id.script_start);
         script_start.setOnClickListener(new View.OnClickListener() {
@@ -76,6 +78,7 @@ public class PreCameraActivity extends Activity {
             }
         });
 
+        /*If user selects "My Profile" from the home screen...*/
         prof_name = (EditText) findViewById(R.id.profile_name);
         prof_phone = (EditText) findViewById(R.id.profile_number);
         prof_email = (EditText) findViewById(R.id.profile_email);
@@ -130,6 +133,7 @@ public class PreCameraActivity extends Activity {
             }
         });
 
+        /*If user selects Resources*/
         docs_hb = (TextView) findViewById(R.id.docs_handbook);
         docs_hb.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -215,6 +219,32 @@ public class PreCameraActivity extends Activity {
             }
         });
 
+        about = (TextView) findViewById(R.id.about);
+        about.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                viewFlipper.setInAnimation(v.getContext(), R.anim.slide_in_from_right);
+                viewFlipper.setOutAnimation(v.getContext(), R.anim.slide_out_to_left);
+                viewFlipper.setDisplayedChild(1); //1 is about
+                back.setVisibility(View.VISIBLE);
+                icon.setVisibility(View.VISIBLE);
+                exitApp = false;
+            }
+        });
+
+        resources = (TextView) findViewById(R.id.resources);
+        resources.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                viewFlipper.setInAnimation(v.getContext(), R.anim.slide_in_from_right);
+                viewFlipper.setOutAnimation(v.getContext(), R.anim.slide_out_to_left);
+                viewFlipper.setDisplayedChild(2); //2 is resources
+                back.setVisibility(View.VISIBLE);
+                icon.setVisibility(View.VISIBLE);
+                exitApp = false;
+            }
+        });
+
         my_profile = (TextView) findViewById(R.id.my_profile);
         my_profile.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -231,72 +261,9 @@ public class PreCameraActivity extends Activity {
                 exitApp = false;
             }
         });
-        about = (TextView) findViewById(R.id.about);
-        about.setOnClickListener(new View.OnClickListener() {
 
-            @Override
-            public void onClick(View v) {
-                viewFlipper.setInAnimation(v.getContext(), R.anim.slide_in_from_right);
-                viewFlipper.setOutAnimation(v.getContext(), R.anim.slide_out_to_left);
-                viewFlipper.setDisplayedChild(1); //1 is about
-                back.setVisibility(View.VISIBLE);
-                icon.setVisibility(View.VISIBLE);
-                exitApp = false;
-            }
-        });
-        contact = (TextView) findViewById(R.id.contact);
-        contact.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent emailIntent = new Intent(Intent.ACTION_SEND);
-                emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{"hello@miraclemessages.org"});
-                emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Message from " + sharedpreferences.getString(Name, null));
-                emailIntent.setType("message/rfc822");
-
-                startActivity(Intent.createChooser(emailIntent, "Choose an email client:"));
-                exitApp = false;
-                System.out.println("CONTAX");
-            }
-        });
-        back = (ImageView) findViewById(R.id.back);
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(viewFlipper.getDisplayedChild() == 1 || //if about, resources, script, or my profile go to menu
-                        viewFlipper.getDisplayedChild() == 2 ||
-                        viewFlipper.getDisplayedChild() == 3 ||
-                        viewFlipper.getDisplayedChild() == 4) {
-                    viewFlipper.setInAnimation(v.getContext(), R.anim.slide_in_from_left);
-                    viewFlipper.setOutAnimation(v.getContext(), R.anim.slide_out_to_right);
-                    viewFlipper.setDisplayedChild(0);
-                    back.setVisibility(View.INVISIBLE);
-                    icon.setVisibility(View.INVISIBLE);
-                }
-                else if(viewFlipper.getDisplayedChild() == 5 ||
-                        viewFlipper.getDisplayedChild() == 6) {
-                    viewFlipper.setInAnimation(v.getContext(), R.anim.slide_in_from_left);
-                    viewFlipper.setOutAnimation(v.getContext(), R.anim.slide_out_to_right);
-                    viewFlipper.showPrevious();
-                }
-            }
-        });
-        icon = (ImageView) findViewById(R.id.icon);
-        link = (TextView) findViewById(R.id.link);
-        link.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v){
-                openLink("https://miraclemessages.org/getinvolved");
-            }
-        });
-        faq = (TextView) findViewById(R.id.faq);
-        faq.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openLink("https://miraclemessages.org/faq");
-            }
-        });
-        script = (TextView) findViewById(R.id.script);
-        script.setOnClickListener(new View.OnClickListener() {
+        record = (TextView) findViewById(R.id.record);
+        record.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 viewFlipper.setInAnimation(v.getContext(), R.anim.slide_in_from_right);
@@ -310,16 +277,53 @@ public class PreCameraActivity extends Activity {
                 exitApp = false;
             }
         });
-        resources = (TextView) findViewById(R.id.resources);
-        resources.setOnClickListener(new View.OnClickListener() {
+
+        contact = (TextView) findViewById(R.id.contact);
+        contact.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                viewFlipper.setInAnimation(v.getContext(), R.anim.slide_in_from_right);
-                viewFlipper.setOutAnimation(v.getContext(), R.anim.slide_out_to_left);
-                viewFlipper.setDisplayedChild(2); //2 is resources
-                back.setVisibility(View.VISIBLE);
-                icon.setVisibility(View.VISIBLE);
+                Intent emailIntent = new Intent(Intent.ACTION_SEND);
+                emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{"hello@miraclemessages.org"});
+                emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Message from " + sharedpreferences.getString(Name, null));
+                emailIntent.setType("message/rfc822");
+
+                startActivity(Intent.createChooser(emailIntent, "Choose an email client:"));
                 exitApp = false;
+            }
+        });
+
+        back = (ImageView) findViewById(R.id.back);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(viewFlipper.getDisplayedChild() >= 1 &&
+                        viewFlipper.getDisplayedChild() <= 4) {
+                    viewFlipper.setInAnimation(v.getContext(), R.anim.slide_in_from_left);
+                    viewFlipper.setOutAnimation(v.getContext(), R.anim.slide_out_to_right);
+                    back.setVisibility(View.INVISIBLE);
+                    icon.setVisibility(View.INVISIBLE);
+                }
+                else if(viewFlipper.getDisplayedChild() == 5 ||
+                        viewFlipper.getDisplayedChild() == 6) {
+                    viewFlipper.setInAnimation(v.getContext(), R.anim.slide_in_from_left);
+                    viewFlipper.setOutAnimation(v.getContext(), R.anim.slide_out_to_right);
+                    viewFlipper.showPrevious();
+                }
+            }
+        });
+
+        link = (TextView) findViewById(R.id.link);
+        link.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v){
+                openLink("https://miraclemessages.org/getinvolved");
+            }
+        });
+        faq = (TextView) findViewById(R.id.faq);
+        faq.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openLink("https://miraclemessages.org/faq");
             }
         });
 
@@ -350,13 +354,29 @@ public class PreCameraActivity extends Activity {
         startActivity(i);
     }
 
+    /*Override onBackPressed() so pressing the backbutton does not close the application.
+    Done because of the use of viewflippers; back button seems to only go back from activity
+    to activity.
+    */
     public void onBackPressed() {
         if (exitApp) {
             super.onBackPressed();
         } else {
-            Intent i = getIntent();
-            finish();
-            startActivity(i);
+            if(viewFlipper.getDisplayedChild() >= 1 &&
+                    viewFlipper.getDisplayedChild() <= 4) {
+                viewFlipper.setInAnimation(getApplicationContext(), R.anim.slide_in_from_left);
+                viewFlipper.setOutAnimation(getApplicationContext(), R.anim.slide_out_to_right);
+                viewFlipper.setDisplayedChild(0);
+                back.setVisibility(View.INVISIBLE);
+                icon.setVisibility(View.INVISIBLE);
+                exitApp = true;
+            }
+            else if(viewFlipper.getDisplayedChild() == 5 ||
+                    viewFlipper.getDisplayedChild() == 6) {
+                viewFlipper.setInAnimation(getApplicationContext(), R.anim.slide_in_from_left);
+                viewFlipper.setOutAnimation(getApplicationContext(), R.anim.slide_out_to_right);
+                viewFlipper.showPrevious();
+            }
         }
     }
 

@@ -122,8 +122,9 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Script"
-                android:id="@+id/script"
+                android:text="Record a message"
+                android:textColor="#3498db"
+                android:id="@+id/record"
                 android:textSize="30dp"
                 android:paddingBottom="10dp"
                 android:paddingTop="10dp"

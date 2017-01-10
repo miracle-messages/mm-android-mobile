@@ -765,6 +765,7 @@ int id profile_save 0x7f0b00bd
 int id progress_circular 0x7f0b0005
 int id progress_horizontal 0x7f0b0006
 int id radio 0x7f0b0044
+int id record 0x7f0b00a7
 int id resources 0x7f0b00a5
 int id review_one_birth 0x7f0b0094
 int id review_one_contact 0x7f0b0098
@@ -780,7 +781,6 @@ int id review_two_relationship 0x7f0b009b
 int id review_two_years 0x7f0b009e
 int id rl_custom_layout 0x7f0b00d8
 int id screen 0x7f0b0015
-int id script 0x7f0b00a7
 int id script_begin_ask 0x7f0b00c4
 int id script_begin_inform 0x7f0b00c9
 int id script_begin_subtext_xx 0x7f0b00c3

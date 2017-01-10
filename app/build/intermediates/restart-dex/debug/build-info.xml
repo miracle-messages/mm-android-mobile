@@ -5,29 +5,29 @@
     density="xxxhdpi"
     format="8"
     plugin-version="2.2.3"
-    timestamp="1324297267149132"
+    timestamp="1516060671501590"
     token="-175922386883399307"
     verifier="FULL_BUILD_REQUESTED" >
 
     <task
         name="javac"
-        duration="569" />
+        duration="291" />
     <task
         name="instant-run-dex"
         duration="0" />
     <task
         name="instant-run-transform"
-        duration="10" />
+        duration="57" />
     <task
         name="verifier"
-        duration="1" />
+        duration="9" />
 
     <artifact
         location="C:\Users\James Wu\AndroidStudioProjects\MiracleMessagesApp\app\build\outputs\apk\app-debug.apk"
         type="MAIN" />
 
     <build
-        timestamp="1324297267149132"
+        timestamp="1516060671501590"
         verifier="FULL_BUILD_REQUESTED" >
         <artifact
             location="C:\Users\James Wu\AndroidStudioProjects\MiracleMessagesApp\app\build\outputs\apk\app-debug.apk"

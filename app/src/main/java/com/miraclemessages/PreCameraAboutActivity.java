@@ -114,7 +114,7 @@ public class PreCameraAboutActivity extends Activity {
             public void onClick(View v) {
                 if(about_vf.getDisplayedChild() == 0) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(PreCameraAboutActivity.this);
-                    builder.setMessage("All changes on this page will be lost, would you still like to continue?")
+                    builder.setMessage("All changes on this page will be lost, would you still like to go back to the home page?")
                             .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
                                     startActivity(new Intent(PreCameraAboutActivity.this, PreCameraActivity.class));
@@ -671,6 +671,41 @@ public class PreCameraAboutActivity extends Activity {
                 dispatchTakeVideoIntent();
         } else {
             super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
+    }
+
+    public void onBackPressed() {
+        if(about_vf.getDisplayedChild() == 0) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(PreCameraAboutActivity.this);
+            builder.setMessage("All changes on this page will be lost, would you still like to go back to the home page?")
+                    .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            startActivity(new Intent(PreCameraAboutActivity.this, PreCameraActivity.class));
+                            finish();
+                        }
+                    })
+                    .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            // User cancelled the dialog
+                        }
+                    });
+            // Create the AlertDialog object and return it
+            builder.create();
+            builder.show();
+        }
+        else {
+            about_vf.setInAnimation(getApplicationContext(), R.anim.slide_in_from_left);
+            about_vf.setOutAnimation(getApplicationContext(), R.anim.slide_out_to_right);
+            if(about_vf.getDisplayedChild() == 1) {
+                direction.setText("From");
+                who.setText("Homeless individual");
+            }
+            else {
+                direction.setText("To");
+                who.setText("Loved one");
+                next.setText("Next");
+            }
+            about_vf.showPrevious();
         }
     }
 }

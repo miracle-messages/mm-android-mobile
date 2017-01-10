@@ -2182,6 +2182,7 @@ containing a value of this type.
         public static final int progress_circular=0x7f0b0005;
         public static final int progress_horizontal=0x7f0b0006;
         public static final int radio=0x7f0b0044;
+        public static final int record=0x7f0b00a7;
         public static final int resources=0x7f0b00a5;
         public static final int review_one_birth=0x7f0b0094;
         public static final int review_one_contact=0x7f0b0098;
@@ -2197,7 +2198,6 @@ containing a value of this type.
         public static final int review_two_years=0x7f0b009e;
         public static final int rl_custom_layout=0x7f0b00d8;
         public static final int screen=0x7f0b0015;
-        public static final int script=0x7f0b00a7;
         public static final int script_begin_ask=0x7f0b00c4;
         public static final int script_begin_inform=0x7f0b00c9;
         public static final int script_begin_subtext_xx=0x7f0b00c3;
