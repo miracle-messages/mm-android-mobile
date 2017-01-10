@@ -9,4 +9,5 @@
 /app/google-services.json
 /app/app-release.apk
 /app/build.gradle
+/app/build/
 /.idea/vcs.xml
