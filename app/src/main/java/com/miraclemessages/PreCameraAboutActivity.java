@@ -174,7 +174,7 @@ public class PreCameraAboutActivity extends Activity {
                             .setPositiveButton("Continue", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
                                     requestPermissions();
-//                                        finish();
+                                    finish();
                                 }
                             })
                             .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {

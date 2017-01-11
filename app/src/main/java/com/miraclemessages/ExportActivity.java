@@ -146,6 +146,10 @@ public class ExportActivity extends Activity{
 
         submit = (Button) findViewById(R.id.submit);
         back = (ImageView) findViewById(R.id.back);
+
+        if(export_vf.getDisplayedChild() == 0 || export_vf.getDisplayedChild() == 1){
+            back.setVisibility(View.INVISIBLE);
+        }
 //        feedback = (TextView) findViewById(R.id.feedback);
 
         submit.setOnClickListener(new View.OnClickListener() {
@@ -159,16 +163,17 @@ public class ExportActivity extends Activity{
                     submit.setText("Next steps");
                     title.setText("Message sent");
                     subtitle.setText("Thank you!");
-                    back.setVisibility(View.VISIBLE);
+//                    back.setVisibility(View.INVISIBLE);
                     export_vf.showNext();
                 }
                 else if(export_vf.getDisplayedChild() == 1) {
                     submit.setText("Home");
                     title.setText("What's next");
                     subtitle.setText("Follow-up");
+                    back.setVisibility(View.VISIBLE);
                     export_vf.showNext();
                 }
-                else {
+                else if(export_vf.getDisplayedChild() == 2){
                     startActivity(new Intent(ExportActivity.this, PreCameraActivity.class));
                     finish();
                 }
@@ -180,14 +185,10 @@ public class ExportActivity extends Activity{
             public void onClick(View v) {
                 export_vf.setInAnimation(v.getContext(), R.anim.slide_in_from_left);
                 export_vf.setOutAnimation(v.getContext(), R.anim.slide_out_to_right);
-                if(export_vf.getDisplayedChild() == 1) {
-                    submit.setText("Submit");
-                    title.setText("Upload");
-                    subtitle.setText("Ready to send the message?");
-                    back.setVisibility(View.INVISIBLE);
-                    export_vf.showPrevious();
-                }
-                else if(export_vf.getDisplayedChild() == 2) {
+//                if(export_vf.getDisplayedChild() == 0 || export_vf.getDisplayedChild() == 1) {
+//                    back.setVisibility(View.INVISIBLE);
+//                }
+                if(export_vf.getDisplayedChild() == 2) {
                     submit.setText("Next steps");
                     title.setText("Message sent");
                     subtitle.setText("Thank you!");
@@ -196,7 +197,7 @@ public class ExportActivity extends Activity{
             }
         });
 
-        final String appPackageName = getPackageName().toString();
+//        final String appPackageName = getPackageName().toString();
 //        feedback.setOnClickListener(new View.OnClickListener(){
 //            @Override
 //            public void onClick(View v) {
@@ -392,17 +393,15 @@ public class ExportActivity extends Activity{
     public void onBackPressed(){
         export_vf.setInAnimation(getApplicationContext(), R.anim.slide_in_from_left);
         export_vf.setOutAnimation(getApplicationContext(), R.anim.slide_out_to_right);
-        if(export_vf.getDisplayedChild() == 1) {
-            submit.setText("Submit");
-            title.setText("Upload");
-            subtitle.setText("Ready to send the message?");
-            back.setVisibility(View.INVISIBLE);
-            export_vf.showPrevious();
-        }
-        else if(export_vf.getDisplayedChild() == 2) {
+//        if(export_vf.getDisplayedChild() == 0 || export_vf.getDisplayedChild() == 1) {
+//            back.setVisibility(View.INVISIBLE);
+//            return;
+//        }
+        if(export_vf.getDisplayedChild() == 2) {
             submit.setText("Next steps");
             title.setText("Message sent");
             subtitle.setText("Thank you!");
+            back.setVisibility(View.INVISIBLE);
             export_vf.showPrevious();
         }
 
