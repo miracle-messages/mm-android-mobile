@@ -192,6 +192,7 @@ public class ExportActivity extends Activity{
                     submit.setText("Next steps");
                     title.setText("Message sent");
                     subtitle.setText("Thank you!");
+                    back.setVisibility(View.INVISIBLE);
                     export_vf.showPrevious();
                 }
             }

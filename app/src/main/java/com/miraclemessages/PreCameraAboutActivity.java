@@ -174,7 +174,6 @@ public class PreCameraAboutActivity extends Activity {
                             .setPositiveButton("Continue", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
                                     requestPermissions();
-                                    finish();
                                 }
                             })
                             .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -632,6 +631,7 @@ public class PreCameraAboutActivity extends Activity {
             editor.commit();
             Toast.makeText(this, "Video saved to Camera album", Toast.LENGTH_LONG).show();
             startActivity(new Intent(this, ExportActivity.class));
+            finish();
         }
     }
 
