@@ -1,11 +1,20 @@
 package com.miraclemessages;
 
+import android.*;
+import android.Manifest;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -35,6 +44,10 @@ public class PreCameraActivity extends Activity {
     Animation animFadeOut, animFadeIn;
     ImageView back, icon;
     boolean exitApp = true;
+    static final int REQUEST_PHONE_CALL = 1;
+    private static final String[] PHONE_PERMISSIONS = {
+            Manifest.permission.CALL_PHONE
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -282,12 +295,28 @@ public class PreCameraActivity extends Activity {
         contact.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent emailIntent = new Intent(Intent.ACTION_SEND);
-                emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{"hello@miraclemessages.org"});
-                emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Message from " + sharedpreferences.getString(Name, null));
-                emailIntent.setType("message/rfc822");
+                CharSequence contactOptions[] = new CharSequence[]{"By email", "By phone call"};
+                AlertDialog.Builder builder = new AlertDialog.Builder(PreCameraActivity.this);
+                builder.setTitle("Please select a contact method:");
+                builder.setItems(contactOptions, new DialogInterface.OnClickListener(){
+                    @Override
+                    public void onClick(DialogInterface dialog, int selection){
+                        if(selection == 0){
+                            Intent emailIntent = new Intent(Intent.ACTION_SEND);
+                            emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{"hello@miraclemessages.org"});
+                            emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Message from " + sharedpreferences.getString(Name, null));
+                            emailIntent.setType("message/rfc822");
 
-                startActivity(Intent.createChooser(emailIntent, "Choose an email client:"));
+                            startActivity(Intent.createChooser(emailIntent, "Choose an email client:"));
+                        }
+                        else if(selection == 1){
+                            Uri number = Uri.parse("tel:4155458406");
+                            Intent callIntent = new Intent(Intent.ACTION_DIAL, number);
+                            startActivity(callIntent);
+                        }
+                    }
+                });
+                builder.show();
                 exitApp = false;
             }
         });
@@ -379,5 +408,4 @@ public class PreCameraActivity extends Activity {
             }
         }
     }
-
 }
