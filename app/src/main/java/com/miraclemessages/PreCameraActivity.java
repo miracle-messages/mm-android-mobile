@@ -4,17 +4,20 @@ import android.*;
 import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.text.Html;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -297,7 +300,9 @@ public class PreCameraActivity extends Activity {
             public void onClick(View v) {
                 CharSequence contactOptions[] = new CharSequence[]{"By email", "By phone call"};
                 AlertDialog.Builder builder = new AlertDialog.Builder(PreCameraActivity.this);
-                builder.setTitle("Please select a contact method:");
+
+                //Setting title color below is not good practice, but it'll do for now.
+                builder.setTitle(Html.fromHtml("<font color='#FFFFFF'>How would you like to contact Miracle Messages?</font"));
                 builder.setItems(contactOptions, new DialogInterface.OnClickListener(){
                     @Override
                     public void onClick(DialogInterface dialog, int selection){
@@ -316,7 +321,9 @@ public class PreCameraActivity extends Activity {
                         }
                     }
                 });
-                builder.show();
+                Dialog dialog = builder.create();
+                dialog.getWindow().setBackgroundDrawableResource(R.color.flat_blue);
+                dialog.show();
                 exitApp = false;
             }
         });
@@ -331,6 +338,7 @@ public class PreCameraActivity extends Activity {
                     viewFlipper.setOutAnimation(v.getContext(), R.anim.slide_out_to_right);
                     back.setVisibility(View.INVISIBLE);
                     icon.setVisibility(View.INVISIBLE);
+                    viewFlipper.setDisplayedChild(0);
                 }
                 else if(viewFlipper.getDisplayedChild() == 5 ||
                         viewFlipper.getDisplayedChild() == 6) {
@@ -395,9 +403,9 @@ public class PreCameraActivity extends Activity {
                     viewFlipper.getDisplayedChild() <= 4) {
                 viewFlipper.setInAnimation(getApplicationContext(), R.anim.slide_in_from_left);
                 viewFlipper.setOutAnimation(getApplicationContext(), R.anim.slide_out_to_right);
-                viewFlipper.setDisplayedChild(0);
                 back.setVisibility(View.INVISIBLE);
                 icon.setVisibility(View.INVISIBLE);
+                viewFlipper.setDisplayedChild(0);
                 exitApp = true;
             }
             else if(viewFlipper.getDisplayedChild() == 5 ||

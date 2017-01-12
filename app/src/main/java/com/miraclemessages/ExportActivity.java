@@ -82,7 +82,7 @@ import static android.app.Service.START_STICKY;
 
 public class ExportActivity extends Activity{
     // S3 URL
-    public static final String vidURL =
+    private static final String vidURL =
             "https://s3.amazonaws.com/androidmiraclemessages/";
     // TAG for logging;
     private static final String TAG = "UploadActivity";
@@ -111,8 +111,8 @@ public class ExportActivity extends Activity{
     // The TransferUtility is the primary class for managing transfer to S3
     private TransferUtility transferUtility;
 
-    FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference myRef;
+    private FirebaseDatabase database = FirebaseDatabase.getInstance();
+    private DatabaseReference myRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
