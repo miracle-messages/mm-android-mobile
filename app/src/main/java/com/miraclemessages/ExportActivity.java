@@ -132,7 +132,7 @@ public class ExportActivity extends Activity{
             @Override
             public void onClick(View v) {
 //                Toast.makeText(ExportActivity.this, "Next chapters clicked!", Toast.LENGTH_SHORT).show();
-                openLink("www.miraclemessages.org/chapters");
+                openLink("https://miraclemessages.org/chapters");
 
             }
         });

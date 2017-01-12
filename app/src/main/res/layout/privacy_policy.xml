@@ -20,7 +20,7 @@
         android:id="@+id/header"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Privacy Policy\nLast updated on January 11, 2017"
+        android:text="Privacy Policy\n\nLast updated on January 11, 2017"
         android:textStyle="bold"
         android:textColor="#FFFFFF"
         />
