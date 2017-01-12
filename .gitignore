@@ -11,3 +11,4 @@
 /app/build.gradle
 /app/build/
 /.idea/vcs.xml
+/app/src/main/java/com/miraclemessages/Constants.java
