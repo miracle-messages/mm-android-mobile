@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.util.Patterns;
 import android.view.View;
 import android.content.SharedPreferences;
@@ -18,13 +17,13 @@ public class MainActivity extends AppCompatActivity {
 
     SharedPreferences sharedpreferences;
     EditText textName, textEmail, textPhone, textLocation;
+    TextView link;
     Button submit;
     public static final String myPreferences = "MyPreferences";
     public static final String Name = "name";
     public static final String Email = "email";
     public static final String Phone = "phone";
     public static final String Location = "location";
-    TextView policy, link;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +35,6 @@ public class MainActivity extends AppCompatActivity {
         textLocation=(EditText)findViewById(R.id.location);
 
         submit=(Button)findViewById(R.id.submit);
-//        policy = (TextView)findViewById(R.id.policy);
         link = (TextView)findViewById(R.id.link);
 
         View someView = findViewById(R.id.homeback);
@@ -122,10 +120,12 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    /*Helper function to check if user input email is valid.*/
     private static boolean isValidEmail(CharSequence userInput) {
         return Patterns.EMAIL_ADDRESS.matcher(userInput).matches();
     }
 
+    /*Helper function to check if user input phone number is valid.*/
     private static boolean isValidPhone(CharSequence userInput) {
         return Patterns.PHONE.matcher(userInput).matches();
     }
