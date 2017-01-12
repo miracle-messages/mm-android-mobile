@@ -131,14 +131,17 @@ public class ExportActivity extends Activity{
         next_x.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(ExportActivity.this, "Next chapters clicked!", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(ExportActivity.this, "Next chapters clicked!", Toast.LENGTH_SHORT).show();
+                openLink("www.miraclemessages.org/chapters");
+
             }
         });
         next_xx = (ImageView) findViewById(R.id.next_xx);
         next_xx.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(ExportActivity.this, "Track progress clicked!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ExportActivity.this, "Progress tracking is coming soon! Thank you for your patience :-)", Toast.LENGTH_LONG).show();
+
             }
         });
 
@@ -418,5 +421,11 @@ public class ExportActivity extends Activity{
         // Add as notification
         manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         manager.notify(UPLOAD_NOTIFICATION_ID, builder.build());
+    }
+
+    private void openLink(String url) {
+        Intent i = new Intent(Intent.ACTION_VIEW);
+        i.setData(Uri.parse(url));
+        startActivity(i);
     }
 }
