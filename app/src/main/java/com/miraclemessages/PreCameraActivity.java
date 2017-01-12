@@ -2,6 +2,7 @@ package com.miraclemessages;
 
 import android.*;
 import android.Manifest;
+import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -12,22 +13,30 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.text.Html;
+import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
+
+import org.w3c.dom.Text;
 
 public class PreCameraActivity extends Activity {
 
@@ -35,6 +44,7 @@ public class PreCameraActivity extends Activity {
     TextView about, link, faq, resources, contact, my_profile, record, changeUser;
     TextView internalfb1, internalfb2, internalslack, ext_fb, ext_donation, ext_yt, ext_twitter, ext_ig, docs_hb, docs_int, docs_ext, docs_roles;
     TextView script_hello;
+    TextView privacy_policy, leave_rating;
     EditText prof_name, prof_phone, prof_email, prof_loc;
     Button save_prof, script_start, script_next_xx, script_next_xxx;
     SharedPreferences sharedpreferences;
@@ -47,21 +57,20 @@ public class PreCameraActivity extends Activity {
     Animation animFadeOut, animFadeIn;
     ImageView back, icon;
     boolean exitApp = true;
-    static final int REQUEST_PHONE_CALL = 1;
-    private static final String[] PHONE_PERMISSIONS = {
-            Manifest.permission.CALL_PHONE
-    };
-
+    PopupWindow popupWindow;
+    LinearLayout linearLayout;
+    private String appPackageName;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_precamera);
-
+        appPackageName = getPackageName().toString();
         sharedpreferences = getSharedPreferences(myPreferences, Context.MODE_PRIVATE);
 
         pcBack = (LinearLayout) findViewById(R.id.precamera_background);
 
         icon = (ImageView) findViewById(R.id.icon);
+        viewFlipper = (ViewFlipper) findViewById(R.id.viewflipper);
 
         /*If user selects "Record a message" from the home screen...*/
         script_hello = (TextView) findViewById(R.id.script_hello);
@@ -236,6 +245,8 @@ public class PreCameraActivity extends Activity {
         });
 
         about = (TextView) findViewById(R.id.about);
+        privacy_policy = (TextView) findViewById(R.id.policy);
+        leave_rating = (TextView) findViewById(R.id.rateApp);
         about.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -245,6 +256,50 @@ public class PreCameraActivity extends Activity {
                 back.setVisibility(View.VISIBLE);
                 icon.setVisibility(View.VISIBLE);
                 exitApp = false;
+
+                privacy_policy.setOnClickListener(new View.OnClickListener(){
+                    @Override
+                    public void onClick(View v){
+                        LayoutInflater inflater = (LayoutInflater) getApplicationContext().getSystemService(LAYOUT_INFLATER_SERVICE);
+                        View policyView = inflater.inflate(R.layout.privacy_policy, null);
+                        popupWindow = new PopupWindow(
+                                policyView,
+                                LinearLayout.LayoutParams.WRAP_CONTENT,
+                                LinearLayout.LayoutParams.WRAP_CONTENT
+                        );
+                        popupWindow.setTouchable(true);
+                        popupWindow.setFocusable(true);
+                        popupWindow.setOutsideTouchable(false);
+                        // Set an elevation value for popup window
+                        // Call requires API level 21
+                        if(Build.VERSION.SDK_INT>=21){
+                            popupWindow.setElevation(5.0f);
+                        }
+                        ImageButton closeButton = (ImageButton) policyView.findViewById(R.id.ib_close);
+                        closeButton.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                // Dismiss the popup window
+                                popupWindow.dismiss();
+                            }
+                        });
+                        popupWindow.showAtLocation(pcBack, Gravity.CENTER, 0, 0);
+                    }
+                });
+
+                leave_rating.setOnClickListener(new View.OnClickListener(){
+                    @Override
+                    public void onClick(View v){
+                        try {
+                            Log.v("Peas in a pod", appPackageName);
+                            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
+                        } catch (android.content.ActivityNotFoundException notFoundException) {
+                            Log.v("BEN HUR:", appPackageName);
+                            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + appPackageName)));
+                        }
+                    }
+                });
+
             }
         });
 
@@ -364,7 +419,6 @@ public class PreCameraActivity extends Activity {
             }
         });
 
-        viewFlipper = (ViewFlipper) findViewById(R.id.viewflipper);
         changeUser = (TextView) findViewById(R.id.logout);
 
         animFadeOut = AnimationUtils.loadAnimation(getApplicationContext(), android.R.anim.fade_out);
