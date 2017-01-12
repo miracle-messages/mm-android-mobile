@@ -5,7 +5,7 @@ This is the official mobile application built for the non-profit organization, M
 
 Read all about the organization [here](http://miraclemessages.org/).
 
-The application hopes to provide an efficient way for volunteers using Android phones to record and deliver short video messages from our homeless neighbors to their loved ones. There is also an iOS-variant of the application available.
+The application hopes to provide an efficient way for volunteers using Android phones to record and deliver short video messages from our homeless neighbors to their loved ones. There is also an iOS-variant of the application available. Both variants use Amazon AWS and Google Firebase for storage and analytics.
 
 Typical User Workflow
 ---------------------
