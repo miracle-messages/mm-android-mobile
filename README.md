@@ -17,10 +17,15 @@ Typical User Workflow
   * FAQ (go to 2d)
   * Record a message (go to 2e)
   * Contact (go to 2f)
+
 2a. User may update the credentials as entered in (1).
+
 2b. User can view the About page, with a description of the organization. There is also the ability to view the Privacy Policy and leave feedback on the Play Store.
+
 2c. User sees hyperlinks to links where they may connect with fellow volunteers on social media, as well as important documents on the organization.
+
 2d. User is redirected to the Miracle Messages website's FAQ page on the internet browser.
+
 2e. User sees a script of what to say to the homeless individual (i.e. Permission to record, take information, etc.). Then the user is greeted with a form. The form consists of two parts: **From** and **To**. The **From** part of the form is information about the sender of the Miracle Message, the homeless individual. The subsequent **To** part of the form that follows after is the information about the recipient of the Miracle Message, the loved one to be reached. 
 
 After the forms are completed as best of the homeless individual's ability, the user grants permission to the camera, audio, and internal/external storage. The phone's default camera opens and the user can start recording when ready. After the user is done, the user sees the Upload page. Clicking on the Submit button uploads the video to an Amazon S3 bucket, while the form credentials and video URL are sent to Google Firebase for storage. 
