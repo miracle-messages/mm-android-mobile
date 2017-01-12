@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Patterns;
 import android.view.View;
 import android.content.SharedPreferences;
 import android.widget.Button;
@@ -68,10 +70,22 @@ public class MainActivity extends AppCompatActivity {
                             Toast.LENGTH_LONG).show();
                     return;
                 }
+                else if(!isValidEmail(e)){
+                    Toast.makeText(MainActivity.this,
+                            "Please enter a valid email address.",
+                            Toast.LENGTH_LONG).show();
+                    return;
+                }
                 String p = textPhone.getText().toString();
                 if(p.equals("")) {
                     Toast.makeText(MainActivity.this,
                             "Please fill out all fields.",
+                            Toast.LENGTH_LONG).show();
+                    return;
+                }
+                else if(!isValidPhone(p)){
+                    Toast.makeText(MainActivity.this,
+                            "Please enter a valid phone number.",
                             Toast.LENGTH_LONG).show();
                     return;
                 }
@@ -106,6 +120,14 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+    }
+
+    private static boolean isValidEmail(CharSequence userInput) {
+        return Patterns.EMAIL_ADDRESS.matcher(userInput).matches();
+    }
+
+    private static boolean isValidPhone(CharSequence userInput) {
+        return Patterns.PHONE.matcher(userInput).matches();
     }
 
 }
