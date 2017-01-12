@@ -28,11 +28,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
 
-import org.w3c.dom.Text;
-
-import java.io.File;
-import java.net.URI;
-
 public class PreCameraAboutActivity extends Activity {
 
     ImageView back;
@@ -56,7 +51,6 @@ public class PreCameraAboutActivity extends Activity {
             Manifest.permission.WRITE_EXTERNAL_STORAGE
     };
     public static final String FileLoc = "file";
-
 
     Animation animFadeOut, animFadeIn;
 
@@ -625,7 +619,7 @@ public class PreCameraAboutActivity extends Activity {
         if (requestCode == REQUEST_VIDEO_CAPTURE && resultCode == RESULT_OK) {
             Uri videoUri = intent.getData();
             String filepath = getRealPathFromURI(getApplicationContext(), videoUri);
-            Log.v("FINISHED RECORDING:", filepath);
+//            Log.v("FINISHED RECORDING:", filepath);
             SharedPreferences.Editor editor = sharedpreferences.edit();
             editor.putString(FileLoc, filepath);
             editor.commit();
@@ -674,6 +668,7 @@ public class PreCameraAboutActivity extends Activity {
         }
     }
 
+    //Update the back button
     public void onBackPressed() {
         if(about_vf.getDisplayedChild() == 0) {
             AlertDialog.Builder builder = new AlertDialog.Builder(PreCameraAboutActivity.this);

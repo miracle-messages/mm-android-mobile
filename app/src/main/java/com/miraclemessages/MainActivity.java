@@ -120,12 +120,12 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    /*Helper function to check if user input email is valid.*/
+    //Helper function to check if user input email is valid.
     private static boolean isValidEmail(CharSequence userInput) {
         return Patterns.EMAIL_ADDRESS.matcher(userInput).matches();
     }
 
-    /*Helper function to check if user input phone number is valid.*/
+    //Helper function to check if user input phone number is valid.
     private static boolean isValidPhone(CharSequence userInput) {
         return Patterns.PHONE.matcher(userInput).matches();
     }

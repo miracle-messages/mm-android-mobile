@@ -1,8 +1,5 @@
 package com.miraclemessages;
 
-import android.*;
-import android.Manifest;
-import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -10,15 +7,9 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
-import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.provider.MediaStore;
-import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.text.Html;
 import android.util.Log;
 import android.util.Patterns;
@@ -37,13 +28,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
 
-import org.w3c.dom.Text;
-
 public class PreCameraActivity extends Activity {
 
     private ViewFlipper viewFlipper;
     TextView about, link, faq, resources, contact, my_profile, record, changeUser;
-    TextView internalfb1, internalfb2, internalslack, ext_fb, ext_donation, ext_yt, ext_twitter, ext_ig, docs_hb, docs_int, docs_ext, docs_roles;
+    TextView internalfb1, internalfb2, internalslack, ext_fb, ext_donation, ext_yt, ext_twitter,
+            ext_ig, docs_hb, docs_int, docs_ext, docs_roles;
     TextView script_hello;
     TextView privacy_policy, leave_rating;
     EditText prof_name, prof_phone, prof_email, prof_loc;
@@ -59,8 +49,8 @@ public class PreCameraActivity extends Activity {
     ImageView back, icon;
     boolean exitApp = true;
     PopupWindow popupWindow;
-    LinearLayout linearLayout;
     private String appPackageName;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,7 +63,7 @@ public class PreCameraActivity extends Activity {
         icon = (ImageView) findViewById(R.id.icon);
         viewFlipper = (ViewFlipper) findViewById(R.id.viewflipper);
 
-        /*If user selects "Record a message" from the home screen...*/
+        //If user selects "Record a message" from the home screen...
         script_hello = (TextView) findViewById(R.id.script_hello);
         script_start = (Button) findViewById(R.id.script_start);
         script_start.setOnClickListener(new View.OnClickListener() {
@@ -104,7 +94,7 @@ public class PreCameraActivity extends Activity {
             }
         });
 
-        /*If user selects "My Profile" from the home screen...*/
+        //If user selects "My Profile" from the home screen...
         prof_name = (EditText) findViewById(R.id.profile_name);
         prof_phone = (EditText) findViewById(R.id.profile_number);
         prof_email = (EditText) findViewById(R.id.profile_email);
@@ -171,7 +161,7 @@ public class PreCameraActivity extends Activity {
             }
         });
 
-        /*If user selects Resources*/
+        //If user selects Resources
         docs_hb = (TextView) findViewById(R.id.docs_handbook);
         docs_hb.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -458,10 +448,12 @@ public class PreCameraActivity extends Activity {
         startActivity(i);
     }
 
+    //Helper function to check if user input email is valid.
     private static boolean isValidEmail(CharSequence userInput) {
         return Patterns.EMAIL_ADDRESS.matcher(userInput).matches();
     }
 
+    //Helper function to check if user input phone number is valid.
     private static boolean isValidPhone(CharSequence userInput) {
         return Patterns.PHONE.matcher(userInput).matches();
     }
