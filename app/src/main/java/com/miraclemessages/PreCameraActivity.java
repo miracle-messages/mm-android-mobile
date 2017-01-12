@@ -21,6 +21,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.text.Html;
 import android.util.Log;
+import android.util.Patterns;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -126,10 +127,22 @@ public class PreCameraActivity extends Activity {
                             Toast.LENGTH_LONG).show();
                     return;
                 }
+                else if(!isValidEmail(e)){
+                    Toast.makeText(PreCameraActivity.this,
+                            "Please enter a valid email address.",
+                            Toast.LENGTH_LONG).show();
+                    return;
+                }
                 String p = prof_phone.getText().toString();
                 if(p.equals("")) {
                     Toast.makeText(PreCameraActivity.this,
                             "Please fill out all fields.",
+                            Toast.LENGTH_LONG).show();
+                    return;
+                }
+                else if(!isValidPhone(p)){
+                    Toast.makeText(PreCameraActivity.this,
+                            "Please enter a valid phone number.",
                             Toast.LENGTH_LONG).show();
                     return;
                 }
@@ -443,6 +456,14 @@ public class PreCameraActivity extends Activity {
         Intent i = new Intent(Intent.ACTION_VIEW);
         i.setData(Uri.parse(url));
         startActivity(i);
+    }
+
+    private static boolean isValidEmail(CharSequence userInput) {
+        return Patterns.EMAIL_ADDRESS.matcher(userInput).matches();
+    }
+
+    private static boolean isValidPhone(CharSequence userInput) {
+        return Patterns.PHONE.matcher(userInput).matches();
     }
 
     /*Override onBackPressed() so pressing the backbutton does not close the application.
