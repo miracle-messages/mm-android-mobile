@@ -37,7 +37,8 @@ Technical Specifications
 * Android Studio v2.2.3
 * Google-services v3.0.0
 * MinSdkVersion 19 aka Android 4.4, KitKat
-* TargetSdkVersion 24 aka Android 7.0 Nougat
+* TargetSdkVersion 25 aka Android 7.0 Nougat
+* BuildToolsVersion 25.0.1
 * Java SDK v1.7
 * Amazon AWS SDK v2.2.+
 * Firebase Database v9.8.0
