@@ -36,7 +36,6 @@
             android:layout_alignParentRight="true"
             android:id="@+id/icon"
             android:visibility="invisible"/>
-
     </RelativeLayout>
 
     <ViewFlipper
@@ -178,89 +177,110 @@
             </LinearLayout>
         </ScrollView>
 
-
-        <ScrollView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:fillViewport="true">
+            android:id="@+id/precamera_about"
+            android:padding="20dp"
+            android:orientation="vertical">
 
-            <LinearLayout
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="About"
+                android:textStyle="bold"
+                android:textSize="30dp"
+                android:layout_marginBottom="30dp"/>
+
+            <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:background="#FFFFFF"
+                >
+
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:id="@+id/precamera_about"
-                    android:padding="20dp"
+                    android:layout_height="wrap_content"
                     android:orientation="vertical">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="About"
-                        android:textStyle="bold"
-                        android:textSize="30dp"
-                        android:layout_marginBottom="30dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Miracle Messages are short video messages from homeless people to their long-lost loved ones, recorded and delivered by volunteers. To date, 40% of reunions have lead to stable housing. Miracle Messages has been featured in the New York Times, NPR, and NowThis, whose video reached 22M views and 350K shares. Founder Kevin F. Adler started Miracle Messages in honor of his Uncle Mark, who lived on-and-off the streets for 30 years. Our goal is to reunite 1 million people by 2021. Join the movement:"
+                    android:textSize="20dp"
+                    />
 
-                    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/link"
+                    android:text="@string/link"
+                    android:textSize="20dp"
+                    android:textColor="#3498db"
+                    />
+
+                    <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:background="#FFFFFF"
-                        >
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical">
+                        android:layout_height="match_parent"
+                        android:paddingTop="20dp">
 
                         <TextView
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Miracle Messages are short video messages from homeless people to their long-lost loved ones, recorded and delivered by volunteers. To date, 40% of reunions have lead to stable housing. Miracle Messages has been featured in the New York Times, NPR, and NowThis, whose video reached 22M views and 350K shares. Founder Kevin F. Adler started Miracle Messages in honor of his Uncle Mark, who lived on-and-off the streets for 30 years. Our goal is to reunite 1 million people by 2021. Join the movement:"
-                            android:textSize="20dp"
-                            />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/link"
-                            android:text="@string/link"
-                            android:textSize="20dp"
-                            android:textColor="#3498db"
-                            />
-
-                        </LinearLayout>
-
-                    </ScrollView>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:layout_marginTop="25dp">
-
-                        <TextView
-                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:textColor="#3498db"
                             android:text="Privacy Policy"
+                            android:textStyle="bold"
                             android:id="@+id/policy"
                             android:clickable="true"
-                            android:layout_weight="1"
-                            android:layout_gravity="left"
-                            android:textStyle="bold" />
+                            android:layout_alignParentLeft="true" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textColor="#3498db"
                             android:text="Rate this app"
+                            android:textStyle="bold"
                             android:id="@+id/rateApp"
+                            android:layout_weight="0"
                             android:clickable="true"
-                            android:layout_gravity="right"
-                            android:textStyle="bold"/>
+                            android:layout_alignParentRight="true"/>
+                    </RelativeLayout>
 
-                    </LinearLayout>
-            </LinearLayout>
-        </ScrollView>
+                </LinearLayout>
+
+            </ScrollView>
+
+            <!--<LinearLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:orientation="horizontal"-->
+                <!--android:layout_marginTop="25dp">-->
+
+                <!--<TextView-->
+                    <!--android:layout_width="0dp"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:textColor="#3498db"-->
+                    <!--android:text="Privacy Policy"-->
+                    <!--android:id="@+id/policy"-->
+                    <!--android:clickable="true"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:layout_gravity="left"-->
+                    <!--android:textStyle="bold" />-->
+
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:textColor="#3498db"-->
+                    <!--android:text="Rate this app"-->
+                    <!--android:id="@+id/rateApp"-->
+                    <!--android:clickable="true"-->
+                    <!--android:layout_gravity="right"-->
+                    <!--android:textStyle="bold"/>-->
+
+            <!--</LinearLayout>-->
+        </LinearLayout>
+
 
         <LinearLayout
             android:layout_width="match_parent"
