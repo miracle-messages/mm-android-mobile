@@ -600,7 +600,15 @@
                 android:text="My messages"
                 android:textStyle="bold"
                 android:textSize="30dp"
-                android:layout_marginBottom="30dp"/>
+                android:layout_marginBottom="3dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Click to open in web portal"
+                android:id="@+id/messages_subtext"
+                android:textSize="20dp"
+                android:layout_marginBottom="25dp"/>
 
             <ListView
                 android:id="@+id/list_messages"

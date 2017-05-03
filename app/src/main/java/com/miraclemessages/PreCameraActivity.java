@@ -37,6 +37,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
 public class PreCameraActivity extends Activity {
 
     private ViewFlipper viewFlipper;
@@ -62,9 +66,9 @@ public class PreCameraActivity extends Activity {
     private String appPackageName;
     private String userID;
     ListView my_messages_list;
-    public static int [] messagesImages={R.drawable.cancel,R.drawable.cancel,R.drawable.cancel,R.drawable.cancel,R.drawable.cancel,R.drawable.cancel,R.drawable.cancel,R.drawable.cancel,R.drawable.cancel,R.drawable.cancel,R.drawable.cancel};
-    public static String [] messagesList={"Let Us C","c++","JAVA","Jsp","Microsoft .Net","Android","PHP","Jquery","JavaScript", "HI!", "bye"};
-
+//    public static int [] messagesImages={R.drawable.cancel,R.drawable.cancel,R.drawable.cancel,R.drawable.cancel,R.drawable.cancel,R.drawable.cancel,R.drawable.cancel,R.drawable.cancel,R.drawable.cancel,R.drawable.cancel,R.drawable.cancel};
+//    public static String [] messagesList={"Let Us C","c++","JAVA","Jsp","Microsoft .Net","Android","PHP","Jquery","JavaScript", "HI!", "bye"};
+    public static ArrayList<HashMap<String,String>> myMessagesList = new ArrayList<HashMap<String, String>>();
 
     //The Firebase database is the primary class for data upload and storage
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -84,16 +88,36 @@ public class PreCameraActivity extends Activity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Log.v("Data snapshot: ", Long.toString(dataSnapshot.getChildrenCount()));
-                for(DataSnapshot d : dataSnapshot.getChildren()) {
-                    if(d.getKey().equals("firstName")) {
-                        Log.v("Firebase - First name: ", d.getValue().toString());
+                for(DataSnapshot cases : dataSnapshot.getChildren()) {
+                    HashMap<String,String> myCase = new HashMap<String, String>();
+                    for(DataSnapshot d : cases.getChildren()) {
+                        //CHECKS FOR NAME
+                        if (d.getKey().equals("firstName")) {
+                            myCase.put("firstName", d.getValue().toString());
+//                            Log.v("Firebase - First name: ", d.getValue().toString());
+                        }
+                        if (d.getKey().equals("lastName")) {
+                            myCase.put("lastName", d.getValue().toString());
+//                            Log.v("Firebase - Last name: ", d.getValue().toString());
+                        }
+                        if (d.getKey().equals("photo")) {
+                            myCase.put("photo", d.getValue().toString());
+//                            Log.v("Firebase - Photo: ", d.getValue().toString());
+                        }
+                        if (d.getKey().equals("caseStatus")) {
+                            myCase.put("caseStatus", d.getValue().toString());
+                        }
+                        if (d.getKey().equals("messageStatus")) {
+                            myCase.put("messageStatus", d.getValue().toString());
+                        }
+                        if (d.getKey().equals("nextStep")) {
+                            myCase.put("nextStep", d.getValue().toString());
+                        }
+                        if (d.getKey().equals("caseID")) {
+                            myCase.put("caseID", d.getValue().toString());
+                        }
                     }
-                    if(d.getKey().equals("lastName")) {
-                        Log.v("Firebase - Last name: ", d.getValue().toString());
-                    }
-                    if(d.getKey().equals("photo")) {
-                        Log.v("Firebase - Photo: ", d.getValue().toString());
-                    }
+                    myMessagesList.add(myCase);
                 }
             }
 
@@ -103,7 +127,7 @@ public class PreCameraActivity extends Activity {
             }
         });
         my_messages_list = (ListView) findViewById(R.id.list_messages);
-        my_messages_list.setAdapter(new MessagesListAdapter(this, messagesList, messagesImages));
+        my_messages_list.setAdapter(new MessagesListAdapter(this, myMessagesList));
 
         nav_bar = (RelativeLayout) findViewById(R.id.navbar);
 

@@ -4,19 +4,62 @@
     android:layout_height="match_parent"
     android:orientation="horizontal" >
 
-    <ImageView
-        android:id="@+id/imageView1"
-        android:layout_gravity="center"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:src="@drawable/ic_launcher" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_gravity="center"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="25dp"
-        android:text="TextView" />
+        <ImageView
+            android:id="@+id/image"
+            android:layout_gravity="center"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:padding="10dp"
+            />
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_alignTop="@+id/image"
+            android:paddingTop="10dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:layout_toRightOf="@+id/image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:text="Name"
+            />
+
+        <TextView
+            android:id="@+id/caseStatus"
+            android:layout_alignLeft="@+id/name"
+            android:paddingTop="5dp"
+            android:paddingLeft="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/name"
+            android:text="No Case Status"
+            />
+
+        <TextView
+            android:id="@+id/messageStatus"
+            android:layout_alignLeft="@+id/name"
+            android:paddingTop="5dp"
+            android:paddingLeft="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/caseStatus"
+            android:text="No Message Status"/>
+
+        <TextView
+            android:id="@+id/nextStep"
+            android:layout_alignLeft="@+id/name"
+            android:paddingTop="5dp"
+            android:paddingLeft="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/messageStatus"
+            android:text="No Next Steps"/>
+
+    </RelativeLayout>
 
 </LinearLayout>
