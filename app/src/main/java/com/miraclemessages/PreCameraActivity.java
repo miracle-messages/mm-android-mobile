@@ -11,6 +11,7 @@ import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.text.Html;
 import android.util.Log;
 import android.util.Patterns;
@@ -29,6 +30,14 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
+
+import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.ResultCallback;
+import com.google.android.gms.common.api.Status;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
 
 public class PreCameraActivity extends Activity {
 
@@ -54,10 +63,28 @@ public class PreCameraActivity extends Activity {
     PopupWindow popupWindow;
     private String appPackageName;
 
+    GoogleApiClient mGoogleApiClient;
+    FirebaseAuth mAuth;
+    DatabaseReference mRef;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_precamera);
+        mAuth = FirebaseAuth.getInstance();
+
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken("20558941937-lgtu21t4u1tl25e05nodtm1jj8fjpaa4.apps.googleusercontent.com")
+                .requestEmail()
+                .build();
+
+        mGoogleApiClient = new GoogleApiClient.Builder(getApplicationContext()) //Use app context to prevent leaks using activity
+                //.enableAutoManage(this /* FragmentActivity */, connectionFailedListener)
+                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
+                .build();
+
+        mGoogleApiClient.connect();
+
         appPackageName = getPackageName().toString();
         sharedpreferences = getSharedPreferences(myPreferences, Context.MODE_PRIVATE);
         nav_bar = (RelativeLayout) findViewById(R.id.navbar);
@@ -444,12 +471,33 @@ public class PreCameraActivity extends Activity {
                 SharedPreferences.Editor editor = sharedpreferences.edit();
                 editor.clear();
                 editor.commit();
-                startActivity(new Intent(PreCameraActivity.this, MainActivity.class));
+                System.out.println("OOOOOO");
+                mAuth.signOut();
+
+                System.out.println("PPPPPPP");
+                // Google revoke access
+                signOut();
+//                startActivity(new Intent(getApplicationContext(), MainActivity.class));
                 finish();
+
             }
         });
 
     }
+
+//    @Override
+//    protected void onStart() {
+//        super.onStart();
+//        mGoogleApiClient.connect();
+//    }
+
+//    @Override
+//    protected void onStop() {
+//        super.onStop();
+//        if (mGoogleApiClient.isConnected()) {
+//            mGoogleApiClient.disconnect();
+//        }
+//    }
 
     //Method that checks screen orientation changes. Landscape orientation hides navigation bar.
     @Override
@@ -505,5 +553,18 @@ public class PreCameraActivity extends Activity {
                 viewFlipper.showPrevious();
             }
         }
+    }
+    private void signOut() {
+        // Firebase sign out
+        mAuth.signOut();
+
+        // Google sign out
+        Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(
+                new ResultCallback<Status>() {
+                    @Override
+                    public void onResult(@NonNull Status status) {
+                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                    }
+                });
     }
 }

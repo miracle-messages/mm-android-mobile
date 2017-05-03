@@ -1,17 +1,23 @@
 package com.miraclemessages;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.Patterns;
+import android.view.MotionEvent;
 import android.view.View;
 import android.content.SharedPreferences;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -189,7 +195,7 @@ public class MainActivity extends AppCompatActivity implements
                 Log.v("AFTERRR", "POOP");
             }
             else {
-                Log.v("FAILURE", "HO");
+                Log.v("FAILURE", "HOBOBOBOBO");
             }
         }
     }
@@ -207,15 +213,21 @@ public class MainActivity extends AppCompatActivity implements
                             //Sign in was successful!
                             Log.v("LEGGGO", "MAN");
                             System.out.println("A NEWBS LIFE");
-                            mRef = FirebaseDatabase.getInstance().getReference("users/6zZ2/profileComplete/" );
+                            String currentUser = mAuth.getCurrentUser().getUid();
+                            mRef = FirebaseDatabase.getInstance().getReference("users/"
+                                    + currentUser + "/profileComplete/");
                             mRef.addValueEventListener(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(DataSnapshot dataSnapshot) {
                                     System.out.println("SNAPPY: " + (dataSnapshot.getValue() == null));
                                     if(dataSnapshot.getValue() == null || dataSnapshot.getValue().equals("true")) {
                                         //Turn user to data creation page
-                                        Intent temp = new Intent(getApplicationContext(), PreCameraActivity.class);
-                                        startActivity(temp);
+                                        createNewAccount();
+                                    }
+                                    else {
+                                        //Else, bypass the login screen
+                                        Intent i = new Intent(getApplicationContext(), PreCameraActivity.class);
+                                        startActivity(i);
                                         finish();
                                     }
                                 }
@@ -237,6 +249,22 @@ public class MainActivity extends AppCompatActivity implements
     }
 
     @Override
+    protected void onStart() {
+        super.onStart();
+        mGoogleApiClient.connect();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if (mGoogleApiClient.isConnected()) {
+            Auth.GoogleSignInApi.signOut(mGoogleApiClient);
+            mGoogleApiClient.disconnect();
+        }
+        System.out.println("BBBBBBBBB");
+    }
+
+    @Override
     public void onConnectionFailed(ConnectionResult connectionResult) {
         // An unresolvable error has occurred and Google APIs (including Sign-In) will not
         // be available.
@@ -252,6 +280,14 @@ public class MainActivity extends AppCompatActivity implements
     //Helper function to check if user input phone number is valid.
     private static boolean isValidPhone(CharSequence userInput) {
         return Patterns.PHONE.matcher(userInput).matches();
+    }
+
+    //Helper function for users to create new account
+    private void createNewAccount() {
+        String url = "https://my.miraclemessages.org/#!/register?platform=Android";
+        Intent i = new Intent(Intent.ACTION_VIEW);
+        i.setData(Uri.parse(url));
+        startActivity(i);
     }
 
 }
