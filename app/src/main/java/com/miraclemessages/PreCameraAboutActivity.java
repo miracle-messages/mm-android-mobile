@@ -8,6 +8,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -24,6 +25,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
@@ -42,6 +44,8 @@ public class PreCameraAboutActivity extends Activity {
     ImageView edit_from, edit_to;
     ViewFlipper about_vf;
     SharedPreferences sharedpreferences;
+    RelativeLayout nav_bar;
+
     public static final String myPreferences = "MyPreferences";
     static final int REQUEST_VIDEO_CAPTURE = 1;
     private static final String[] VIDEO_PERMISSIONS = {
@@ -60,6 +64,12 @@ public class PreCameraAboutActivity extends Activity {
         setContentView(R.layout.activity_pre_camera_about);
 
         sharedpreferences = getSharedPreferences(myPreferences, Context.MODE_PRIVATE);
+        nav_bar = (RelativeLayout) findViewById(R.id.navbar);
+
+        if(this.getResources().getConfiguration().orientation
+                == Configuration.ORIENTATION_LANDSCAPE) {
+            nav_bar.setVisibility(View.GONE);
+        }
 
         direction = (TextView) findViewById(R.id.direction);
         who = (TextView) findViewById(R.id.who);
@@ -593,6 +603,20 @@ public class PreCameraAboutActivity extends Activity {
 
         about_vf = (ViewFlipper) findViewById(R.id.precamera_about_vf);
 
+    }
+
+    //Method that checks screen orientation changes. Landscape orientation hides navigation bar.
+    @Override
+    public void onConfigurationChanged(Configuration updatedConfig) {
+        super.onConfigurationChanged(updatedConfig);
+
+        // Checks the orientation of the screen
+        if (updatedConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            nav_bar.setVisibility(View.GONE);
+
+        } else if (updatedConfig.orientation == Configuration.ORIENTATION_PORTRAIT){
+            nav_bar.setVisibility(View.VISIBLE);
+        }
     }
 
     private void requestPermissions() {
