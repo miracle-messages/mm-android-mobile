@@ -25,6 +25,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -39,10 +40,18 @@ import com.google.android.gms.common.api.Status;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+
 public class PreCameraActivity extends Activity {
 
     private ViewFlipper viewFlipper;
-    TextView about, link, faq, resources, contact, my_profile, record, changeUser;
+    TextView about, link, faq, resources, contact, my_profile, record, changeUser, my_messages;
     TextView internalfb1, internalfb2, internalslack, ext_fb, ext_donation, ext_yt, ext_twitter,
             ext_ig, docs_hb, docs_int, docs_ext, docs_roles;
     TextView script_hello;
@@ -62,6 +71,15 @@ public class PreCameraActivity extends Activity {
     boolean exitApp = true;
     PopupWindow popupWindow;
     private String appPackageName;
+    private String userID;
+    ListView my_messages_list;
+//    public static int [] messagesImages={R.drawable.cancel,R.drawable.cancel,R.drawable.cancel,R.drawable.cancel,R.drawable.cancel,R.drawable.cancel,R.drawable.cancel,R.drawable.cancel,R.drawable.cancel,R.drawable.cancel,R.drawable.cancel};
+//    public static String [] messagesList={"Let Us C","c++","JAVA","Jsp","Microsoft .Net","Android","PHP","Jquery","JavaScript", "HI!", "bye"};
+    public static ArrayList<HashMap<String,String>> myMessagesList = new ArrayList<HashMap<String, String>>();
+
+    //The Firebase database is the primary class for data upload and storage
+    private FirebaseDatabase database = FirebaseDatabase.getInstance();
+    private DatabaseReference myRef;
 
     GoogleApiClient mGoogleApiClient;
     FirebaseAuth mAuth;
@@ -86,8 +104,58 @@ public class PreCameraActivity extends Activity {
         mGoogleApiClient.connect();
 
         appPackageName = getPackageName().toString();
+        userID = "98gloz5HZ6M8vvwmuR892zHfvjG2";
         sharedpreferences = getSharedPreferences(myPreferences, Context.MODE_PRIVATE);
+
+        myRef = database.getReference("users/" + userID + "/cases");
+        Log.v("My ref: ", myRef.getRoot().toString());
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Log.v("Data snapshot: ", Long.toString(dataSnapshot.getChildrenCount()));
+                for(DataSnapshot cases : dataSnapshot.getChildren()) {
+                    HashMap<String,String> myCase = new HashMap<String, String>();
+                    for(DataSnapshot d : cases.getChildren()) {
+                        //CHECKS FOR NAME
+                        if (d.getKey().equals("firstName")) {
+                            myCase.put("firstName", d.getValue().toString());
+//                            Log.v("Firebase - First name: ", d.getValue().toString());
+                        }
+                        if (d.getKey().equals("lastName")) {
+                            myCase.put("lastName", d.getValue().toString());
+//                            Log.v("Firebase - Last name: ", d.getValue().toString());
+                        }
+                        if (d.getKey().equals("photo")) {
+                            myCase.put("photo", d.getValue().toString());
+//                            Log.v("Firebase - Photo: ", d.getValue().toString());
+                        }
+                        if (d.getKey().equals("caseStatus")) {
+                            myCase.put("caseStatus", d.getValue().toString());
+                        }
+                        if (d.getKey().equals("messageStatus")) {
+                            myCase.put("messageStatus", d.getValue().toString());
+                        }
+                        if (d.getKey().equals("nextStep")) {
+                            myCase.put("nextStep", d.getValue().toString());
+                        }
+                        if (d.getKey().equals("caseID")) {
+                            myCase.put("caseID", d.getValue().toString());
+                        }
+                    }
+                    myMessagesList.add(myCase);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        my_messages_list = (ListView) findViewById(R.id.list_messages);
+        my_messages_list.setAdapter(new MessagesListAdapter(this, myMessagesList));
+
         nav_bar = (RelativeLayout) findViewById(R.id.navbar);
+
         pcBack = (LinearLayout) findViewById(R.id.precamera_background);
 
         if(this.getResources().getConfiguration().orientation
@@ -330,10 +398,8 @@ public class PreCameraActivity extends Activity {
                     @Override
                     public void onClick(View v){
                         try {
-                            Log.v("Peas in a pod", appPackageName);
                             startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
                         } catch (android.content.ActivityNotFoundException notFoundException) {
-                            Log.v("BEN HUR:", appPackageName);
                             startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + appPackageName)));
                         }
                     }
@@ -372,6 +438,19 @@ public class PreCameraActivity extends Activity {
             }
         });
 
+        my_messages = (TextView) findViewById(R.id.my_messages);
+        my_messages.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                viewFlipper.setInAnimation(v.getContext(), R.anim.slide_in_from_right);
+                viewFlipper.setOutAnimation(v.getContext(), R.anim.slide_out_to_left);
+                viewFlipper.setDisplayedChild(4); //4 is my messages
+                back.setVisibility(View.VISIBLE);
+                icon.setVisibility(View.VISIBLE);
+                exitApp = false;
+            }
+        });
+
         record = (TextView) findViewById(R.id.record);
         record.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -381,7 +460,7 @@ public class PreCameraActivity extends Activity {
                 String name = sharedpreferences.getString(Name, null);
                 String[] name_array = name.split(" ");
                 script_hello.setText("Hi " + name_array[0] + ",\nReady to record a message?");
-                viewFlipper.setDisplayedChild(4); //4 is script
+                viewFlipper.setDisplayedChild(5); //5 is script
                 back.setVisibility(View.VISIBLE);
                 icon.setVisibility(View.VISIBLE);
                 exitApp = false;
