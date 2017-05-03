@@ -27,6 +27,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -49,7 +50,7 @@ public class MainActivity extends AppCompatActivity implements
     ProgressBar spinner;
     boolean found;
     TextView link;
-    Button submit;
+    SignInButton submit;
     public static final String myPreferences = "MyPreferences";
     public static final String Name = "name";
     public static final String Email = "email";
@@ -72,7 +73,10 @@ public class MainActivity extends AppCompatActivity implements
         spinner = (ProgressBar)findViewById(R.id.login_spinner);
         spinner.setVisibility(View.INVISIBLE);
 
-        submit=(Button)findViewById(R.id.submit);
+        submit=(SignInButton)findViewById(R.id.submit);
+//        submit.setColorScheme(SignInButton.COLOR_DARK);
+        TextView textView = (TextView) submit.getChildAt(0);
+        textView.setText("Sign in with Google");
         link = (TextView)findViewById(R.id.link);
 
         View someView = findViewById(R.id.homeback);

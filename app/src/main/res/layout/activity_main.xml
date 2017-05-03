@@ -21,11 +21,11 @@
             android:paddingRight="-10dp"
             >
 
-            <ImageView
-                android:layout_width="50dp"
-                android:background="@drawable/mmicon3"
-                android:layout_height="50dp"
-                android:layout_alignParentRight="true"/>
+            <!--<ImageView-->
+                <!--android:layout_width="50dp"-->
+                <!--android:background="@drawable/mmicon3"-->
+                <!--android:layout_height="50dp"-->
+                <!--android:layout_alignParentRight="true"/>-->
 
         </RelativeLayout>
 
@@ -41,33 +41,41 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/login_spinner"
                 android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
+                android:layout_above="@+id/submit"
                 android:translationZ="3dp"
+                android:padding="10dp"
                 />
 
-            <Button
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="110dp"
+                android:id="@+id/mmlogo"
+                android:paddingBottom="0dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:gravity="center_horizontal"
+                android:background="@drawable/mmlogo4"/>
+
+            <com.google.android.gms.common.SignInButton
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/submit"
-                android:text="Sign In with Google"
-                android:layout_below="@+id/welcome_text"
-                android:textColor="@android:color/black"
-                android:background="@drawable/button_selector"
                 android:layout_marginLeft="40dp"
                 android:layout_marginRight="40dp"
+                android:layout_centerVertical="true"
                 android:layout_centerHorizontal="true"
                 />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/welcome_text"
-                android:text="Welcome"
-                android:paddingBottom="30dp"
-                android:textSize="50dp"
-                android:textStyle="bold"
-                android:gravity="center_horizontal"
-                />
+            <!--<TextView-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:id="@+id/welcome_text"-->
+                <!--android:text="Welcome"-->
+                <!--android:paddingBottom="30dp"-->
+                <!--android:textSize="50dp"-->
+                <!--android:textStyle="bold"-->
+                <!--android:gravity="center_horizontal"-->
+                <!--/>-->
 
         </RelativeLayout>
 
