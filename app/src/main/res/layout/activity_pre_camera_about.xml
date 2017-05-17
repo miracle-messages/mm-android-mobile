@@ -517,6 +517,37 @@
 
             </ScrollView>
 
+            <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:weightSum="1">
+
+                <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_weight="0.2">
+
+                    <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/clear"
+                    android:text="clear"
+                    android:clickable="true"
+                    android:textColor="#C3C"
+                    android:onClick="clearDrawing"
+                    android:layout_gravity="right"/>
+
+                    <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:id="@+id/signatureLayout"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
         </ViewFlipper>
 
         <RelativeLayout

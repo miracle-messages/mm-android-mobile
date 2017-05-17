@@ -10,6 +10,11 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Path;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -19,7 +24,9 @@ import android.support.v4.content.ContextCompat;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
@@ -29,6 +36,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
+
+import java.util.ArrayList;
 
 public class PreCameraAboutActivity extends Activity {
 
@@ -58,10 +67,36 @@ public class PreCameraAboutActivity extends Activity {
 
     Animation animFadeOut, animFadeIn;
 
+    RelativeLayout signatureLayout;
+    Paint paint;
+    View view;
+    Path path2;
+    Bitmap bitmap;
+    Canvas canvas;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pre_camera_about);
+
+        signatureLayout = (RelativeLayout) findViewById(R.id.signatureLayout);
+
+        view = new SketchSheetView(PreCameraAboutActivity.this);
+        paint = new Paint();
+        path2 = new Path();
+
+        signatureLayout.addView(view, new ViewGroup.LayoutParams(
+                RelativeLayout.LayoutParams.MATCH_PARENT,
+                RelativeLayout.LayoutParams.MATCH_PARENT));
+        paint.setDither(true);
+        paint.setColor(Color.CYAN);
+        paint.setStyle(Paint.Style.STROKE);
+
+        paint.setStrokeJoin(Paint.Join.ROUND);
+
+        paint.setStrokeCap(Paint.Cap.ROUND);
+
+        paint.setStrokeWidth(10);
 
         sharedpreferences = getSharedPreferences(myPreferences, Context.MODE_PRIVATE);
         nav_bar = (RelativeLayout) findViewById(R.id.navbar);
@@ -173,21 +208,27 @@ public class PreCameraAboutActivity extends Activity {
 
                     editor.commit();
 
-                    AlertDialog.Builder builder = new AlertDialog.Builder(PreCameraAboutActivity.this);
-                    builder.setMessage("Please leave your loved one a short message.\n\nNote to volunteer: Press continue to go to camera then hold your phone horizontally, hit record, and reconfirm permission on camera. 'Do we have your permission to record and share this video?' Once they say 'yes,' invite them to look at the camera, and speak to their loved one as if they were there.")
-                            .setPositiveButton("Continue", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int id) {
-                                    requestPermissions();
-                                }
-                            })
-                            .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int id) {
-                                    // User cancelled the dialog
-                                }
-                            });
-                    // Create the AlertDialog object and return it
-                    builder.create();
-                    builder.show();
+
+                    direction.setText("Digital Consent");
+                    who.setText("By signing in the gray area below, you allow Miracle Messages to collect your information and record your video.");
+                    next.setText("BRUH");
+                    about_vf.showNext();
+//                        about_vf.setDisplayedChild(3);
+//                    AlertDialog.Builder builder = new AlertDialog.Builder(PreCameraAboutActivity.this);
+//                    builder.setMessage("Please leave your loved one a short message.\n\nNote to volunteer: Press continue to go to camera then hold your phone horizontally, hit record, and reconfirm permission on camera. 'Do we have your permission to record and share this video?' Once they say 'yes,' invite them to look at the camera, and speak to their loved one as if they were there.")
+//                            .setPositiveButton("Continue", new DialogInterface.OnClickListener() {
+//                                public void onClick(DialogInterface dialog, int id) {
+////                                    requestPermissions();
+//                                }
+//                            })
+//                            .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+//                                public void onClick(DialogInterface dialog, int id) {
+//                                    // User cancelled the dialog
+//                                }
+//                            });
+//                    // Create the AlertDialog object and return it
+//                    builder.create();
+//                    builder.show();
                 }
                 else {
                     if(about_vf.getDisplayedChild() == 0) {
@@ -208,7 +249,7 @@ public class PreCameraAboutActivity extends Activity {
                             Toast.makeText(PreCameraAboutActivity.this,
                                     "Please fill out all fields.",
                                     Toast.LENGTH_LONG).show();
-                        } else {
+                        } else if(about_vf.getDisplayedChild() == 1){
                             about_vf.setInAnimation(v.getContext(), R.anim.slide_in_from_right);
                             about_vf.setOutAnimation(v.getContext(), R.anim.slide_out_to_left);
                             direction.setText("Review");
@@ -227,6 +268,8 @@ public class PreCameraAboutActivity extends Activity {
                             review_two_years.setText("Years apart: " + two_years.getText().toString());
                             review_two_other.setText("Other info: " + two_other.getText().toString());
                             about_vf.showNext();
+                        } else if(about_vf.getDisplayedChild() == 3) {
+                            requestPermissions();
                         }
                     }
                 }
@@ -726,5 +769,90 @@ public class PreCameraAboutActivity extends Activity {
             }
             about_vf.showPrevious();
         }
+    }
+
+    class SketchSheetView extends View {
+
+        public SketchSheetView(Context context) {
+
+            super(context);
+
+            bitmap = Bitmap.createBitmap(820, 480, Bitmap.Config.ARGB_4444);
+
+            canvas = new Canvas(bitmap);
+
+            this.setBackgroundColor(Color.LTGRAY);
+        }
+
+        private ArrayList<PreCameraAboutActivity.DrawingClass> DrawingClassArrayList = new ArrayList<PreCameraAboutActivity.DrawingClass>();
+
+        @Override
+        public boolean onTouchEvent(MotionEvent event) {
+
+            PreCameraAboutActivity.DrawingClass pathWithPaint = new PreCameraAboutActivity.DrawingClass();
+
+            canvas.drawPath(path2, paint);
+
+            if (event.getAction() == MotionEvent.ACTION_DOWN) {
+
+                path2.moveTo(event.getX(), event.getY());
+
+                path2.lineTo(event.getX(), event.getY());
+            }
+            else if (event.getAction() == MotionEvent.ACTION_MOVE) {
+
+                path2.lineTo(event.getX(), event.getY());
+
+                pathWithPaint.setPath(path2);
+
+                pathWithPaint.setPaint(paint);
+
+                DrawingClassArrayList.add(pathWithPaint);
+            }
+
+            invalidate();
+            return true;
+        }
+
+        @Override
+        protected void onDraw(Canvas canvas) {
+            super.onDraw(canvas);
+            if (DrawingClassArrayList.size() > 0) {
+
+                canvas.drawPath(
+                        DrawingClassArrayList.get(DrawingClassArrayList.size() - 1).getPath(),
+
+                        DrawingClassArrayList.get(DrawingClassArrayList.size() - 1).getPaint());
+            }
+        }
+    }
+
+
+    public class DrawingClass {
+
+        Path DrawingClassPath;
+        Paint DrawingClassPaint;
+
+        public Path getPath() {
+            return DrawingClassPath;
+        }
+
+        public void setPath(Path path) {
+            this.DrawingClassPath = path;
+        }
+
+
+        public Paint getPaint() {
+            return DrawingClassPaint;
+        }
+
+        public void setPaint(Paint paint) {
+            this.DrawingClassPaint = paint;
+        }
+    }
+
+    public void clearDrawing(View v) {
+        path2.reset();
+        view.invalidate();
     }
 }

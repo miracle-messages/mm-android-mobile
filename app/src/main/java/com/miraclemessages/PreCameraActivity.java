@@ -8,16 +8,24 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Path;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.annotation.NonNull;
 import android.text.Html;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
@@ -45,6 +53,10 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -57,7 +69,7 @@ public class PreCameraActivity extends Activity {
     TextView script_hello;
     TextView privacy_policy, leave_rating;
     EditText prof_name, prof_phone, prof_email, prof_loc;
-    Button save_prof, script_start, script_next_xx, script_next_xxx;
+    Button save_prof, script_start, script_next_xx, script_next_xxx, script_next_xxxx;
     SharedPreferences sharedpreferences;
     LinearLayout pcBack;
     RelativeLayout nav_bar;
@@ -73,6 +85,14 @@ public class PreCameraActivity extends Activity {
     private String appPackageName;
     private String userID;
     ListView my_messages_list;
+
+    RelativeLayout signatureLayout;
+    Paint paint;
+    View view;
+    Path path2;
+    Bitmap bitmap;
+    Canvas canvas;
+
 //    public static int [] messagesImages={R.drawable.cancel,R.drawable.cancel,R.drawable.cancel,R.drawable.cancel,R.drawable.cancel,R.drawable.cancel,R.drawable.cancel,R.drawable.cancel,R.drawable.cancel,R.drawable.cancel,R.drawable.cancel};
 //    public static String [] messagesList={"Let Us C","c++","JAVA","Jsp","Microsoft .Net","Android","PHP","Jquery","JavaScript", "HI!", "bye"};
     public static ArrayList<HashMap<String,String>> myMessagesList = new ArrayList<HashMap<String, String>>();
@@ -89,6 +109,26 @@ public class PreCameraActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_precamera);
+
+//        signatureLayout = (RelativeLayout) findViewById(R.id.signatureLayout);
+//
+//        view = new SketchSheetView(PreCameraActivity.this);
+//        paint = new Paint();
+//        path2 = new Path();
+//
+//        signatureLayout.addView(view, new ViewGroup.LayoutParams(
+//                RelativeLayout.LayoutParams.MATCH_PARENT,
+//                RelativeLayout.LayoutParams.MATCH_PARENT));
+//        paint.setDither(true);
+//        paint.setColor(Color.CYAN);
+//        paint.setStyle(Paint.Style.STROKE);
+//
+//        paint.setStrokeJoin(Paint.Join.ROUND);
+//
+//        paint.setStrokeCap(Paint.Cap.ROUND);
+//
+//        paint.setStrokeWidth(10);
+
         mAuth = FirebaseAuth.getInstance();
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -104,8 +144,8 @@ public class PreCameraActivity extends Activity {
         mGoogleApiClient.connect();
 
         appPackageName = getPackageName().toString();
-        userID = "98gloz5HZ6M8vvwmuR892zHfvjG2";
-        sharedpreferences = getSharedPreferences(myPreferences, Context.MODE_PRIVATE);
+        userID = mAuth.getCurrentUser().getUid().toString();
+//        sharedpreferences = getSharedPreferences(myPreferences, Context.MODE_PRIVATE);
 
         myRef = database.getReference("users/" + userID + "/cases");
         Log.v("My ref: ", myRef.getRoot().toString());
@@ -193,10 +233,29 @@ public class PreCameraActivity extends Activity {
         script_next_xxx.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+//                viewFlipper.setInAnimation(v.getContext(), R.anim.slide_in_from_right);
+//                viewFlipper.setOutAnimation(v.getContext(), R.anim.slide_out_to_left);
+//                viewFlipper.showNext();
+//                exitApp = false;
                 startActivity(new Intent(PreCameraActivity.this, PreCameraAboutActivity.class));
                 finish();
             }
         });
+//        script_next_xxxx = (Button) findViewById(R.id.script_next_xxxx);
+//        script_next_xxxx.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                try {
+//                    String path = Environment.getExternalStorageDirectory().toString();
+//                    OutputStream fOut = null;
+//                    File file = new File(path, "poop.png");
+//                } catch(Exception e) {
+//                    e.printStackTrace();
+//                }
+//                startActivity(new Intent(PreCameraActivity.this, PreCameraAboutActivity.class));
+//                finish();
+//           }
+//        });
 
         //If user selects "My Profile" from the home screen...
         prof_name = (EditText) findViewById(R.id.profile_name);
@@ -457,9 +516,9 @@ public class PreCameraActivity extends Activity {
             public void onClick(View v) {
                 viewFlipper.setInAnimation(v.getContext(), R.anim.slide_in_from_right);
                 viewFlipper.setOutAnimation(v.getContext(), R.anim.slide_out_to_left);
-                String name = sharedpreferences.getString(Name, null);
-                String[] name_array = name.split(" ");
-                script_hello.setText("Hi " + name_array[0] + ",\nReady to record a message?");
+//                String name = sharedpreferences.getString(Name, null);
+//                String[] name_array = name.split(" ");
+                script_hello.setText("Hi " + mAuth.getCurrentUser().getDisplayName() + ",\nReady to record a message?");
                 viewFlipper.setDisplayedChild(5); //5 is script
                 back.setVisibility(View.VISIBLE);
                 icon.setVisibility(View.VISIBLE);
@@ -632,7 +691,94 @@ public class PreCameraActivity extends Activity {
                 viewFlipper.showPrevious();
             }
         }
+
     }
+
+    class SketchSheetView extends View {
+
+        public SketchSheetView(Context context) {
+
+            super(context);
+
+            bitmap = Bitmap.createBitmap(820, 480, Bitmap.Config.ARGB_4444);
+
+            canvas = new Canvas(bitmap);
+
+            this.setBackgroundColor(Color.LTGRAY);
+        }
+
+        private ArrayList<DrawingClass> DrawingClassArrayList = new ArrayList<DrawingClass>();
+
+        @Override
+        public boolean onTouchEvent(MotionEvent event) {
+
+            DrawingClass pathWithPaint = new DrawingClass();
+
+            canvas.drawPath(path2, paint);
+
+            if (event.getAction() == MotionEvent.ACTION_DOWN) {
+
+                path2.moveTo(event.getX(), event.getY());
+
+                path2.lineTo(event.getX(), event.getY());
+            }
+            else if (event.getAction() == MotionEvent.ACTION_MOVE) {
+
+                path2.lineTo(event.getX(), event.getY());
+
+                pathWithPaint.setPath(path2);
+
+                pathWithPaint.setPaint(paint);
+
+                DrawingClassArrayList.add(pathWithPaint);
+            }
+
+            invalidate();
+            return true;
+        }
+
+        @Override
+        protected void onDraw(Canvas canvas) {
+            super.onDraw(canvas);
+            if (DrawingClassArrayList.size() > 0) {
+
+                canvas.drawPath(
+                        DrawingClassArrayList.get(DrawingClassArrayList.size() - 1).getPath(),
+
+                        DrawingClassArrayList.get(DrawingClassArrayList.size() - 1).getPaint());
+            }
+        }
+    }
+
+
+    public class DrawingClass {
+
+        Path DrawingClassPath;
+        Paint DrawingClassPaint;
+
+        public Path getPath() {
+            return DrawingClassPath;
+        }
+
+        public void setPath(Path path) {
+            this.DrawingClassPath = path;
+        }
+
+
+        public Paint getPaint() {
+            return DrawingClassPaint;
+        }
+
+        public void setPaint(Paint paint) {
+            this.DrawingClassPaint = paint;
+        }
+    }
+
+    public void clearDrawing(View v) {
+        path2.reset();
+        view.invalidate();
+    }
+
     private void signOut() {
         // Firebase sign out
         mAuth.signOut();
