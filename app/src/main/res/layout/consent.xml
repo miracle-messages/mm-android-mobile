@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl_custom_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp"
+    android:layout_marginTop="20dp"
+    android:layout_marginBottom="20dp"
+    android:background="#3498db"
+    >
+    <ImageButton
+        android:id="@+id/ib_close"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/cancel"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:background="@null"
+        />
+    <TextView
+        android:id="@+id/header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ib_close"
+        android:text="\nMiracle Messages Consent and Release Form\n\nLast updated on May 18, 2017\n"
+        android:textStyle="bold"
+        android:textColor="#FFFFFF"
+        />
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_below="@+id/header"
+        >
+
+        <TextView
+            android:id="@+id/private_policy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="We would be happy to help you record a short video message to your loved one(s) and attempt to deliver it! Please be aware that, by recording a video message with us, you acknowledge that: a.) your video may be made public and shared widely; b.) we don’t know how your loved one(s) will respond, if at all; and c.) we don’t know if we’ll be able to find your loved one(s).The only guarantee is that this is an opportunity for you to record a video message to someone you love, and that we will try to deliver it. If you agree, please read and sign this form!\n\nWithout expectation of compensation or other remuneration, now or in the future, I hereby give my consent to Miracle Messages, its affiliates, agents, volunteers, partners, and sponsors, to use my image and likeness and/or any interview statements and audio/video recordings from me in publications, advertising, and other media activities, online and/or offline.\n\nThis consent includes, but is not limited to:\n\n(a) Permission to interview, film, photograph, tape, or otherwise make a video reproduction of me and/or record my voice;
+\n\n(b) Permission to publish my full name, location, current status as a person experiencing homelessness, and/or any other identifying information that I share about me or my loved ones. In doing so, I understand that this information may be publicly available forever;
+\n\n(c) Permission to use any information that I share verbally, in writing, or on video, or any recordings of me or other content, in part or in whole, in newspapers and other print media, in publications, on television, radio, and electronic media (including the internet, social media, and fundraising campaigns), in theatrical media, public displays, and mailings;
+\n\n(d) Waiver and release of all liability, claims, and demands of whatever kind or nature, which arise or may hereafter arise from my participation in any of the above or other activities related to Miracle Messages.\n\nThis consent is given in perpetuity, and does not require prior approval by me. I certify that I have read and understood this consent form in full, and choose to participate of my own free will, without any sort of influence or coercion affecting my discretion or decision.
+"
+            android:padding="15sp"
+            android:layout_below="@id/header"
+            android:textColor="#FFFFFF"
+            />
+
+    </ScrollView>
+
+</RelativeLayout>

@@ -16,6 +16,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
@@ -24,6 +25,8 @@ import android.support.v4.content.ContextCompat;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,7 +34,10 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -54,6 +60,8 @@ public class PreCameraAboutActivity extends Activity {
     ViewFlipper about_vf;
     SharedPreferences sharedpreferences;
     RelativeLayout nav_bar;
+    PopupWindow popupWindow;
+    LinearLayout pcBack;
 
     public static final String myPreferences = "MyPreferences";
     static final int REQUEST_VIDEO_CAPTURE = 1;
@@ -85,6 +93,8 @@ public class PreCameraAboutActivity extends Activity {
         paint = new Paint();
         path2 = new Path();
 
+        pcBack = (LinearLayout) findViewById(R.id.precamera_about);
+
         signatureLayout.addView(view, new ViewGroup.LayoutParams(
                 RelativeLayout.LayoutParams.MATCH_PARENT,
                 RelativeLayout.LayoutParams.MATCH_PARENT));
@@ -108,6 +118,37 @@ public class PreCameraAboutActivity extends Activity {
 
         direction = (TextView) findViewById(R.id.direction);
         who = (TextView) findViewById(R.id.who);
+        who.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                if(who.getText().toString().equals("Consent and Release Form")) {
+                    LayoutInflater inflater = (LayoutInflater) getApplicationContext().getSystemService(LAYOUT_INFLATER_SERVICE);
+                    View consentView = inflater.inflate(R.layout.consent, null);
+                    popupWindow = new PopupWindow(
+                            consentView,
+                            LinearLayout.LayoutParams.WRAP_CONTENT,
+                            LinearLayout.LayoutParams.WRAP_CONTENT
+                    );
+                    popupWindow.setTouchable(true);
+                    popupWindow.setFocusable(true);
+                    popupWindow.setOutsideTouchable(false);
+                    // Set an elevation value for popup window
+                    // Call requires API level 21
+                    if (Build.VERSION.SDK_INT >= 21) {
+                        popupWindow.setElevation(5.0f);
+                    }
+                    ImageButton closeButton = (ImageButton) consentView.findViewById(R.id.ib_close);
+                    closeButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            // Dismiss the popup window
+                            popupWindow.dismiss();
+                        }
+                    });
+                    popupWindow.showAtLocation(pcBack, Gravity.CENTER, 0, 0);
+                }
+            }
+        });
 
         edit_from = (ImageView) findViewById(R.id.edit_from);
         edit_from.setOnClickListener(new View.OnClickListener() {
@@ -176,9 +217,14 @@ public class PreCameraAboutActivity extends Activity {
                         direction.setText("From");
                         who.setText("Homeless individual");
                     }
-                    else {
+                    else if(about_vf.getDisplayedChild() == 2){
                         direction.setText("To");
                         who.setText("Loved one");
+                    }
+                    else {
+                        direction.setText("Review");
+                        who.setText("Contact info");
+                        who.setTextColor(Color.parseColor("#000000"));
                         next.setText("Next");
                     }
                     about_vf.showPrevious();
@@ -210,8 +256,9 @@ public class PreCameraAboutActivity extends Activity {
 
 
                     direction.setText("Digital Consent");
-                    who.setText("By signing in the gray area below, you allow Miracle Messages to collect your information and record your video.");
-                    next.setText("BRUH");
+                    who.setText("Consent and Release Form");
+                    who.setTextColor(Color.parseColor("#3498db"));
+                    next.setText("Record");
                     about_vf.showNext();
 //                        about_vf.setDisplayedChild(3);
 //                    AlertDialog.Builder builder = new AlertDialog.Builder(PreCameraAboutActivity.this);
@@ -254,7 +301,7 @@ public class PreCameraAboutActivity extends Activity {
                             about_vf.setOutAnimation(v.getContext(), R.anim.slide_out_to_left);
                             direction.setText("Review");
                             who.setText("Contact info");
-                            next.setText("Record");
+                            next.setText("Next");
                             review_one_name.setText("From: " + one_name.getText().toString());
                             review_one_birth.setText("Date of birth: " + one_birth.getText().toString());
                             review_one_location.setText("Location: " + one_live.getText().toString());
