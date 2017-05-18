@@ -255,7 +255,7 @@ public class PreCameraAboutActivity extends Activity {
                     editor.commit();
 
 
-                    direction.setText("Digital Consent");
+                    direction.setText("Digital Signature");
                     who.setText("Consent and Release Form");
                     who.setTextColor(Color.parseColor("#3498db"));
                     next.setText("Record");
