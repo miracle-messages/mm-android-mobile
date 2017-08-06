@@ -54,7 +54,7 @@ Thumbs.db
 .idea/
 
 # Specific files
-app/src/main/java/com/miraclemessages/common/Constants.java
+app/src/main/java/com/miraclemessages/common/Settings.java
 app/src/main/java/com/miraclemessages/utils/Util.java
 app/google-services.json
 app/build.gradle

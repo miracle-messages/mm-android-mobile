@@ -1,6 +1,5 @@
 package com.miraclemessages.ui.activities;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
@@ -55,7 +54,22 @@ import com.miraclemessages.ui.adapters.MessagesListAdapter;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class PreCameraActivity extends Activity {
+import static com.miraclemessages.common.Settings.MM_CHAPTERS_URL;
+import static com.miraclemessages.common.Settings.MM_CHAPTER_SHORT_URL;
+import static com.miraclemessages.common.Settings.MM_DONATE_URL;
+import static com.miraclemessages.common.Settings.MM_FACEBOOK_DETECTIVE_GROUP_URL;
+import static com.miraclemessages.common.Settings.MM_FACEBOOK_GROUP_URL;
+import static com.miraclemessages.common.Settings.MM_FACEBOOK_PAGE_URL;
+import static com.miraclemessages.common.Settings.MM_FAQ_URL;
+import static com.miraclemessages.common.Settings.MM_GET_INVOLVED_URL;
+import static com.miraclemessages.common.Settings.MM_HANDBOOK_SHORT_URL;
+import static com.miraclemessages.common.Settings.MM_INSTAGRAM_URL;
+import static com.miraclemessages.common.Settings.MM_JOIN_URL;
+import static com.miraclemessages.common.Settings.MM_SLACK_URL;
+import static com.miraclemessages.common.Settings.MM_TWITTER_URL;
+import static com.miraclemessages.common.Settings.MM_YOUTUBE_URL;
+
+public class PreCameraActivity extends BaseActivity {
 
     private ViewFlipper viewFlipper;
     TextView about, link, faq, resources, contact, my_profile, record, changeUser, my_messages;
@@ -322,84 +336,84 @@ public class PreCameraActivity extends Activity {
         docs_hb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openLink("https://bit.ly/mmhandbook");
+                openLink(MM_HANDBOOK_SHORT_URL);
             }
         });
         docs_int = (TextView) findViewById(R.id.docs_internal_list);
         docs_int.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openLink("https://bit.ly/mmchapters");
+                openLink(MM_CHAPTER_SHORT_URL);
             }
         });
         docs_ext = (TextView) findViewById(R.id.docs_external_list);
         docs_ext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openLink("https://miraclemessages.org/chapters");
+                openLink(MM_CHAPTERS_URL);
             }
         });
         docs_roles = (TextView) findViewById(R.id.docs_roles);
         docs_roles.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openLink("https://miraclemessages.org/join");
+                openLink(MM_JOIN_URL);
             }
         });
         ext_fb = (TextView) findViewById(R.id.external_fb);
         ext_fb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openLink("https://facebook.com/miraclemessages");
+                openLink(MM_FACEBOOK_PAGE_URL);
             }
         });
         ext_donation = (TextView) findViewById(R.id.external_donation);
         ext_donation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openLink("https://give.miraclemessages.org");
+                openLink(MM_DONATE_URL);
             }
         });
         ext_yt = (TextView) findViewById(R.id.external_youtube);
         ext_yt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openLink("https://youtube.com/miraclemessages");
+                openLink(MM_YOUTUBE_URL);
             }
         });
         ext_twitter = (TextView) findViewById(R.id.external_twitter);
         ext_twitter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openLink("https://twitter.com/miraclemsg");
+                openLink(MM_TWITTER_URL);
             }
         });
         ext_ig = (TextView) findViewById(R.id.external_ig);
         ext_ig.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openLink("https://instagram.com/miraclemessages");
+                openLink(MM_INSTAGRAM_URL);
             }
         });
         internalfb1 = (TextView) findViewById(R.id.internal_fb_1);
         internalfb1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openLink("https://facebook.com/groups/miraclemsg");
+                openLink(MM_FACEBOOK_GROUP_URL);
             }
         });
         internalfb2 = (TextView) findViewById(R.id.internal_fb_2);
         internalfb2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openLink("https://facebook.com/groups/mmdetectives");
+                openLink(MM_FACEBOOK_DETECTIVE_GROUP_URL);
             }
         });
         internalslack = (TextView) findViewById(R.id.internal_slack);
         internalslack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openLink("https://joinslack.miraclemessages.org");
+                openLink(MM_SLACK_URL);
             }
         });
 
@@ -576,14 +590,14 @@ public class PreCameraActivity extends Activity {
         link.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openLink("https://miraclemessages.org/getinvolved");
+                openLink(MM_GET_INVOLVED_URL);
             }
         });
         faq = (TextView) findViewById(R.id.faq);
         faq.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openLink("https://miraclemessages.org/faq");
+                openLink(MM_FAQ_URL);
             }
         });
 

@@ -1,12 +1,19 @@
 package com.miraclemessages.ui.activities;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
 import com.miraclemessages.R;
+import com.miraclemessages.common.Logger;
 
-public class SplashActivity extends Activity {
+import static com.miraclemessages.common.Constants.SPLASH_TIMER_MILLISECONDS;
+
+/**
+ * This activity just shows the splash page.
+ */
+public class SplashActivity extends BaseActivity {
+
+    private static final Class TAG = SplashActivity.class;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,7 +23,7 @@ public class SplashActivity extends Activity {
         Thread timerThread = new Thread() {
             public void run() {
                 try {
-                    sleep(3000);
+                    sleep(SPLASH_TIMER_MILLISECONDS);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 } finally {
