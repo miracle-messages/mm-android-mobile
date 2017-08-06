@@ -1,4 +1,4 @@
-package com.miraclemessages;
+package com.miraclemessages.ui.adapters;
 
 import android.content.Context;
 import android.content.Intent;
@@ -14,7 +14,9 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.miraclemessages.R;
+import com.miraclemessages.ui.activities.PreCameraActivity;
 
 import java.io.InputStream;
 import java.util.ArrayList;

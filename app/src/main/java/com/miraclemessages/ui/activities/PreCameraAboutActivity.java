@@ -1,4 +1,4 @@
-package com.miraclemessages;
+package com.miraclemessages.ui.activities;
 
 import android.Manifest;
 import android.app.Activity;
@@ -24,7 +24,6 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -42,6 +41,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
+
+import com.miraclemessages.R;
 
 import java.util.ArrayList;
 

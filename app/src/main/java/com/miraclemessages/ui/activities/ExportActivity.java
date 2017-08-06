@@ -1,4 +1,4 @@
-package com.miraclemessages;
+package com.miraclemessages.ui.activities;
 
 import android.app.Activity;
 import android.app.NotificationManager;
@@ -9,8 +9,6 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
-//import android.util.Log;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -18,6 +16,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
 
+import com.amazonaws.mobileconnectors.s3.transferutility.TransferListener;
+import com.amazonaws.mobileconnectors.s3.transferutility.TransferObserver;
+import com.amazonaws.mobileconnectors.s3.transferutility.TransferState;
+import com.amazonaws.mobileconnectors.s3.transferutility.TransferUtility;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -26,15 +28,13 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
-import com.amazonaws.mobileconnectors.s3.transferutility.TransferListener;
-import com.amazonaws.mobileconnectors.s3.transferutility.TransferObserver;
-import com.amazonaws.mobileconnectors.s3.transferutility.TransferState;
-import com.amazonaws.mobileconnectors.s3.transferutility.TransferUtility;
+import com.miraclemessages.R;
+import com.miraclemessages.common.Constants;
+import com.miraclemessages.utils.Util;
 
 import java.io.File;
 
-public class ExportActivity extends Activity{
+public class ExportActivity extends Activity {
     // S3 URL
     private static final String vidURL =
             "https://s3.amazonaws.com/androidmiraclemessages/";
@@ -92,12 +92,12 @@ public class ExportActivity extends Activity{
             }
         });
 
-        String s  = sharedpreferences.getString(FileLoc, null).toString();
+        String s = sharedpreferences.getString(FileLoc, null).toString();
 
         submit = (Button) findViewById(R.id.submit);
         back = (ImageView) findViewById(R.id.back);
 
-        if(export_vf.getDisplayedChild() == 0 || export_vf.getDisplayedChild() == 1){
+        if (export_vf.getDisplayedChild() == 0 || export_vf.getDisplayedChild() == 1) {
             back.setVisibility(View.INVISIBLE);
         }
 
@@ -105,7 +105,7 @@ public class ExportActivity extends Activity{
             public void onClick(View v) {
                 export_vf.setInAnimation(v.getContext(), R.anim.slide_in_from_right);
                 export_vf.setOutAnimation(v.getContext(), R.anim.slide_out_to_left);
-                if(export_vf.getDisplayedChild() == 0) {
+                if (export_vf.getDisplayedChild() == 0) {
                     Toast.makeText(ExportActivity.this, "Upload started", Toast.LENGTH_LONG).show();
                     addNotification();
                     beginUpload(sharedpreferences.getString(FileLoc, null).toString());
@@ -113,15 +113,13 @@ public class ExportActivity extends Activity{
                     title.setText("Message sent");
                     subtitle.setText("Thank you!");
                     export_vf.showNext();
-                }
-                else if(export_vf.getDisplayedChild() == 1) {
+                } else if (export_vf.getDisplayedChild() == 1) {
                     submit.setText("Home");
                     title.setText("What's next");
                     subtitle.setText("Follow-up");
                     back.setVisibility(View.VISIBLE);
                     export_vf.showNext();
-                }
-                else if(export_vf.getDisplayedChild() == 2){
+                } else if (export_vf.getDisplayedChild() == 2) {
                     startActivity(new Intent(ExportActivity.this, PreCameraActivity.class));
                     finish();
                 }
@@ -134,7 +132,7 @@ public class ExportActivity extends Activity{
                 export_vf.setInAnimation(v.getContext(), R.anim.slide_in_from_left);
                 export_vf.setOutAnimation(v.getContext(), R.anim.slide_out_to_right);
 
-                if(export_vf.getDisplayedChild() == 2) {
+                if (export_vf.getDisplayedChild() == 2) {
                     submit.setText("Next steps");
                     title.setText("Message sent");
                     subtitle.setText("Thank you!");
@@ -153,7 +151,7 @@ public class ExportActivity extends Activity{
             return;
         }
         file = new File(filePath);
-        observer = transferUtility.upload(com.miraclemessages.Constants.BUCKET_NAME,
+        observer = transferUtility.upload(Constants.BUCKET_NAME,
                 sharedpreferences.getString(Name, null).toString() + "_" +
                         sharedpreferences.getString(Email, null).toString() +
                         "/" + file.getName(), file);
@@ -163,7 +161,7 @@ public class ExportActivity extends Activity{
             @Override
             public void onStateChanged(int id, TransferState state) {
 //                Log.v("MUFFIN:", observer.getState().toString());
-                if(state.toString().equals("COMPLETED")) {
+                if (state.toString().equals("COMPLETED")) {
                     Intent i = new Intent(getApplicationContext(), ExportActivity.class);
                     PendingIntent pendingIntent =
                             PendingIntent.getActivity(getApplicationContext(), 0, i, 0);
@@ -236,9 +234,9 @@ public class ExportActivity extends Activity{
 //                Log.v("CURRENTO:", bytesCurrent + "");
 //                Log.v("TOTALO:", bytesTotal + "");
 //                Log.v("VALUEEE: ", ((int)(((float)bytesCurrent/bytesTotal)*100) + ""));
-                builder.setContentText("Progress: " + (int)(((float)bytesCurrent/bytesTotal)*100) + "%" +
+                builder.setContentText("Progress: " + (int) (((float) bytesCurrent / bytesTotal) * 100) + "%" +
                         " (Tap to reupload video if needed)")
-                        .setProgress((int) bytesTotal, (int)(bytesCurrent), false)
+                        .setProgress((int) bytesTotal, (int) (bytesCurrent), false)
                         .setContentIntent(pendingIntent);
                 manager.notify(UPLOAD_NOTIFICATION_ID, builder.build());
             }
@@ -287,23 +285,23 @@ public class ExportActivity extends Activity{
         public String uploadedURL;
 
         public Client(String client_contact_info,
-                    String client_current_city,
-                    String client_dob,
-                    String client_hometown,
-                    String client_name,
-                    String client_years_homeless,
-                    String created_at,
-                    String recipient_dob,
-                    String recipient_last_location,
-                    String recipient_last_seen,
-                    String recipient_name,
-                    String recipient_other_info,
-                    String recipient_relationship,
-                    String volunteer_email,
-                    String volunteer_location,
-                    String volunteer_name,
-                    String volunteer_phone,
-                    String uploadedURL) {
+                      String client_current_city,
+                      String client_dob,
+                      String client_hometown,
+                      String client_name,
+                      String client_years_homeless,
+                      String created_at,
+                      String recipient_dob,
+                      String recipient_last_location,
+                      String recipient_last_seen,
+                      String recipient_name,
+                      String recipient_other_info,
+                      String recipient_relationship,
+                      String volunteer_email,
+                      String volunteer_location,
+                      String volunteer_name,
+                      String volunteer_phone,
+                      String uploadedURL) {
             this.client_contact_info = client_contact_info;
             this.client_current_city = client_current_city;
             this.client_dob = client_dob;
@@ -326,11 +324,11 @@ public class ExportActivity extends Activity{
     }
 
     //Override the back button
-    public void onBackPressed(){
+    public void onBackPressed() {
         export_vf.setInAnimation(getApplicationContext(), R.anim.slide_in_from_left);
         export_vf.setOutAnimation(getApplicationContext(), R.anim.slide_out_to_right);
 
-        if(export_vf.getDisplayedChild() == 2) {
+        if (export_vf.getDisplayedChild() == 2) {
             submit.setText("Next steps");
             title.setText("Message sent");
             subtitle.setText("Thank you!");

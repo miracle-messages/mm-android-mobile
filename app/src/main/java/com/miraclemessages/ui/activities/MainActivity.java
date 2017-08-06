@@ -1,23 +1,16 @@
-package com.miraclemessages;
+package com.miraclemessages.ui.activities;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
-import android.support.annotation.NonNull;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.util.Patterns;
-import android.view.MotionEvent;
 import android.view.View;
-import android.content.SharedPreferences;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -40,9 +33,10 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.miraclemessages.R;
 
 public class MainActivity extends AppCompatActivity implements
-        GoogleApiClient.OnConnectionFailedListener{
+        GoogleApiClient.OnConnectionFailedListener {
     private static final int RC_SIGN_IN = 9001;
 
     SharedPreferences sharedpreferences;
@@ -70,14 +64,14 @@ public class MainActivity extends AppCompatActivity implements
 //        textLocation=(EditText)findViewById(R.id.location);
 
         found = false;
-        spinner = (ProgressBar)findViewById(R.id.login_spinner);
-        spinner.setVisibility(View.INVISIBLE);
+        spinner = (ProgressBar) findViewById(R.id.login_spinner);
+        spinner.setVisibility(View.GONE);
 
-        submit=(SignInButton)findViewById(R.id.submit);
+        submit = (SignInButton) findViewById(R.id.submit);
 //        submit.setColorScheme(SignInButton.COLOR_DARK);
         TextView textView = (TextView) submit.getChildAt(0);
         textView.setText("Sign in with Google");
-        link = (TextView)findViewById(R.id.link);
+        link = (TextView) findViewById(R.id.link);
 
         View someView = findViewById(R.id.homeback);
         View root = someView.getRootView();
@@ -87,7 +81,7 @@ public class MainActivity extends AppCompatActivity implements
         mRef = FirebaseDatabase.getInstance().getReference();
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken("20558941937-lgtu21t4u1tl25e05nodtm1jj8fjpaa4.apps.googleusercontent.com")
+                .requestIdToken("287199868982-irpk0ijlughs1nq0c55nn7p1hvqbq3mi.apps.googleusercontent.com")
                 .requestEmail()
                 .build();
 
@@ -188,18 +182,18 @@ public class MainActivity extends AppCompatActivity implements
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if(requestCode == RC_SIGN_IN) {
+        if (requestCode == RC_SIGN_IN) {
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
+            Log.d("TAG", "Result: Code: " + result.getStatus().getStatusCode() + ", message: " + result.getStatus().getStatusMessage());
             Log.v("HAAAY", "BAAAY");
-            if(result.isSuccess()) {
+            if (result.isSuccess()) {
                 Log.v("BEFOREE", "POOP");
                 //Google sign in was successful, authenticate with Firebase
                 GoogleSignInAccount account = result.getSignInAccount();
                 firebaseAuthWithGoogle(account);
                 Log.v("AFTERRR", "POOP");
-            }
-            else {
-                Log.v("FAILURE", "HOBOBOBOBO");
+            } else {
+                Log.e("FAILURE", "HOBOBOBOBO");
             }
         }
     }
@@ -213,7 +207,7 @@ public class MainActivity extends AppCompatActivity implements
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        if(task.isSuccessful()) {
+                        if (task.isSuccessful()) {
                             //Sign in was successful!
                             Log.v("LEGGGO", "MAN");
                             System.out.println("A NEWBS LIFE");
@@ -224,11 +218,10 @@ public class MainActivity extends AppCompatActivity implements
                                 @Override
                                 public void onDataChange(DataSnapshot dataSnapshot) {
                                     System.out.println("SNAPPY: " + (dataSnapshot.getValue() == null));
-                                    if(dataSnapshot.getValue() == null || dataSnapshot.getValue().equals("true")) {
+                                    if (dataSnapshot.getValue() == null || dataSnapshot.getValue().equals("true")) {
                                         //Turn user to data creation page
                                         createNewAccount();
-                                    }
-                                    else {
+                                    } else {
                                         //Else, bypass the login screen
                                         Intent i = new Intent(getApplicationContext(), PreCameraActivity.class);
                                         startActivity(i);
@@ -242,11 +235,11 @@ public class MainActivity extends AppCompatActivity implements
                                 }
                             });
 
-                        }
-                        else {
+                        } else {
                             Toast.makeText(MainActivity.this, "Authentication failed.",
                                     Toast.LENGTH_LONG).show();
                             System.out.println("NAW BRUH");
+                            Log.d("TAG", "" + task.getResult().toString() + "" + task.getException().getMessage());
                         }
                     }
                 });

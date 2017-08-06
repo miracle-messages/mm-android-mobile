@@ -1,4 +1,4 @@
-package com.miraclemessages;
+package com.miraclemessages.ui.activities;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -16,7 +16,6 @@ import android.graphics.Path;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
 import android.support.annotation.NonNull;
 import android.text.Html;
 import android.util.Log;
@@ -25,7 +24,6 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
@@ -46,17 +44,14 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
-
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.miraclemessages.R;
+import com.miraclemessages.ui.adapters.MessagesListAdapter;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -93,9 +88,9 @@ public class PreCameraActivity extends Activity {
     Bitmap bitmap;
     Canvas canvas;
 
-//    public static int [] messagesImages={R.drawable.cancel,R.drawable.cancel,R.drawable.cancel,R.drawable.cancel,R.drawable.cancel,R.drawable.cancel,R.drawable.cancel,R.drawable.cancel,R.drawable.cancel,R.drawable.cancel,R.drawable.cancel};
+    //    public static int [] messagesImages={R.drawable.cancel,R.drawable.cancel,R.drawable.cancel,R.drawable.cancel,R.drawable.cancel,R.drawable.cancel,R.drawable.cancel,R.drawable.cancel,R.drawable.cancel,R.drawable.cancel,R.drawable.cancel};
 //    public static String [] messagesList={"Let Us C","c++","JAVA","Jsp","Microsoft .Net","Android","PHP","Jquery","JavaScript", "HI!", "bye"};
-    public static ArrayList<HashMap<String,String>> myMessagesList = new ArrayList<HashMap<String, String>>();
+    public static ArrayList<HashMap<String, String>> myMessagesList = new ArrayList<HashMap<String, String>>();
 
     //The Firebase database is the primary class for data upload and storage
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -132,7 +127,7 @@ public class PreCameraActivity extends Activity {
         mAuth = FirebaseAuth.getInstance();
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken("20558941937-lgtu21t4u1tl25e05nodtm1jj8fjpaa4.apps.googleusercontent.com")
+                .requestIdToken("287199868982-irpk0ijlughs1nq0c55nn7p1hvqbq3mi.apps.googleusercontent.com")
                 .requestEmail()
                 .build();
 
@@ -153,9 +148,9 @@ public class PreCameraActivity extends Activity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Log.v("Data snapshot: ", Long.toString(dataSnapshot.getChildrenCount()));
-                for(DataSnapshot cases : dataSnapshot.getChildren()) {
-                    HashMap<String,String> myCase = new HashMap<String, String>();
-                    for(DataSnapshot d : cases.getChildren()) {
+                for (DataSnapshot cases : dataSnapshot.getChildren()) {
+                    HashMap<String, String> myCase = new HashMap<String, String>();
+                    for (DataSnapshot d : cases.getChildren()) {
                         //CHECKS FOR NAME
                         if (d.getKey().equals("firstName")) {
                             myCase.put("firstName", d.getValue().toString());
@@ -198,7 +193,7 @@ public class PreCameraActivity extends Activity {
 
         pcBack = (LinearLayout) findViewById(R.id.precamera_background);
 
-        if(this.getResources().getConfiguration().orientation
+        if (this.getResources().getConfiguration().orientation
                 == Configuration.ORIENTATION_LANDSCAPE) {
             nav_bar.setVisibility(View.GONE);
         }
@@ -267,40 +262,38 @@ public class PreCameraActivity extends Activity {
             @Override
             public void onClick(View v) {
                 String n = prof_name.getText().toString();
-                if(n.equals("")) {
+                if (n.equals("")) {
                     Toast.makeText(PreCameraActivity.this,
                             "Please fill out all fields.",
                             Toast.LENGTH_LONG).show();
                     return;
                 }
                 String e = prof_email.getText().toString();
-                if(e.equals("")) {
+                if (e.equals("")) {
                     Toast.makeText(PreCameraActivity.this,
                             "Please fill out all fields.",
                             Toast.LENGTH_LONG).show();
                     return;
-                }
-                else if(!isValidEmail(e)){
+                } else if (!isValidEmail(e)) {
                     Toast.makeText(PreCameraActivity.this,
                             "Please enter a valid email address.",
                             Toast.LENGTH_LONG).show();
                     return;
                 }
                 String p = prof_phone.getText().toString();
-                if(p.equals("")) {
+                if (p.equals("")) {
                     Toast.makeText(PreCameraActivity.this,
                             "Please fill out all fields.",
                             Toast.LENGTH_LONG).show();
                     return;
-                }
-                else if(!isValidPhone(p)){
+                } else if (!isValidPhone(p)) {
                     Toast.makeText(PreCameraActivity.this,
                             "Please enter a valid phone number.",
                             Toast.LENGTH_LONG).show();
                     return;
                 }
                 String l = prof_loc.getText().toString();
-                if(l.equals("")) {
+                if (l.equals("")) {
                     Toast.makeText(PreCameraActivity.this,
                             "Please fill out all fields.",
                             Toast.LENGTH_LONG).show();
@@ -320,7 +313,7 @@ public class PreCameraActivity extends Activity {
                 back.setVisibility(View.INVISIBLE);
                 icon.setVisibility(View.INVISIBLE);
 
-                Toast.makeText(PreCameraActivity.this,"New profile saved!", Toast.LENGTH_LONG).show();
+                Toast.makeText(PreCameraActivity.this, "New profile saved!", Toast.LENGTH_LONG).show();
             }
         });
 
@@ -328,84 +321,84 @@ public class PreCameraActivity extends Activity {
         docs_hb = (TextView) findViewById(R.id.docs_handbook);
         docs_hb.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v){
+            public void onClick(View v) {
                 openLink("https://bit.ly/mmhandbook");
             }
         });
         docs_int = (TextView) findViewById(R.id.docs_internal_list);
         docs_int.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v){
+            public void onClick(View v) {
                 openLink("https://bit.ly/mmchapters");
             }
         });
         docs_ext = (TextView) findViewById(R.id.docs_external_list);
         docs_ext.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v){
+            public void onClick(View v) {
                 openLink("https://miraclemessages.org/chapters");
             }
         });
         docs_roles = (TextView) findViewById(R.id.docs_roles);
         docs_roles.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v){
+            public void onClick(View v) {
                 openLink("https://miraclemessages.org/join");
             }
         });
         ext_fb = (TextView) findViewById(R.id.external_fb);
         ext_fb.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v){
+            public void onClick(View v) {
                 openLink("https://facebook.com/miraclemessages");
             }
         });
         ext_donation = (TextView) findViewById(R.id.external_donation);
         ext_donation.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v){
+            public void onClick(View v) {
                 openLink("https://give.miraclemessages.org");
             }
         });
         ext_yt = (TextView) findViewById(R.id.external_youtube);
         ext_yt.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v){
+            public void onClick(View v) {
                 openLink("https://youtube.com/miraclemessages");
             }
         });
         ext_twitter = (TextView) findViewById(R.id.external_twitter);
         ext_twitter.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v){
+            public void onClick(View v) {
                 openLink("https://twitter.com/miraclemsg");
             }
         });
         ext_ig = (TextView) findViewById(R.id.external_ig);
         ext_ig.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v){
+            public void onClick(View v) {
                 openLink("https://instagram.com/miraclemessages");
             }
         });
         internalfb1 = (TextView) findViewById(R.id.internal_fb_1);
         internalfb1.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v){
+            public void onClick(View v) {
                 openLink("https://facebook.com/groups/miraclemsg");
             }
         });
         internalfb2 = (TextView) findViewById(R.id.internal_fb_2);
         internalfb2.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v){
+            public void onClick(View v) {
                 openLink("https://facebook.com/groups/mmdetectives");
             }
         });
         internalslack = (TextView) findViewById(R.id.internal_slack);
         internalslack.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v){
+            public void onClick(View v) {
                 openLink("https://joinslack.miraclemessages.org");
             }
         });
@@ -423,9 +416,9 @@ public class PreCameraActivity extends Activity {
                 icon.setVisibility(View.VISIBLE);
                 exitApp = false;
 
-                privacy_policy.setOnClickListener(new View.OnClickListener(){
+                privacy_policy.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onClick(View v){
+                    public void onClick(View v) {
                         LayoutInflater inflater = (LayoutInflater) getApplicationContext().getSystemService(LAYOUT_INFLATER_SERVICE);
                         View policyView = inflater.inflate(R.layout.privacy_policy, null);
                         popupWindow = new PopupWindow(
@@ -438,7 +431,7 @@ public class PreCameraActivity extends Activity {
                         popupWindow.setOutsideTouchable(false);
                         // Set an elevation value for popup window
                         // Call requires API level 21
-                        if(Build.VERSION.SDK_INT>=21){
+                        if (Build.VERSION.SDK_INT >= 21) {
                             popupWindow.setElevation(5.0f);
                         }
                         ImageButton closeButton = (ImageButton) policyView.findViewById(R.id.ib_close);
@@ -453,9 +446,9 @@ public class PreCameraActivity extends Activity {
                     }
                 });
 
-                leave_rating.setOnClickListener(new View.OnClickListener(){
+                leave_rating.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onClick(View v){
+                    public void onClick(View v) {
                         try {
                             startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
                         } catch (android.content.ActivityNotFoundException notFoundException) {
@@ -535,18 +528,17 @@ public class PreCameraActivity extends Activity {
 
                 //Setting title color below is not good practice, but it'll do for now.
                 builder.setTitle(Html.fromHtml("<font color='#FFFFFF'>How would you like to contact Miracle Messages?</font"));
-                builder.setItems(contactOptions, new DialogInterface.OnClickListener(){
+                builder.setItems(contactOptions, new DialogInterface.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialog, int selection){
-                        if(selection == 0){
+                    public void onClick(DialogInterface dialog, int selection) {
+                        if (selection == 0) {
                             Intent emailIntent = new Intent(Intent.ACTION_SEND);
                             emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{"hello@miraclemessages.org"});
                             emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Message from " + sharedpreferences.getString(Name, null));
                             emailIntent.setType("message/rfc822");
 
                             startActivity(Intent.createChooser(emailIntent, "Choose an email client:"));
-                        }
-                        else if(selection == 1){
+                        } else if (selection == 1) {
                             Uri number = Uri.parse("tel:4155458406");
                             Intent callIntent = new Intent(Intent.ACTION_DIAL, number);
                             startActivity(callIntent);
@@ -564,15 +556,14 @@ public class PreCameraActivity extends Activity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(viewFlipper.getDisplayedChild() >= 1 &&
+                if (viewFlipper.getDisplayedChild() >= 1 &&
                         viewFlipper.getDisplayedChild() <= 4) {
                     viewFlipper.setInAnimation(v.getContext(), R.anim.slide_in_from_left);
                     viewFlipper.setOutAnimation(v.getContext(), R.anim.slide_out_to_right);
                     back.setVisibility(View.INVISIBLE);
                     icon.setVisibility(View.INVISIBLE);
                     viewFlipper.setDisplayedChild(0);
-                }
-                else if(viewFlipper.getDisplayedChild() == 5 ||
+                } else if (viewFlipper.getDisplayedChild() == 5 ||
                         viewFlipper.getDisplayedChild() == 6) {
                     viewFlipper.setInAnimation(v.getContext(), R.anim.slide_in_from_left);
                     viewFlipper.setOutAnimation(v.getContext(), R.anim.slide_out_to_right);
@@ -584,7 +575,7 @@ public class PreCameraActivity extends Activity {
         link = (TextView) findViewById(R.id.link);
         link.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v){
+            public void onClick(View v) {
                 openLink("https://miraclemessages.org/getinvolved");
             }
         });
@@ -603,9 +594,9 @@ public class PreCameraActivity extends Activity {
         animFadeOut.setDuration(100);
         animFadeIn.setDuration(600);
 
-        changeUser.setOnClickListener(new View.OnClickListener(){
+        changeUser.setOnClickListener(new View.OnClickListener() {
 
-            public void onClick(View v){
+            public void onClick(View v) {
                 SharedPreferences.Editor editor = sharedpreferences.edit();
                 editor.clear();
                 editor.commit();
@@ -646,7 +637,7 @@ public class PreCameraActivity extends Activity {
         if (updatedConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
             nav_bar.setVisibility(View.GONE);
 
-        } else if (updatedConfig.orientation == Configuration.ORIENTATION_PORTRAIT){
+        } else if (updatedConfig.orientation == Configuration.ORIENTATION_PORTRAIT) {
             nav_bar.setVisibility(View.VISIBLE);
         }
     }
@@ -675,7 +666,7 @@ public class PreCameraActivity extends Activity {
         if (exitApp) {
             super.onBackPressed();
         } else {
-            if(viewFlipper.getDisplayedChild() >= 1 &&
+            if (viewFlipper.getDisplayedChild() >= 1 &&
                     viewFlipper.getDisplayedChild() <= 4) {
                 viewFlipper.setInAnimation(getApplicationContext(), R.anim.slide_in_from_left);
                 viewFlipper.setOutAnimation(getApplicationContext(), R.anim.slide_out_to_right);
@@ -683,8 +674,7 @@ public class PreCameraActivity extends Activity {
                 icon.setVisibility(View.INVISIBLE);
                 viewFlipper.setDisplayedChild(0);
                 exitApp = true;
-            }
-            else if(viewFlipper.getDisplayedChild() == 5 ||
+            } else if (viewFlipper.getDisplayedChild() == 5 ||
                     viewFlipper.getDisplayedChild() == 6) {
                 viewFlipper.setInAnimation(getApplicationContext(), R.anim.slide_in_from_left);
                 viewFlipper.setOutAnimation(getApplicationContext(), R.anim.slide_out_to_right);
@@ -721,8 +711,7 @@ public class PreCameraActivity extends Activity {
                 path2.moveTo(event.getX(), event.getY());
 
                 path2.lineTo(event.getX(), event.getY());
-            }
-            else if (event.getAction() == MotionEvent.ACTION_MOVE) {
+            } else if (event.getAction() == MotionEvent.ACTION_MOVE) {
 
                 path2.lineTo(event.getX(), event.getY());
 

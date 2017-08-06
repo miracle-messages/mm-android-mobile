@@ -1,4 +1,4 @@
-package com.miraclemessages;
+package com.miraclemessages.models;
 
 /**
  * Created by James Wu on 5/18/2017.
