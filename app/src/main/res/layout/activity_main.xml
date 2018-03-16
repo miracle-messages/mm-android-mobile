@@ -1,205 +1,753 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:fillViewport="true"
-    >
-    <LinearLayout
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/precamera_background"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/navbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.1"
+        android:paddingEnd="5dp"
+        android:paddingStart="10dp"
+        android:paddingTop="15dp">
+
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_alignParentStart="true"
+            android:background="@drawable/left_arrow2"
+            android:visibility="invisible" />
+
+        <ImageView
+            android:id="@+id/icon"
+            android:layout_width="50dp"
+            android:layout_height="55dp"
+            android:layout_alignParentStart="true"
+            android:background="@drawable/mmicon3"
+            android:visibility="invisible" />
+    </RelativeLayout>
+
+    <ViewFlipper
+        android:id="@+id/viewflipper"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/homeback"
-        android:orientation="vertical"
-        android:background="@android:color/white"
-        android:padding="20dp"
-        >
+        android:layout_weight="0.9">
 
-        <RelativeLayout
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/navbar"
-            android:layout_weight="0.1"
-            android:paddingRight="-10dp"
-            >
+            android:layout_height="match_parent"
+            android:fillViewport="true">
 
-            <!--<ImageView-->
-                <!--android:layout_width="50dp"-->
-                <!--android:background="@drawable/mmicon3"-->
-                <!--android:layout_height="50dp"-->
-                <!--android:layout_alignParentRight="true"/>-->
+            <LinearLayout
+                android:id="@+id/precamera_home"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="20dp">
 
-        </RelativeLayout>
+                <TextView
+                    android:id="@+id/my_profile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="10dp"
+                    android:paddingTop="10dp"
+                    android:text="My profile"
+                    android:textSize="30dp"
+                    android:textStyle="bold" />
 
-        <RelativeLayout
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@android:color/darker_gray" />
+
+                <TextView
+                    android:id="@+id/my_messages"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="10dp"
+                    android:paddingTop="10dp"
+                    android:text="My messages"
+                    android:textSize="30dp"
+                    android:textStyle="bold" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@android:color/darker_gray" />
+
+                <TextView
+                    android:id="@+id/about"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="10dp"
+                    android:paddingTop="10dp"
+                    android:text="About"
+                    android:textSize="30dp"
+                    android:textStyle="bold" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@android:color/darker_gray" />
+
+                <TextView
+                    android:id="@+id/resources"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="10dp"
+                    android:paddingTop="10dp"
+                    android:text="Resources"
+                    android:textSize="30dp"
+                    android:textStyle="bold" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@android:color/darker_gray" />
+
+                <TextView
+                    android:id="@+id/faq"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="10dp"
+                    android:paddingTop="10dp"
+                    android:text="FAQ"
+                    android:textSize="30dp"
+                    android:textStyle="bold" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@android:color/darker_gray" />
+
+                <TextView
+                    android:id="@+id/record"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="10dp"
+                    android:paddingTop="10dp"
+                    android:text="Record a message"
+                    android:textColor="#3498db"
+                    android:textSize="30dp"
+                    android:textStyle="bold" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@android:color/darker_gray" />
+
+                <TextView
+                    android:id="@+id/contact"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="10dp"
+                    android:paddingTop="10dp"
+                    android:text="Contact"
+                    android:textSize="30dp"
+                    android:textStyle="bold" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@android:color/darker_gray" />
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="center_horizontal">
+
+                    <TextView
+                        android:id="@+id/logout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:gravity="center"
+                        android:paddingBottom="10dp"
+                        android:paddingTop="10dp"
+                        android:text="Log out"
+                        android:textSize="20dp" />
+
+                </RelativeLayout>
+            </LinearLayout>
+        </ScrollView>
+
+        <LinearLayout
+            android:id="@+id/precamera_about"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/welcome"
-            android:layout_weight="0.2"
-            >
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="20dp">
 
-            <ProgressBar
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/login_spinner"
-                android:layout_centerHorizontal="true"
-                android:layout_above="@+id/submit"
-                android:translationZ="3dp"
-                android:padding="10dp"
-                />
+                android:layout_marginBottom="30dp"
+                android:text="About"
+                android:textSize="30dp"
+                android:textStyle="bold" />
 
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="110dp"
-                android:id="@+id/mmlogo"
-                android:paddingBottom="0dp"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="30dp"
-                android:gravity="center_horizontal"
-                android:background="@drawable/mmlogo4"/>
-
-            <com.google.android.gms.common.SignInButton
+            <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/submit"
-                android:layout_marginLeft="40dp"
-                android:layout_marginRight="40dp"
-                android:layout_centerVertical="true"
-                android:layout_centerHorizontal="true"
-                />
+                android:background="#FFFFFF"
+                android:gravity="center">
 
-            <!--<TextView-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:id="@+id/welcome_text"-->
-                <!--android:text="Welcome"-->
-                <!--android:paddingBottom="30dp"-->
-                <!--android:textSize="50dp"-->
-                <!--android:textStyle="bold"-->
-                <!--android:gravity="center_horizontal"-->
-                <!--/>-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
-        </RelativeLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Miracle Messages are short video messages from homeless people to their long-lost loved ones, recorded and delivered by volunteers. To date, 40% of reunions have lead to stable housing. Miracle Messages has been featured in the New York Times, NPR, and NowThis, whose video reached 22M views and 350K shares. Founder Kevin F. Adler started Miracle Messages in honor of his Uncle Mark, who lived on-and-off the streets for 30 years. Our goal is to reunite 1 million people by 2021. Join the movement:"
+                        android:textSize="20dp" />
 
-        <!--<RelativeLayout-->
+                    <TextView
+                        android:id="@+id/link"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/link"
+                        android:textColor="#3498db"
+                        android:textSize="20dp" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:paddingTop="20dp">
+
+                        <TextView
+                            android:id="@+id/policy"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:clickable="true"
+                            android:text="Privacy Policy"
+                            android:textColor="#3498db"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/rateApp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_weight="0"
+                            android:clickable="true"
+                            android:text="Rate this app"
+                            android:textColor="#3498db"
+                            android:textStyle="bold" />
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+            </ScrollView>
+
+            <!--<LinearLayout-->
             <!--android:layout_width="match_parent"-->
             <!--android:layout_height="wrap_content"-->
-            <!--android:id="@+id/login"-->
-            <!--android:padding="10dp"-->
-            <!--android:layout_weight="0.45">-->
-
-            <!--<EditText-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:id="@+id/name"-->
-                <!--android:hint="Full Name"-->
-                <!--android:paddingTop="5dp"-->
-                <!--android:paddingBottom="5dp"-->
-                <!--android:layout_alignParentRight="true"-->
-                <!--android:layout_alignParentEnd="true"-->
-                <!--android:layout_alignParentLeft="true"-->
-                <!--android:layout_alignParentStart="true"-->
-                <!--android:background="@drawable/edittext_bg"-->
-                <!--android:textColorHint="#C3C3C3"-->
-                <!--android:textColor="@android:color/black"-->
-                <!--android:inputType="textNoSuggestions|textVisiblePassword"-->
-                <!--android:layout_marginTop="5dp"-->
-                <!--android:layout_marginBottom="5dp"-->
-                <!--/>-->
-
-            <!--<EditText-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:id="@+id/phone_number"-->
-                <!--android:layout_below="@+id/email"-->
-                <!--android:hint="Phone"-->
-                <!--android:layout_alignParentRight="true"-->
-                <!--android:layout_alignParentEnd="true"-->
-                <!--android:layout_alignParentLeft="true"-->
-                <!--android:layout_alignParentStart="true"-->
-                <!--android:inputType="number"-->
-                <!--android:background="@drawable/edittext_bg"-->
-                <!--android:textColorHint="#C3C3C3"-->
-                <!--android:textColor="@android:color/black"-->
-                <!--android:paddingTop="5dp"-->
-                <!--android:paddingBottom="5dp"-->
-                <!--android:layout_marginTop="5dp"-->
-                <!--android:layout_marginBottom="5dp"-->
-                <!--/>-->
-
-            <!--<EditText-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:id="@+id/email"-->
-                <!--android:hint="Email"-->
-                <!--android:layout_alignParentRight="true"-->
-                <!--android:layout_alignParentEnd="true"-->
-                <!--android:layout_alignParentLeft="true"-->
-                <!--android:layout_alignParentStart="true"-->
-                <!--android:background="@drawable/edittext_bg"-->
-                <!--android:inputType="textEmailAddress"-->
-                <!--android:textColorHint="#C3C3C3"-->
-                <!--android:textColor="@android:color/black"-->
-                <!--android:paddingTop="5dp"-->
-                <!--android:paddingBottom="5dp"-->
-                <!--android:layout_below="@+id/name"-->
-                <!--android:layout_marginTop="5dp"-->
-                <!--android:layout_marginBottom="5dp"-->
-                <!--/>-->
-
-            <!--<EditText-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:id="@+id/location"-->
-                <!--android:hint="Location"-->
-                <!--android:inputType="textNoSuggestions|textVisiblePassword"-->
-                <!--android:layout_below="@+id/phone_number"-->
-                <!--android:layout_alignParentRight="true"-->
-                <!--android:layout_alignParentEnd="true"-->
-                <!--android:layout_alignParentLeft="true"-->
-                <!--android:layout_alignParentStart="true"-->
-                <!--android:background="@drawable/edittext_bg"-->
-                <!--android:textColorHint="#C3C3C3"-->
-                <!--android:textColor="@android:color/black"-->
-                <!--android:paddingTop="5dp"-->
-                <!--android:paddingBottom="5dp"-->
-                <!--android:layout_marginTop="5dp"-->
-                <!--android:layout_marginBottom="5dp"-->
-                <!--/>-->
-
-        <!--</RelativeLayout>-->
-
-        <!--<RelativeLayout-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:id="@+id/footer"-->
-            <!--android:layout_weight="0.25"-->
-            <!--android:gravity="bottom">-->
+            <!--android:orientation="horizontal"-->
+            <!--android:layout_marginTop="25dp">-->
 
             <!--<TextView-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:id="@+id/link"-->
-                <!--android:text="Before logging in, be sure to join \n your local chapter here."-->
-                <!--android:clickable="true"-->
-                <!--android:textColor="#C3C3C3"-->
-                <!--android:gravity="center"-->
-                <!--android:paddingBottom="10dp"-->
-                <!--android:layout_alignParentTop="true"-->
-                <!--android:layout_alignParentStart="true" />-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:textColor="#3498db"-->
+            <!--android:text="Privacy Policy"-->
+            <!--android:id="@+id/policy"-->
+            <!--android:clickable="true"-->
+            <!--android:layout_weight="1"-->
+            <!--android:layout_gravity="left"-->
+            <!--android:textStyle="bold" />-->
 
-            <!--<Button-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:id="@+id/submit"-->
-                <!--android:text="Log in"-->
-                <!--android:textColor="@android:color/black"-->
-                <!--android:background="@drawable/button_selector"-->
-                <!--android:layout_alignParentRight="true"-->
-                <!--android:layout_alignParentEnd="true"-->
-                <!--android:layout_alignParentLeft="true"-->
-                <!--android:layout_alignParentStart="true"-->
-                <!--android:layout_centerHorizontal="true"-->
-                <!--android:layout_centerVertical="true"/>-->
+            <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:textColor="#3498db"-->
+            <!--android:text="Rate this app"-->
+            <!--android:id="@+id/rateApp"-->
+            <!--android:clickable="true"-->
+            <!--android:layout_gravity="right"-->
+            <!--android:textStyle="bold"/>-->
 
-        <!--</RelativeLayout>-->
-    </LinearLayout>
-</ScrollView>
+            <!--</LinearLayout>-->
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/precamera_resources"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="30dp"
+                android:text="Resources"
+                android:textSize="30dp"
+                android:textStyle="bold" />
+
+            <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#FFFFFF"
+                android:gravity="center">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Internal"
+                        android:textSize="25dp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginTop="5dp"
+                        android:background="@android:color/darker_gray" />
+
+                    <TextView
+                        android:id="@+id/internal_fb_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Facebook group (chapters + volunteers)"
+                        android:textSize="18dp" />
+
+                    <TextView
+                        android:id="@+id/internal_fb_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Facebook group (volunteer detectives)"
+                        android:textSize="18dp" />
+
+                    <TextView
+                        android:id="@+id/internal_slack"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Slack community (chapter leads + MM team)"
+                        android:textSize="18dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:text="External"
+                        android:textSize="25dp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginTop="5dp"
+                        android:background="@android:color/darker_gray" />
+
+                    <TextView
+                        android:id="@+id/external_fb"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Facebook page"
+                        android:textSize="18dp" />
+
+                    <TextView
+                        android:id="@+id/external_donation"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Donation page"
+                        android:textSize="18dp" />
+
+                    <TextView
+                        android:id="@+id/external_youtube"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="YouTube channel"
+                        android:textSize="18dp" />
+
+                    <TextView
+                        android:id="@+id/external_twitter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Twitter page"
+                        android:textSize="18dp" />
+
+                    <TextView
+                        android:id="@+id/external_ig"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Instagram page"
+                        android:textSize="18dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:text="Key Docs"
+                        android:textSize="25dp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginTop="5dp"
+                        android:background="@android:color/darker_gray" />
+
+                    <TextView
+                        android:id="@+id/docs_handbook"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Chapter handbook"
+                        android:textSize="18dp" />
+
+                    <TextView
+                        android:id="@+id/docs_internal_list"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Current chapters list (internal)"
+                        android:textSize="18dp" />
+
+                    <TextView
+                        android:id="@+id/docs_external_list"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Current chapters list (external)"
+                        android:textSize="18dp" />
+
+                    <TextView
+                        android:id="@+id/docs_roles"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Current roles"
+                        android:textSize="18dp" />
+
+                    <TextView
+                        android:id="@+id/docs_spreadsheet"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Master MMs spreadsheet – (for access, email us at hello@miraclemessages.org) "
+                        android:textSize="18dp" />
+
+                </LinearLayout>
+
+            </ScrollView>
+
+        </LinearLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true">
+
+            <LinearLayout
+                android:id="@+id/precamera_profile"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="30dp"
+                    android:text="My profile"
+                    android:textSize="30dp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/profile_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/edittext_bg"
+                    android:hint="Full Name"
+                    android:inputType="textNoSuggestions|textVisiblePassword"
+                    android:paddingBottom="5dp"
+                    android:paddingTop="5dp"
+                    android:textColor="@android:color/black"
+                    android:textColorHint="#C3C3C3" />
+
+                <EditText
+                    android:id="@+id/profile_number"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/profile_email"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/edittext_bg"
+                    android:hint="Phone"
+                    android:inputType="number"
+                    android:paddingBottom="5dp"
+                    android:paddingTop="5dp"
+                    android:textColor="@android:color/black"
+                    android:textColorHint="#C3C3C3" />
+
+                <EditText
+                    android:id="@+id/profile_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/profile_name"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/edittext_bg"
+                    android:hint="Email"
+                    android:inputType="textEmailAddress"
+                    android:paddingBottom="5dp"
+                    android:paddingTop="5dp"
+                    android:textColor="@android:color/black"
+                    android:textColorHint="#C3C3C3" />
+
+                <EditText
+                    android:id="@+id/profile_location"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/profile_number"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/edittext_bg"
+                    android:hint="Location"
+                    android:inputType="textNoSuggestions|textVisiblePassword"
+                    android:paddingBottom="5dp"
+                    android:paddingTop="5dp"
+                    android:textColor="@android:color/black"
+                    android:textColorHint="#C3C3C3" />
+
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="center_horizontal">
+
+                    <Button
+                        android:id="@+id/profile_save"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerHorizontal="true"
+                        android:background="@drawable/button_selector"
+                        android:gravity="center"
+                        android:text="Save"
+                        android:textColor="@android:color/black" />
+
+                </RelativeLayout>
+            </LinearLayout>
+        </ScrollView>
+
+        <LinearLayout
+            android:id="@+id/precamera_messages"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="3dp"
+                android:text="My messages"
+                android:textSize="30dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/messages_subtext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="25dp"
+                android:text="Click to open in web portal"
+                android:textSize="20dp" />
+
+            <ListView
+                android:id="@+id/list_messages"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"></ListView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/precamera_script_x"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <TextView
+                android:id="@+id/script_hello"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="30dp"
+                android:text="Hi"
+                android:textSize="30dp"
+                android:textStyle="bold" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:layout_gravity="center_horizontal">
+
+                <Button
+                    android:id="@+id/script_start"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/button_selector"
+                    android:gravity="center"
+                    android:text="Let's get started"
+                    android:textColor="@android:color/black" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/precamera_script_xx"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="0.2"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/script_begin_xx"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="3dp"
+                    android:text="How to begin"
+                    android:textSize="30dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/script_begin_subtext_xx"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="25dp"
+                    android:text="A script to guide you"
+                    android:textSize="20dp" />
+
+                <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:layout_width="match_parent"
+                    android:layout_height="fill_parent">
+
+                    <TextView
+                        android:id="@+id/script_begin_ask"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="1. Ask\n&quot;Do you have any family or friends that you would like to reunite with, even if you don't know how to reach them?&quot;"
+                        android:textSize="25dp" />
+
+                </ScrollView>
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="0.8">
+
+                <Button
+                    android:id="@+id/script_next_xx"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/button_selector"
+                    android:gravity="center"
+                    android:text="Next"
+                    android:textColor="@android:color/black" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/precamera_script_xxx"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="0.2"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/script_begin_xxx"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="3dp"
+                    android:text="How to begin"
+                    android:textSize="30dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/script_begin_subtext_xxx"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="25dp"
+                    android:text="A script to guide you"
+                    android:textSize="20dp" />
+
+                <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:layout_width="match_parent"
+                    android:layout_height="fill_parent">
+
+                    <TextView
+                        android:id="@+id/script_begin_inform"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="2. Inform\n&quot;As a volunteer with Miracle Messages, I would be happy to help you record a short video message to your loved one if you'd like. Before I do, I just want to make sure we are on the same page with expectations.\n\nFirst, your Miracle Message video will be made public and may be shared widely to help volunteers try to locate your loved one(s).\n\nSecond, while 90% of loved ones have responded positively to their Miracle Messages, we cannot know for sure how your loved one(s) will respond, or if they will respond, or how long it may take them to respond. \n\nAnd third, while we have many volunteers trying to locate loved ones, we may not be able to find or reach your loved one(s). The only guarantee here is that this is an opportunity for you to record a short video message to someone you love, to say whatever is on your heart that you'd like to say, and that we will try our best to deliver it and help facilitate any response or reunion that results.\n\nSound good?&quot;"
+                        android:textSize="25dp" />
+
+                </ScrollView>
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="0.8">
+
+                <Button
+                    android:id="@+id/script_next_xxx"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/button_selector"
+                    android:gravity="center"
+                    android:text="Next"
+                    android:textColor="@android:color/black" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </ViewFlipper>
+
+</LinearLayout>

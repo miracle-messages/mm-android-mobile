@@ -1,4 +1,4 @@
-package com.miraclemessages;
+package com.miraclemessages.ui.adapters;
 
 import android.content.Context;
 import android.content.Intent;
@@ -14,7 +14,9 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.miraclemessages.R;
+import com.miraclemessages.ui.activities.MainActivity;
 
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -24,27 +26,23 @@ public class MessagesListAdapter extends BaseAdapter{
     Context context;
     ArrayList<HashMap<String,String>> myMessagesList;
     private static LayoutInflater inflater=null;
-    public MessagesListAdapter(PreCameraActivity mainActivity, ArrayList<HashMap<String,String>> myList) {
-        // TODO Auto-generated constructor stub
+    public MessagesListAdapter(MainActivity mainActivity, ArrayList<HashMap<String,String>> myList) {
         myMessagesList = myList;
         context=mainActivity;
         inflater = ( LayoutInflater )context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
     @Override
     public int getCount() {
-        // TODO Auto-generated method stub
         return myMessagesList.size();
     }
 
     @Override
     public Object getItem(int position) {
-        // TODO Auto-generated method stub
         return position;
     }
 
     @Override
     public long getItemId(int position) {
-        // TODO Auto-generated method stub
         return position;
     }
 
@@ -60,7 +58,6 @@ public class MessagesListAdapter extends BaseAdapter{
 //    }
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
-        // TODO Auto-generated method stub
         View rowView;
         rowView = inflater.inflate(R.layout.messages_list, null);
         TextView name =(TextView) rowView.findViewById(R.id.name);
@@ -93,7 +90,6 @@ public class MessagesListAdapter extends BaseAdapter{
         rowView.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO Auto-generated method stub
 //                Toast.makeText(context, "You Clicked "+myMessagesList.get(position).get("firstName"), Toast.LENGTH_LONG).show();
                 Intent i = new Intent(Intent.ACTION_VIEW);
                 i.setData(Uri.parse("https://my.miraclemessages.org/#!/cases/" + myMessagesList.get(position).get("caseID")));

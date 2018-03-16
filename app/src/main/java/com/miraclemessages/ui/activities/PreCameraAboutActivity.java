@@ -1,7 +1,6 @@
-package com.miraclemessages;
+package com.miraclemessages.ui.activities;
 
 import android.Manifest;
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -24,7 +23,6 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -43,9 +41,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
 
+import com.miraclemessages.R;
+
 import java.util.ArrayList;
 
-public class PreCameraAboutActivity extends Activity {
+public class PreCameraAboutActivity extends BaseActivity {
 
     ImageView back;
     Button next;
@@ -111,17 +111,17 @@ public class PreCameraAboutActivity extends Activity {
         sharedpreferences = getSharedPreferences(myPreferences, Context.MODE_PRIVATE);
         nav_bar = (RelativeLayout) findViewById(R.id.navbar);
 
-        if(this.getResources().getConfiguration().orientation
+        if (this.getResources().getConfiguration().orientation
                 == Configuration.ORIENTATION_LANDSCAPE) {
             nav_bar.setVisibility(View.GONE);
         }
 
         direction = (TextView) findViewById(R.id.direction);
         who = (TextView) findViewById(R.id.who);
-        who.setOnClickListener(new View.OnClickListener(){
+        who.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v){
-                if(who.getText().toString().equals("Consent and Release Form")) {
+            public void onClick(View v) {
+                if (who.getText().toString().equals("Consent and Release Form")) {
                     LayoutInflater inflater = (LayoutInflater) getApplicationContext().getSystemService(LAYOUT_INFLATER_SERVICE);
                     View consentView = inflater.inflate(R.layout.consent, null);
                     popupWindow = new PopupWindow(
@@ -192,12 +192,12 @@ public class PreCameraAboutActivity extends Activity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(about_vf.getDisplayedChild() == 0) {
+                if (about_vf.getDisplayedChild() == 0) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(PreCameraAboutActivity.this);
                     builder.setMessage("All changes on this page will be lost, would you still like to go back to the home page?")
                             .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
-                                    startActivity(new Intent(PreCameraAboutActivity.this, PreCameraActivity.class));
+                                    startActivity(new Intent(PreCameraAboutActivity.this, MainActivity.class));
                                     finish();
                                 }
                             })
@@ -209,19 +209,16 @@ public class PreCameraAboutActivity extends Activity {
                     // Create the AlertDialog object and return it
                     builder.create();
                     builder.show();
-                }
-                else {
+                } else {
                     about_vf.setInAnimation(v.getContext(), R.anim.slide_in_from_left);
                     about_vf.setOutAnimation(v.getContext(), R.anim.slide_out_to_right);
-                    if(about_vf.getDisplayedChild() == 1) {
+                    if (about_vf.getDisplayedChild() == 1) {
                         direction.setText("From");
                         who.setText("Homeless individual");
-                    }
-                    else if(about_vf.getDisplayedChild() == 2){
+                    } else if (about_vf.getDisplayedChild() == 2) {
                         direction.setText("To");
                         who.setText("Loved one");
-                    }
-                    else {
+                    } else {
                         direction.setText("Review");
                         who.setText("Contact info");
                         who.setTextColor(Color.parseColor("#000000"));
@@ -235,7 +232,7 @@ public class PreCameraAboutActivity extends Activity {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(about_vf.getDisplayedChild() == 2) {
+                if (about_vf.getDisplayedChild() == 2) {
                     SharedPreferences.Editor editor = sharedpreferences.edit();
 
                     editor.putString("about_one_name", one_name.getText().toString());
@@ -276,9 +273,8 @@ public class PreCameraAboutActivity extends Activity {
 //                    // Create the AlertDialog object and return it
 //                    builder.create();
 //                    builder.show();
-                }
-                else {
-                    if(about_vf.getDisplayedChild() == 0) {
+                } else {
+                    if (about_vf.getDisplayedChild() == 0) {
                         if (one_name.getText().toString().equals("") || one_birth.getText().toString().equals("") || one_live.getText().toString().equals("") || one_hometown.getText().toString().equals("") || one_reach.getText().toString().equals("") || one_years.getText().toString().equals("")) {
                             Toast.makeText(PreCameraAboutActivity.this,
                                     "Please fill out all fields.",
@@ -290,13 +286,12 @@ public class PreCameraAboutActivity extends Activity {
                             who.setText("Loved one");
                             about_vf.showNext();
                         }
-                    }
-                    else {
-                        if(two_name.getText().toString().equals("") || two_relationship.getText().toString().equals("") || two_birth.getText().toString().equals("") || two_location.getText().toString().equals("") || two_years.getText().toString().equals("") || two_other.getText().toString().equals("")) {
+                    } else {
+                        if (two_name.getText().toString().equals("") || two_relationship.getText().toString().equals("") || two_birth.getText().toString().equals("") || two_location.getText().toString().equals("") || two_years.getText().toString().equals("") || two_other.getText().toString().equals("")) {
                             Toast.makeText(PreCameraAboutActivity.this,
                                     "Please fill out all fields.",
                                     Toast.LENGTH_LONG).show();
-                        } else if(about_vf.getDisplayedChild() == 1){
+                        } else if (about_vf.getDisplayedChild() == 1) {
                             about_vf.setInAnimation(v.getContext(), R.anim.slide_in_from_right);
                             about_vf.setOutAnimation(v.getContext(), R.anim.slide_out_to_left);
                             direction.setText("Review");
@@ -315,7 +310,7 @@ public class PreCameraAboutActivity extends Activity {
                             review_two_years.setText("Years apart: " + two_years.getText().toString());
                             review_two_other.setText("Other info: " + two_other.getText().toString());
                             about_vf.showNext();
-                        } else if(about_vf.getDisplayedChild() == 3) {
+                        } else if (about_vf.getDisplayedChild() == 3) {
                             requestPermissions();
                         }
                     }
@@ -344,13 +339,12 @@ public class PreCameraAboutActivity extends Activity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if(one_name.getText().toString().equals("")) {
+                if (one_name.getText().toString().equals("")) {
                     one_name_label.setAnimation(animFadeOut);
                     one_name_label.getAnimation().start();
                     one_name_label.setVisibility(View.INVISIBLE);
-                }
-                else {
-                    if(start == 0) {
+                } else {
+                    if (start == 0) {
                         one_name_label.setAnimation(animFadeIn);
                         one_name_label.getAnimation().start();
                         one_name_label.setVisibility(View.VISIBLE);
@@ -372,13 +366,12 @@ public class PreCameraAboutActivity extends Activity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if(one_birth.getText().toString().equals("")) {
+                if (one_birth.getText().toString().equals("")) {
                     one_birth_label.setAnimation(animFadeOut);
                     one_birth_label.getAnimation().start();
                     one_birth_label.setVisibility(View.INVISIBLE);
-                }
-                else {
-                    if(start == 0) {
+                } else {
+                    if (start == 0) {
                         one_birth_label.setAnimation(animFadeIn);
                         one_birth_label.getAnimation().start();
                         one_birth_label.setVisibility(View.VISIBLE);
@@ -401,13 +394,12 @@ public class PreCameraAboutActivity extends Activity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if(one_live.getText().toString().equals("")) {
+                if (one_live.getText().toString().equals("")) {
                     one_live_label.setAnimation(animFadeOut);
                     one_live_label.getAnimation().start();
                     one_live_label.setVisibility(View.INVISIBLE);
-                }
-                else {
-                    if(start == 0) {
+                } else {
+                    if (start == 0) {
                         one_live_label.setAnimation(animFadeIn);
                         one_live_label.getAnimation().start();
                         one_live_label.setVisibility(View.VISIBLE);
@@ -430,13 +422,12 @@ public class PreCameraAboutActivity extends Activity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if(one_hometown.getText().toString().equals("")) {
+                if (one_hometown.getText().toString().equals("")) {
                     one_hometown_label.setAnimation(animFadeOut);
                     one_hometown_label.getAnimation().start();
                     one_hometown_label.setVisibility(View.INVISIBLE);
-                }
-                else {
-                    if(start == 0) {
+                } else {
+                    if (start == 0) {
                         one_hometown_label.setAnimation(animFadeIn);
                         one_hometown_label.getAnimation().start();
                         one_hometown_label.setVisibility(View.VISIBLE);
@@ -459,13 +450,12 @@ public class PreCameraAboutActivity extends Activity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if(one_years.getText().toString().equals("")) {
+                if (one_years.getText().toString().equals("")) {
                     one_years_label.setAnimation(animFadeOut);
                     one_years_label.getAnimation().start();
                     one_years_label.setVisibility(View.INVISIBLE);
-                }
-                else {
-                    if(start == 0) {
+                } else {
+                    if (start == 0) {
                         one_years_label.setAnimation(animFadeIn);
                         one_years_label.getAnimation().start();
                         one_years_label.setVisibility(View.VISIBLE);
@@ -488,13 +478,12 @@ public class PreCameraAboutActivity extends Activity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if(one_reach.getText().toString().equals("")) {
+                if (one_reach.getText().toString().equals("")) {
                     one_reach_label.setAnimation(animFadeOut);
                     one_reach_label.getAnimation().start();
                     one_reach_label.setVisibility(View.INVISIBLE);
-                }
-                else {
-                    if(start == 0) {
+                } else {
+                    if (start == 0) {
                         one_reach_label.setAnimation(animFadeIn);
                         one_reach_label.getAnimation().start();
                         one_reach_label.setVisibility(View.VISIBLE);
@@ -524,13 +513,12 @@ public class PreCameraAboutActivity extends Activity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if(two_name.getText().toString().equals("")) {
+                if (two_name.getText().toString().equals("")) {
                     two_name_label.setAnimation(animFadeOut);
                     two_name_label.getAnimation().start();
                     two_name_label.setVisibility(View.INVISIBLE);
-                }
-                else {
-                    if(start == 0) {
+                } else {
+                    if (start == 0) {
                         two_name_label.setAnimation(animFadeIn);
                         two_name_label.getAnimation().start();
                         two_name_label.setVisibility(View.VISIBLE);
@@ -553,13 +541,12 @@ public class PreCameraAboutActivity extends Activity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if(two_relationship.getText().toString().equals("")) {
+                if (two_relationship.getText().toString().equals("")) {
                     two_relationship_label.setAnimation(animFadeOut);
                     two_relationship_label.getAnimation().start();
                     two_relationship_label.setVisibility(View.INVISIBLE);
-                }
-                else {
-                    if(start == 0) {
+                } else {
+                    if (start == 0) {
                         two_relationship_label.setAnimation(animFadeIn);
                         two_relationship_label.getAnimation().start();
                         two_relationship_label.setVisibility(View.VISIBLE);
@@ -583,13 +570,12 @@ public class PreCameraAboutActivity extends Activity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if(two_birth.getText().toString().equals("")) {
+                if (two_birth.getText().toString().equals("")) {
                     two_birth_label.setAnimation(animFadeOut);
                     two_birth_label.getAnimation().start();
                     two_birth_label.setVisibility(View.INVISIBLE);
-                }
-                else {
-                    if(start == 0) {
+                } else {
+                    if (start == 0) {
                         two_birth_label.setAnimation(animFadeIn);
                         two_birth_label.getAnimation().start();
                         two_birth_label.setVisibility(View.VISIBLE);
@@ -612,13 +598,12 @@ public class PreCameraAboutActivity extends Activity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if(two_location.getText().toString().equals("")) {
+                if (two_location.getText().toString().equals("")) {
                     two_location_label.setAnimation(animFadeOut);
                     two_location_label.getAnimation().start();
                     two_location_label.setVisibility(View.INVISIBLE);
-                }
-                else {
-                    if(start == 0) {
+                } else {
+                    if (start == 0) {
                         two_location_label.setAnimation(animFadeIn);
                         two_location_label.getAnimation().start();
                         two_location_label.setVisibility(View.VISIBLE);
@@ -641,13 +626,12 @@ public class PreCameraAboutActivity extends Activity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if(two_years.getText().toString().equals("")) {
+                if (two_years.getText().toString().equals("")) {
                     two_years_label.setAnimation(animFadeOut);
                     two_years_label.getAnimation().start();
                     two_years_label.setVisibility(View.INVISIBLE);
-                }
-                else {
-                    if(start == 0) {
+                } else {
+                    if (start == 0) {
                         two_years_label.setAnimation(animFadeIn);
                         two_years_label.getAnimation().start();
                         two_years_label.setVisibility(View.VISIBLE);
@@ -670,13 +654,12 @@ public class PreCameraAboutActivity extends Activity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if(two_other.getText().toString().equals("")) {
+                if (two_other.getText().toString().equals("")) {
                     two_other_label.setAnimation(animFadeOut);
                     two_other_label.getAnimation().start();
                     two_other_label.setVisibility(View.INVISIBLE);
-                }
-                else {
-                    if(start == 0) {
+                } else {
+                    if (start == 0) {
                         two_other_label.setAnimation(animFadeIn);
                         two_other_label.getAnimation().start();
                         two_other_label.setVisibility(View.VISIBLE);
@@ -704,7 +687,7 @@ public class PreCameraAboutActivity extends Activity {
         if (updatedConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
             nav_bar.setVisibility(View.GONE);
 
-        } else if (updatedConfig.orientation == Configuration.ORIENTATION_PORTRAIT){
+        } else if (updatedConfig.orientation == Configuration.ORIENTATION_PORTRAIT) {
             nav_bar.setVisibility(View.VISIBLE);
         }
     }
@@ -714,9 +697,8 @@ public class PreCameraAboutActivity extends Activity {
                 ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED ||
                 ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED ||
                 ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-                ActivityCompat.requestPermissions(this, VIDEO_PERMISSIONS, REQUEST_VIDEO_CAPTURE);
-        }
-        else {
+            ActivityCompat.requestPermissions(this, VIDEO_PERMISSIONS, REQUEST_VIDEO_CAPTURE);
+        } else {
             dispatchTakeVideoIntent();
         }
     }
@@ -746,8 +728,8 @@ public class PreCameraAboutActivity extends Activity {
     public String getRealPathFromURI(Context context, Uri contentUri) {
         Cursor cursor = null;
         try {
-            String[] proj = { MediaStore.Images.Media.DATA };
-            cursor = context.getContentResolver().query(contentUri,  proj, null, null, null);
+            String[] proj = {MediaStore.Images.Media.DATA};
+            cursor = context.getContentResolver().query(contentUri, proj, null, null, null);
             int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
             cursor.moveToFirst();
             return cursor.getString(column_index);
@@ -775,7 +757,7 @@ public class PreCameraAboutActivity extends Activity {
                 Toast.makeText(this, "Please grant all permissions to record.", Toast.LENGTH_LONG).show();
                 permissionsGranted = false;
             }
-            if(permissionsGranted)
+            if (permissionsGranted)
                 dispatchTakeVideoIntent();
         } else {
             super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -784,12 +766,12 @@ public class PreCameraAboutActivity extends Activity {
 
     //Update the back button
     public void onBackPressed() {
-        if(about_vf.getDisplayedChild() == 0) {
+        if (about_vf.getDisplayedChild() == 0) {
             AlertDialog.Builder builder = new AlertDialog.Builder(PreCameraAboutActivity.this);
             builder.setMessage("All changes on this page will be lost, would you still like to go back to the home page?")
                     .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
-                            startActivity(new Intent(PreCameraAboutActivity.this, PreCameraActivity.class));
+                            startActivity(new Intent(PreCameraAboutActivity.this, MainActivity.class));
                             finish();
                         }
                     })
@@ -801,15 +783,13 @@ public class PreCameraAboutActivity extends Activity {
             // Create the AlertDialog object and return it
             builder.create();
             builder.show();
-        }
-        else {
+        } else {
             about_vf.setInAnimation(getApplicationContext(), R.anim.slide_in_from_left);
             about_vf.setOutAnimation(getApplicationContext(), R.anim.slide_out_to_right);
-            if(about_vf.getDisplayedChild() == 1) {
+            if (about_vf.getDisplayedChild() == 1) {
                 direction.setText("From");
                 who.setText("Homeless individual");
-            }
-            else {
+            } else {
                 direction.setText("To");
                 who.setText("Loved one");
                 next.setText("Next");
@@ -845,8 +825,7 @@ public class PreCameraAboutActivity extends Activity {
                 path2.moveTo(event.getX(), event.getY());
 
                 path2.lineTo(event.getX(), event.getY());
-            }
-            else if (event.getAction() == MotionEvent.ACTION_MOVE) {
+            } else if (event.getAction() == MotionEvent.ACTION_MOVE) {
 
                 path2.lineTo(event.getX(), event.getY());
 

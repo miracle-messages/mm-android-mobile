@@ -8,25 +8,26 @@
     <string name="camera_error">This device doesn\'t support Camera2 API.</string>
     <string name="title_text">Google Sign-In\nQuickstart</string>
     <!-- Sign-in status messages -->
-    <string name="signed_in_fmt">Signed in as: %s</string>
+    <string name="signed_in_fmt">Signed in as: %1$s</string>
     <string name="signed_in">Signed in</string>
     <string name="signing_in">Signing in…</string>
     <string name="signed_out">Signed out</string>
-    <string name="signed_in_err">"Error: please check logs."</string>
+    <string name="signed_in_err">Error: please check logs.</string>
     <string name="error_null_person">
         Error: Plus.PeopleApi.getCurrentPerson returned null. Ensure that the Google+ API is
         enabled for your project, you have a properly configured google-services.json file
         and that your device has an internet connection.
     </string>
     <string name="loading">Loading…</string>
-    <string name="auth_code_fmt">Auth Code: %s</string>
-    <string name="id_token_fmt">ID Token: %s</string>
+    <string name="auth_code_fmt">Auth Code: %1$s</string>
+    <string name="id_token_fmt">ID Token: %1$s</string>
     <string name="link"><u>miraclemessages.org/getinvolved</u></string>
 
     <!-- Google Play Services error for Toast -->
-    <string name="play_services_error_fmt">Google Play Services Error: %i</string>
+    <string name="play_services_error_fmt">Google Play Services Error: %1$d</string>
 
     <!-- Button labels -->
+    <string name="sign_in_with_google">Sign in with Google</string>
     <string name="sign_out">Sign Out</string>
     <string name="disconnect">Disconnect</string>
 
@@ -68,7 +69,7 @@
     <string name="not_signed_in">Not signed in</string>
     <string name="dev_setup_explanation">If you\'re seeing this screen, congratulations! You\'ve set up the dependencies for YouTube Direct Lite correctly. You just need to set up the following for the app to work correctly:</string>
     <string name="error">Error</string>
-    <string name="error_format">[Error] %s</string>
+    <string name="error_format">[Error] %1$s</string>
     <string name="refresh">Refresh</string>
     <string name="accounts">Accounts</string>
     <string name="initiation_started">Initiation Started</string>
@@ -96,4 +97,11 @@
     <string name="playing_uploaded_video">Playing uploaded video</string>
     <string name="playing_the_video_in_upload_progress">Playing the video in upload progress</string>
 
+    <!--Errors -->
+    <string name="error_authentication_failed">Authentication failed.</string>
+    <string name="error_incomplete_fields">Please fill out all fields.</string>
+    <string name="error_invalid_number">Please enter a valid phone number.</string>
+    <string name="error_invalid_email">Please enter a valid email address.</string>
+
+    <string name="toast_profile_saved">New profile saved!</string>
 </resources>

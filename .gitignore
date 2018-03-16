@@ -1,15 +1,60 @@
+# built application files
+*.apk
+*.ap_
+
+# files for the dex VM
+*.dex
+
+# Java class files
+*.class
+
+# built native files in case there are any
+# *.o
+# *.so
+
+# generated files
+bin/
+gen/
+
+# Ignore gradle files
+.gradle/
+build/
+captures/
+out/
+
+# Local configuration file (sdk path, etc)
+local.properties
+
+# Proguard folder generated
+proguard/
+
+# Metadata generated if any
+.metadata/
+
+# Mac OS X clutter for those using Windows
+*.DS_Store
+
+# Windows clutter if someone using Windows
+Thumbs.db
+
+# Eclipse project files if any
+.classpath
+.project
+
+# Intellij IDEA (see https://intellij-support.jetbrains.com/entries/23393067)
+.idea/workspace.xml
+.idea/tasks.xml
+.idea/datasources.xml
+.idea/dataSources.ids
+.idea/libraries
+.idea/compiler.xml
 *.iml
-.gradle
-/local.properties
-/.idea/workspace.xml
-/.idea/libraries
-.DS_Store
-/build
-/captures
-/app/google-services.json
-/app/app-release.apk
-/app/build.gradle
-/app/build/
-/.idea/vcs.xml
-/app/src/main/java/com/miraclemessages/Constants.java
-/app/src/main/java/com/miraclemessages/Util.java
+*.ipr
+*.iws
+.idea/
+
+# Specific files
+app/src/main/java/com/miraclemessages/common/Settings.java
+app/src/main/java/com/miraclemessages/utils/Util.java
+app/google-services.json
+app/build.gradle
