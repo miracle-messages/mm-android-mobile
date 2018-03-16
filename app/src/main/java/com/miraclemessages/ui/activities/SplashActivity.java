@@ -27,7 +27,8 @@ public class SplashActivity extends BaseActivity {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 } finally {
-                    Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+                    Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
+                    Logger.debug(TAG, "Starting LoginActivity...");
                     startActivity(intent);
                     finish();
                 }

@@ -18,7 +18,6 @@ import android.widget.ViewFlipper;
 import com.amazonaws.mobileconnectors.s3.transferutility.TransferListener;
 import com.amazonaws.mobileconnectors.s3.transferutility.TransferObserver;
 import com.amazonaws.mobileconnectors.s3.transferutility.TransferState;
-import com.amazonaws.mobileconnectors.s3.transferutility.TransferUtility;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -27,10 +26,10 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.miraclemessages.MMApplication;
 import com.miraclemessages.R;
 import com.miraclemessages.common.Settings;
 import com.miraclemessages.models.Client;
-import com.miraclemessages.utils.GenericUtil;
 
 import java.io.File;
 
@@ -57,9 +56,6 @@ public class ExportActivity extends BaseActivity {
     ImageView back, next_x, next_xx;
     TextView title, subtitle;
 
-    // The TransferUtility is the primary class for managing transfer to S3
-    private TransferUtility transferUtility;
-
     //The Firebase database is the primary class for data upload and storage
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
     private DatabaseReference myRef;
@@ -69,7 +65,6 @@ public class ExportActivity extends BaseActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_export);
-        transferUtility = GenericUtil.getTransferUtility(this);
         myRef = database.getReference("clients");
 
         sharedpreferences = getSharedPreferences(myPreferences, Context.MODE_PRIVATE);
@@ -120,7 +115,7 @@ public class ExportActivity extends BaseActivity {
                     back.setVisibility(View.VISIBLE);
                     export_vf.showNext();
                 } else if (export_vf.getDisplayedChild() == 2) {
-                    startActivity(new Intent(ExportActivity.this, PreCameraActivity.class));
+                    startActivity(new Intent(ExportActivity.this, MainActivity.class));
                     finish();
                 }
             }
@@ -151,7 +146,7 @@ public class ExportActivity extends BaseActivity {
             return;
         }
         file = new File(filePath);
-        observer = transferUtility.upload(Settings.BUCKET_NAME,
+        observer = MMApplication.getInstance().getTransferUtility().upload(Settings.BUCKET_NAME,
                 sharedpreferences.getString(Name, null).toString() + "_" +
                         sharedpreferences.getString(Email, null).toString() +
                         "/" + file.getName(), file);

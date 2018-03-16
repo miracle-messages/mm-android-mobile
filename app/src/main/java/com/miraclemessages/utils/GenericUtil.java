@@ -21,7 +21,6 @@ import android.util.Patterns;
 
 import com.amazonaws.auth.CognitoCachingCredentialsProvider;
 import com.amazonaws.mobileconnectors.s3.transferutility.TransferObserver;
-import com.amazonaws.mobileconnectors.s3.transferutility.TransferUtility;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.s3.AmazonS3Client;
 import com.miraclemessages.common.Settings;
@@ -41,8 +40,6 @@ public class GenericUtil {
     // We only need one instance of the clients and credentials provider
     private static AmazonS3Client sS3Client;
     private static CognitoCachingCredentialsProvider sCredProvider;
-    // TODO: Remove this static method from a util to prevent memory leaks. Extend application class instead.
-    private static TransferUtility sTransferUtility;
 
     /**
      * Gets an instance of CognitoCachingCredentialsProvider which is
@@ -75,21 +72,6 @@ public class GenericUtil {
         return sS3Client;
     }
 
-    /**
-     * Gets an instance of the TransferUtility which is constructed using the
-     * given Context
-     *
-     * @param context
-     * @return a TransferUtility instance
-     */
-    public static TransferUtility getTransferUtility(Context context) {
-        if (sTransferUtility == null) {
-            sTransferUtility = new TransferUtility(getS3Client(context.getApplicationContext()),
-                    context.getApplicationContext());
-        }
-
-        return sTransferUtility;
-    }
 
     /**
      * Converts number of bytes into proper scale.
@@ -160,12 +142,12 @@ public class GenericUtil {
     }
 
     //Helper function to check if user input email is valid.
-    private static boolean isValidEmail(CharSequence userInput) {
+    public static boolean isValidEmail(CharSequence userInput) {
         return Patterns.EMAIL_ADDRESS.matcher(userInput).matches();
     }
 
     //Helper function to check if user input phone number is valid.
-    private static boolean isValidPhone(CharSequence userInput) {
+    public static boolean isValidPhone(CharSequence userInput) {
         return Patterns.PHONE.matcher(userInput).matches();
     }
 }

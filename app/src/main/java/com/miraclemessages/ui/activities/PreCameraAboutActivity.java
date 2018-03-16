@@ -197,7 +197,7 @@ public class PreCameraAboutActivity extends BaseActivity {
                     builder.setMessage("All changes on this page will be lost, would you still like to go back to the home page?")
                             .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
-                                    startActivity(new Intent(PreCameraAboutActivity.this, PreCameraActivity.class));
+                                    startActivity(new Intent(PreCameraAboutActivity.this, MainActivity.class));
                                     finish();
                                 }
                             })
@@ -771,7 +771,7 @@ public class PreCameraAboutActivity extends BaseActivity {
             builder.setMessage("All changes on this page will be lost, would you still like to go back to the home page?")
                     .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
-                            startActivity(new Intent(PreCameraAboutActivity.this, PreCameraActivity.class));
+                            startActivity(new Intent(PreCameraAboutActivity.this, MainActivity.class));
                             finish();
                         }
                     })

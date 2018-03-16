@@ -16,7 +16,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.miraclemessages.R;
-import com.miraclemessages.ui.activities.PreCameraActivity;
+import com.miraclemessages.ui.activities.MainActivity;
 
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -26,7 +26,7 @@ public class MessagesListAdapter extends BaseAdapter{
     Context context;
     ArrayList<HashMap<String,String>> myMessagesList;
     private static LayoutInflater inflater=null;
-    public MessagesListAdapter(PreCameraActivity mainActivity, ArrayList<HashMap<String,String>> myList) {
+    public MessagesListAdapter(MainActivity mainActivity, ArrayList<HashMap<String,String>> myList) {
         myMessagesList = myList;
         context=mainActivity;
         inflater = ( LayoutInflater )context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);

@@ -1,41 +1,48 @@
 package com.miraclemessages.models;
 
+import java.util.Date;
+
 /**
  * Created by James Wu on 5/18/2017.
  */
 
-public class MinimumCase {
-    public String submitted;
-    public String createdBy;
-    public String caseStatus;
-    public String messageStatus;
-    public String nextStep;
-    public String pubVideo; //YouTube Video URL
-    public String youtubeCover;
-    public String privVideo; //S3 Video URL
+public class Case {
+    private Integer age; //Should be digit
+    private Boolean ageApproximate;
+    private String caseStatus;
+    private String currentCity;
+    private String currentState; //Full state name
+    private String currentCountry; //Country code
+    private Integer detectiveCount;
+    private String firstName; //Sender first name
+    private String homeCity;
+    private String homeCountry; //Country code
+    private String homeState; //Full state name
+    private String lastName; //Sender last name
+
+
+    private String messageStatus;
+    private String nextStep;
+    private String pubVideo; //YouTube Video URL
+
+    private String youtubeCover;
+
+    private Date submitted;
+    private String createdBy;
+    private String privVideo; //S3 Video URL
     //need public String source here
-    public String photo; //URL to firebase storage location
-    public String firstName; //Sender first name
-    public String middleName; //Sender middle name
-    public String lastName; //Sender last name
-    public String currentCity;
-    public String currentState; //Full state name
-    public String currentCountry; //Country code
-    public String homeCity;
-    public String homeState; //Full state name
-    public String homeCountry; //Country code
-    public int age; //Should be digit
-    public boolean ageApproximate;
-    public int yearsHomeless;
-    public boolean detectives;
+    private String photo; //URL to firebase storage location
+    private String middleName; //Sender middle name
+    private int yearsHomeless;
+    private boolean detectives;
 
     //Need constructor
 
-    public String getSubmitted() {
+    public Date getSubmitted() {
         return submitted;
     }
 
-    public void setSubmitted(String submitted) {
+    public void setSubmitted(Date submitted) {
         this.submitted = submitted;
     }
 

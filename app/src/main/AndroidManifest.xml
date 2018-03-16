@@ -15,6 +15,7 @@
         android:required="true" />
 
     <application
+        android:name=".MMApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -28,9 +29,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.activities.MainActivity" />
+        <activity android:name=".ui.activities.LoginActivity" />
         <activity
-            android:name=".ui.activities.PreCameraActivity"
+            android:name=".ui.activities.MainActivity"
             android:configChanges="orientation|screenSize" />
         <activity
             android:name=".ui.activities.PreCameraAboutActivity"
@@ -48,6 +49,11 @@
         <service
             android:name="com.amazonaws.mobileconnectors.s3.transferutility.TransferService"
             android:enabled="true" />
+
+        <!-- For crashlytics -->
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="" />
 
     </application>
 
